@@ -1,0 +1,16 @@
+show ip eigrp neighbors 查看EIGRP邻居表 
+show ip eigrp topology 查看EIGRP拓扑结构数据库 
+show ip eigrp interface 查看运行EIGRP路由协议的接口的状况 
+show ip eigrp traffic 查看EIGRP发送和接收到的数据包的统计情况 
+debug eigrp neighbors 查看EIGRP动态建立邻居关系的情况 
+debug eigrp packets 显示发和接收的EIGRP数据包 
+ip hello-interval eigrp 配置EIGRP的HELLO发送周期 
+ip hold-time eigrp 配置EIGRP的HELLO hold时间  
+router eigrp 启动EIGRP路由进程 
+no auto-summary 关闭自动汇总 
+ip authentication mode eigrp 配置EIGRP的认证模式 
+ip authentication key-chain eigrp 在接口上调用钥匙链 
+variance 配置非等价负载均衡 
+delay 配置接口下的延迟 
+bandwidth 配置接口下的带宽 
+ip summary-address eigrp 手工路由汇总

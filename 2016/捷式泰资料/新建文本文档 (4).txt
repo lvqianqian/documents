@@ -1,0 +1,82 @@
+IPv6
+	ipv4存在的问题
+		地址耗尽
+		互联网用户急速增长
+		路由表过大
+		缺乏真正的端到端模型
+		无法适应新的技术
+		安全问题
+		。。。。
+	IPv6特点
+		128bit长度，解决了地址空间不够
+		没有地址转换，自动配置
+		没有广播，没有ARP
+		更简洁的包头，提高数据处理的效率
+		提供移动性，安全性的支持
+		多种对ipv4的过渡方式
+		。。。。
+	IPv6 分组包头，扩展包头
+		扩展包头只有目标节点查看，其他节点不查看和处理大部分扩展包头
+		要按照顺序查看扩展包头的内容
+	分类
+		单播：标示一个接口，用于路由
+		多播：标志一组接口
+		任意播：标志多个接口
+		无广播：很多的协议，都可以使用多播地址来替代
+	linklocal address 链路本地地址
+		有效范围：本地链路，不能被路由
+		作用
+			用于自动地址配置，邻居发现，路由器发现等
+			在一条链路上，必须知道对方节点的链路本地地址，如果不知道，将是不能通信的。
+		接口ID
+			64bit长度，用于标示链路上的接口，在每条链路上接口ID必须唯一
+			获取方式
+				EUI-64
+				手工配置
+				随机生成（windows 7）
+			作用
+				构成linklocal地址
+				无状态配置环境中用于构成全局单播IPv6地址
+		EUI-64
+			MAC:		c000.15c0.0000
+			二进制：1100000000000000.1010111000000.0000000000000
+			插入FFFE:1100000000000000.0001010111111111.1111111011000000.0
+			设置U/L位：1100001000000000.0001010111111111.1111111011000000.0
+					\\第7位，设置为U/L位，1全球唯一地址，0本地唯一地址
+			接口ID：C200:15ff:feco:0000
+	IPv6基础配置
+		全局激活设备的IPv6单播路由功能
+			Router(config)#ipv6 unicast-routing
+		接口激活IPv6，配置IPv6地址
+			interface f0/0
+				ipv6 enable
+				ipv6 address address/prefix-length [eui-64|link-local]
+				no shutdown
+			配置IPv6静态路由
+				ipv6 route 2012::/64 2023::3
+		ripng
+		eigrp for ipv6
+		ospfv3
+		验证IPv6配置
+			show ipv6 interface [brief]
+			show ipv6 routers
+			show ipv6 neighbors
+			debug ipv6 packet
+		多播地址
+			FF02::1 链路上的所有节点
+			FF02::2 链路上的所有路由器
+			FF02::9 RIP路由器
+			FF02::5 OSPF路由器
+			FF02::6	OSPF DR路由器
+			
+			
+	IPv4过渡IPv6方法
+		双栈
+			一个接口上，同时启用IPv4和IPv6协议栈。
+		6to4 tunnel
+			interface Tunnel0
+			ipv6 enable
+			tunnel source FastEthernet0/1
+			tunnel destination 23.23.23.3
+			tunnel mode ipv6ip
+		NAT-PT

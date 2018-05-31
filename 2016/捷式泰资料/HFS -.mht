@@ -1,0 +1,959 @@
+From: <ÓÉ Windows Internet Explorer 8 ±£´æ>
+Subject: HFS /
+Date: Mon, 13 Jul 2015 10:11:56 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0000_01D0BD54.59223160"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.6157
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01D0BD54.59223160
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://192.168.66.249:123/
+
+=EF=BB=BF<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" =
+"http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>HFS /</TITLE>
+<META content=3D"text/html; charset=3DUTF-8" =
+http-equiv=3Dcontent-type><LINK=20
+rel=3Dstylesheet type=3Dtext/css=20
+href=3D"http://192.168.66.249:123/?mode=3Dsection&amp;id=3Dstyle.css">
+<SCRIPT type=3Dtext/javascript src=3D""></SCRIPT>
+
+<SCRIPT> if (typeof jQuery =3D=3D "undefined") document.write('<script =
+type=3D"text/javascript" src=3D"/?mode=3Djquery"></'+'script>'); =
+</SCRIPT>
+<LINK rel=3D"shortcut icon" href=3D"/favicon.ico">
+<STYLE class=3Dtrash-me>.onlyscript {
+	DISPLAY: none
+}
+BUTTON[onclick] {
+	DISPLAY: none
+}
+</STYLE>
+
+<SCRIPT>
+    // this object will store some %symbols% in the javascript space, so =
+that libs can read them
+    HFS =3D { folder:'/', number:2, paged:1 };=20
+    </SCRIPT>
+
+<SCRIPT type=3Dtext/javascript=20
+src=3D"http://192.168.66.249:123/?mode=3Dsection&amp;id=3Dlib.js"></SCRIP=
+T>
+
+<META name=3DGENERATOR content=3D"MSHTML 8.00.6001.18702"></HEAD>
+<BODY><!-- -->
+<DIV id=3Dpanel>
+<FIELDSET id=3Dmsgs><LEGEND><IMG =
+src=3D"http://192.168.66.249:123/~img10">=20
+Messages</LEGEND>
+<UL style=3D"PADDING-LEFT: 2em"></UL></FIELDSET>=20
+<FIELDSET id=3Dlogin><LEGEND><IMG =
+src=3D"http://192.168.66.249:123/~img27">=20
+User</LEGEND>
+<CENTER><A href=3D"http://192.168.66.249:123/~login">Login</A>=20
+</CENTER></FIELDSET>=20
+<FIELDSET id=3Dfolder><LEGEND><IMG =
+src=3D"http://192.168.66.249:123/~img8">=20
+Folder</LEGEND>
+<DIV=20
+style=3D"POSITION: relative; FLOAT: right; TOP: -1em; FONT-WEIGHT: =
+bold"></DIV>
+<DIV id=3Dbreadcrumbs><A href=3D"http://192.168.66.249:123/"><IMG=20
+src=3D"http://192.168.66.249:123/~img1"> Home</A> </DIV>
+<DIV id=3Dfolder-stats>0 folders, 2 files, 1.77 Mbytes </DIV></FIELDSET> =
+
+<FIELDSET id=3Dsearch><LEGEND><IMG =
+src=3D"http://192.168.66.249:123/~img3">=20
+Search</LEGEND>
+<FORM style=3D"TEXT-ALIGN: center"><INPUT size=3D15 name=3Dsearch> =
+<INPUT value=3Dgo type=3Dsubmit> </FORM>
+<DIV style=3D"MARGIN-TOP: 0.5em" class=3D"hidden popup">
+<FIELDSET><LEGEND>Where to search</LEGEND><INPUT value=3Dfromhere =
+CHECKED=20
+type=3Dradio name=3Dwhere> this folder and sub-folders <BR><INPUT =
+value=3Dhere=20
+type=3Dradio name=3Dwhere> this folder only <BR><INPUT value=3Danywhere =
+type=3Dradio=20
+name=3Dwhere> entire server </FIELDSET> </DIV></FIELDSET>=20
+<FIELDSET id=3Dselect class=3Donlyscript><LEGEND><IMG=20
+src=3D"http://192.168.66.249:123/~img15"> Select</LEGEND>
+<CENTER><BUTTON=20
+onclick=3D"&#13;&#10;            var x =3D $('#files =
+.selector');&#13;&#10;            if (x.size() > =
+x.filter(':checked').size())&#13;&#10;                x.attr('checked', =
+true).closest('tr').addClass('selected');&#13;&#10;&#9;&#9;&#9;else&#13;&=
+#10;                x.attr('checked', =
+false).closest('tr').removeClass('selected');&#13;&#10;&#9;&#9;&#9;select=
+edChanged();&#13;&#10;&#9;&#9;&#9;"=20
+type=3Dsubmit>All</BUTTON><BUTTON=20
+onclick=3D"&#13;&#10;            $('#files .selector').attr('checked', =
+function(i,v){ return !v =
+}).closest('tr').toggleClass('selected');&#13;&#10;&#9;&#9;&#9;selectedCh=
+anged();&#13;&#10;            "=20
+type=3Dsubmit>Invert</BUTTON><BUTTON onclick=3DselectionMask.call(this)=20
+type=3Dsubmit>Mask</BUTTON>=20
+<P style=3D"MARGIN-TOP: 1em; DISPLAY: none"><SPAN =
+id=3Dselected-number>0</SPAN>=20
+items selected</P></CENTER></FIELDSET>=20
+<FIELDSET id=3Dactions><LEGEND><IMG =
+src=3D"http://192.168.66.249:123/~img18">=20
+Actions</LEGEND>
+<CENTER><BUTTON id=3DarchiveBtn=20
+onclick=3D'if (confirm("Are you sure?")) submit({}, =
+"/?mode=3Darchive&amp;recursive")'=20
+type=3Dsubmit>Archive</BUTTON> <A=20
+href=3D"http://192.168.66.249:123/?tpl=3Dlist&amp;folders-filter=3D\&amp;=
+recursive">Get=20
+list</A> </CENTER></FIELDSET>=20
+<FIELDSET id=3Dserverinfo><LEGEND><IMG =
+src=3D"http://192.168.66.249:123/~img0">=20
+Server information</LEGEND><A =
+href=3D"http://www.rejetto.com/hfs/">HttpFileServer=20
+2.3d</A> <BR>Server time: 2015/7/13 10:08:25 <BR>Server uptime: 01:20:10 =
+
+</FIELDSET> </DIV>
+<DIV id=3Dfiles_outer>
+<DIV style=3D"HEIGHT: 1.6em"></DIV>
+<FORM method=3Dpost>
+<TABLE id=3Dfiles>
+  <TBODY>
+  <TR>
+    <TH><A href=3D"http://192.168.66.249:123/?sort=3Dn">Name</A><A=20
+      href=3D"http://192.168.66.249:123/?sort=3De">.extension</A>=20
+    <TH><A href=3D"http://192.168.66.249:123/?sort=3Ds">Size</A>=20
+    <TH><A href=3D"http://192.168.66.249:123/?sort=3Dt">Timestamp</A>=20
+    <TH><A href=3D"http://192.168.66.249:123/?sort=3Dd">Hits</A>=20
+  <TR>
+    <TD><INPUT class=3Dselector value=3DRIP.bmp type=3Dcheckbox =
+name=3Dselection> <A=20
+      href=3D"http://192.168.66.249:123/RIP.bmp"><IMG=20
+      src=3D"http://192.168.66.249:123/~img42"> RIP.bmp</A>=20
+    <TD>1.77 MB
+    <TD>2015/7/4 17:31:59
+    <TD>8=20
+  <TR class=3Deven>
+    <TD><INPUT class=3Dselector=20
+      value=3DRIP%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB.txt =
+type=3Dcheckbox=20
+      name=3Dselection> <A=20
+      =
+href=3D"http://192.168.66.249:123/RIP%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB=
+.txt"><IMG=20
+      src=3D"http://192.168.66.249:123/~img43"> =
+RIP=E5=91=BD=E4=BB=A4=E6=B1=87=E6=80=BB.txt</A>=20
+    <TD>2.36 KB
+    <TD>2015/7/13 8:31:53
+    <TD>4 </TR></TBODY></TABLE></FORM></DIV><!-- Build-time: 0.015 =
+--></BODY></HTML>
+
+------=_NextPart_000_0000_01D0BD54.59223160
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: http://192.168.66.249:123/~img10
+
+R0lGODlhEAAQAGYAACH5BAEAAGwALAAAAAAQABAAhvr7/Nnr/snk/er1/fH5/tHo/vHx8eDz/uvu
+8tXa4+Dt+gMrkcHg/XF4nrra/dLf89HS4pvG7b3EzLG8zJ/B44yqzJKZvbPE2b3E18np/tPx/uvs
+7lFrn+zw9Wl0k2Roi6rG5anH6bTL5arM8K3M7aXB4KnC3uHk8uXq8efp7bzJ2LvJ0+Hj5cDd+8jV
+6c3V3d/n8dTg6tri6NDi9cDJ17fV9b3X67nP4LLZ/cDGzt/q97jX91p3tWV7mHB3k1hyo0BesFRw
+nkpioHyIoHGYv36UuXKGrXJ9kWeDr2uKtkhYfQUnhwUujj1SfS4/cCo+eTJEcEFZlF1ehEJbpkVX
+nBk9lihGizxaqGyX25mvzJuxx5Gx1Jisxouu15CtzJunzK28zKC937K3xK24xJm005i246O2yn+e
+w4qny2SU4Yahwm+d2QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAfMgGyCbAgbBocdHSmDgwgGAGwQUhgAAAQyjCgblQANVVGWAAMuBoQs
+lgQEJ2UPA64ECmZsCQgErjEWFl8DAQEHChc5NAoHxQ9CC1S8vQU2Phg6vb1ZC1MHBQICBTcfYDPM
+BV5LQBrZAi0mHyoX2NkVC1caDPMgRh4wWiLZGWdMVhkOHITY8kQCmxVcSuwYwSMNljU1KKBpcmTQ
+hCIVyFAggSNMlyROPJQaBGFIDw5qIiCBomQMo5cSfkQIMuGlTTZiiHB4cdNmggYJXgYCADs=
+
+------=_NextPart_000_0000_01D0BD54.59223160
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: http://192.168.66.249:123/~img27
+
+R0lGODlhEAAQAGYAACH5BAEAAGQALAAAAAAQABAAhv////+oQ/i0UfeVL/+gOyp4KjGrMWHIYUKz
+Q0i4SVXAVVjAWPDQobyHMsKZT0m3SfmxTvS6VvmeOeCZOa17K7GALCieKcGVUsqKK8akYs6DId6g
+U8yhWcWeadOIKcuQNNGTNMCUQc+GMM2dS+uPK9eYO8qoaNzJpeHAhebFjcC1id68gN7Dj+/Nn+n2
+9e35+id1J+bOosDVxsHeyvSfQvimQ/mvS9GqY923d965ef+6VZPKm6/BpKfQsfu8WK6umKG4oUeb
+Q02VTUuJSzyrPDqwOkejR3KVYnqdele9WEivSFSuVkd7SCiKKDt6OylzKjJ+NCOaIzKTMjukOzmE
+OTKAMjOPM2WtZpitZWDHYM+CHruue7qUV3u8fHWpdW60dGawaHune4ZsH6V9SAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAekgGSCgxkmLIOIiBcjKCkrDieJg1wUHDg5Nw4VkoIUGBMTJSEfIDGc
+DTYCOj4REQIMpwEQArQCELCSYxIBvLw1LZxkIhIExQQ0wWQdJAPNAxvJP2IeWhoVR8lXQVhbKjwP
+RF2SRgtZSzMuMkoHU0CIXgYKB0lgLzsJCgZCiFQG+AcIenx5gMAAFEQFLBRBkGCBFCsWojQZggjJ
+kwIYq8BwwiQMokAAOw==
+
+------=_NextPart_000_0000_01D0BD54.59223160
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: http://192.168.66.249:123/~img8
+
+R0lGODlhEAAQAGYAACH5BAEAAGsALAAAAAAQABAAhvj9//nhhajT/Prrjf/4k//6nOHw/trr/v7t
+hrjc+9Hk+fH4/sDAwOjz/anY/rDX/KbN87K+zKKiobDAyu3cq/DjuPDgqurVlv77zbPn/tnOsf7h
+evjbb+jDW6CKR/3cdd+5QvHkltW7dvHrtYF0T7mZQMCoR7CTSf/3mcymQPLjhvHYlufXqvDUkevV
+m+3am+zWoO/esfHcpebasu7aoufBSPDw79r3/f/94oR9aP397+zpyYd8XoJ2V+bm5vPoxJd/QI+E
+ZpR+PsfIyP/9sf/9pv7xs8fV59Xk6d7k6cvx/tDb6MLh/bDL7OTIdp7a/YzF87Hb/pW33rjGvfbU
+c/bMaqbV/fHPd6nM8a3X6rjJ3bjP1rnY3LvW2N3crKzk/u/GU9LSr8rNppSSiZiYmLCsorW6rbCy
+r7/b9fLNXby8vAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAfGgGuCgwsJUGhJg4qKBwtPC0c+i4oKAAAGDgZaNpM/Sw0NBgIPUQcR
+iy8jTQYHDwICVgkKp4IwRAVeWAmvr0wKUgyCMQUEBGIQAhATU2EaGiKCLgMICAFmEzNIN0oHOh5D
+axQBHFcrFjsZXxldOBc5gjJUHRhFBShcDlkBGCdngjRVWhArNmBLiAAqegyiAMbCgIfTNgzYYELC
+IBYdjATYyJFDDRKKKlwI8OFDGhAlgPAYE2xQBScpPAgJQkbNpEFlJLS8KSgQADs=
+
+------=_NextPart_000_0000_01D0BD54.59223160
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: http://192.168.66.249:123/~img1
+
+R0lGODlhEAAQAGYAACH5BAEAAGkALAAAAAAQABAAhv////3DYODr9fH1+ejw9v6rS/60T/iZPJjB
+64mTtqbA3NLj8s3g8P21Wdrm8sbc7f25WJ281f27c/7DXrHW6KnS8dro9c3Y6KPR85vJ9au01KnK
+4rPC236Fs/2wU/6mQ2ZrmL/L4rDF4azW+b2Re9uel9umnbHg+7fZ7bnZ7K3J3P6iP6/J192xdqvB
+1aPH567V5u+RPqDO9KbJ6anA48i4tHZ+ounx+HB5qvjp2+Dn8fn39vr49Gpwnfjv4/j06ePWw+1r
+SqxgY9DT3/3YmfDVq36FrOTJxdbj79rY5rMVB7CvtLu6tKqcr/6qR7KPkp+szJC36JKoyo2cw46u
+3fq3b/2+YPS2Zf67V/OpZICHsoaOuvvDevmoXvzBcr2+27680LW/26a74OqMWJnF8+6EV7C41eSe
+X6WsxwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAe6gGmCg4NHQiWEiV5cRGkmSkGJgx4GVgETBjFlkmkNBhMBAQYfXWOS
+BR6hEAUfEjxAJIQNDaoFKxI+AwQ1T4JFV7UHVTu6Ag5gTYJMAVhOB1k5xQ4LFxqCMywtB2c/ujoX
+IQwPCoIbJypLLsVoRh0PKeRpLyMYMhU3xgkgOCgUEYIiKmDIkEGAhQX6bFCA8U8QDTIIEFhAwiBB
+Dy0bFEghJCYKggXipnTYAsXMkEQaqHDgEOZLEk4wJQUCADs=
+
+------=_NextPart_000_0000_01D0BD54.59223160
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: http://192.168.66.249:123/~img3
+
+R0lGODlhEAAQAGYAACH5BAEAAGkALAAAAAAQABAAhvr6+jRozeHp8+rt8/Dx8drh8OHm8NPZ5NnZ
+2eny/IKDgu7w8/H0+TBhwLm5uDFky9Lc7WGK0H2a1nic2/X4+4Sg2bGxspvU+J+12KioqMrT487O
+zsPO3ENyzuLi6ePk50BvzTpqwTtuzenp6d3o81uCyNLh87fI4bvF3q/V+LTj/XV3eu/w77/T67PE
+3Lq+yrm+w7a/yqS85OTs+L/CyXBud8LCwvj39m1scd/i7e/7/sHW/czb7srX6NPT08bK1cjj+8/i
+9djc4crQ38vO1Mrv/m2O0GyR1WuHy1iG5WWCw2qe9oCDiWiT+GqJ5G+X8FaG4Dllwz573TVjvy5g
+xS9hykqC2lWC00lz2E1yxUh1zoe98Jmtzq2xwaCnuKyxtYWv7ZS85pKn1Juv0o6Pj4qPmoaauqG0
+0JOTlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAfjgGmCaQMkAocCHgSDjAUMggBpAAkHCIwMM2k6RSoXFykJAAcbgwVp
+QFthEB4QYEs7AD+WAhRBTU4DAjIJA0lQJAtfaQYAT1ZGPVcPFQARUhMAXQgCJlgiAVUBASgUHQEd
+DBwOAy3X2gFcABPnAxoZAjznAUoAFQ/aIQMcGQULIOdITGg5V+KGFwsCCIi5FwBEhHMNXAxg4mNE
+vxINApgBcKQBFQkEYihgkYbIgBESpmTBECXEGAIHcJBKQ4BGDgJCzmA48WHAkBoOGBGA8eKAgaMa
+yqywwWgQAgtkFChA4+ADo0AAOw==
+
+------=_NextPart_000_0000_01D0BD54.59223160
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: http://192.168.66.249:123/~img15
+
+R0lGODlhEAAQAFUAACH5BAEAADgALAAAAAAQABAAhf///wNIrJKcraKquARFqau0whVYtYqTpDtv
+vpuktqrD5AFXu4GNoKGnsqaqtmSGxmaLyY+YqIeSpHKRyJigr73AxrfAy7G1wcjQ5cXJ0L3N54eg
+0oCdzrK1vJ2125Gq14il1VuGxz1stzNruy1ovDtzwmJvhEx0u1RpjhVVsg5UswVMsBteuCBYrxli
+vhRhvmB9uniDl2RyiWJ1l26Iu3uNu1SAxHmFmgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZtQJxw
+SCwWE8aCUSgzmpY4CYMYuUEzBSXOMqhAcZeGUDD44igdskNgxh0EsWl7kBAc2rgaakYzI1YBJzAB
+ASJLIQYlCyAeCwgvNkYsQgEKCgFCLkYGQikaGC1CKkYjBAQTQhwEASRLDxtEHxBEQQA7
+
+------=_NextPart_000_0000_01D0BD54.59223160
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: http://192.168.66.249:123/~img18
+
+R0lGODlhEAAQAFUAACH5BAEAADYALAAAAAAQABAAhf///+Hh4fLy89HR0Wtvw4iHu2Zmy2Fhxevr
+65mazYiIy3t/vaClzD8/pDQ0mWVnu6ir0HB4u4eIyHV1r1pbvFpatmluvdra293e6Li4uIGFwff4
++MjJzLe5xKaozbO2x7i42ZCRxJSVy8PDw2VpuFRXuWlts0RDoDw8mWNlnmxrn1tgtWtsqWZqrHN2
+tpycvFxcwJSXplBXpXFzv7W2unh/sQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaEQJtw
+SCwKSa6AcrkMVRhCwkLAXCISh0J0WlVes1vBYEwefLU2qbg8PocF8Dgci1bL5fToSiORKP6AFgZ1
+BgYEEREEDw8WMCWDUYUTEAwdNBweDg1gaZImMjEjASCanASFLDMPHwgbEKWEBik1IhgCCAywQi0U
+FCoZAwEXAy8oJ09GyURBADs=
+
+------=_NextPart_000_0000_01D0BD54.59223160
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: http://192.168.66.249:123/~img0
+
+R0lGODlhEAAQAGYAACH5BAEAAHwALAAAAAAQABAAhv///9DQ2rOz07u72HLO/nByvZPk/0u8/qio
+zKiu16OjzNLS4anq/3l6ttvb57Hs/7vA2JHf/tnZ2sDE2IyNvsnJ2mrO/2LJ/lrF/oTU/n97mO3v
+8YiEoqeoyouJqqGj1oKEtLq70Z+ewenp6KLo/3t7o+Pj49jY6WpkisvM16qovJydumdilISb04SP
+1ZKUw5+pwI2115+hy9bV6JGbx5GazJag08Py/qC94LO12LW2zry9wIje/7XQ3Y7M8K+z4IzC4fj3
++PHx8r3h88rIzaqrw6yw0bSzxaGy0eTl8ae5ymdsx3Z6wSaq/Xh3sdHQ1WFmxT6o7lWS4ES5/lS6
++jKw/T62/kud6HBrknRxjXZyl2JemW5ojnFsjXt1mnl2oXh4rc3O4X54l29uoWptuYyNspWTrJqY
+rIaItIeIuYmHsKOjsKetvqmntpWVu52yoqamq42Io2af5XWj3mq183+D1XiY03ib3oB7m4WCpFLA
+/n626gAAAAAAAAAAAAAAAAfqgHyCg3wOYYSIfBIpCEUyNCuJRDtsMEo9Qw8+CRMQEBULfAExBgwP
+Nw8MER0nGzM/dWMBQDwGJAwkBhk1Ax8FZE5bDjgEGREGERkELQMIDS9pLBtIFxYEBBYWF3YDAg1g
+JSx8CAcYGBcYegdSAwkNFBRYfBBRVgcHU1RyLt1oFCAo+Cy40qQKnTsFOiBIIMBDCQ0BT8zZY4PJ
+EigTJghQoMHMmy5JHORYUMFXAQVuGMI5kyVOBSFBRkgwUgaEAjVtVmjg8IRPCBMjTEjQsSaPgi8B
+EqlIESBACBEivHBIJEiFBzFauOA5QjUQADs=
+
+------=_NextPart_000_0000_01D0BD54.59223160
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: http://192.168.66.249:123/~img42
+
+R0lGODlhEAAQAGYAACH5BAEAAGoALAAAAAAQABAAhvj4+JmZmbGxsevr66mrqaGhofHx8a6jicDG
+v/lUJstbL8XMXfhgM7myo/tXLPpYLdFYMPxaMcTKxdCpcN7bx3dAIbivOc/Z2sWoaMyrfc2qacDC
+SLLAGM+Jb7TBJK+nkqafhPSXdfede7Wpj8y9abGnj9rezd/s3d7w6cjNyNfSwt/Swe/v8erz7vD/
+/+Lk3/Hh2OXo5Lq1sL28s7zDua6ttbq1qb24r8bGsMvIvtfHusCigM7fjs7XmKOsQ45sRJZ5YNNM
+J5xrOJZULppWJZ1eL/9PHv9OKfNVLM9hOdJOLdNZKspkKYlUKnNyWW9taHFvamVkXGIkCGstD3I6
+G7UlIpFIGoBIJZg1L3d2bJ4XFYgpJKSJHrW0GbO9HPhvRc9vTd50T+p2TLeCTLSJXrqcfYeDdaup
+N7y0Lr28JwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAe2gGqCg4SFhoeEAoqLjI2KiIaPEhcXHUFKEApcPggyaooAKS4wXw4R
+DEtdCzE3AAIEABItIQkPp0wcGy82AASwCCIJDg9HCh5pJCsNvbAzYkYJSBBoXhoTEwe9BQY0OmFJ
+YDwWFhgZZh8GBdsjFCYoJwtnOFksOSXp20JjZDsqPU41EEBpcCBdgAFNihCxMqQMhScEsFQ5MCDA
+wQpXKlCZIgVIlB9btICoeHCAyZMoT1pcybLlykAAOw==
+
+------=_NextPart_000_0000_01D0BD54.59223160
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: http://192.168.66.249:123/~img43
+
+R0lGODlhEAAQAEQAACH5BAEAABYALAAAAAAQABAAhPn4+MjW4PLw8Li4uHl5ebGxscDAwPj39uDh
+46ysrPn49z4+PtjY2oaGhpCQkOXl6J2dncrKyuDf31xdXHNzc1FRUQAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAVooGUZhkCa5UCJrAEszBsvUTGx1gAgz94jpUKFpQMYj4CBckBEOhESpmgQ
+qFqvAWnuoHAitQWsuMAqCARcL4AsCouvbEvifD4cnAlW4n3NiyB0gXdGECwOfFYOLA2BjVwNLASS
+k5STFiEAOw==
+
+------=_NextPart_000_0000_01D0BD54.59223160
+Content-Type: text/css;
+	charset="gb2312"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://192.168.66.249:123/?mode=section&id=style.css
+
+BODY {
+	BACKGROUND-COLOR: #eef; FONT-FAMILY: tahoma, verdana, arial, helvetica, =
+sans; FONT-SIZE: 9pt; FONT-WEIGHT: normal
+}
+HTML {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; =
+PADDING-LEFT: 0px; PADDING-RIGHT: 0px; HEIGHT: 100%; BORDER-TOP: 0px; =
+BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+BODY {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; =
+PADDING-LEFT: 0px; PADDING-RIGHT: 0px; HEIGHT: 100%; BORDER-TOP: 0px; =
+BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+HTML {
+	MARGIN: 0px
+}
+BODY {
+	MARGIN: 0px
+}
+P {
+	MARGIN: 0px
+}
+FORM {
+	MARGIN: 0px
+}
+A {
+	BORDER-BOTTOM: transparent 1px solid; BORDER-LEFT: transparent 1px =
+solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0.1em; PADDING-RIGHT: 0.1em; =
+COLOR: #47c; BORDER-TOP: transparent 1px solid; BORDER-RIGHT: =
+transparent 1px solid; TEXT-DECORATION: none; PADDING-TOP: 0px
+}
+A:visited {
+	COLOR: #55f
+}
+A:hover {
+	BORDER-BOTTOM-COLOR: #47c; BACKGROUND-COLOR: #fff; BORDER-TOP-COLOR: =
+#47c; BORDER-RIGHT-COLOR: #47c; BORDER-LEFT-COLOR: #47c
+}
+IMG {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: =
+none; BORDER-LEFT-STYLE: none
+}
+FIELDSET {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 0.6em; PADDING-LEFT: 0.6em; =
+PADDING-RIGHT: 0.6em; MARGIN-BOTTOM: 0.7em; PADDING-TOP: 0.6em
+}
+#panel {
+	MARGIN-TOP: 1em; MAX-WIDTH: 250px; FLOAT: left; MARGIN-LEFT: 1em
+}
+#panel HR {
+	MARGIN: 1em auto; WIDTH: 80%
+}
+#files_outer {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 0px; PADDING-LEFT: 1.6em; =
+PADDING-RIGHT: 1.6em; HEIGHT: 100%; OVERFLOW: auto; PADDING-TOP: 0px
+}
+#files {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BACKGROUND: #ddf; BORDER-TOP: =
+0px; BORDER-RIGHT: 0px
+}
+#files TR {
+	BACKGROUND: #fff
+}
+#files TR.even {
+	BACKGROUND: #eef
+}
+#files TR.selected {
+	BACKGROUND: #bcf
+}
+#files TD {
+	TEXT-ALIGN: right; PADDING-BOTTOM: 0.2em; PADDING-LEFT: 0.5em; =
+PADDING-RIGHT: 0.5em; PADDING-TOP: 0.2em
+}
+#files TR TD:first-child {
+	TEXT-ALIGN: left
+}
+#files TH {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0.5em; PADDING-LEFT: 1em; =
+PADDING-RIGHT: 1em; BACKGROUND: #47c; PADDING-TOP: 0.5em
+}
+#files TH A {
+	COLOR: white; FONT-SIZE: 130%
+}
+#files TH A:hover {
+	BORDER-BOTTOM-COLOR: #fff; BORDER-TOP-COLOR: #fff; BACKGROUND: none =
+transparent scroll repeat 0% 0%; COLOR: #fff; BORDER-RIGHT-COLOR: #fff; =
+FONT-SIZE: 130%; BORDER-LEFT-COLOR: #fff
+}
+#files TD:first-child {
+	TEXT-ALIGN: left
+}
+#files TD.nosize {
+	TEXT-ALIGN: center; FONT-STYLE: italic
+}
+#files .selector {
+	DISPLAY: none
+}
+#actions BUTTON {
+	MARGIN: 0.2em
+}
+#breadcrumbs {
+	MARGIN-TOP: 1em; PADDING-LEFT: 0.5em
+}
+#breadcrumbs A {
+	PADDING-BOTTOM: 0.15em; BORDER-RIGHT-WIDTH: 2px; PADDING-LEFT: 0px; =
+PADDING-RIGHT: 0px; DISPLAY: block; BORDER-TOP-WIDTH: 2px; =
+BORDER-BOTTOM-WIDTH: 2px; BORDER-LEFT-WIDTH: 2px; PADDING-TOP: 0.15em
+}
+#folder-stats {
+	MARGIN-TOP: 1em; BORDER-TOP: #666 1px solid; PADDING-TOP: 0.5em
+}
+#foldercomment {
+	MARGIN-TOP: 1em; BORDER-TOP: #666 1px solid; PADDING-TOP: 0.5em
+}
+#folder-stats {
+	TEXT-ALIGN: center; COLOR: #666
+}
+#msgs {
+	DISPLAY: none
+}
+#msgs LI:first-child {
+	FONT-WEIGHT: bold
+}
+#pages SPAN {
+	PADDING-LEFT: 0.5em; PADDING-RIGHT: 0.5em; CURSOR: pointer
+}
+#pages BUTTON {
+	FONT-SIZE: smaller
+}
+.selectedPage {
+	FONT-SIZE: larger; FONT-WEIGHT: bold
+}
+.hidden {
+	DISPLAY: none
+}
+
+------=_NextPart_000_0000_01D0BD54.59223160
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://192.168.66.249:123/?mode=section&id=lib.js
+
+// <script> // this is here for the syntax highlighter
+
+function outsideV(e, additionalMargin) {
+    outsideV.w || (outsideV.w =3D $(window));
+    if (!(e instanceof $))
+        e =3D $(e);
+    return e.offset().top + e.height() > outsideV.w.height() - =
+(additionalMargin || 0) - 17;
+} // outsideV
+
+function quotedString(s) { return '"'+s.replace(/(['"\\])/g, "\\$1")+'"' =
+}
+
+$(function(){
+    // make these links into buttons for homogeneity
+    $('#actions a').replaceWith(function(){ return "<button =
+onclick=3D'location =3D =
+"+quotedString(this.getAttribute('href'))+"'>"+this.innerHTML+"</button>"=
+; });
+    // selecting functionality
+    $('#files .selector').show().change(function(){
+        $(this).closest('tr').toggleClass('selected');
+        selectedChanged();
+    });
+    $('.trash-me').detach(); // this was hiding things for those w/o js =
+capabilities
+    // infinite upload fields available
+    var x =3D $('input[type=3Dfile]');
+    x.change(function(){
+        if ($(this).data('fired')) return;
+        $(this).data('fired',1);
+        fileTpl.clone(true).insertAfter(this).css('display','block');
+    });
+    // we must create an empty "template", by cloning before it's set to =
+a file, because on some browsers (Opera 10) emptying the value run-time =
+is not allowed.
+    // this must be done after the above instruction, so we'll clone =
+also the behavior.=20
+    var fileTpl =3D x.clone(true).css('display','none');
+
+    var x =3D $('#upload');
+    if  (x.size()) {
+        // make it popup by button, so we save some vertical space and =
+avoid some scrollbar
+        x.hide();=20
+        $('#actions button:first').before(
+            $("<button>Upload</button>").click(function(){=20
+                $(this).slideUp(); x.fadeIn();=20
+            })
+        );
+        // on submit		=09
+        x.find('form').submit(function(){=20
+            if (!$("[name=3Dfile]").val()) return false; // no file, no =
+submit
+            $(this).hide(); // we don't need the form anymore, make =
+space for the progress bars
+            // build the gui
+            x.append("<div id=3D'progress'>in progress...</div>");
+            x.append($("<button =
+style=3D'float:right'>Cancel</button>").click(function(){
+                // stop submit/upload
+                if (typeof stop =3D=3D 'function')
+                    stop();=20
+                else
+                    document.execCommand("Stop");
+                $(this).add($("#progress")).remove(); // remove progress =
+indicators and this button too
+                $("#upload form").slideDown(); // re-show the form
+            }));
+
+            // refresh information
+            function updateProgress() {
+                var now =3D new Date();
+                if (now-updateProgress.last < updateProgress.refresh*3) =
+return; // until the request is fulfilled, we give it 3 times the =
+refresh time
+                updateProgress.last =3D now;
+                $.get('/?mode=3Dsection&id=3Dprogress&only=3Dup', =
+function(txt) {
+                    if (!txt) return;
+                    var x =3D $('#progress');
+                    if (!x.size()) return =
+clearInterval(updateProgress.handle);
+                    if (txt.indexOf('<li>') >=3D 0) x.html(txt);
+                    updateProgress.last =3D 0;
+                });
+            }//updateProgress
+            updateProgress.refresh =3D 3; // choose the time, in seconds
+            updateProgress.refresh *=3D 1000; // javascript wants it in =
+milliseconds
+            updateProgress.handle =3D setInterval(updateProgress, =
+updateProgress.refresh);
+            return true;
+        });
+    }
+
+    // search options appear when it gets focus
+    $('#search').focusin(function(evt){
+        inSearch =3D 1;
+        if (evt.target.getAttribute('type') =3D=3D 'submit') return; // =
+the submitter button won't expand the popup, but sets the flag to avoid =
+the popup to be closed
+        $("#search .popup").slideDown();
+    }).focusout(function(evt){
+        inSearch =3D 0;
+        setTimeout(function(){
+            if (!inSearch)
+                $("#search .popup").fadeOut();
+        });
+    });
+    $('#search form').submit(function(){
+        var s =3D $(this).find('[name=3Dsearch]').val();
+        var a =3D '';
+        var ps =3D [];
+        switch ($('[name=3Dwhere]:checked').val()) {
+            case 'anywhere':=20
+                a =3D '/';
+            case 'fromhere':
+                ps.push('search=3D'+s);
+                break;
+            case 'here':
+                if (s.indexOf('*') < 0) s =3D '*'+s+'*';
+                ps.push('files-filter=3D'+s);
+                ps.push('folders-filter=3D'+s);
+                break;
+        }
+        location =3D a+'?'+ps.join('&');
+        return false;
+    });
+   =20
+    // workaround for those browsers not supporting :first-child =
+selector used in style
+    if ($('#files td:first').css('text-align') !=3D 'left')
+        $('#files tr td:first-child').css('text-align','left');
+
+    // here we make some changes trying to make the panel fit the window
+    var removed =3D 0;
+    var e =3D $('#panel');=20
+    while (outsideV(e)) {
+        switch (++removed) {
+            case 1: $('#serverinfo').hide(); continue;
+            case 2: $('#select').hide(); continue;
+            case 3: $('#breadcrumbs =
+a').css({display:'inline',paddingLeft:0}); continue;
+            case 4: $('#login').replaceWith($('#login =
+center').prepend('<img src=3D"/~img27">')); continue;
+        }
+        break; // give up
+    }
+    if (HFS.paged)
+        if (getCookie('paged') =3D=3D 'no')
+            addPagingButton('#actions button:first');
+        else
+            pageIt();
+              =20
+   =20
+    selectedChanged();
+    // darn you ie6!
+    if (!$.browser.msie || $.browser.version > 6) return;
+    $('fieldset').width('250px').after('<br>');
+    $('#panel').css('margin-right','1.5em');
+    $('a').css('border-width','0');
+    setTimeout(pageIt, 500); // at this time the page is not correctly =
+formatted in IE6
+});//onload
+
+function ajax(method, data, cb) {
+	if (!data)
+		data =3D {};
+	data.token =3D getCookie('HFS_SID');
+	return $.post("?mode=3Dsection&id=3Dajax."+method, data, =
+cb||getStdAjaxCB());
+}//ajax
+
+function addPagingButton(where) {
+    $("<button>Paged list</button>").insertBefore(where || =
+'#files').click(function(){
+        $(this).remove();
+        pageIt(true);
+        delCookie('paged');
+    });
+}//addPagingButton
+
+function pageIt(anim) {
+    var rows =3D $('#files tr');
+    if (!rows.size()) return;
+   =20
+    page =3D 0; // this is global
+    var pages =3D $("<div id=3D'pages'>Page =
+</div>").css('visibility','hidden').insertBefore('#files');
+    var pageSize =3D 0;
+    while (!outsideV(rows[pageSize], 20))
+        if (++pageSize >=3D rows.size())
+            return pages.remove();
+    if (pageSize =3D=3D 0) return; // this happens when the page is not =
+formatted at this exact time, and the table is misplaced=20
+
+    Npages =3D Math.ceil(HFS.number / pageSize);
+    if (Npages =3D=3D 1)
+        return pages.remove();
+    $('#files').width($('#files').width()); // hold it still
+
+    var s =3D '';
+    for (var i=3D1; i <=3D Npages; i++)
+        s +=3D '<span>'+i+'</span> ';
+    s =3D $(s);
+    s.appendTo(pages).click(function(){
+        page =3D Number(this.innerHTML)-1;
+        $('#files tr:gt(0):visible').hide();
+        $('#files tr:gt('+(page*pageSize)+'):lt('+pageSize+')').show();
+        =
+pages.find('span').removeClass('selectedPage').filter(':nth('+page+')').a=
+ddClass('selectedPage');
+    });
+    s.first().addClass('selectedPage');	=09
+    $('#files tr:gt('+((page+1)*pageSize)+')').hide();
+    pages.append($("<button type=3D'button'>No =
+pages</button>").click(function(){
+        pages.slideUp(function(){ pages.remove(); });
+        $('#files tr:hidden').show();
+        addPagingButton();
+        setCookie('paged', 'no');
+    }));
+    pages.css({visibility:'', display:'none'});
+    if (anim) pages.slideDown()
+    else pages.show();	=09
+}//pageIt
+
+function selectedChanged() {
+    $("#selected-number").text( selectedItems().size() =
+).parent().show();
+} // selectedChanged
+
+function getItemName(el) {
+    if (typeof el =3D=3D 'undefined')
+        return false;
+    // we handle elements, not jquery sets =20
+    if (el.jquery)
+        if (el.size())
+            el =3D el[0];
+        else
+            return false;
+    // take the url, and ignore any #anchor part
+    var s =3D el.getAttribute('href') || el.getAttribute('value');
+    s =3D s.split('#')[0];
+    // remove protocol and hostname
+    var i =3D s.indexOf('://');
+    if (i > 0)
+        s =3D s.slice(s.indexOf('/',i+3));
+    // current folder is specified. Remove it.
+    if (s.indexOf(HFS.folder) =3D=3D 0)
+        s =3D s.slice(HFS.folder.length);
+    // folders have a trailing slash that's not truly part of the name
+    if (s.slice(-1) =3D=3D '/')
+        s =3D s.slice(0,-1);
+    // it is encoded
+    s =3D (decodeURIComponent || unescape)(s);       =20
+    return s;
+} // getItemName
+
+function submit(data, url) {
+    var f =3D $('#files').closest('form');
+    if (url) f.attr('action', url);
+    f.find('.temp').remove();
+    for (var k in data)
+        f.append("<input class=3D'temp' type=3D'hidden' name=3D'"+k+"' =
+value=3D'"+data[k]+"' />");
+    f.submit();
+}//submit
+
+function putMsg(txt, time) {
+    if (!time) time =3D 4000;
+    var msgs =3D $('#msgs');
+    msgs.slideDown();
+    if (msgs.find('ul li:first').html() =3D=3D txt)
+        clearTimeout(lastTimeoutID);
+    else
+        msgs.find('ul').prepend("<li>"+txt+"</li>");
+    lastTimeoutID =3D setTimeout("$('#msgs =
+li:last').fadeOut(function(){$(this).detach(); if (!$('#msgs =
+li').size()) $('#msgs').slideUp(); });", time);
+}//putMsg
+
+RegExp.escape =3D function(text) {
+    if (!arguments.callee.sRE) {
+        var specials =3D '/.*+?|()[]{}\\'.split('');
+        arguments.callee.sRE =3D new RegExp('(\\' + specials.join('|\\') =
++ ')', 'g');
+    }
+    return text.replace(arguments.callee.sRE, '\\$1');
+}//escape
+
+function include(url, type) {
+    $.ajaxSetup({async: false}); // we'll wait.
+    if (!type)
+        type =3D /[^.]+$/.exec(url);
+    var res;
+    if  (type =3D=3D 'js')
+        res =3D $.getScript(url);
+    else res =3D $.get(url, function(){=20
+        if (type =3D=3D 'css')
+            $('head').append('<link rel=3D"stylesheet" href=3D"'+url+'" =
+type=3D"text/css" />');
+    });
+    $.ajaxSetup({async: true}); // restore it
+    return res.responseText;
+}//include
+
+function ezprompt(msg, options, cb) {
+    // 2 parameters means "options" is missing
+    if (arguments.length =3D=3D 2) {
+        cb =3D options;
+        options =3D {};
+    }
+    if (!$.prompt) { // load on demand
+        include('/?mode=3Dsection&id=3Dimpromptu.css');
+        include('/?mode=3Dsection&id=3Djquery.impromptu.js');=20
+    }
+    var v;
+    if (v =3D options.type) {
+        msg +=3D '<br />';
+        if (v =3D=3D 'textarea')
+            msg +=3D '<textarea name=3D"txt" cols=3D"30" =
+rows=3D"8">'+options['default']+'</textarea>';
+        else
+            msg +=3D '<input name=3D"txt" type=3D"'+v+'"'
+                + ((v =3D options['default']) ? ' value=3D"'+v+'"' : '')
+                + ' />';
+    }
+    $.prompt(msg, {
+        opacity: 0.9,
+        overlayspeed: 'fast',
+        loaded: function(){ =20
+            $('#jqibox').find(':input').keypress(function (e) {
+                var c =3D (e.keyCode || e.which);
+                if (options.keypress && options.keypress(c, this, e) =
+=3D=3D=3D false) return;
+                if (c !=3D 13 || this.tagName =3D=3D 'TEXTAREA') return; =
+// ENTER key is like submit, but not in textarea
+                $('.jqibuttons button:first').click();
+                return false;
+            }).filter(':first').focus()[0].select();=20
+        },
+        submit: function(val,div,form) {
+            var res =3D cb(options.type ? form.txt : form, $('#jqibox'), =
+options.cbData );
+            if (res =3D=3D=3D false) {
+                $('#jqibox').find(':input:first').focus();
+                return false;
+            }
+            return true;
+        },=20
+        fadeClicked: function() { =
+$('#jqibox').find(':input:first').focus(); }
+    });
+}//ezprompt
+
+// this is a factory for ajax request handlers
+function getStdAjaxCB(what2do) {
+    if (!arguments.length)
+        what2do =3D true;
+    return function(res){
+        res =3D $.trim(res);
+        if (res !=3D "ok")
+            return alert("Error: "+res);
+        // what2do is a list of actions we are supposed to do if the =
+ajax result is "ok"
+        if (typeof what2do =3D=3D 'undefined')=20
+            return;           =20
+        if (!$.isArray(what2do))
+            what2do =3D [what2do];
+        for (var i=3D0; i<what2do.length; i++) {
+            var w =3D what2do[i];
+            switch (typeof w) {
+                case 'function': w(); break; // you specify exactly what =
+to do
+                case 'string':
+                    switch (w[0]) {
+                        case '!': alert(w.substr(1)); break;
+                        case '>': location =3D w.substr(1); break;
+                        default: putMsg(w); break;
+                    }
+                case 'boolean': if (w) location =3D location; break;
+            }
+        }
+    }
+}//getStdAjaxCB
+       =20
+function changePwd() {
+    ezprompt(this.innerHTML, {type:'password'}, function(s){
+        if (s) ajax('changepwd', {'new':s}, getStdAjaxCB([
+            "!Password changed, you'll have to login again.",=20
+            '>~login'
+        ]));
+    });
+}//changePwd
+
+function selectedItems() { return $('#files .selector:checked') }
+
+function selectedFilesAsStr() {
+    var a =3D [];
+    selectedItems().each(function(){
+        a.push(getItemName(this));
+    });
+    return a.join(":");
+}//selectedFilesAsStr
+
+function setComment() {
+    var sel =3D selectedItems();
+    if (!sel.size())
+        return putMsg("No file selected");
+    var def =3D sel.closest('tr').find('.comment').html() || '';
+    ezprompt(this.innerHTML, {type:'textarea', 'default':def}, =
+function(s){
+        if (s =3D=3D def && sel.size() =3D=3D 1) return true; // there s =
+no work to do
+        ajax('comment', {text:s, files:selectedFilesAsStr()});
+    });
+}//setComment
+
+function moveClicked() {
+    ezprompt("Enter the destination folder", {type:'text'}, function(s){
+        ajax('move', {dst:s, files:selectedFilesAsStr()}, function(res){
+            var a =3D res.split(";");
+            if (a.length < 2)
+                return alert($.trim(res));
+            var failed =3D 0;
+            var ok =3D 0;
+            var msg =3D "";
+            for (var i=3D0; i<a.length-1; i++) {
+                var s =3D $.trim(a[i]);
+                if (!s.length) {
+                    ok++;
+                    continue;
+                }
+                failed++;
+                msg +=3D s+"\n";
+            }
+            if (failed)=20
+                msg =3D "We met the following problems:\n"+msg;
+            msg =3D (ok ? ok+" files were moved.\n" : "No file was =
+moved.\n")+msg;
+            alert(msg);
+            if (ok) location =3D location; // reload
+        });
+    });
+}//moveClicked
+
+function selectionMask() {
+    ezprompt('Please enter the file mask to select', {'type':'text', =
+'default':'*'}, function(s){
+        if (!s) return false;
+        var re =3D s.match('^/([^/]+)/([a-zA-Z]*)');
+        if (re)
+            re =3D new RegExp(re[1], re[2]);
+        else {
+            var n =3D s.match(/^(\\*)/)[0].length;
+            s =3D s.substring(n);
+            var invert =3D !!(n % 2); // a leading "\" will invert the =
+logic
+            s =3D RegExp.escape(s).replace(/[?]/g,".");;
+            if (s.match(/\\\*/)) {
+                s =3D s.replace(/\\\*/g,".*");
+                s =3D "^ *"+s+" *$";   // in this case let the user =
+decide exactly how it is placed in the string =20
+            }
+            re =3D new RegExp(s, "i");
+        }
+        $("#files .selector")
+            .filter(function(){ return invert ^ =
+re.test(getItemName(this)); })
+            =
+.closest('tr').addClass("selected").find('.selector').attr('checked',true=
+);
+        selectedChanged();
+    });=20
+}//selectionMask
+
+function setCookie(name,value,days) {
+	if (days) {
+		var date =3D new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires =3D "; expires=3D"+date.toGMTString();
+	}
+	else var expires =3D "";
+	document.cookie =3D name+"=3D"+value+expires+"; path=3D/";
+} // setCookie
+
+function getCookie(name) {   =20
+    var a =3D document.cookie.match(new =
+RegExp('(^|;\s*)('+name+'=3D)([^;]*)'));
+    return (a && a[2]) ? a[3] : null;
+} // getCookie
+
+function delCookie(name) {
+	setCookie(name,"",-1);
+} // delCookie
+
+    
+------=_NextPart_000_0000_01D0BD54.59223160--

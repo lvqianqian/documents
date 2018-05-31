@@ -1,0 +1,31 @@
+产生默认路由的方法
+1.
+router rip
+ default-information originate
+show ip rip database
+0.0.0.0/0    auto-summary
+0.0.0.0/0    redistributed
+    [1] via 0.0.0.0,
+2.
+ip route 0.0.0.0 0.0.0.0 [ /output interface/ | A.B.C.D ]
+router rip
+ redistribute static
+show ip rip database
+0.0.0.0/0    auto-summary
+0.0.0.0/0    redistributed
+    [1] via 0.0.0.0,
+3.
+ip route 0.0.0.0 0.0.0.0 */output interface/*
+router rip
+ network 0.0.0.0
+show ip rip database
+0.0.0.0/0    auto-summary
+0.0.0.0/0    redistributed
+    [1] via 0.0.0.0,
+
+4.
+ip default-network /Major Network/
+show ip rip database
+0.0.0.0/0    auto-summary
+0.0.0.0/0    redistributed
+    [1] via 0.0.0.0,

@@ -1,0 +1,170 @@
+BGP
+	IGP具有以下某些特征或者全部特性
+		执行拓扑发现
+		尽力完成快速收敛
+		需要周期性的更新来确保路由选择信息的精确性
+		受同一个管理机构的控制
+		采取了共同的路由策略
+		提供了优先的策略控制能力
+	关于BGP
+		AS（autonomous system）自治系统，指的是在同一个组织管理下使用相同策略的设备集合
+		不同党AS通过AS号区分，AS号取值范围1~65535，其中64512~65535是私有AS号。IANA负责AS号的分发
+		中国电信163 AS号：4134
+		中国电信CN2 AS号：4809
+		中国网通 AS号：9929
+		注意：
+			①并不是所有网络都需要BGP
+			②多AS之间使用
+			③使用路径属性来选路
+			④IGP是节点到节点之间的路由选择协议，BGP是AS到AS之间的路由选择协议
+	BGP概述
+		BGP（Border Gateway Protocol）边界网关路由协议（路径矢量）
+		主要作用是在AS之间传递路由信息
+		版本：v1 v2 v3 v4 v4+(mp-bgp)
+	使用BGP的三大理由
+		大量路由需要承载，IGP只能容纳千条，而BGP可以容纳上万
+		支持MPLS/VPN应用，传递客户VPN路由
+		策略能力强，可以很好的实现路由决策与数据控制
+	BGP的路径矢量特征
+		路径矢量传递信息中，包含一个BGP自治系统列表
+		BGP路由器不接受路径列表中包含其AS号的路由更新，是无环路的。
+		BGP支持对IGP自治系统应用路由策略
+		BGP路由器只能将其使用的路由通告给邻接自治系统中的对等体
+	BGP特征
+		BGP使用TCP传输层协议，TCP端口号为179
+		BGP路由器之间建立TCP连接，这些路由器称为BGP对等体，也叫作BGP邻居:EBGP,IBGP
+		对等体之间交换整个BGP路由表
+		BGP路由器只发送增量更新或触发更新（不会周期性更新）
+		BGP具有丰富的路径属性
+		BGP通告成千上万的路由，可采用TCP滑动窗口的机制，停止并等待确认前，可以发送65576字节
+	BGP配置
+		创建BGP进程
+			Router(config)#router bgp <AS>
+		指定邻居及激活BGP会话
+			Router(config-route)#neighbor <ip-address/peer-group> remote-as <AS>
+		指定BGP将宣告的网络
+			Router(config-route)#network <network> mask 
+		指定BGP邻居更新源
+			Router(config-route)#neighbor <ip-address> update-source 接口
+		IBGP邻居下一跳指向自己
+			Router(config-route)#neighbor <ip-addrss> next-hop-self
+		使用BGP peer-group
+		neighbor ibgp peer-group
+		neighbor ibgp remote-as 200
+		neighbor ibgp update-source Loopback0
+		neighbor ibgp next-hop-self
+		neighbor x.x.x.x peer-group ibgp	
+		
+		
+	BGP packets
+	BGP有限状态机
+	BGP peer
+		运行BGP的路由器被称为BGP Speaker
+		EBGP：位于不同AS的路由器之间的邻居关系，叫作EBGP邻居关系
+			满足三个条件
+				AS号不同
+				要能建立TCP会话
+				neighbor中指定的邻居要可达
+		Ibgp: 位于相同AS的路由器之间的邻居关系，叫作IBGP邻居关系
+			满足两个条件
+				AS号相同
+				neighbor中指定的邻居要可达
+	路由黑洞
+		解决方案一：BGP重分布进IGP
+					缺点，IGP路由器可能无法处理大量的BGP路由信息
+		解决方案二：全互联IBGP邻居关系
+					缺点，
+						IGP路由器可能无法处理大量的BGP路由信息
+						IGP耗费资源太大
+		解决方案三：路由反射器
+		解决方案四：BGP联邦
+	 BGP同步
+		BGP路由器不应该使用通过IBGP获悉的路由或将其通告给外部邻居，除非该路由是本地的或者通过IGP获悉的。
+		cisco ios 默认关闭了同步
+	Tables
+		BGP邻居表：存放了邻居列表（show ip bgp neighbors/show ip bgp summary）
+		BGP表：包含了从邻居学习所有路由，以及到达目的网段的多个路径和属性（show ip bgp）
+		路由表：列出了最佳路径  EBGP AD 20  IBGP AD 200
+	IBGP水平分割原则
+		BGP路由器不会将从IBGP邻居学习过来的路由再通告给自己其他IBGP邻居
+	BGP身份验证
+		neighbor x.x.x.x password world
+		BGP只支持MD5认证
+	EBGP多跳
+		neighbor 1.1.1.1 ebgp-multihop X
+	IBGP路由反射器
+		Router(config-router)#neighbor x.x.x.x route-reflector-client
+	BGP路径属性
+		公认属性
+			公认强制属性
+			公认自选属性
+		可选属性
+			可选传递属性
+			可选非传递属性
+		Weight
+			本地有效，cisco私有
+			范围0~65535；越大越优
+			本地始发默认为32768，从其他BGP邻居学习到的路由权重为0
+		Local preference 本地优先级
+			公认自选属性
+			通告本AS中路由器离开AS首选路径
+			LP越高越优
+			默认为100
+			Router(config-router)#bgp default local-preference x
+		AS_path
+			公认强制属性
+			确保无环路
+			充当跳数
+		Origin
+			公认强制属性
+			标识路由起源
+			i IGP
+			e EGP
+			? incomplete
+			优选顺序：IGP>EGP>Incomplete
+		MED
+			可选非传递属性
+			是一种度量值，用于向外部邻居指出进入AS的首选路径
+			越小越优
+			Router(config-router)#default-metric x
+		Next-hop
+			公认强制属性
+			下一个AS入口IP地址
+		Community
+			可选传递属性
+			是一种标记，用于简化路由策略的执行
+	BGP重置
+		硬重置：断开相应的TCP连接，删除BGP邻居所有信息(Router#clear ip bgp *)
+		软重置：
+			出站：不断开TCP连接，仅触发更新
+			入站：不断开TCP连接，本地发送Route-refresh给所有BGP邻居(Router#clear ip bgp * soft in/out)
+	Route-map操纵BGP路由
+		weight
+			access-list 1 permit 5.5.5.0
+			route-map weight permit 10
+			match ip address 1
+			set weight 10
+			router bgp 200
+			neighbor 4.4.4.4 route-map weight in
+		local preference
+			access-list 1 permit 5.5.5.0
+			route-map lp permit 10
+			match ip address 1
+			set local-preference 200
+			router bgp 200
+			neighbor 4.4.4.4 route-map lp in
+		Origin
+			access-list 1 permit 5.5.5.0
+			route-map origin permit 10
+			match ip address 1
+			set origin igp/egp/incomplete
+			router bgp 200
+			neighbor 4.4.4.4 route-map origin in
+		MED
+			access-list 1 permit 5.5.5.0
+			route-map MED permit 10
+			match ip address 1
+			set metric 100
+			router bgp 200
+			neighbor 4.4.4.4 route-map MED in
+			

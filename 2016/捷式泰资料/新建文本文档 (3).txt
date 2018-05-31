@@ -1,0 +1,170 @@
+ACL
+	功能：
+			流量控制
+			匹配感兴趣的流量
+	类型
+			标准访问控制列表
+				只能根据源地址做过滤
+				针对整个协议采取相关动作（允许/拒绝）
+			扩展访问控制列表
+				能根据源地址，目的地址，源端口号，目的端口号等等进行过滤
+				能允许或拒绝特定的协议
+	操作
+		入站及出站
+			ACL不能对本地发起的流量做过滤，只能对穿越路由器的流量做过滤
+			在某个接口的某个特定方向（in/out）一次只能套用一个ACL
+		入方向ACL的操作
+		出方向ACL的操作
+		匹配规则
+			自上而下的匹配
+			匹配成功，立即执行，不再继续往下匹配
+			隐含deny
+	ACL types5
+		标准 1-99， 1300-1999
+		扩展 100-199， 2000-2699
+		命名的
+		
+		
+	ACL的配置
+		标准访问控制列表
+			access-list x 动作 源地址 通配符
+				输入新的x条目的ACL，默认加在最下面
+				删除只能删除X整个条目
+				没有输入通配符，默认0.0.0.0
+				接口中套用，默认是out方向，Router(config-if)#ip access-group x in/out
+				尽可能的把IP标准ACL放置在离目标近的接口上
+		扩展访问控制列表
+			access-list x 动作 协议号 源地址 通配符 目的地址 通配符
+			例：access-list 100 deny tcp 192.168.12.0 0.0.0.255 any eq 23 （eq：等于 gt:大于 lt:小于）
+				尽可能的把IP扩展ACL放置在离源地址近的接口上
+		缺点：
+			1，无法编辑，无法删改
+			2，删除只能整个条目删除
+			3，顺序无法调整
+			4，数字标示，不直观
+		命名访问控制列表
+			ip access-list standard/extended word
+				10 deny/permit 源地址 通配符
+				20 deny/permit
+			默认从10开始，以10递增。
+			隐含deny所有
+			
+		查看命令show access-lists
+		
+		使用原则：
+			尽可能的把IP标准ACL放置在离目标近的接口上
+			尽可能的把IP扩展ACL放置在离源地址近的接口上
+			尽可能的把匹配度高的，放在上面
+			
+			
+		rip
+			access-list 100 deny udp any any eq 520
+			
+		eigrp/ospf
+			access-list 100 deny eigrp/ospf any any
+			
+			
+passive-interface
+		RIP/IGRP
+			不向外发送hello，更新，只接收更新
+		EIGRP
+			不向外发送hello，更新，不建立邻居
+		OSPF
+			不向外发送hello, 更新，不建立邻居（有些IOS上，发送hello和DBD，但是不发送LSU）
+			
+		第一种方式	
+		Router(config-router)#passive-interface default //所有参与该协议的接口，全部加入passive-interface
+		Router(config-router)#no passive-interface f0/0 //将f0/0退出passive-interface状态
+		
+		第二种方式
+		Router(config-router)#passive-interface f0/0 //将f0/0加入passive-interface
+		
+控制管理距离
+		大AD->小AD带来的问题
+			路由倒灌
+			路由环路
+			次优路径
+		静态路由
+			ip route 192.168.1.0 255.255.255.0 f0/0 AD
+		RIP
+			Router(config-router)#distance AD 源地址 通配符 ACL
+			Router(config-router)#default distance AD
+		EIGRP
+			Router(config-router)#distance AD 源地址 通配符 ACL
+			Router(config-router)#distance eigrp intrnal-AD external-AD
+		OSPF
+			Router(config-router)#distance AD 源地址 通配符 ACL
+			Router(config-router)#distance ospf external AD1 inter-area AD2 intra-area AD3
+							//AD1:所有外部 AD2:区域间 AD3:区域内
+							
+							
+							
+Route-map
+		用途
+			重分发期间进行过滤
+			PBR(策略路由)
+			NAT(网络地址转换)
+			BGP
+		Route-map匹配规则
+			1，使用match匹配条件或分组，使用set修改属性
+			2，默认的行为为premit，默认的号为10，不会自动的递增
+			3，隐含 deny any
+			4，单条语句多个match    or 或
+				多条语句时     and 与
+		配置命令(修改192.168.1.0下一跳为例)
+			Router(config)#access-list 1 permit 192.168.1.0
+			Router(config)#route-map next-hop permit 10
+			Router(config-route-map)#match ip address 1
+			Router(config-route-map)#set ip next-hop 1.1.1.1
+			
+			
+			match ip address 匹配访问控制列表或前缀列表
+			match length 匹配网络层长度
+			match interface 匹配下一跳接口为该接口的路由条目
+			match ip next-hop 匹配下一跳为该地址的路由条目
+			match metric 匹配指定metric的路由条目
+			match route-type 匹配指定类型的路由条目
+			match community 匹配指定的BGP团体
+			match tag 匹配指定的路由标记
+			
+			set metric 
+			set metric-type
+			set interface 指定下一跳接口
+			set ip next-hop 指定下一跳地址
+			set tag
+			
+Distribute-list
+		使用场景（只针对路由信息）
+			入站接口
+			出站接口
+			重分发
+		距离矢量路由协议(图)
+		链路状态路由协议(图)
+		配置命令
+			distribute-list acl out int/router
+			distribute-list acl in int
+
+prefix-list（前缀列表）
+		功能
+			只能匹配路由条目
+		优点
+			比ACL可控性高，增量修改
+			支持判断前缀是否匹配
+			序列号默认从5开始，以5递增，从小到大匹配
+			如果没有被匹配项，则拒绝
+		配置命令
+			Router(config)#ip prefix-list 名称 序列号 deny/permit network/length ge le
+			length<ge<le<32
+			默认路由
+				ip prefix-list 名称 序列号 permit 0.0.0.0/0
+			所有主机路由
+				ip prefix-list 名称 序列号 permit 0.0.0.0/0 ge 32
+			所有路由
+				ip prefix-list 名称 序列号 permit 0.0.0.0/0 le 32
+offset-list(偏移列表)
+		用于在入站或出站时增大通过EIGRP或RIP获悉的度量值
+		offset-list ACL out/in 偏移量
+		
+PBR（策略路由）
+
+			

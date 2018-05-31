@@ -1,0 +1,279 @@
+step1、先完成IP地址配置
+R1：
+en
+conf t
+int s1/1
+ip add 192.168.12.1 255.255.255.0
+no shu 
+int lo1
+ip add 172.16.1.1 255.255.255.0
+int lo2
+ip add 172.16.2.1 255.255.255.0
+int lo3
+ip add 172.16.3.1 255.255.255.0
+int lo4
+ip add 172.16.4.1 255.255.255.0
+int lo5
+ip add 172.16.5.1 255.255.255.0
+int lo6
+ip add 172.16.6.1 255.255.255.0
+int lo0
+ip add 1.1.1.1 255.255.255.255
+exi
+
+R2
+en
+conf t
+int s1/0
+ip add 192.168.12.2 255.255.255.0
+no shu 
+int lo0
+ip add 2.2.2.2 255.255.255.255
+no shu 
+int fa0/0
+ip add 192.168.234.2 255.255.255.0
+no shu
+
+R3
+en
+conf t
+int fa0/0
+ip add 192.168.234.3 255.255.255.0
+no sh 
+int s1/0
+ip add 192.168.35.3 255.255.255.0
+no shu
+int lo0
+ip add 3.3.3.3 255.255.255.255
+
+
+R4
+en
+conf t
+int fa0/0
+ip add 192.168.234.4 255.255.255.0
+no shu
+int s1/0
+ip add 192.168.45.4 255.255.255.0
+no shu 
+int lo0
+ip add 4.4.4.4 255.255.255.255
+no shu 
+
+R5
+en
+conf t
+int s1/0
+ip add 192.168.35.5 255.255.255.0
+no shu 
+int s1/1
+ip add 192.168.45.5 255.255.255.0
+int lo0
+ip add 5.5.5.5 255.255.255.255
+no shu 
+exi
+int fa0/0
+ip ad 192.168.56.5 255.255.255.0
+no shu 
+
+R6
+en
+conf t
+int fa0/0
+ip add 192.168.56.6 255.255.255.0
+no shu 
+int lo0
+ip add 6.6.6.6 255.255.255.255
+no shu 
+
+step2、完成RIP，EIGRP，OSPF的配置
+R1：
+router rip
+ver 2
+no au 
+net 172.16.0.0
+net 192.168.12.0
+net 1.1.1.1
+passive-interface default 
+nei 192.168.12.2//rip 进程下敲no passive-interface s1/1 的效果是一样的
+exi
+int s1/1
+ip summary rip 172.16.0.0 255.255.0.0
+
+R2
+router rip 
+ver 2
+net 192.168.12.0
+nei 192.168.12.1 
+
+router eigrp 100
+net 192.168.234.0
+net 2.2.2.2 0.0.0.0
+no au 
+
+R3
+router eigrp 100
+no au 
+net 192.168.234.0 
+net 3.3.3.3 0.0.0.0
+router ospf 1
+router-id 3.3.3.3
+net 192.168.35.3 0.0.0.0 a 0
+
+R4
+router eigrp 100
+no au 
+net 192.168.234.0
+net 4.4.4.4 0.0.0.0
+router ospf 1
+router-id 4.4.4.4
+net 192.168.45.4 0.0.0.0 a 0
+
+R5
+router ospf 1
+router-id 5.5.5.5
+net 192.168.45.5 0.0.0.0 a 0
+net 192.168.35.5 0.0.0.0 a 0
+net 192.168.56.5 0.0.0.0 a 1
+net 5.5.5.5 0.0.0.0 a 0
+area 1 nssa no-summary//配置T-NSSA区域
+
+R6
+router ospf 1
+router-id 6.6.6.6
+net 192.168.56.6 0.0.0.0 a 1
+area 1 nssa//配置T-NSSA区域
+
+step3、R2上面完成双向重分发
+R2
+access 1 per 172.16.0.0 0.0.255.255
+route-map rte deny 10
+match ip address 1
+route-map rte per 20
+exi
+
+router rip
+red eigrp 100 metric 1 
+router eigrp 100
+red rip met 10000 100 255 1 1500 route-map rte//rip重分发进eigrp时候过滤掉172.16.0.0的路由，不让其进入eigrp
+
+R3、R4上面ospf和eigrp的双向重分发
+R3
+router ospf 1
+red eigrp 100 subnets
+router eigrp 100
+red ospf 1 metric 10000 100 255 1 1500
+
+R4
+router ospf 1
+red eigrp 100 subnets
+router eigrp 100
+red ospf 1 metric 10000 100 255 1 1500
+
+R3#sh ip route
+
+Gateway of last resort is not set
+
+D EX 192.168.12.0/24 [170/307200] via 192.168.234.4, 00:01:09, FastEthernet0/0
+                     [170/307200] via 192.168.234.2, 00:01:09, FastEthernet0/0
+     1.0.0.0/32 is subnetted, 1 subnets
+D EX    1.1.1.1 [170/307200] via 192.168.234.4, 00:01:09, FastEthernet0/0
+                [170/307200] via 192.168.234.2, 00:01:09, FastEthernet0/0
+     2.0.0.0/32 is subnetted, 1 subnets
+D       2.2.2.2 [90/409600] via 192.168.234.2, 00:26:03, FastEthernet0/0
+     3.0.0.0/32 is subnetted, 1 subnets
+C       3.3.3.3 is directly connected, Loopback0
+O    192.168.45.0/24 [110/128] via 192.168.35.5, 00:21:15, Serial1/0
+     4.0.0.0/32 is subnetted, 1 subnets
+D       4.4.4.4 [90/409600] via 192.168.234.4, 00:27:04, FastEthernet0/0
+     5.0.0.0/32 is subnetted, 1 subnets
+O       5.5.5.5 [110/65] via 192.168.35.5, 00:21:15, Serial1/0
+O IA 192.168.56.0/24 [110/74] via 192.168.35.5, 00:17:37, Serial1/0
+C    192.168.234.0/24 is directly connected, FastEthernet0/0
+C    192.168.35.0/24 is directly connected, Serial1/0
+
+R4#sh ip route
+
+Gateway of last resort is not set
+
+O E2 192.168.12.0/24 [110/20] via 192.168.45.5, 00:01:49, Serial1/0
+     1.0.0.0/32 is subnetted, 1 subnets
+O E2    1.1.1.1 [110/20] via 192.168.45.5, 00:01:49, Serial1/0
+     2.0.0.0/32 is subnetted, 1 subnets
+D       2.2.2.2 [90/409600] via 192.168.234.2, 00:26:42, FastEthernet0/0
+     3.0.0.0/32 is subnetted, 1 subnets
+D       3.3.3.3 [90/409600] via 192.168.234.3, 00:27:42, FastEthernet0/0
+C    192.168.45.0/24 is directly connected, Serial1/0
+     4.0.0.0/32 is subnetted, 1 subnets
+C       4.4.4.4 is directly connected, Loopback0
+     5.0.0.0/32 is subnetted, 1 subnets
+O       5.5.5.5 [110/65] via 192.168.45.5, 00:22:44, Serial1/0
+O IA 192.168.56.0/24 [110/74] via 192.168.45.5, 00:18:16, Serial1/0
+C    192.168.234.0/24 is directly connected, FastEthernet0/0
+O    192.168.35.0/24 [110/128] via 192.168.45.5, 00:21:55, Serial1/0'
+
+step3、R3和R4上面修改管理距离
+R3
+router ospf 1
+distance ospf exter 171
+R4
+router ospf 1
+distance ospf exter 171
+
+step4、R3，R4上修改开销
+R3
+router ospf 1
+red eigrp 100 metric 10 subnets
+
+R4
+router ospf 1
+red eigrp 100 metric 11 subnets
+
+step5、在R6上重分发直连路由
+router ospf 1
+red connected subnets//会出现环路
+
+R1#traceroute 6.6.6.6
+
+Type escape sequence to abort.
+Tracing the route to 6.6.6.6
+
+  1 192.168.12.2 36 msec 60 msec 48 msec
+  2 192.168.234.4 72 msec 52 msec 64 msec
+  3 192.168.45.5 124 msec 92 msec 108 msec
+  4 192.168.35.3 140 msec 88 msec 88 msec
+  5 192.168.234.4 108 msec 108 msec 132 msec
+  6 192.168.45.5 156 msec 152 msec 152 msec
+  7 192.168.35.3 160 msec 164 msec 156 msec
+  8 192.168.234.4 140 msec 148 msec 192 msec
+  9 192.168.45.5 212 msec 180 msec 196 msec
+ 10 192.168.35.3 208 msec 216 msec 216 msec
+ 11 192.168.234.4 224 msec 196 msec 236 msec
+ 12 192.168.45.5 272 msec 256 msec 244 msec
+ 13 192.168.35.3 252 msec 268 msec 260 msec
+ 14 192.168.234.4 276 msec 288 msec 268 msec
+ 15 192.168.45.5 300 msec 288 msec 316 msec
+ 16 192.168.35.3 316 msec 308 msec 324 msec
+ 17 192.168.234.4 332 msec 320 msec 312 msec
+ 18 192.168.45.5 352 msec 340 msec 360 msec
+ 19 192.168.35.3 376 msec 372 msec 340 msec
+ 20 192.168.234.4 368 msec 376 msec 388 msec
+ 21 192.168.45.5 360 msec 396 msec 392 msec
+ 22 192.168.35.3 372 msec 416 msec 348 msec
+ 23 192.168.234.4 428 msec 384 msec 408 msec
+ 24 192.168.45.5 432 msec 444 msec 432 msec
+ 25 192.168.35.3 416 msec 448 msec 456 msec
+ 26 
+
+step6、在R6上把6.6.6.6宣告进ospf的话，实验现象可以正确的出现
+router ospf 1
+net 6.6.6.6 0.0.0.0 a 1
+
+
+
+
+
+
+
+
+

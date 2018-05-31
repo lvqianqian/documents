@@ -1,0 +1,741 @@
+配置流程
+1.trunk-link vtp vlan 接口划入VLAN
+sw1
+int ran e2/0 -3
+sw tr en d
+sw mo tr
+vtp domain CCIE
+vtp pass CCIErock$
+vtp mode server
+vtp ver 2
+vlan 14
+vlan 15
+vlan 23
+vlan 24
+vlan 35
+vlan 46
+vlan 57
+vlan 67
+vlan 999
+int ran e3/0 -3
+sw mo ac
+sw acc vlan 999
+sh
+mac address-table aging-time 7200
+span mode rapid-pvst
+span portfast default 
+span portfast bpduguard default 
+span vlan 1,15,23,35,57,67,999 root primary
+span vlan 14,24,46 root sec
+int e1/0
+sw mo acc
+sw acc vlan 14
+int range e0/0,e1/1
+sw mo acc
+sw acc vlan 15
+int ran e0/1,e0/2
+sw mo acc
+sw acc vlan 23
+int e0/3
+sw mo acc
+sw acc vlan 24
+int ran e1/2 -3
+sw mo acc
+sw acc vlan 67
+
+
+
+
+
+sw2
+int ran e2/0 -3
+sw tr en d
+sw mo tr
+vtp domain CCIE
+vtp pass CCIErock$
+vtp mode client
+int ran e3/0 -3
+sw mo acc
+sw acc vlan 999
+sh
+mac address-table aging-time 7200
+span mode rapid-pvst
+span portfast default
+span portfast bpduguard default
+span vlan 1,15,23,35,57,67,999 root sec
+span vlan 14,24,46 root pri
+int e0/0
+sw mo acc 
+sw acc vlan 14
+int e0/1
+sw mo acc
+sw acc vlan 24
+int ran e0/2,e1/0
+sw mo acc
+sw acc vlan 35
+int ran 0/3,e1/2
+sw mo acc
+sw acc vlan 46
+int ran e1/1,e1/3
+sw mo acc
+sw acc vlan 57
+
+
+
+
+2.接口ip mpls
+R1
+int lo0
+ip add 123.1.1.1 255.255.255.255
+int e0/1
+ip add 123.10.1.5 255.255.255.252
+no sh
+int e0/2
+ip add 123.10.1.2 255.255.255.252
+no sh
+router ospf 12345
+router-id 123.1.1.1
+net 123.0.0.0 0.255.255.255 a 0
+ip cef
+mpls lab pr ldp
+mpls ldp router-id lo0
+int ran e0/1 -2
+mpls ip
+router bgp 12345
+bgp router-id 123.1.1.1
+no bgp default ipv4-unicast
+nei iBGP peer-group
+nei iBGP remote 12345
+nei iBGP up lo0
+nei 123.2.2.2 peer-group iBGP
+nei 123.3.3.3 peer-group iBGP
+nei 123.6.6.6 peer-group iBGP
+nei 123.7.7.7 peer-group iBGP
+add ipv4
+nei iBGP route-reflector-client
+nei 123.2.2.2 ac
+nei 123.3.3.3 ac
+nei 123.6.6.6 ac
+nei 123.7.7.7 ac
+add vpnv4
+nei iBGP send-community extended
+nei iBGP route-reflect-client
+nei 123.2.2.2 ac
+nei 123.3.3.3 ac
+nei 123.6.6.6 ac
+nei 123.7.7.7 ac
+
+
+
+
+
+
+
+
+R2
+int lo0
+ip add 123.2.2.2 255.255.255.255
+int e0/1
+ip add 123.10.1.9 255.255.255.252
+no sh
+int e0/2
+ip add 123.10.1.17 255.255.255.252
+no sh
+int e0/0
+no ip add
+no sh
+int e0/3
+no ip add 
+no sh
+router ospf 12345
+router-id 123.2.2.2
+net 123.0.0.0 0.255.255.255 a 0
+ip cef
+mpls lab pr ldp
+mpls ldp router-id lo0
+int ran e0/1 -2
+mpls ip
+no mpls ip propagate-ttl
+router bgp 12345
+bgp router-id 123.2.2.2
+no bgp default ipv4-unicast
+nei 123.1.1.1 remote 12345
+nei 123.1.1.1 up lo0
+add ipv4
+nei 123.1.1.1 ac
+add vpnv4
+nei 123.1.1.1 ac
+nei 123.1.1.1 send-community extended
+ip vrf GREEN
+rd 65111:12
+rou 12:12
+ip vrf BLUE
+rd 65111:13
+rou 13:13
+ip vrf RED
+rd 65111:14
+rou 14:14
+ip vrf YELLOW
+rd 45678:15
+rou 15:15
+ip vrf INET
+rd 30000:99
+rou 99:99
+int e0/0.12
+en d 12
+ip vrf for GREEN
+ip add 101.1.123.2 255.255.255.252
+no sh
+int e0/0.13
+en d 13
+ip vrf for BLUE
+ip add 101.1.123.2 255.255.255.252
+no sh
+int e0/0.14
+en d 14
+ip vrf for RED
+ip add 101.1.123.2 255.255.255.252
+no sh
+int e0/0.15
+en d 15
+ip vrf for YELLOW
+ip add 101.1.123.2 255.255.255.252
+no sh
+int e0/0.99
+en d 99
+ip vrf for INET
+ip add 101.1.123.2 255.255.255.252
+no sh
+int e0/3.12
+en d 12
+ip vrf for GREEN
+ip add 10.120.12.1 255.255.255.252
+no sh
+int e0/3.13
+en d 13
+ip vrf for BLUE
+ip add 10.120.13.1 255.255.255.252
+no sh
+int e0/3.14
+en d 14
+ip vrf for RED
+ip add 10.120.14.1 255.255.255.252
+no sh
+int e0/3.15
+en d 15
+ip vrf for YELLOW
+ip add 10.120.15.1 255.255.255.252
+no sh
+int e0/3.99
+en d 99
+ip vrf for INET
+ip add 10.120.99.1 255.255.255.252
+no sh
+
+router bgp 12345
+add ipv4 vrf GREEN
+nei 101.1.123.1 remote 10001
+nei 101.1.123.1 ac
+nei 10.120.12.2 remote 65112
+nei 10.120.12.2 ac
+add ipv4 vrf BLUE
+nei 101.1.123.1 remote 10001
+nei 101.1.123.1 ac
+nei 10.120.13.2 remote 65112
+nei 10.120.13.2 ac
+add ipv4 vrf RED
+nei 101.1.123.1 remote 10001
+nei 101.1.123.1 ac
+nei 10.120.14.2 remote 65112
+nei 10.120.14.2 ac
+add ipv4 vrf YELLOW
+nei 101.1.123.1 remote 10001
+nei 101.1.123.1 ac
+nei 10.120.15.2 remote 65112
+nei 10.120.14.2 ac
+add ipv4 vrf INET
+nei 101.1.123.1 remote 10001
+nei 101.1.123.1 ac
+nei 10.120.99.2 remote 65112
+nei 10.120.14.2 ac
+
+
+
+
+
+
+
+R3
+int lo0
+ip add 123.3.3.3 255.255.255.255
+int e0/1
+ip add 123.10.1.10 255.255.255.252
+no sh
+int e0/2
+ip add 123.10.1.13 255.255.255.252
+no sh
+int e0/0
+no ip add
+no sh
+int e0/3
+no ip add
+no sh
+router ospf 12345
+router-id 123.3.3.3
+net 123.0.0.0 0.255.255.255 a 0
+ip cef
+mpls lab pr ldp
+mpls ldp router-id lo0
+int ran e0/1-2
+mpls ip
+no mpls ip propagate-ttl
+router bgp 12345
+bgp router-id 123.3.3.3
+no bgp default ipv4-unicast
+nei 123.1.1.1 remoe 12345
+nei 123.1.1.1 up lo0
+add ipv4
+nei 123.1.1.1 ac
+add vpnv4
+nei 123.1.1.1 ac
+nei 123.1.1.1 send-community-extended
+ip vrf GREEN
+rd 65111:12
+rou 12:12
+ip vrf BLUE
+rd 65111:13
+rou 13:13
+ip vrf RED
+rd 65111:14
+rou 14:14
+ip vrf YELLOW
+rd 45678:15
+rou 15:15
+ip vrf INET
+rd 30000:99
+rou 99:99
+int e0/0.12
+en d 12
+ip vrf for GREEN
+ip add 102.2.123.2 255.255.255.252
+no sh
+int e0/0.13
+en d 13
+ip vrf for BLUE
+ip add 102.2.123.2 255.255.255.252
+no sh
+int e0/0.14
+en d 14
+ip vrf for RED
+ip add 102.2.123.2 255.255.255.252
+no sh
+int e0/0.15
+en d 15
+ip vrf for YELLOW
+ip add 102.2.123.2 255.255.255.252
+no sh
+int e0/0.99
+en d 99
+ip vrf for INET
+ip add 102.2.123.2 255.255.255.252
+no sh
+int e0/3.12
+en d 12
+ip vrf for GREEN
+ip add 10.120.12.5 255.255.255.252
+no sh
+int e0/3.13
+en d 13
+ip vrf for BLUE
+ip add 10.120.13.5 255.255.255.252
+no sh
+int e0/3.14
+en d 14
+ip vrf for RED
+ip add 10.120.14.5 255.255.255.252
+no sh
+int e0/3.15
+en d 15
+ip vrf for YELLOW
+ip add 10.120.15.5 255.255.255.252
+no sh
+int e0/3.99
+en d 99
+ip vrf for INET
+ip add 10.120.99.5 255.255.255.252
+no sh
+
+router bgp 12345
+add ipv4 vrf GREEN
+nei 102.2.123.1 remote 10002
+nei 102.2.123.1 ac
+nei 10.120.12.6 remote 65112
+nei 10.120.12.6 ac
+add ipv4 vrf BLUE
+nei 102.2.123.1 remote 10002
+nei 102.2.123.1 ac
+nei 10.120.13.6 remote 65112
+nei 10.120.12.6 ac
+add ipv4 vrf RED
+nei 102.2.123.1 remote 10002
+nei 102.2.123.1 ac
+nei 10.120.14.6 remote 65112
+nei 10.120.12.6 ac
+add ipv4 vrf YELLOW
+nei 102.2.123.1 remote 10002
+nei 102.2.123.1 ac
+nei 10.120.15.6 remote 65112
+nei 10.120.12.6 ac
+add ipv4 vrf INET
+nei 102.2.123.1 remote 10002
+nei 102.2.123.1 ac
+nei 10.120.99.6 remote 65112
+nei 10.120.12.6 ac
+
+
+
+
+
+
+
+R4
+int lo0
+ip add 123.4.4.4 255.255.255.255
+int e0/0
+ip add 123.10.1.18 255.255.255.252
+no sh
+int e0/1
+ip add 123.10.1.1 255.255.255.252
+no sh
+int e0/2
+ip add 123.10.1.21 255.255.255.252
+no sh
+router ospf 12345
+router-id 123.4.4.4
+net 123.0.0.0 0.255.255.255 a 0
+ip cef
+mpls lab pr ldp
+mpls ldp router-id lo0
+int ran e0/0 -2
+mpls ip
+
+ R5
+int lo0
+ip add 123.5.5.5 255.255.255.255
+int e0/0
+ip add 123.10.1.14 255.255.255.252
+no sh
+int e0/1
+ip add 123.10.1.6 255.255.255.252
+no sh
+int e0/2
+ip add 123.10.1.29 255.255.255.252
+no sh
+router ospf 12345
+router-id 123.5.5.5
+net 123.0.0.0 0.255.255.255 a 0
+ip cef
+mpls lab pr ldp
+mpls ldp router-id lo0
+int ran e0/0 -2
+mpls ip
+
+
+
+ 
+
+R6
+int lo0
+ip add 123.6.6.6 255.255.255.255
+int e0/2
+ip add 123.10.1.22 255.255.255.252
+no sh
+int e0/1
+ip add 123.10.1.25 255.255.255.252
+no sh
+int e0/0
+no ip add 
+no sh
+router ospf 12345
+router-id 123.6.6.6
+net 123.0.0.0 0.255.255.255 a 0
+ip cef
+mpls lab pr ldp
+mpls ldp router-id lo0
+int ran e0/1 -2
+mpls ip
+no mpls ip propagate-ttl
+router bgp 12345
+bgp router-id 123.6.6.6
+no bgp default ipv4-unicast
+nei 123.1.1.1 remote 12345
+nei 123.1.1.1 up lo0
+add ipv4
+nei 123.1.1.1 ac
+add vpnv4
+nei 123.1.1.1 ac
+nei 123.1.1.1 send-community-extended
+ip vrf GREEN
+rd 65111:12
+rou 12:12
+ip vrf BLUE
+rd 65111:13
+rou 13:13
+ip vrf INET
+rd 30000:99
+rou 99:99
+int e0/0.12
+en d 12
+ip vrf for GREEN
+ip add 201.1.123.2 255.255.255.252
+no sh
+int e0/0.13
+en d 13
+ip vrf for BLUE
+ip add 201.1.123.2 255.255.255.252
+no sh
+int e0/0.99
+en d 99
+ip vrf for INET
+ip add 201.1.123.2 255.255.255.252
+no sh
+router bgp 12345
+add ipv4 vrf GREEN
+nei 201.1.123.1 remote 20001
+nei 201.1.123.1 ac
+add ipv4 vrf BLUE
+nei 201.1.123.1 remote 20001
+nei 201.1.123.1 ac
+add ipv4 vrf INET
+nei 201.1.123.1 remote 20001
+nei 201.1.123.1 ac
+
+
+
+
+
+R7
+int lo0
+ip add 123.7.7.7 255.255.255.255
+int e0/1
+ip add 123.10.1.26 255.255.255.252
+no sh
+int e0/2
+ip add 123.10.1.30 255.255.255.252
+no sh
+int e0/0
+no ip add 
+no sh
+router ospf 12345
+router-id 123.7.7.7
+net 123.0.0.0 0.255.255.255 a 0
+ip cef
+mpls lab pr ldp
+mpls ldp router-id lo0
+int e0/1 -2
+mpls ip
+no mpls ip propagate-ttl
+router bgp 12345
+bgp router-id 123.7.7.7
+no bgp default ipv4-unicast
+nei 123.1.1.1 remote 12345
+nei 123.1.1.1 up lo0
+add ipv4
+nei 123.1.1.1 ac
+add vpnv4
+nei 123.1.1.1 ac
+nei 123.1.1.1 send-community-extended
+ip vrf BLUE
+rd 65111:13
+rou 13:13
+ip vrf RED
+rd 65111:14
+rou 14:14
+ip vrf INET
+rd 30000:99
+rou 99:99
+int e0/0.13
+en d 13
+ip vrf for BLUE
+ip add 202.2.123.2 255.255.255.252
+no sh
+int e0/0.14
+en d 14
+ip vrf for RED
+ip add 202.2.123.2 255.255.255.252
+no sh
+int e0/0.99
+en d 99
+ip vrf for INET
+ip add 202.2.123.2 255.255.255.252
+no sh
+router bgp 65111
+add ipv4 vrf BLUE
+nei 202.2.123.1 remote 20002
+nei 202.2.123.1 ac
+add ipv4 vrf RED
+nei 202.2.123.1 remote 20002
+nei 202.2.123.1 ac
+add ipv4 vrf INET
+nei 202.2.123.1 remote 20002
+nei 202.2.123.1 ac
+ 
+
+
+
+
+R12
+int lo0
+ip add 123.12.12.12 255.255.255.255
+int e0/0
+ip add 10.1.12.1 255.255.255.0 
+no sh
+int e0/1
+no ip add 
+no sh
+int e0/1.4
+en d 4
+ip add 201.1.12.2 255.255.255.252
+no sh
+router  bgp 65111
+bgp router-id 123.12.12.12
+net 10.1.12.0 ma 255.255.255.0
+nei 201.1.12.1 remote 20001
+
+
+R14
+int lo0
+ip add 123.14.14.14 255.255.255.255
+int e0/0
+ip add 10.1.14.1 255.255.255.0
+no sh
+int e0/1
+no ip add
+no sh
+int e0/1.4
+en d 4
+ip add 202.2.14.2 255.255.255.252
+no sh
+router bgp 65111
+bgp router-id 123.14.14.14
+net 10.1.14.0 ma 255.255.255.0
+nei 202.2.14.1 remote 20002
+
+
+
+
+R20
+int lo0
+ip add 123.20.20.20 255.255.255.255
+int e0/0
+ip add 10.1.20.1 255.255.255.128
+no sh
+int e1/0
+ip add 10.1.20.129 255.255.255.128
+no sh
+int e2/0
+no ip add
+no sh
+int e3/0
+no sh
+int e2/0.12
+en d 12
+ip nat in
+ip add 10.120.12.2 255.255.255.252
+no sh
+int e2/0.13
+en d 13
+ip nat in
+ip add 10.120.13.2 255.255.255.252
+no sh
+int e2/0.14
+en d 14
+ip nat in
+ip add 10.120.14.2 255.255.255.252
+no sh
+int e2/0.15
+en d 15
+ip nat in
+ip add 10.120.15.2 255.255.255.252
+no sh
+int e2/0.99
+en d 99
+ip nat out
+ip add 10.120.99.2 255.255.255.252
+no sh
+int e3/0.12
+en d 12
+ip nat in
+ip add 10.120.12.6 255.255.255.252
+no sh
+int e3/0.13
+en d 13
+ip nat in
+ip add 10.120.13.6 255.255.255.252
+no sh
+int e3/0.14
+en d 14
+ip nat in
+ip add 10.120.14.6 255.255.255.252
+no sh
+int e3/0.15
+sw d 15
+ip nat in
+ip add 10.120.15.6 255.255.255.252
+no sh
+int e3/0.99
+en d 99
+ip nat out
+ip add 10.120.99.6 255.255.255.252
+no sh
+
+router bgp 65112
+bgp router-id 123.20.20.20
+net 10.1.20.0 ma 255.255.255.128
+net 10.1.20.128 ma 255.255.255.128
+net 123.20.20.20 ma 255.255.255.255
+aggregate-address 123.0.0.0 255.0.0.0 sum
+aggregate-address 10.0.0.0 255.0.0.0 sum
+nei 10.120.12.1 remote 12345
+nei 10.120.12.1 default-originate
+nei 10.120.13.1 remote 12345
+nei 10.120.13.1 default-originate
+nei 10.120.14.1 remote 12345
+nei 10.120.14.1 default-originate
+nei 10.120.15.1 remote 12345
+nei 10.120.15.1 default-originate
+nei 10.120.99.1 remote 12345
+nei 10.120.12.5 remote 12345
+nei 10.120.12.5 default-originate
+nei 10.120.13.5 remote 12345
+nei 10.120.13.5 default-originate
+nei 10.120.14.5 remote 12345
+nei 10.120.14.5 default-originate
+nei 10.120.15.5 remote 12345
+nei 10.120.15.5 default-originate
+nei 10.120.99.5 remote 12345
+
+access-list 1 per 10.1.0.0 0.0.255.255
+access-list 1 per 10.2.0.0 0.0.255.255
+ip nat inside source list 1 int lo0 overload
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

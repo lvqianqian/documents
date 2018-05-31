@@ -1,0 +1,13 @@
+1)show ip ospf neighbor ：确认DR 与BDR 和DR-OTHER 信息
+此处输出的DR 与BDR 信息是对端的，不是本地
+OSPF DR 竞选的wait-time ：40S
+
+实验需求：
+1）要求R3 一定是DR，R2 是BDR，R1 是OR-OTHER
+步骤1：将R2 R1的接口OSPF 优先级改为0
+int fa 0/0
+ip ospf priority 0
+步骤2：将R2的优先级设置为1
+int fa0/0
+ip ospf priority 1
+最终在R1上校验，查看R3 是否为DR，R2是否为BDR

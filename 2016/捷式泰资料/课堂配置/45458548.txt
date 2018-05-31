@@ -1,0 +1,456 @@
+p1 no ip routing
+   int e4/0
+   ip address dhcp
+   no sh
+p2 no ip routing
+   int e4/0
+   ip address dhcp
+   no sh
+p3 no ip routing
+   int e4/0
+   ip add dhcp
+   no sh 
+p4 no ip routing 
+   int e4/0
+   ip add dhcp 
+   no sh
+p5 no ip routing 
+   int e4/0
+   ip add dhcp
+   no sh
+p6 no ip routing
+   int e4/0
+   ip add dhcp
+   no sh
+
+m1 int rang e1/0-1    shutdown
+   sw tr en do
+   sw mo tr
+   channel-group 13 mo on
+   no sh
+   int rang e0/0-1
+   sh
+   sw tr en do
+   sw mo tr
+   channel-group 12 mo on
+   no sh
+   int rang e2/0-1
+   sh
+   sw tr en do
+   sw mo tr
+   channel-group 14 mo on
+   no sh
+   int rang e3/0-2,e5/1
+   sw tr en do
+   sw mo tr
+   no sh
+m2 int rang e1/0-1
+   sh
+   sw tr en do
+   sw mo tr
+   channel-g  24 mo on
+   no sh
+   int rang e2/0-1
+   sh
+   sw tr en do
+   sw mo tr 
+   channel-g 23 mo on
+   no sh
+   int rang e0/0-1
+   sh
+   sw tr en do
+   sw mo tr
+   channel-g 12 mo on
+   no sh
+   int rang e3/0-2,e5/1
+   sw tr en do
+   sw mo tr
+   no sh
+m3 int rang e1/0-1
+   sh
+   sw tr en do
+   sw mo tr
+   channel-g 13 mo on
+   no sh
+   int rang e0/0-1
+   sh
+   sw tr en do
+   sw mo tr 
+   channel-g 34 mo on
+   no sh
+   int rang e2/0-1
+   sh
+   sw tr en do
+   sw mo tr
+   channel-g 23 mo on
+   no sh
+   int rang e3/0-2,e5/1
+   sw tr en do
+   sw mo tr
+   no sh
+m4 int rang e1/0-1
+   sh
+   sw tr en do
+   sw mo tr
+   channei-g 24 mo on
+   no sh
+   int e0/0-1
+   sh
+   sw tr en do
+   sw mo tr
+   channel-g 34 mo on
+   no sh
+   int rang e2/0-1
+   sh
+   sw tr en do
+   sw mo tr
+   channei-g 14 mo on
+   no sh
+   int rang e3/1-2,e5/1-2
+   sw tr en do
+   sw mo tr
+   no sh
+
+
+a1 int rang e5/2,e3/1
+   sw tr en do
+   sw mo tr
+   no sh
+a2 int rang e3/0,e3/1
+   sw tr en do
+   sw mo tr
+   no sh
+a3 int rang e5/1,e3/2
+   sw tr en do
+   sw mo tr
+   no sh
+a4 int rang e5/1,e3/2
+   sw tr en do
+   sw mo tr
+   no sh
+a5 int  rang e3/0, e3/1
+   sw tr en do
+   sw mo tr
+   no sh
+a6 int rang e3/0-1
+   sw tr en do
+   sw mo tr 
+   no sh
+
+
+
+m1 vtp mo se
+   vtp domin cisco
+   vtp pass ccie
+m2 vtp mo client
+   vtp domin cisco
+   vtp pass ccie
+m3 vtp mo client
+   vtp domin cis
+   vtp pass ccie
+m4 vtp mo cli
+   vtp domi cis
+   vtp pass ccie
+a1 vtp mo client
+   vtp domi cis
+   vtp pass ccie
+a2 vtp mo client
+   vtp domin cis
+   vtp pass ccie
+a3 vtp mo client
+   vtp do cis
+   vtp pass ccie
+a4 vtp mo client
+   vtp domin cis
+   vtp pass ccie
+a5 vtp mo client
+   vtp domin cis
+   vtp pass ccie
+a6 vtp mo client
+   vtp do cis
+   vtp pass ccie
+
+
+
+
+m1 vlan10 20 30 40 50 60
+
+
+a1 int e4/0
+   sw mo acc
+   sw acc vlan 10
+
+a2 int e4/0
+   sw mo acc 
+   sw acc vlan 20
+
+a3int e4/0
+ sw mo acc
+  sw acc vlan 30
+
+a4 int e4/0
+   sw mo acc
+   sw acc vlan 40
+
+a5 int e4/0
+   sw mo acc
+   sw acc vlan 50
+ 
+a6 int e4/0
+   sw mo acc
+   sw acc vlan60
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

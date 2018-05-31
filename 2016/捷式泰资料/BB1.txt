@@ -1,0 +1,580 @@
+第一部分
+一.trunk-link-----vtp-----vlan 
+SW1:
+int ran e2/0 - 3
+sw tr en d
+sw mo tr
+vtp mo ser
+vtp v 2
+vtp domain CCIE
+vtp pass CCIErock$
+mac add ag 7200
+int ran e3/0 - 3
+sw mo ac
+sw ac vlan 999
+sh
+
+
+SW2:
+int ran e2/0 - 3
+sw tr en d
+sw mo tr
+vtp mo cli
+vtp v 2
+vtp domain CCIE
+vtp pass CCIErock$
+mac add ag 7200
+int ran e3/0 - 3
+sw mo ac 
+sw ac vlan 999
+sh
+
+
+
+SW3:
+int ran e2/0 - 3
+sw tr en d
+sw mo tr
+vtp domain CCIE
+vtp v 2
+vtp pass CCIErock$
+int ran e1/0 - 3,e3/0 - 3
+sw mo ac
+sw ac vlan 999
+sh 
+
+
+
+SW4	
+int ran e2/0 - 3
+sw tr en d
+sw mo tr
+vtp mo tr
+vtp v 2
+vtp domain CCIE
+vtp pass CCIErock$
+int ran e1/0 - 3.e3/0 - 3
+sw mo ac
+sw ac vlan 999
+sh
+
+
+
+       sh int tr     确认接口E2/0 - 3 是trunk
+       sh vtp status 确认模式、域名CCIE、版本2
+       sh mac add ag 确认老化时间为7200
+       sh vlan       确认接口进入vlan999
+       sh ip int br  确认接口是sh关闭了
+
+
+
+二.STP
+SW1
+sp mo ra
+sp po def
+sp po bpdug def
+sp vlan 1,15,23,35,57,67,999 pri 0
+sp vl 14,24,46 pri 4096
+
+
+SW2
+sp mo ra
+sp po def
+sp po bpdug def
+sp vl 1,15,23,35,57,67,999 pri 4096
+sp vl 14,24,46 pri 0
+
+
+SW3
+sp mo ra
+sp po def
+sp po bpdug de
+sp vl 1,49,89,111,411,999 pri 0
+sp vl 34,38,310 pri 4096
+
+
+
+SW4
+sp mo ra 
+sp po de
+sp po bpdug de
+sp vl 1,49,89,111,411,999 pri 4096
+sp vl 34,38,310 pri 0
+
+
+           
+             sh sp su         确认STP的portfast bpdu 都起
+             sh sp root       确认vlan的根
+             sh run | sec sp  
+
+
+
+
+三.chap 
+R18
+int s4/0
+en ppp
+ppp chap host ACME-R18
+ppp chap pass CCIE
+no sh
+
+
+R19
+int s4/0
+en ppp
+ppp chap host ACME-R19
+ppp chap pass CCIE
+no sh
+
+
+              sh ip int b      确认接口s4/0 up
+              ping 203.3.1x.1  确认连通
+
+
+
+
+四.mpls vpn
+1.P-NET  ospf---mpls
+R1
+router os 12345
+router-id 123.1.1.1
+net 123.0.0.0 0.255.255.255 a 0
+mpls la pro ldp 
+mpls ldp rou lo0
+int ran e0/1 - 2
+mpls ip
+
+
+R2
+router os 12345
+router-id 123.2.2.2
+net 123.0.0.0 0.255.255.255 a 0
+mpls la pro ldp
+mpls ldp r lo0
+no mpls ip pro
+int ran e0/1 - 2
+mpls ip
+
+
+R3
+router os 12345
+router-id 123.3.3.3
+net 123.0.0.0 0.255.255.255 a 0
+mpls la pro ldp
+mpls ldp r lo0
+no mpls ip pro
+int ran e0/1 - 2
+mpls ip
+
+
+
+R4
+router os 12345
+router-id 123.4.4.4
+net 123.0.0.0 0.255.255.255 a 0
+mpls la pro ldp
+mpls ldp r lo0
+int e0/0 - 2
+mpls ip
+
+
+
+R5
+router os 12345
+router-id 123.5.5.5
+net 123.0.0.0 0.255.255.255 a 0
+mpls la pro ldp
+mpls ldp r lo0
+int e0/0 - 2
+mpls ip
+
+
+
+R6
+router os 12345
+router-id 123.6.6.6
+net 123.0.0.0 0.255.255.255 a 0
+mpls la pro ldp
+mpls ldp r lo0
+no mpls ip pro
+int ran e0/1 - 2
+mpls ip
+
+
+
+R7
+router os 12345
+router-id 123.7.7.7
+net 123.0.0.0 0.255.255.255 a 0
+mpls la pro ldp
+mpls ldp r lo0
+no mpls ip pro
+int ran e0/1 - 2
+mpls ip
+
+
+
+2.BGP
+1）IBGP PEER----MP BGP
+R1
+router bgp 12345
+bgp router-id 123.1.1.1
+no bgp defa ipv4
+nei iBGP peer
+nei iBGP remote 12345
+nei iBGP up lo0
+nei 123.2.2.2 peer iBGP
+nei 123.3.3.3 peer iBGP 
+nei 123.6.6.6 peer iBGP
+nei 123.7.7.7 peer iBGP
+add ipv4
+nei iBGP route-r
+nei 123.2.2.2 ac
+nei 123.3.3.3 ac
+nei 123.6.6.6 ac
+nei 123.7.7.7 ac
+add vpnv4 un
+nei iBGP se ex
+nei iBGP route-ref-cli
+nei 123.2.2.2 ac
+nei 123.3.3.3 ac
+nei 123.6.6.6 ac
+nei 123.7.7.7 ac
+
+
+
+R2
+router bgp 12345
+bgp router 123.2.2.2
+no bgp def ipv4
+nei 123.1.1.1 remot 12345
+nei 123.1.1.1 up lo0
+add ipv4
+nei 123.1.1.1 ac
+add vpnv4 un
+nei 123.1.1.1 ac
+
+
+
+R3
+router bgp 12345
+bgp router 123.3.3.3
+no bgp def ipv4
+nei 123.1.1.1 remot 12345
+nei 123.1.1.1 up lo0
+add ipv4
+nei 123.1.1.1 ac
+add vpnv4 un
+nei 123.1.1.1 ac
+
+
+
+R4
+router bgp 12345
+bgp router 123.4.4.4
+no bgp def ipv4
+nei 123.1.1.1 remot 12345
+nei 123.1.1.1 up lo0
+add ipv4
+nei 123.1.1.1 ac
+add vpnv4 un
+nei 123.1.1.1 ac
+
+
+
+R6
+router bgp 12345
+bgp router 123.6.6.6
+no bgp def ipv4
+nei 123.1.1.1 remot 12345
+nei 123.1.1.1 up lo0
+add ipv4
+nei 123.1.1.1 ac
+add vpnv4 un
+nei 123.1.1.1 ac
+
+
+
+R7
+router bgp 12345
+bgp router 123.7.7.7
+no bgp def ipv4
+nei 123.1.1.1 remot 12345
+nei 123.1.1.1 up lo0
+add ipv4
+nei 123.1.1.1 ac
+add vpnv4 un
+nei 123.1.1.1 ac
+
+
+
+3.EBGP-PEER
+R20
+router b 65112
+bgp router 123.20.20.20
+net 10.1.20.0 m 255.255.255.128
+net 10.1.20.128 ma 255.255.255.128
+net 123.20.20.20 ma 255.255.255.255
+agg 123.0.0.0 255.0.0.0 sum
+agg 10.0.0.0 255.0.0.0 sum
+nei 10.120.12.1 remot 12345
+nei 10.120.13.1 remot 12345
+nei 10.120.14.1 remot 12345
+nei 10.120.15.1 remot 12345
+nei 10.120.12.5 remot 12345
+nei 10.120.13.5 remot 12345
+nei 10.120.14.5 remot 12345
+nei 10.120.15.5 remot 12345
+nei 10.120.12.1 default-ori
+nei 10.120.13.1 default-ori
+nei 10.120.14.1 default-ori
+nei 10.120.15.1 default-ori
+nei 10.120.12.5 default-ori
+nei 10.120.13.5 default-ori
+nei 10.120.14.5 default-ori
+nei 10.120.15.5 default-ori
+nei 10.120.99.1 remot 12345
+nei 10.120.99.5 remot 12345
+nei 10.120.99.5 weight 10
+acc 1 per 10.1.0.0 0.0.255.255
+acc 1 per 10.2.0.0 0.0.255.255
+
+
+
+R12
+router bgp 65111
+bgp router 123.12.12.12
+net 123.12.12.12 ma 255.255.255.255
+net 10.1.12.0 ma 255.255.255.0
+
+
+R13
+router bgp 65111
+bgp router 123.13.13.13
+net 123.13.13.13 ma 255.255.255.255
+net 10.1.13.0 ma 255.255.255.0
+
+
+R14
+router bgp 65111
+bgp router 123.14.14.14
+net 123.14.14.14 ma 255.255.255.255
+net 10.1.13.0 ma 255.255.255.0
+
+
+
+
+五.NAT
+R20
+int ran e0/0,e1/0
+ip nat in
+int e2/0.12
+ip nat in
+int e2/0.13
+ip nat in
+int e2/0.14
+ip nat in
+int e2/0.15
+ip nat in
+int e3/0.12
+ip nat in
+int e3/0.13
+ip nat in
+int e3/0.14
+ip nat in
+int e3/0.15
+ip nat in
+int e2/0.99
+ip nat out
+int e3/0.99
+ip nat out
+router bgp 65112
+nei 10.120.99.5 wei 10
+
+
+
+
+第一部分完成    R12:ping 1.2.3.4 so 10.1.12.1
+                !!!!!!
+
+
+
+
+
+
+第二部分
+一.eigrp 34567
+R8/R9/R10/R11
+router ei 34567
+net 123.0.0.0 0.255.255.255
+
+
+SW3/SW4
+router ei 34567
+nei 123.0.0.0 0.255.255.255
+int vlan 34
+delay 100
+
+
+二.BGP 34567
+R9
+int e1/0
+ip add 33.34.4.2 255.255.255.252
+no sh
+
+
+R11
+int e1/0
+ip add 33.34.3.2 255.255.255.252
+no sh
+
+///////////可能出现的错误
+SW3
+int ra vl 34,vl 38,vl 310
+no sh
+
+SW4
+int ran vl 34.vl 49.vl 411
+no sh
+
+
+
+//////////////////////////////////
+R8
+router bg 34567
+bgp router 123.8.8.8
+no bg def ipn4
+nei Y peer
+nei Y remot 34567
+nei Y up lo0
+nei 123.9.9.9 peer Y
+nei 123.10.10.10 peer Y
+nei 123.11.11.11 peer Y
+nei 101.1.34.1 remot 10001
+add ipv4
+nei Y next-hop-s
+nei 123.9.9.9 ac
+nei 123.10.10.10 ac
+nei 123.11.11.11 ac
+re ei 34567
+
+
+
+R9
+router bg 34567
+bgp router 123.9.9.9
+no bgp def ipv4
+nei Y peer
+nei Y remot 34567
+nei Y up lo0
+nei 123.8.8.8 peer Y
+nei 123.10.10.10 peer Y
+nei 123.11.11.11 peer Y
+nei 102.2.34.1 remot 10002
+nei 33.34.4.1 remot 30000
+add ipv4
+nei Y next-hop-s
+nei 123.8.8.8 ac
+nei 123.10.10.10 ac
+nei 123.11.11.11 ac
+nei 102.2.34.1 ac
+nei 33.34.4.1 ac
+re ei 34567
+exit
+acc 1 per 0.0.0.0
+route-map D peer 10
+mat ip add 1
+router ei 34567
+re bgp 34567 metr 1000 100 255 1 1500 route-map D
+
+
+
+
+R10
+router b 34567
+bg router 123.10.10.10
+no bgp def ipv4
+nei Y peer
+nei Y remot 34567
+nei Y up lo0
+nei 123.8.8.8 peer Y
+nei 123.9.9.9 peer Y
+nei 123.11.11.11 peer Y
+nei 201.1.34.1 remot 20001
+add ipv4
+nei Y nex
+nei 123.8.8.8 ac
+nei 123.9.9.9 ac
+nei 123.11.11.11 ac
+nei 201.1.34.1 ac
+re ei 34567
+
+
+
+R11
+router bgp 34567
+bgp router 123.11.11.11
+no bgp def ipv4
+nei Y peer
+nei Y remot 34567
+nei Y up lo0
+nei 123.8.8.8 peer Y
+nei 123.9.9.9 peer Y
+nei 123.10.10.10 peer Y
+nei 202.2.34.1 remot 20002
+nei 33.34.3.1 remot 30000
+add ipv4
+nei Y nex
+nei 123.8.8.8 ac
+nei 123.9.9.9 ac
+nei 123.10.10.10 ac
+nei 202.2.34.1 ac
+nei 33.34.3.1 ac
+re ei 34567
+exit
+acc 1 per 0.0.0.0
+route-map D per 10
+mat ip add 1
+router ei 34567
+re bgp 34567 metr 1000 100 255 1 1500 route-map D
+
+
+
+            sh ip bgp sum  确认所有EBGP和IBGP邻居关系
+        R9: sh acc 一定要看到0.0.0.0
+            sh ip b  确认R9只学到的是B默认路由
+            sh ip route ei  R11一定要看到0.0.0.0出现 证明             R9 R11 LP 配置且BGP 与 EIGRP 的重分发完成
+
+
+
+
+
+三.IPV6 OSPF V3
+SW4
+ipv6 un
+ipv6 router os 1
+router-id 123.204.4.4
+int vlan 411
+ipv6 os 1 a 11
+int lo0
+ipv6 os 1 a 0
+int vlan 34
+ipv6 os 1 a 0
+ipv6 os pro 255
+
+
+SW3
+ipv6 un
+ipv6 router os 1
+router-id 123.203.3.3
+int vlan 310
+ipv6 os 1 a 10
+int lo0
+ipv6 os 1 a 0
+int vlan 34
+ipv6 os 1 a 0
+ipv6 os pri 254
+
+
+R10
+

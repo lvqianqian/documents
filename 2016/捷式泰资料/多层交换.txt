@@ -1,0 +1,156 @@
+单臂路由
+	interface FastEthernet0/0
+	no ip address
+	duplex auto
+	speed auto
+	!
+	interface FastEthernet0/0.10
+	encapsulation dot1Q 10
+	ip address 192.168.1.1 255.255.255.0
+	!
+	interface FastEthernet0/0.20
+	encapsulation dot1Q 20
+	ip address 192.168.2.1 255.255.255.0
+	CAM表：MAC地址表
+	TCAM表：路由表
+cisco交换技术
+	cisco交换机可以使用以下三种方式来转发数据包
+		进程交换
+		快速交换
+		cisco快速转发（CEF）
+SVI（交换式虚拟接口）
+	三层交换机的接口模式
+		二层接口：access模式，trunk模式
+		三层接口：路由接口，SVI接口
+	SVI在满足以下条件时才能UP
+		SVI对应的vlan必须在vlan database 中存在，并且是激活的
+		vlan interface 存在并且不能是administratively down
+		必须至少有一个二层接口(SVI对应VLAN的access接口或者trunk)是UP的，
+		而且必须spanning-tree的forwarding状态
+	交换机管理vlan
+		交换机的管理VLAN用于交换机本身的设备管理
+		二层交换机只能有一个VLAN接口可以有IP地址
+DHCP(Dynamic Host Configuration)
+	用于动态地址分配
+	基于UDP协议，端口号67及68
+	BootPC:67(客户机端口号)，BootPS：68（服务机端口号）
+	DHCP配置
+		开启DHCP服务（默认开启）
+		R1(config)#service dhcp
+		定义DHCP地址池
+		R1(config)#ip dhcp pool xxx
+		定义地址池关联的网段
+		R1(dhcp-config)#network [ip地址] [subnet mask]
+		定义分配给客户端的网关IP
+		R1(dhcp-config)#default-router [host address]
+		将一个或多个地址排除在地址池之外
+		R1(config)#ip dhcp excluded-address [Low IP address] [High IP address]
+		设置分配给客户端的DNS
+		R1(dhcp-config)#dns-server 114.114.114.114 114.114.115.115
+		show 命令
+			show ip dhcp database
+			show ip dhcp static
+			show ip dhcp binding
+			show ip route dhcp
+		debug 命令
+			debug dhcp detail
+			debug ip dhcp server {events|packets|linkage}
+	DHCP中继
+		PC客户端与DHCP server不在同一个网段
+		PC发出的广播DHCP discover包到达三层设备，被三层设备接口丢弃，因此数据无法到达DHCP服务器
+		在三层设备上部署DHCP中继，将discover MSG广播转换为单播，发送给DHCP server
+		R2(config-if)#ip helper-address 12.12.12.1
+		该接口为沿途阻挡该广播消息的第一个接口
+		R2(config)#ip forward-protocol udp [协议]
+		选择被中继的协议
+	DHCP配置手工绑定
+		ip dhcp pool BIND
+		 host 192.168.1.233 255.255.255.0
+		 client-identifier xxxxxxxxxxx
+		 hardware-address aaa.bbb.ccc ethernet
+		
+		
+		show ip dhcp binding
+EtherChannel
+	PAGP和LACP
+		PAGP
+			是cisco私有
+			
+			
+			on 			强制配置EC
+			Desirable	主动
+			Auto		被动
+			off			关闭EC
+			
+		LACP
+			802.3ad
+			
+			
+			on			强制配置EC
+			Active		主动
+			passive		被动
+			off			关闭EC
+			
+			
+	配置
+		选择用于Channel的端口
+		选择Pagp或LACP
+		在接口上配置channel-group
+		设置channel-group ID
+		根据特定的协议，选择接口模式
+	二层EC
+		Sw1(config)#interface range fastEthernet 0/1 – 2 //进入接口范围
+		Sw1(config-if-range)#switchport    //将接口配置为二层接口
+		Sw1(config-if-range)#switchport trunk encapsulation dot1q
+		//trunk封装协议为dot1q
+		Sw1(config-if-range)#switchport mode trunk 
+		//设置接口模式为Trunk模式
+		Sw1(config-if-range)#channel-protocol pagp/lacp
+		Sw1(config-if-range)#channel-group 1 mode desirable 
+		//配置etherchannel，ID为1，模式为desirable
+		//查看命令：Show etherchannel 1 summary
+	三层EC
+		Sw1(config)#interface range fastEthernet 0/1 – 2 
+		Sw1(config-if-range)#no switchport //配置L3接口
+		Sw1(config-if-range)#no ip address
+		Sw1(config-if-range)#channel-group 1 mode desirable
+		Sw1(config-if-range)#no shutdown
+		Sw1(config)#interface port-channel 1 //进入port-channel组1配置IP
+		Sw1(config-if)#ip address 172.16.10.1 255.255.255.0
+		Sw1(config-if)#no shu
+		查看命令：Show eth 1 summary / show ip route / show ip int brief
+	隶属于一个port-channel的物理接口需有相同的如下配置
+		相同的speed和duplex
+		相同的接口模式（access、trunk）
+		如果是trunk模式，那么native vlan及allowed vlan需相同
+		如果是access模式，所属vlan需相同 
+	EC的负载均衡
+		默认行为:源和目的地址对(scr-dst-ip)
+		Switch(config)#port-channel load-balance type
+HSRP
+	利用HSRP，一组路由器（同一个lan中的接口）协同工作，但是只有一个处于active状态。在一个HSRP组内的多个
+	路由器共用一个虚拟的IP地址，该地址作为局域网内所有主机的缺省网关地址。
+	standby 1 ip 10.1.1.254
+	standby 1 priority 150
+	standby 1 preempt
+	R3(config-if)#standby 1 authentication md5 key-chain xxx
+	R3(config-if)#standby 1 timers [hello] [hold-time]
+	standby 1 track FastEthernet0/0 60
+	HSRP version
+		默认是1
+			1
+				组ID：0~255   虚拟mac地址：0000.0c07.acxx   hello地址：224.0.0.2   
+			2
+				组ID：0~4095  虚拟mac地址：0000.0c9f.fxxx   hello地址：224.0.0.2
+VRRP(Virtual Router Redundancy Protocol)
+	cisco私有
+		HSRP共同的特点
+GLBP
+	glbp 1 weighting 150 lower 100 upper 140
+	glbp 1 load-balancing weighted
+	glbp 1 weighting track 1 decrement 60
+IRDP路由器发现协议
+	ip irdp
+	R2(config-if)#ip irdp preference ?
+	R2#show ip irdp 
+	

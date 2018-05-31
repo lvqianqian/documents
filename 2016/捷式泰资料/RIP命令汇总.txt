@@ -1,0 +1,42 @@
+RIP命令汇总
+ 
+Router(config)# router rip //启动一个RIP进程
+Router(config-router)# version [1|2] //全局下控制RIP的版本
+Router(config-router)# no auto-summary //不发自动汇总的路由
+Router(config-router)# network A.B.C.D //宣告网络
+Router(config-router)# timers basic 30 180 180 240 //控制RIP的计时器
+Router(config-router)# passive-interface [/interface/ | default] //配置RIP的被动接口
+Router(config-router)# neighbor A.B.C.D //指定RIP以单播的形式发送更新给指定的邻居
+Router(config-router)# no validate-update-source //关闭RIP的源检测--不管从哪来路由的都要配合上面命令
+Router(config-router)# maximum-paths <1-16> //负载均衡的路径数
+
+接口下控制版本
+Router(config-if)# ip rip send version [1 |2 |1 2] //接口下控制RIP的发送更新版本
+Router(config-if)# ip rip receive version[1 |2 |1 2] //接口下控制RIP的接收更新版本
+Router(config-if)# ip rip v2-broadcast //接口下以广播的形式发送版本2的更新
+Router(config-if)# ip summary-address rip A.B.C.D A.B.C.D //RIP接口下手动汇总
+(Summary mask must be greater or equal to major net) //不支持创建CIDR的条目
+Router(config-if)# ip rip triggered //接口下开启触发更新，只适用在串行链路，且两边要同时开启，否则无效
+
+Router# show ip route rip //查看RIP的路由条目
+Router# show ip protocols //查看router正在运行的routing protocols
+Router# debug ip rip //调试RIP的运行
+Router# ping A.B.C.D source A.B.C.D
+Router# show ip rip database //查看RIP的本地数据库
+
+RIPv2认证
+Step1。定义钥匙链
+Router(config)# key chain CCNP //指定钥匙链名称
+Router(config-keychain)# key 1 //指定Key-ID值
+Router(config-keychain-key)# key-string cisco //指定Key密码
+Step2.在需要认证的接口下调用钥匙链
+Router(config-if)# ip rip authentication mode [text|md5] //接口下开启明文认证方式
+Router(config-if)# ip rip authentication key-chain CCNP //在接口下调用钥匙链
+
+RIP认证原则：
+1、明文认证的匹配原则：
+1)发送方(被认证方)将key chain中key ID最小的密码以明文的方式(不携带key ID)发送给接收方(主认证方)
+2)接收方(主认证方)会和被调用key chain中的所有密码进程匹配，如果匹配成功，则认证通过，接受发送方的路由。
+1、密文MD5认证的匹配原则：
+1)发送方(被认证方)将key chain中key ID最小的密码(并携带key ID)发送给接收方(主认证方).
+2)接收方(主认证方)首先会查找key chain中，是否存在相同的key ID，如果有且密码匹配成功，则认证通过；如果密码不匹配，则认证失败。如果没有相同的key ID，但存在多个key时，会查找下一个key(大于发送方的key ID)；如果密码匹配则认证通过；如果密码不匹配，则认证失败且不会再向下查找。

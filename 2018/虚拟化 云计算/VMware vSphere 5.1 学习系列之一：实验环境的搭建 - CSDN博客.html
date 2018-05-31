@@ -1,0 +1,1061 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+            <link rel="canonical" href="http://blog.csdn.net/u012482273/article/details/13174295"/> 
+
+    <script type="text/javascript">
+        var username = "u012482273";var _blogger = username;var blog_address = "http://blog.csdn.net/u012482273";var static_host = "http://static.blog.csdn.net";
+        var currentUserName = "github_38885296"; var fileName = '13174295';var commentscount = 0; var islock = false
+        window.quickReplyflag = true;
+        var totalFloor=0;
+                
+                 var isBole = false;
+                
+                
+                 var isDigg = false;
+                
+          
+             var isExpert=false;
+          
+    </script>
+
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="http://c.csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://static.csdn.net/public/common/toolbar/css/index.css">
+    <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://c.csdnimg.cn/public/static/css/avatar.css">
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+    <link rel="stylesheet" href="http://static.blog.csdn.net/Skin/skin3-template/css/style.css?v=2017.016">
+    <script type="text/javascript" src="http://static.blog.csdn.net/Skin/skin3-template/fonts/iconfont.js"></script>
+    <script src="//csdnimg.cn/rabbit/tracking-ad/main.js?v=13"></script>
+    <script type="text/javascript" src="http://c.csdnimg.cn/pubfooter/js/tracking_for_recommend.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/tracking.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/cnick.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="http://static.blog.csdn.net/code/prettify.css" />
+    <script type="text/javascript" src="http://static.blog.csdn.net/code/prettify.js"></script>
+
+    <script type="text/javascript">
+        // Traffic Stats of the entire Web site By baidu
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        // Traffic Stats of the entire Web site By baidu end
+
+
+
+    </script>
+    <meta name="description" content="目 录
+
+一、 物理主机配置... 1
+
+二、 实验环境规划... 1
+
+实验环境规划详情... 1
+
+设置VMware Workstation内存选项... 2
+
+三、 创建虚拟机... 4
+
+创建VMware Workstation虚拟机... 4
+
+修改VMware Workstation虚拟机配置... 14
+
+&#160;
+
+一、 物理主机配置
+
+我的物理主" />
+    <meta name="keywords" content="VMware,vSphere" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+
+
+    <title>VMware vSphere 5.1 学习系列之一：实验环境的搭建 - CSDN博客</title>
+</head>
+<body>
+<header class="clearfix">
+    <nav class="clearfix tracking-ad"  data-mod="popu_366">
+        <ul>
+            <li><a href="http://blog.csdn.net" target="_blank">CSDN博客</a></li>
+
+            
+            <li><a href="http://blog.csdn.net/mobile/newarticle.html" target="_blank">移动开发</a></li>
+            
+            <li><a href="http://blog.csdn.net/enterprise/newarticle.html" target="_blank">架构</a></li>
+            
+            <li><a href="http://blog.csdn.net/cloud/newarticle.html" target="_blank">云计算/大数据</a></li>
+            
+            <li><a href="http://blog.csdn.net/www/newarticle.html" target="_blank">互联网</a></li>
+            
+            <li><a href="http://blog.csdn.net/system/newarticle.html" target="_blank">运维</a></li>
+            
+
+            <li>
+                <div class="dropdown">
+                    <a href="#" target="_self" id="dLabel" data-target="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多</a>
+                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                        
+                        <li><a href="http://blog.csdn.net/database/newarticle.html" target="_blank">数据库</a></li>
+                        
+                        <li><a href="http://blog.csdn.net/web/newarticle.html" target="_blank">前端</a></li>
+                        
+                        <li><a href="http://blog.csdn.net/code/newarticle.html" target="_blank">编程语言</a></li>
+                        
+                        <li><a href="http://blog.csdn.net/software/newarticle.html" target="_blank">研发管理</a></li>
+                        
+                        <li><a href="http://blog.csdn.net/other/newarticle.html" target="_blank">综合</a></li>
+                        
+                        <li class="arr_top"> </li>
+                    </ul>
+                </div>
+            </li>
+
+        </ul>
+        <div class="right">
+            <div class="search tracking-ad" data-mod="popu_369">
+                <input type="text" class="btn btn-small btn-gray">
+                <a href="javascript:void(0);" class="sub_search"><i class="icon iconfont icon-sousuo"></i></a>
+            </div>
+            <span class="tracking-ad" data-mod="popu_370"><a href="http://write.blog.csdn.net/postedit" target="_blank" class="btn btn-small btn-red">写博客</a></span>
+            <div class="notLogin">
+                <a href="https://passport.csdn.net/account/login?ref=toolbar">登录</a> <span>|</span>
+                <a href="http://passport.csdn.net/account/mobileregister?ref=toolbar&action=mobileRegister">注册</a>
+            </div>
+            <dl class="alrLogin">
+                <dt class="trackgin-ad" data-mod="popu_368">
+                    <a href="http://blog.csdn.net/github_38885296" target="_blank"><img src="http://avatar.csdn.net/5/5/E/1_github_38885296.jpg" class="user_img"></a>
+                </dt>
+                <dd class="trackgin-ad" data-mod="popu_367"><a href="http://blog.csdn.net/github_38885296" target="_blank">github_38885296</a><span>|</span><a class="icon-signout" href="https://passport.csdn.net/account/logout?ref=toolbar">退出</a> </dd>
+            </dl>
+        </div>
+    </nav>
+    
+</header>
+<div class="container clearfix">
+    <main>
+        <article>
+            <h1 class="csdn_top">VMware vSphere 5.1 学习系列之一：实验环境的搭建</h1>
+            <div class="article_bar clearfix">
+                <div class="artical_tag">
+                    <span class="original">转载</span>
+                    <span class="time">2013年10月28日 09:45:01</span>
+                </div>
+                <ul class="right_bar">
+                    <li><button class="btn-noborder"><i class="icon iconfont icon-read"></i><span class="txt">1924</span></button></li>
+                    <li><button class="btn-noborder but-comment-topicon"><i class="icon iconfont icon-pinglun"></i><span class="txt">0</span></button></li>
+                    <li><button class="btn-noborder btn-like"><i  class="icon iconfont icon-xihuan-"></i><span class="txt">0</span></button></li>
+                    <!--<li><button class="btn-noborder"><i class="icon iconfont icon-dashang-"></i><span class="txt">0</span></button></li>-->
+
+                    <li class="edit">
+                        <a class="btn-noborder" href="" >
+                            <i class="icon iconfont icon-bianji"></i><span class="txt">编辑</span>
+                        </a>
+                    </li>
+                    <li class="del">
+                        <a class="btn-noborder" onclick="javascript:deleteArticle(fileName);return false;">
+                            <i class="icon iconfont icon-shanchu"></i><span class="txt">删除</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="article_content" class="article_content tracking-ad" data-mod="popu_307" data-dsm="post">
+                
+<h3 style="padding:0px; margin:0px; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif">
+一、 物理主机配置</h3>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+我的物理主机硬件配置如下：</p>
+<table border="1" cellspacing="0" cellpadding="0" style="padding:0px; margin:0px auto 10px; font-size:12px; border-collapse:collapse; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; text-align:start">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td valign="top" style="padding:5px 10px; margin:0px; background-color:white; border:1px solid rgb(221,221,221)">
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden">
+主板</p>
+</td>
+<td valign="top" style="padding:5px 10px; margin:0px; background-color:white; border:1px solid rgb(221,221,221)">
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden">
+Intel DQ67SW</p>
+</td>
+<td valign="top" style="padding:5px 10px; margin:0px; background-color:white; border:1px solid rgb(221,221,221)">
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden">
+支持VT-D功能，在VMware Workstation下无法使用它</p>
+</td>
+</tr>
+<tr style="padding:0px; margin:0px">
+<td valign="top" style="padding:5px 10px; margin:0px; background-color:white; border:1px solid rgb(221,221,221)">
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden">
+CPU</p>
+</td>
+<td valign="top" style="padding:5px 10px; margin:0px; background-color:white; border:1px solid rgb(221,221,221)">
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden">
+Intel i7 2600</p>
+</td>
+<td valign="top" style="padding:5px 10px; margin:0px; background-color:white; border:1px solid rgb(221,221,221)">
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden">
+支持VT-x/EPT功能，可实现64位系统的嵌套</p>
+</td>
+</tr>
+<tr style="padding:0px; margin:0px">
+<td valign="top" style="padding:5px 10px; margin:0px; background-color:white; border:1px solid rgb(221,221,221)">
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden">
+内存</p>
+</td>
+<td valign="top" style="padding:5px 10px; margin:0px; background-color:white; border:1px solid rgb(221,221,221)">
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden">
+4*4 GB</p>
+</td>
+<td valign="top" style="padding:5px 10px; margin:0px; background-color:white; border:1px solid rgb(221,221,221)">
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden">
+满足基本实验的内存需求，32GB将获得更好性能</p>
+</td>
+</tr>
+<tr style="padding:0px; margin:0px">
+<td valign="top" style="padding:5px 10px; margin:0px; background-color:white; border:1px solid rgb(221,221,221)">
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden">
+硬盘</p>
+</td>
+<td valign="top" style="padding:5px 10px; margin:0px; background-color:white; border:1px solid rgb(221,221,221)">
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden">
+3*320 GB RIAD 0</p>
+</td>
+<td valign="top" style="padding:5px 10px; margin:0px; background-color:white; border:1px solid rgb(221,221,221)">
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden">
+实验用，需要硬盘速度，不考虑数据安全</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+</p>
+<h3 style="padding:0px; margin:0px; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif">
+二、 实验环境规划</h3>
+<h4 style="padding:0px; margin:0px; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+实验环境规划详情</h4>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+实验环境规划示意图：</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047798uMf5.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image002[19]" border="0" alt="clip_image002[19]" width="556" height="297" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047799lsUF.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+实验环境规划说明：</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+我们用VMware Workstation搭建实验环境，一个基本环境共需6台虚拟机，分别是：3台ESXi、1台vCenter、1台AD&amp;DNS、1台Openfiler。根据实验内容的不同，还会增加虚拟机的数量。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+ESXi和vCenter虚拟机，使用VMware vSphere 5.1版本软件。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+AD&amp;DNS和vCenter虚拟机，使用Windows Server 2008 R2 SP1系统，域名为jack.com。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+Openfiler虚拟机，使用Openfiler NAS/SAN 2.99.1版本软件。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+各虚拟机间的网络连接，使用Bridged挢接模式。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+大家可以根据实验环境规划示意图，配置好各虚拟机的硬件、网络、系统等环境。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+大家需要注意的是，使用VMware Workstation构建的虚拟实验环境，虽然可以完成绝大多数的vSphere功能实验，但对于一些对硬件有特定要求的功能，就无能为力了。</p>
+<h4 style="padding:0px; margin:0px; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+设置VMware Workstation内存选项</h4>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+从实验环境规划示意图中，不难发现一个问题，所有虚拟机总共需要19GB内存，而物理主机只有16GB内存（实际可用物理内存的会更小），显然物理内存已经不够用了。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+虽然分配了19GB，但在虚拟机运行时，不会完全用到19GB，可以调整一下VMware Workstation内存工作机制，以满足实验环境的运行需求。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+运行VMware Workstation程序，在主窗口的Home标签页中，点击Workstation Preferences。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047799Xa1W.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image004[4]" border="0" alt="clip_image004[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047800E1LL.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Preferences窗口中，选择Memory栏。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Additional memory区域，选择Allow most virtual machine memory to be swapped，点击OK，保存配置。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047800JPI0.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image006[4]" border="0" alt="clip_image006[4]" width="558" height="405" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047804sTMF.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<h3 style="padding:0px; margin:0px; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif">
+三、 创建虚拟机</h3>
+<h4 style="padding:0px; margin:0px; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+创建VMware Workstation虚拟机</h4>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+根据实验环境规划，我们来创建一个虚拟机esx1.jack.com。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在VMware Workstation窗口的Home标签页中，点击Create a New Virtual Machine。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047804L2OP.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image008[4]" border="0" alt="clip_image008[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047805m9io.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+打开New Virtual Machine Wizard窗口。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Welcome to the New Virtual Machine Wizard页，将What type of configuration do you want? 选择为Custom (advanced)，点击Next。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047805YBY8.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image010[4]" border="0" alt="clip_image010[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047806ACsj.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Choose the Virtual Machine Hardware Compatibility页，将Hardware compatibility选择为Workstation 9.0，点击Next。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047806azTb.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image012[4]" border="0" alt="clip_image012[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047806rtD3.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Guest Operating System Installation页，将Install from选择为I will install the operating system later，点击Next。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047807nPot.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image014[4]" border="0" alt="clip_image014[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047808CmK2.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Select a Guest operating system页，将Guest operating system选择为VMware ESX，将Version选择为VMware ESXi 5，点击Next。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047808hxwb.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image016[4]" border="0" alt="clip_image016[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047808LseZ.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Name the Virtual machine页，在Virtual machine name处输入虚拟机名称，在Location处浏览或输入虚拟机文件保存的位置，点击Next。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047809Bpsw.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image018[4]" border="0" alt="clip_image018[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047809yatf.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Processors Configuration页，将Number of Processors和Number of cores per processor选择为2，点击Next。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047810uAHm.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image020[4]" border="0" alt="clip_image020[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_13530478107SgU.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Memory for the Virtual Machine页，将内存大小滑块调整至4 GB处，点击Next。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_135304781131J3.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image022[4]" border="0" alt="clip_image022[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047811bW4h.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Network Type页，将Network connection选择为Use bridged networking，点击Next。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047812b0wP.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image024[4]" border="0" alt="clip_image024[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047812aP9g.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Select I/O Controller Types页，将SCSI Controller选择为LSI Logic，点击Next。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047813KuMj.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image026[4]" border="0" alt="clip_image026[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047814ChCM.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Select a Disk处，将Disk选择为Create a new virtual disk，点击Next。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_13530478159UMi.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image028[4]" border="0" alt="clip_image028[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047815xURx.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Select a Disk Type页，将Virtual disk type选择为SCSI(Recommended)，点击Next。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047816kJqe.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image030[4]" border="0" alt="clip_image030[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047816X5rq.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Specify Disk Capacity页，在Maximum disk size (GB)中输入40.0，并选择Store virtual disk a single file，点击Next。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047817Vd5q.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image032[4]" border="0" alt="clip_image032[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047817Uysu.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Specify Disk file页，在Disk file中使用默认的虚拟机磁盘文件名称，点击Next。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047818qq2s.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image034[4]" border="0" alt="clip_image034[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047818VN76.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Ready to Create Virtual Machine页，查看虚拟机配置信息，点击Finish。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047819xO71.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image036[4]" border="0" alt="clip_image036[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047819p2ud.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<h4 style="padding:0px; margin:0px; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+修改VMware Workstation虚拟机配置</h4>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在VMware Workstation窗口中，可以看到刚刚创建成功的虚拟机esx1.jack.com。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+根据实验环境规划，我们现在还需要对esx1.jack.com虚拟机的硬件进行添加和删除，点击Edit virtual machine settings。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047819YuWH.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image038[4]" border="0" alt="clip_image038[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047820MP4n.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+打开Virtual Machine Settings窗口，在Hardware标签页，选择Processors栏，在Virtualization engine处勾选择Virtualize Intel VT-x/EPT or AMD-V/RVI和Virtualize CPU performance counters。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047820qbag.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image040[4]" border="0" alt="clip_image040[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047822yHql.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+选择CD/DVD (IDE) 栏，在Connection处，选择Use ISO image file，并输入或选择ESXi 5安装光盘映像ISO文件。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_13530478237cDb.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image042[4]" border="0" alt="clip_image042[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047823g7HX.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+选择Floppy栏，点击Remove，删除此虚拟硬件。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047824no9H.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image044[4]" border="0" alt="clip_image044[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047824dPf6.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+点击Add，添加新虚拟硬件。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047824FAIU.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image046[4]" border="0" alt="clip_image046[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047825iMu4.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+打开Add Hardware Wizard窗口。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Hardware Type页，将Hardware选择为Network Adapter，点击Next。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047825mZ5p.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image048[4]" border="0" alt="clip_image048[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047826z1qC.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Network Adapter Type页，将Network connection选择为Bridged: Connected directly to the physical network，点击Finish。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_13530478261fRG.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image050[4]" border="0" alt="clip_image050[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_13530478273KTC.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在Hardware标签页中，可以看到新添加的网络适配器Network Adapter 2。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_13530478278Qzk.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image052[4]" border="0" alt="clip_image052[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047828tGwf.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+根据实验环境规划，继续添加其它的Network Adapter网络适配器。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+添加操作完成后，点击OK。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047828NfBR.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image054[4]" border="0" alt="clip_image054[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047829qHPf.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+在VMware Workstation窗口中，可以看到虚拟机esx1.jack.com硬件修改后的结果。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047830Z08c.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image056[4]" border="0" alt="clip_image056[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047830KTsV.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+根据实验环境规划，按照虚拟机esx1.jack.com的创建过程，完成虚拟机esx2.jack.com、esx3.jack.com、dc.jack.com、vc.jack.com、open.jack.com的创建工作。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047831IAg6.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image058[4]" border="0" alt="clip_image058[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047831IiXO.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047832VegK.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image060[4]" border="0" alt="clip_image060[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047832PPRw.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047833UZ4I.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image062[4]" border="0" alt="clip_image062[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047833Vab8.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047834ud5z.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image064[4]" border="0" alt="clip_image064[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047834J2Fc.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047835anWU.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"><img title="clip_image066[4]" border="0" alt="clip_image066[4]" width="558" height="406" src="http://img1.51cto.com/attachment/201211/16/2724857_1353047835a0ZK.jpg" style="padding:0px; margin:0px; vertical-align:top; border-top-width:0px; border-bottom-width:0px; border-left-width:0px; border-style:none"></a></p>
+<br>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; clear:both; height:auto; overflow:hidden; color:rgb(80,80,80); font-family:宋体,'Arial Narrow',arial,serif; font-size:14px; line-height:28px">
+<a target="_blank" target="_blank" href="http://img1.51cto.com/attachment/201211/16/2724857_1353047835anWU.jpg" style="padding:0px; margin:0px; color:rgb(80,80,80); text-decoration:none"></a></p>
+<link rel="stylesheet" href="http://static.blog.csdn.net/public/res-min/markdown_views.css?v=1.0" />
+            </div>
+        </article>
+        <div class="readall_box tracking-ad" data-mod="popu_376">
+            <a class="btn btn-large btn-gray-fred read_more_btn" target="_self">阅读全文</a>
+        </div>
+        <div class="article_copyright">
+            
+            <span class="r_ico"><i class="icon iconfont icon-jubao"></i><span class="txt" id="reportBtn">举报</span></span>
+        </div>
+        <!--  <div class="reward_box">
+            <div class="tit">
+              <button class="btn_reward"><i class="icon iconfont icon-dashang-"></i></button>
+            </div>
+            <dl class="clearfix">
+              <dt><a href="#" target="_blank">近期打赏</a></dt>
+              <dd><a href="#" target="_blank"><img src="http://avatar.csdn.net/9/3/2/2_nzf_001.jpg" alt="聂兆芳" title="聂兆芳"></a></dd>
+              <dd><a href="#" target="_blank"><img src="http://avatar.csdn.net/9/3/2/2_nzf_001.jpg" alt="聂兆芳" title="聂兆芳"></a></dd>
+              <dd><a href="#" target="_blank"><img src="http://avatar.csdn.net/9/3/2/2_nzf_001.jpg" alt="聂兆芳" title="聂兆芳"></a></dd>
+              <dd><a href="#" target="_blank"><img src="http://avatar.csdn.net/9/3/2/2_nzf_001.jpg" alt="聂兆芳" title="聂兆芳"></a></dd>
+              <dd><a href="#" target="_blank"><img src="http://avatar.csdn.net/9/3/2/2_nzf_001.jpg" alt="聂兆芳" title="聂兆芳"></a></dd>
+            </dl>
+          </div>-->
+        <ul class="article_tags clearfix tracking-ad" data-mod="popu_377">
+            <li class="tit">标签：</li>
+            
+            <li><a href="http://so.csdn.net/so/search/s.do?q=VMware&t=blog" target="_blank">VMware</a> <span>/</span></li>
+            
+            <li><a href="http://so.csdn.net/so/search/s.do?q=vSphere&t=blog" target="_blank">vSphere</a> <span>/</span></li>
+            
+            <li><a href="http://so.csdn.net/so/search/s.do?q=HA&t=blog" target="_blank">HA</a> <span>/</span></li>
+            
+        </ul>
+        <ul class="article_collect clearfix tracking-ad"  data-mod="popu_378">
+            <li class="tit">本文已收录于以下专栏：</li>
+            
+        </ul>
+        <div class="comment_box clearfix">
+            <div id="comment_form">
+                <div id="commentsbmitarear">
+                    <h6><span>0</span>条评论</h6>
+                    <dl class="clearfix" id="commentbox">
+                        <dt>
+                            <a href="http://my.csdn.net/github_38885296"><img src="http://avatar.csdn.net/5/5/E/1_github_38885296.jpg" ></a>
+                        </dt>
+                        <dd>
+                            <a href="http://my.csdn.net/github_38885296" target="_blank">github_38885296</a>
+                        </dd>
+                        <dd class="txt_tip"><span id="tip_comment" class="tip"></span></dd>
+                    </dl>
+                    <div class="comment_area clearfix">
+                        <form action="/u012482273/comment/submit?id=13174295" method="post" onsubmit="return subform(this);" id="commentform">
+                            <textarea class="comment_content" name="comment_content" id="comment_content"></textarea>
+                            <div class="bot_bar clearfix">
+                                <div id="ubbtools" class="add_code">
+                                    <a href="#insertcode" code="code" target="_self"><i class="icon iconfont icon-daima"></i></a>
+                                </div>
+
+                                <input type="hidden" id="comment_replyId" name="comment_replyId">
+                                <input type="hidden" id="comment_userId" name="comment_userId" value="">
+                                <input type="hidden" id="commentId" name="commentId" value="">
+                                <input type="submit" class="btn btn-redborder" value="发表评论">
+                                <div style="display: none;" class="tracking-ad" data-mod="popu_384"><a href="#" target="_blank" class="comment_area_btn">发表评论</a></div>
+
+                                <div id="lang_list" code="code">
+                                    <a href="#html" style="width:95px;" class="long_name" target="_self">HTML/XML</a>
+                                    <a href="#objc" style="width:95px;" class="long_name" target="_self">objective-c</a>
+                                    <a href="#delphi" style="width:58px;" class="zhong_name" target="_self">Delphi</a>
+                                    <a href="#ruby" class="zhong_name" target="_self">Ruby</a>
+                                    <a href="#php" target="_self">PHP</a>
+                                    <a href="#csharp" class="duan_name" target="_self">C#</a>
+                                    <a style=" border-right: none;" href="#cpp" class="duan_name" target="_self">C++</a>
+                                    <a style=" border-bottom:none;width:95px;" href="#javascript" class="long_name" target="_self">JavaScript</a>
+                                    <a style=" border-bottom:none;width:95px;" href="#vb" class="long_name" target="_self">Visual Basic</a>
+                                    <a style=" border-bottom:none;" href="#python" class="zhong_name" target="_self">Python</a>
+                                    <a style=" border-bottom:none;" href="#java" class="zhong_name" target="_self">Java</a>
+                                    <a style="border-bottom:none;" href="#css" class="duan_name" target="_self">CSS</a>
+                                    <a style="border-bottom:none;" href="#sql" class="duan_name" target="_self">SQL</a>
+                                    <a style="border:none; " href="#plain" class="duan_name" target="_self">其它</a>
+                                    <span class="arrb"></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comment_li_outbox">
+            <div id="comment_list"></div>
+        </div>
+
+        <div class="more_comment">
+            <div id="comment_bar" class="trackgin-ad" data-mod="popu_385"></div>
+        </div>
+
+        <h3 class="recommend_tit">相关文章推荐</h3>
+        <div class="recommend_list clearfix">
+            
+            <dl class="clearfix tracking-ad" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <dd>
+                    <h2><a href="/qq_21398167/article/details/50569766"  target="_blank" strategy="BlogCommendFromBaidu_0">《转》VMware vSphere 5.1 学习系列之一：实验环境的搭建</a></h2>
+                    <div class="summary">
+                        目 录
+
+一、 物理主机配置… 1
+
+二、 实验环境规划… 1
+
+实验环境规划详情… 1
+
+设置VMware Workstation内存选项… 2
+
+三、 创建虚拟机… 4
+
+...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><a href="http://blog.csdn.net/qq_21398167" target="_blank" strategy="BlogCommendFromBaidu_0"><img src="http://avatar.csdn.net/0/8/6/2_qq_21398167.jpg" alt="qq_21398167" title="qq_21398167"></a></li>
+                        <li class="user_name"><a href="http://blog.csdn.net/qq_21398167">qq_21398167</a></li>
+                        <li class="time">2016-01-23 14:50</li>
+                        <li class="visited_num"><i class="icon iconfont icon-read"></i><span>507</span></li>
+                    </ul>
+                </dd>
+            </dl>
+            
+            <dl class="clearfix tracking-ad" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <dd>
+                    <h2><a href="/u011501221/article/details/10950927"  target="_blank" strategy="BlogCommendFromCsdn_1">我的资源共享列表</a></h2>
+                    <div class="summary">
+                        资源共享列表
+更多资源下载，请关注的我共享主页：
+晓山青青
+http://xiaoshanqingqing.pipipan.com
+http://www.pipipan.com/u/1899168
+
+...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><a href="http://blog.csdn.net/u011501221" target="_blank" strategy="BlogCommendFromCsdn_1"><img src="http://avatar.csdn.net/E/4/A/2_u011501221.jpg" alt="u011501221" title="u011501221"></a></li>
+                        <li class="user_name"><a href="http://blog.csdn.net/u011501221">u011501221</a></li>
+                        <li class="time">2013-09-02 22:42</li>
+                        <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1489</span></li>
+                    </ul>
+                </dd>
+            </dl>
+            
+            <dl class="clearfix tracking-ad" data-mod="popu_393">
+                <dt><a href="http://edu.csdn.net/huiyiCourse/detail/504?utm_source=blog10" target="_blank"><img class="maxwidth" src="http://img.blog.csdn.net/20170906160910487" alt="" title=""></a></dt>
+                <dd>
+                    <div class="summary">
+                        <h2>Linux老难题解决了！</h2>  <div class="summary">Linux工程师很多，甚至有很多有多年工作经验，但是对一些关键概念的理解非常模糊，比如不理解CPU、内存资源等的真正分布，具体的工作机制，这使得他们对很多问题的分析都摸不到方向。比如进程的调度延时是多少？linux能否硬实时？多核下多线程如何执行？</div> 
+                    </div>
+                </dd>
+            </dl>
+            
+            <dl class="clearfix tracking-ad" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <dd>
+                    <h2><a href="/u012482273/article/details/13183325"  target="_blank" strategy="BlogCommendFromCsdn_4">VMware vSphere 5.1 学习系列之四：安装 SQL Server 数据库</a></h2>
+                    <div class="summary">
+                        一、 vCenter Server数据库的配置要求
+
+准备&#160;vCenter Server 数据库
+
+vCenter Server 和 vSphere Update Manager 需要使用数据库存储和...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><a href="http://blog.csdn.net/u012482273" target="_blank" strategy="BlogCommendFromCsdn_4"><img src="http://avatar.csdn.net/9/8/6/2_u012482273.jpg" alt="u012482273" title="u012482273"></a></li>
+                        <li class="user_name"><a href="http://blog.csdn.net/u012482273">u012482273</a></li>
+                        <li class="time">2013-10-28 09:45</li>
+                        <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1589</span></li>
+                    </ul>
+                </dd>
+            </dl>
+            
+            <dl class="clearfix tracking-ad" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <dd>
+                    <h2><a href="/u012482273/article/details/13174295"  target="_blank" strategy="BlogCommendFromCsdn_6">VMware vSphere 5.1 学习系列之一：实验环境的搭建</a></h2>
+                    <div class="summary">
+                        目 录
+
+一、 物理主机配置... 1
+
+二、 实验环境规划... 1
+
+实验环境规划详情... 1
+
+设置VMware Workstation内存选项... 2
+
+三、 创建虚拟机... 4
+
+创建...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><a href="http://blog.csdn.net/u012482273" target="_blank" strategy="BlogCommendFromCsdn_6"><img src="http://avatar.csdn.net/9/8/6/2_u012482273.jpg" alt="u012482273" title="u012482273"></a></li>
+                        <li class="user_name"><a href="http://blog.csdn.net/u012482273">u012482273</a></li>
+                        <li class="time">2013-10-28 09:45</li>
+                        <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1924</span></li>
+                    </ul>
+                </dd>
+            </dl>
+            
+            <dl class="clearfix tracking-ad" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <dd>
+                    <h2><a href="/zhouxukun123/article/details/77513279"  target="_blank" strategy="BlogCommendFromCsdn_8">VMware vSphere Web Services SDK编程指南（八）- 8.5 使用 AuthorizationManager 管理角色和权限</a></h2>
+                    <div class="summary">
+                        8.5 使用 AuthorizationManager 管理角色和权限
+AuthorizationManager 是处理分配给用户或组（使用 HostLocalAccountManager 定义）的权...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><a href="http://blog.csdn.net/zhouxukun123" target="_blank" strategy="BlogCommendFromCsdn_8"><img src="http://avatar.csdn.net/7/4/B/2_zhouxukun123.jpg" alt="zhouxukun123" title="zhouxukun123"></a></li>
+                        <li class="user_name"><a href="http://blog.csdn.net/zhouxukun123">zhouxukun123</a></li>
+                        <li class="time">2017-08-26 23:03</li>
+                        <li class="visited_num"><i class="icon iconfont icon-read"></i><span>59</span></li>
+                    </ul>
+                </dd>
+            </dl>
+            
+
+            
+
+            
+        </div>
+    </main>
+    <aside>
+        <div class="right_box user_info">
+            <dl class="inf_bar clearfix">
+                <dt class="tracking-ad" data-mod="popu_381">
+                    <a href="http://blog.csdn.net/u012482273" target="_blank">
+                        <img src="http://avatar.csdn.net/9/8/6/1_u012482273.jpg" class="avatar_pic">
+                    </a>
+                    <span class="medals" title="">
+                <svg class="icon" aria-hidden="true">
+                    
+                </svg>
+              </span>
+                </dt>
+                <dd>
+                    <h3 class="tracking-ad"  data-mod="popu_380"><a href="http://blog.csdn.net/u012482273" target="_blank" id="uid">u012482273</a></h3>
+                    <span  class="tracking-ad" data-mod="popu_379"><a class="btn btn-redborder-small "  id="span_add_follow" target="_self">＋关注</a></span>
+                </dd>
+            </dl>
+            <div class="inf_number_box clearfix">
+                <dl>
+                    <dt>原创</dt>
+                    <dd>6</dd>
+                </dl>
+                <dl>
+                    <dt>粉丝</dt>
+                    <dd>11</dd>
+                </dl>
+                <dl>
+                    <dt>喜欢</dt>
+                    <dd>0</dd>
+                </dl>
+								 <dl>
+              <dt>码云</dt>
+              <dd>&nbsp;</dd>
+            </dl>
+
+            </div>
+	    <div class="writings">
+              <div class="public_signal clearfix">
+                <h3>他的最新文章</h3>
+                <a href="http://blog.csdn.net/u012482273" target="_blank" class="more"><span>更多文章</span></a>
+              </div>
+                <ul class="inf_list clearfix tracking-ad" data-mod="popu_382">
+                    
+                    <li class="clearfix">
+                      
+                        <a href="/u012482273/article/details/53994501" target="_blank">第五周博客作业</a>
+                    </li>
+                    
+                    <li class="clearfix">
+                      
+                        <a href="/u012482273/article/details/53994480" target="_blank">第四周博客作业</a>
+                    </li>
+                    
+                    <li class="clearfix">
+                      
+                        <a href="/u012482273/article/details/53994472" target="_blank">第三周博客作业</a>
+                    </li>
+                    
+                    <li class="clearfix">
+                      
+                        <a href="/u012482273/article/details/53994432" target="_blank">第二周博客作业</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="extension_other tracking-ad" data-mod="popu_389">
+						<!--u3032528-->
+           <script type="text/javascript" src="http://mpb1.iteye.com/bwocoltlyzdec.js"></script>
+        </div>
+
+	
+	<div class="new_column right_box" >
+          <h3 class="tit"><span><em>最热专栏</em></span></h3>
+         <ul class="tracking-ad" data-mod="popu_434">
+		
+			<li><a href="http://blog.csdn.net/column/details/16138.html" target="_blank">史上最简单的 MySQL 教程</a></li>  
+		
+			<li><a href="http://blog.csdn.net/column/details/13761.html" target="_blank">区块链开发技术分享</a></li>  
+		
+			<li><a href="http://blog.csdn.net/column/details/14531.html" target="_blank">死磕Java</a></li>  
+		
+			<li><a href="http://blog.csdn.net/column/details/16036.html" target="_blank">ARKit开发</a></li>  
+		
+			<li><a href="http://blog.csdn.net/column/details/15938.html" target="_blank">从高考到程序员</a></li>  
+		          
+          </ul>
+        </div>
+     
+
+        
+        <div class="fixRight">
+            <div class="right_box padb0 tracking-ad" data-mod="popu_391">
+                <h3 class="tit"><span><em>在线课程</em></span></h3>
+                <ul class="edu_li clearfix">
+                  
+                  <li>
+                    <div>
+                      <a href="http://edu.csdn.net/course/detail/2306?utm_source=blog7" target="_blank">
+                        <img src="http://img.bss.csdn.net/201709111048427983.png" alt="Go语言编程入门实战技巧" title="Go语言编程入门实战技巧">
+                      </a>
+                    </div>
+                    <div>
+                      <p><a href="http://edu.csdn.net/course/detail/2306?utm_source=blog7" target="_blank">Go语言编程入门实战技巧</a></p>
+                      <p>讲师：</p>
+                    </div>
+                  </li>
+                  
+                  <li>
+                    <div>
+                      <a href="http://edu.csdn.net/huiyiCourse/series_detail/65?utm_source=blog7" target="_blank">
+                        <img src="http://img.bss.csdn.net/201709111035408148.gif" alt="机器学习大咖在等你" title="机器学习大咖在等你">
+                      </a>
+                    </div>
+                    <div>
+                      <p><a href="http://edu.csdn.net/huiyiCourse/series_detail/65?utm_source=blog7" target="_blank">机器学习大咖在等你</a></p>
+                      <p>讲师：</p>
+                    </div>
+                  </li>
+                  
+                </ul>
+            </div>
+            <div class="extension_other tracking-ad baidu_box" data-mod="popu_395">
+								<!--u3032529-->
+                <script type="text/javascript" src="http://mpb1.iteye.com/cxpdpmumfaedgm.js"></script>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<div class="left_fixed">
+    <ul class="left_menu">
+        <li id="blog_artical_directory">
+            <button class="left-fixed-btn left_menu_btn tracking-ad" data-mod="popu_372" target="_self">
+                <span class="iconbox border_black"><i class="icon iconfont icon-mulu"></i></span>
+                <span class="txt">目录</span>
+            </button>
+        </li>
+        <li class="menu_con">
+            <div class="list_father">
+                <div class="arr_box">
+                    <button class="btn-noborder arr-btn scroll-down  left_scroll_down"><i class="icon iconfont icon-xiajiantou"></i></button>
+                    <button class="btn-noborder arr-btn scroll-up left_scroll_top"><i class="icon iconfont icon-shangjiantou"></i></button>
+                </div>
+                <div class="arr"></div>
+                <div id="csdnBlogDir"></div>
+            </div>
+        </li>
+        <li>
+            <button class="left-fixed-btn btn-like tracking-ad" data-mod="popu_373" target="_self">
+                <span class="iconbox border_red"><i class="icon iconfont icon-xihuan-"></i></span>
+                <span class="txt">喜欢</span>
+                <span class="untxt">取消喜欢</span>
+            </button>
+        </li>
+        <li>
+            <button class="left-fixed-btn tracking-ad" data-mod="popu_374"  id="com-quick-collect" target="_self">
+                <span class="iconbox border_purple"><i class="icon iconfont icon-shoucang"></i></span>
+                <a class="txt" title="收藏">收藏</a>
+            </button>
+        </li>
+        <li id="share_box">
+            <button class="left-fixed-btn  tracking-ad"  data-mod="popu_375" target="_self">
+                <span class="iconbox border_orange"><i class="icon iconfont icon-fenxiang"></i></span>
+                <span class="txt">分享</span>
+            </button>
+            <div class="bdsharebuttonbox tracking-ad" data-mod="popu_172">
+                <div class="outside">
+                    <span class="iconbox border_red2"><i class="icon iconfont icon-xinlang"></i></span>
+                    <span class="text">微博</span>
+                    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"> </a>
+                </div>
+                <div class="outside">
+                    <span class="iconbox border_green"><i class="icon iconfont icon-weixin"></i></span>
+                    <span class="text">微信</span>
+                    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"> </a>
+                </div>
+                <div class="outside">
+                    <span class="iconbox border_blue"><i class="icon iconfont icon-QQ"></i></span>
+                    <span class="text">QQ</span>
+                    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"> </a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div id="pop_win"></div>
+<div id="popup_mask"></div>
+<div class="pop_CA_cover" ></div>
+<div class="pop pop_CA" >
+    <div class="CA_header">
+        收藏助手
+        <span class="cancel_icon"  id="fapancle" ></span>
+    </div>
+    <iframe src="" id="collectIframe" frameborder="0" width="100%" height="360"  scrolling="no" ></iframe>
+</div>
+<!--举报-->
+<div id="report_dialog" style="top: 250px; left: 343.5px;"><div id="panel_report">
+    <div class="panel_head">不良信息举报</div>
+    <form method="post" id="frmReport" class="panel_body">
+        <table border="0" cellpadding="0" cellspacing="4" class="pop_table">
+            <tbody><tr><td colspan="2">您举报文章：<a href="http://blog.csdn.net/raintungli/article/details/76583070" target="_blank">深度学习：神经网络中的前向传播和反向传播算法推导</a></td></tr>
+            <tr>
+                <th style="width:60px;">举报原因：</th>
+                <td id="panel_reporttype">
+                    <label><input type="radio" class="report_type" id="report_sex" name="report_type" value="1">色情</label>
+                    <label><input type="radio" class="report_type" id="report_Politics" name="report_type" value="2">政治</label>
+                    <label><input type="radio" class="report_type" id="report_copy" name="report_type" value="3">抄袭</label>
+                    <label><input type="radio" class="report_type" id="report_ad" name="report_type" value="4">广告</label>
+                    <label><input type="radio" class="report_type" id="report_want" name="report_type" value="5">招聘</label>
+                    <label><input type="radio" class="report_type" id="report_call" name="report_type" value="6">骂人</label>
+                    <br>
+                    <label><input type="radio" class="report_type" id="report_other" name="report_type" value="7">其他</label>
+                    <input type="text" name="report_other_content" id="report_other_content" maxlength="30" style="display: none;">
+                </td>
+            </tr>
+            <tr id="panel_originalurl" style="display: none;">
+                <th>原文地址：</th>
+                <td>
+                    <input id="originalurl" value="http://" name="originalurl" type="text" style="width: 90%;">
+                </td>
+            </tr>
+            <tr>
+                <th id="sp_reason">原因补充：</th>
+                <td>
+                    <textarea id="report_description" style="width: 300px;" rows="3" name="report_description"></textarea>
+                    <p id="sp_n" style="color:#999;margin:0px;padding:0px;">(最多只允许输入30个字)</p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="btnSubmitReport" name="submit" type="image" align="middle" class="btn_1" src="http://static.blog.csdn.net/images/btn_submit.jpg">
+                    <span style="padding-left:20px;"></span>
+                    <img id="btnCloseReportDialog" src="http://static.blog.csdn.net/images/btn_cancel.jpg" align="middle">
+                    <div id="error" style="color: Red">
+                    </div>
+                </td>
+            </tr>
+            </tbody></table>
+    </form>
+</div>
+    <script language="javascript" type="text/javascript">
+        var isComment=0;
+        //显示隐藏地址
+        $(function () {
+            if(isComment){
+                $("#report_description").attr("disabled",true);
+                $("#sp_n").hide();
+                $("#sp_reason").html("评论内容：");
+            }
+            $(".report_type").click(function () {
+                $("#panel_originalurl,#report_other_content").hide();
+                switch ($(this).val()) {
+                    case '3':
+                        $("#panel_originalurl").show();
+                        $("#originalurl").focus();
+                        break;
+                    case '7':
+                        if(isComment){
+                            $("#report_other_content").show().focus();
+                        }
+                        break;
+                }
+
+            });
+
+            $("#frmReport").submit(function () {
+                if (!currentUserName) {
+
+                    if (confirm("您的操作必须登录，是否登录？")) {
+                        location.href = "http://passport.csdn.net/account/login?from=" + encodeURIComponent(location.href);
+                        return false;
+                    }
+                    return false;
+                }
+
+                var reportType = $("input[name=report_type]:checked").val();
+                if(!reportType){
+                    alert("请选择举报原因！");
+                    return false;
+                }
+                var otherInfo = "";
+                switch (reportType) {
+                    case '3':
+                        otherInfo = $("#originalurl").val();
+                        if (otherInfo == ""||otherInfo=="http://") {
+                            alert("举报抄袭必须提供原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        } else if(!checkeURL(otherInfo)) {
+                            alert("请输入正确的原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        }
+                        break;
+                    case '7':
+                        otherInfo = $("#report_other_content").val();
+                        if (isComment && !otherInfo) {
+                            alert("请填写举报的具体原因！");
+                            $("#report_other_content").focus();
+                            return false;
+                        }
+                        if(!isComment){
+                            if(!$("#report_description").val()){
+                                alert("请填写举报的具体原因！");
+                                $("#report_description").focus();
+                                return false;
+                            }
+                        }
+                        break;
+                }
+                if(!isComment){
+                    if($("#report_description").val().length>30){
+                        alert("举报原因最多只允许输入30个字！");
+                        return false;
+                    }
+                }
+
+                var data = {
+                    articleId: 76583070,
+                    commentId: 0,
+                    reportType: reportType,
+                    originalurl: $("#originalurl").val(),
+                    report_other_content: $("#report_other_content").val(),
+                    report_description: $("#report_description").val(),
+                    currentUserName: currentUserName,
+                    updatetime: "2017/8/8 16:54:12",
+                    blogUser: "raintungli"
+                };
+                if(!isComment){//如果是举报文章
+                    data.report_other_content = data.report_description;
+                    data.report_description = "1. 神经网络这是一个常见的神经网络的图：这是一个常见的三层神经网络的基本构成，Layer L1是输入层，Layer L2是隐含层";
+                }
+
+                $.post(blog_address + "/common/report?id=76583070&t=2", data, function (data) {
+                    if (data.result == 1){
+                        SetError("感谢您的举报，我们会尽快审核！");
+                    }else{
+                        if (data.content) alert(data.content);
+                    }
+
+                });
+                return false;
+            });
+
+            $("#btnCloseReportDialog").click(function () {
+                CloseDiv();
+            });
+
+        });
+
+        //提示后关闭方法
+        function SetError(error) {
+            $("#btnCloseReportDialog").trigger("click");
+            alert(error);
+            CloseDiv();
+        }
+
+        //关闭方法
+        function CloseDiv() {
+
+            $.removeMask();
+            $("#report_dialog").hide().html("");
+            return false;
+        }
+
+        //验证url
+        function checkeURL(url){
+            return /^http(s)?:\/\/([\w-]+\.)+[\w-]+/i.test(url);
+        }
+    </script>
+</div>
+
+<script src="http://c.csdnimg.cn/public/common/libs/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+
+<script type="text/javascript" src="http://static.blog.csdn.net/Skin/skin3-template/js/blog_ver.js?v=2"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/Skin/skin3-template/js/skin2017.js?v=2017.016"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/cnick.js"></script>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<script type="text/javascript" >
+    if($(".article_collect li").length==1){$(".article_collect").hide();}
+    if($(".article_tags li").length==1){$(".article_tags").hide();}
+    $(".edit a").attr("href","http://write.blog.csdn.net/postedit/"+fileName);
+    $.each($(".edu_li a"),function(){$(this).attr("href",$(this).attr("href").replace("blog7","blog9"))});
+    new CNick('#uid').showNickname();
+</script>
+</body>
+
+
+<script  type="text/javascript">
+    var fromjs=$("#fromjs");
+    if(fromjs.length>0)
+    {                  
+        $("#fromjs .markdown_views pre").addClass("prettyprint");       
+        prettyPrint();
+
+        $('pre.prettyprint code').each(function () {
+            var lines = $(this).text().split('\n').length;
+            var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+            $(this).addClass('has-numbering').parent().append($numbering);
+            for (i = 1; i <= lines; i++) {
+                $numbering.append($('<li/>').text(i));
+            };
+            $numbering.fadeIn(1700);
+        });
+
+        $('.pre-numbering li').css("color","#999");             
+    }
+
+    $(function(){
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },500);         
+       
+
+    });
+
+    setTimeout(function () {
+        $(".toc a[target='_blank']").attr("target", "");
+    }, 500);
+
+</script>
+</html>
+

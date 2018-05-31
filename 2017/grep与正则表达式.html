@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="gb2312" />
+<meta name="applicable-device" content="pc">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<title>grep用法详解 grep与正则表达式_正则表达式_脚本之家</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="keywords" content="grep,正则表达式" />
+<meta name="description" content="首先要记住的是: 正则表达式与通配符不一样,它们表示的含义并不相同!" />
+<link rel="alternate" media="only screen and(max-width: 640px)" href="http://m.jb51.net/article/31207.htm" />
+<meta http-equiv="mobile-agent" content="format=html5; url=http://m.jb51.net/article/31207.htm" />
+<meta http-equiv="mobile-agent" content="format=xhtml; url=http://m.jb51.net/article/31207.htm" />
+<script type="text/javascript">
+var tougao="mdxy-dxy";var lmname="正则表达式";
+(function(){var reWriteUrl=function(url){if(url){var Splits=url.split("/"),siteName=window.location.pathname;if(typeof siteName!=="undefined"){return "http://m.jb51.net"+siteName}}};if(/Android|webOS|iPhone|iPad|Windows Phone|iPod|BlackBerry|SymbianOS|Nokia|Mobile/i.test(navigator.userAgent)){var url=window.location.href;var pathname=window.location.pathname;if(url.indexOf("?pc")<0){try{window.location.href=reWriteUrl(url)}catch(e){}}}})();
+</script>
+<link type="text/css" href="/skin/2016/base.css" rel="stylesheet" />
+<link type="text/css" href="/skin/2016/common.css" rel="stylesheet" />
+<script type="text/javascript" src="http://common.jb51.net/jslib/jquery/jquery.min.js"></script>
+<script type=text/javascript src="/js/function.js"></script>
+</head>
+<body>
+<!--head Star -->
+<div id="head">
+  <div class="toolBar">
+  <div class="main">
+    <!--topNav Star -->
+    <div class="topNav clearfix">
+      <ul class="navList fl">
+        <li>
+          <div class="one"><a href="http://www.jb51.net" target="_blank">脚本之家</a></div>
+        </li>
+        <li>
+          <div class="one"><a href="http://www.jb51.net/softs/" target="_blank">软件下载<i class="icon"></i></a></div>
+          <div class="two">
+<a href="/softs/android.html" target="_blank">android软件</a> <a href="/softs/mac.html" target="_blank">MAC软件</a> <a href="/qudong/" target="_blank">驱动下载</a> <a href="/fonts/" target="_blank">字体下载</a> <a href="/dll/" target="_blank">DLL下载</a> </div>
+</li>
+        <li>
+          <div class="one"><a href="/codes/" target="_blank">源码下载<i class="icon"></i></a></div>
+          <div class="two"> <a href="/codes/asp.html" target="_blank">asp源码</a> <a href="/codes/php.html" target="_blank">php源码</a> <a href="/codes/aspnet.html" target="_blank">asp.net源码</a> <a href="/codes/jsp.html" target="_blank">jsp源码</a> <a href="/codes/editor.html" target="_blank">网页编辑器</a> <a href="/codes/list123_1.html" target="_blank">数据库管理</a> <a href="/codes/list124_1.html" target="_blank">常用组件</a> <a href="/jiaoben/" target="_blank">脚本下载</a></div>
+        </li>
+        <li>
+          <div class="one"><a href="http://tools.jb51.net" target="_blank">在线工具<i class="icon"></i></a></div>
+          <div class="two"> <a href="/shouce/" target="_blank">在线手册</a> <a href="/tools/cssyasuo.shtml" target="_blank">CSS格式化</a> <a href="http://tools.jb51.net/code/js" target="_blank">JS格式化</a> <a href="/tools/html-js.htm" target="_blank">Html转化为Js</a> <a href="http://tools.jb51.net/regex/javascript" target="_blank">js正则表达式</a>
+</div>
+        </li>
+        <li>
+          <div class="one"><a href="/w3school/" target="_blank">网页教程基础</a></div>
+        </li>
+			<li>
+          <div class="one"><a href="http://s.jb51.net" target="_blank">服务器常用软件</a></div>
+        </li>
+		<li>
+          <div class="one"><a href="http://m.jb51.net" target="_blank">手机版</a></div>
+          <div class="two"><img src="http://files.jb51.net/images/m.jb51.net.png" data-baiduimageplus-ignore /></div>     
+        </li>
+        <li class="watch">
+          <div class="one"><a href="http://www.jb51.net/about.htm" target="_blank" rel="nofollow" ><i class="icon"></i>关注微信</a></div>
+          <div class="two"><img src="http://files.jb51.net/images/weixin_200.gif" data-baiduimageplus-ignore /></div>
+        </li>
+      </ul>
+      <div class="navUser mt5 fr" id="jb51_topbar" >
+
+      </div>
+    </div>
+    <!--topNav End -->
+  </div>
+</div>
+
+  <div class="main clearfix">
+    <div class="mtb10 clearfix">
+      <div class="logo"><a href="http://www.jb51.net/"><img src="http://www.jb51.net/images/logo.gif" title="脚本之家" alt="脚本之家" /></a></div>
+      <div class="logom fl"><span id="logo_m" class="jbTestPos"></span></div>
+      <div class="logor fr"><span id="logo_r" class="jbTestPos"></span></div>
+    </div>
+<!-- 导航-->
+<DIV class="nav_top clearfix">
+<UL>
+<li><a href="http://www.jb51.net/web/">网页制作</a></li>
+<li><a href="http://www.jb51.net/list/index_1.htm">网络编程</a></li>
+<li><a href="http://www.jb51.net/list/index_96.htm">脚本专栏</a></li>
+<li><a href="http://www.jb51.net/jiaoben/">脚本下载</a></li>
+<li><a href="http://www.jb51.net/list/index_104.htm">数据库</a></li>
+<li><a href="http://www.jb51.net/cms/">CMS教程</a></li>
+<li><a href="http://www.jb51.net/books/">电子书籍</a></li>
+<li><a href="http://www.jb51.net/pingmian/">平面设计</a></li>
+<li><a href="http://www.jb51.net/media/">媒体动画</a></li>
+<li><a href="http://www.jb51.net/os/">操作系统</a></li>
+<li><a href="http://www.jb51.net/yunying/">网站运营</a></li>
+<li><a href="http://www.jb51.net/hack/">网络安全</a></li>
+<li class="last"><a href="http://www.jb51.net/shouce/">在线手册</a></li>
+
+</UL>
+</DIV>
+
+<!--导航结束-->
+<div class="subnav clearfix">
+<ul><li><a href='/list/list_3_1.htm' title="JavaScript">JavaScript</a></li>
+<li><a href='/list/list_21_1.htm' title="ASP.NET">ASP.NET</a></li>
+<li><a href='/list/list_15_1.htm' title="PHP编程">PHP编程</a></li>
+<li><a href='/list/list_5_1.htm' title="AJAX相关">AJAX相关</a></li>
+<li><a href='/list/list_6_1.htm' title="正则表达式">正则表达式</a></li>
+<li><a href='/list/list_2_1.htm' title="ASP编程">ASP编程</a></li>
+<li><a href='/list/list_83_1.htm' title="JSP编程">JSP编程</a></li>
+<li><a href='/list/list_123_1.htm' title="编程10000问">编程10000问</a></li>
+<li><a href='/list/list_4_1.htm' title="CSS/HTML">CSS/HTML</a></li>
+<li><a href='/list/list_237_1.htm' title="Flex">Flex</a></li>
+<li><a href='/list/list_60_1.htm' title="脚本加解密">脚本加解密</a></li>
+<li><a href='/list/list_62_1.htm' title="web2.0">web2.0</a></li>
+<li><a href='/list/list_64_1.htm' title="XML/RSS">XML/RSS</a></li>
+<li><a href='/list/list_176_1.htm' title="网页编辑器">网页编辑器</a></li>
+<li><a href='/list/list_177_1.htm' title="相关技巧">相关技巧</a></li>
+<li><a href='/list/list_72_1.htm' title="安全相关">安全相关</a></li>
+<li><a href='/list/list_19_1.htm' title="网页播放器">网页播放器</a></li>
+<li><a href='/list/list_185_1.htm' title="其它综合">其它综合</a></li>
+<li><a href='/list/list_251_1.htm' title="Dart">Dart</a></li>
+</ul>
+</div>
+<div class="NavBar clearfix ptb10">
+<div class="fl w690">
+<div class="box mb15 mt10"><i class="icon"></i>您的位置：<a href='/'>首页</a> → <a href="/list/index_1.htm" title="网络编程">网络编程</a> → <a href="/list/list_6_1.htm" title="正则表达式">正则表达式</a> → 正文内容 grep与正则表达式</div>
+</div>
+<div class="fr w300"><div class="search">
+<form action="http://so.jb51.net/cse/search" target="_blank">
+    <input type="hidden" name="s" value="10520733385329581432">
+    <input type="hidden" name="ie" value="gbk">
+    <input type="text" name="q" class="key_input" placeholder="请输入关键词">
+    <input type="submit" value="搜索" class="c_btn">
+</form></div></div>
+  </div>
+</div>
+<!--head End -->
+<div class="main mb10 clearfix">
+<div class="clearfix"><span id="tonglan1" class="jbTestPos"></span></div>
+</div>
+
+<!--content Star -->
+<div id="contents">
+ <div class="main clearfix">
+      <div class="w690 fl">
+      <div class="article-content border">
+      <div class="title">
+            <h1 class="YaHei">grep用法详解 grep与正则表达式</h1>
+            <p>作者：  字体：[<a href="javascript:turnbig()">增加</a> <a href="javascript:turnsmall()">减小</a>] 类型：转载 时间：2012-09-05<a href="#comments"> 我要评论</a></p>
+        </div>
+        <div class="art_desc mt10"><div id="art_demo">首先要记住的是: 正则表达式与通配符不一样,它们表示的含义并不相同!</div></div>
+        <div class="lbd clearfix"><span id="art_up" class="jbTestPos"></span></div>
+        <div id="content">
+正则表达式只是一种表示法,只要工具支持这种表示法， 那么该工具就可以处理正则表达式的字符串。vim、grep、awk 、sed 都支持正则表达式，也正是因为由于它们支持正则，才显得它们强大；在以前上班的公司里，由于公司是基于web的服务型网站(nginx)，对正则的需求比 较大，所以也花了点时间研究正则，特与大家分享下： <br><br>1基础正则表达式 <BR>grep 工具，以前介绍过。 <BR>grep -[acinv] '搜索内容串' filename <BR>-a 以文本文件方式搜索 <BR>-c 计算找到的符合行的次数 <BR>-i 忽略大小写 <BR>-n 顺便输出行号 <BR>-v 反向选择，即找 没有搜索字符串的行 <BR>其中搜索串可以是正则表达式! <br><br>1 <BR>搜索有the的行,并输出行号 <BR>$grep -n 'the' regular_express.txt <BR>搜 索没有the的行,并输出行号 <BR>$grep -nv 'the' regular_express.txt <br><br>2 利 用[]搜索集合字符 <BR>[] 表示其中的某一个字符 ，例如[ade] 表示a或d或e <BR>woody@xiaoc:~/tmp$ grep -n 't[ae]st' regular_express.txt <BR>8:I can't finish the test. <BR>9:Oh! the soup taste good! <br><br>可以用^符号做[]内的前缀，表示除[]内的字符之外的字 符。 <BR>比如搜索oo前没有g的字符串所在的行. 使用 '[^g]oo' 作搜索字符串 <BR>woody@xiaoc:~/tmp$ grep -n '[^g]oo' regular_express.txt <BR>2:apple is my favorite food. <BR>3:Football game is not use feet only. <BR>18:google is the best tools for search keyword. <BR>19:goooooogle yes! <br><br>[] 内可以用范围表示，比如[a-z] 表示小写字母,[0-9] 表示0~9的数字, [A-Z] 则是大写字母们。[a-zA-Z0-9]表示所有数字与英文字符。 当然也可以配合^来排除字符。 <BR>搜索包含数字的行 <BR>woody@xiaoc:~/tmp$ grep -n '[0-9]' regular_express.txt <BR>5:However ,this dress is about $ 3183 dollars. <BR>15:You are the best is menu you are the no.1. <br><br>行首与行尾字符 ^ $. ^ 表示行的开头，$表示行的结尾( 不是字符，是位置）那么‘^$' 就表示空行,因为只有 <BR>行首和行尾。 <BR>这里^与[]里面使用的^意义不同。它表示^后面的串是在行的开头。 <BR>比如搜索the在开头的行 <BR>woody@xiaoc:~/tmp$ grep -n '^the' regular_express.txt <BR>12:the symbol '*' is represented as star. <br><br>搜索以小写字母开头的行 <BR>woody@xiaoc:~/tmp$ grep -n '^[a-z]' regular_express.txt <BR>2:apple is my favorite food. <BR>4:this dress doesn't fit me. <BR>10:motorcycle is cheap than car. <BR>12:the symbol '*' is represented as star. <BR>18:google is the best tools for search keyword. <BR>19:goooooogle yes! <BR>20:go! go! Let's go. <BR>woody@xiaoc:~/tmp$ <br><br>搜索开头不是英文字母的行 <BR>woody@xiaoc:~/tmp$ grep -n '^[^a-zA-Z]' regular_express.txt <BR>1:"Open Source" is a good mechanism to develop programs. <BR>21:#I am VBird <BR>woody@xiaoc:~/tmp$ <br><br>$表示它前面的串是在行的结尾，比如 '\.' 表示 . 在一行的结尾 <BR>搜索末尾是.的行 <BR>woody@xiaoc:~/tmp$ grep -n '\.$' regular_express.txt //. 是正则表达式的特殊符号，所以要用\转义 <BR>1:"Open Source" is a good mechanism to develop programs. <BR>2:apple is my favorite food. <BR>3:Football game is not use feet only. <BR>4:this dress doesn't fit me. <BR>5:However ,this dress is about $ 3183 dollars. <BR>6:GNU is free air not free beer. <BR>..... <br><br>注意在MS的系统下生成的文本文件，换行会加上一个 ^M 字符。所以最后的字符会是隐藏的^M ,在处理Windows <BR>下面的文本时要特别注意！ <BR>可以用cat dos_file | tr -d '\r' &gt; unix_file 来删除^M符号。 ^M==\r <br><br>那么'^$' 就表示只有行首行尾的空行拉！ <BR>搜索空行 <BR>woody@xiaoc:~/tmp$ grep -n '^$' regular_express.txt <BR>22: <BR>23: <BR>woody@xiaoc:~/tmp$ <br><br>搜索非空行 <BR>woody@xiaoc:~/tmp$ grep -vn '^$' regular_express.txt <BR>1:"Open Source" is a good mechanism to develop programs. <BR>2:apple is my favorite food. <BR>3:Football game is not use feet only. <BR>4:this dress doesn't fit me. <BR>.......... <br><br>任意一个字符. 与重复字符 * <br><br>在bash中*代表通配符，用来代表任意个 字符，但是在正则表达式中，他含义不同，*表示有0个或多个 某个字符。 <BR>例如 oo*, 表示第一个o一定存在，第二个o可以有一个或多个，也可以没有，因此代表至少一个o. <br><br>点. 代表一个任意字符，必须存在。 g??d 可以用 'g..d' 表示。 good ,gxxd ,gabd .....都符合。 <br><br>woody@xiaoc:~/tmp$ grep -n 'g..d' regular_express.txt <BR>1:"Open Source" is a good mechanism to develop programs. <BR>9:Oh! the soup taste good! <BR>16:The world is the same with 'glad'. <BR>woody@xiaoc:~/tmp$ <br><br>搜索两个o以上的字符串 <BR>woody@xiaoc:~/tmp$ grep -n 'ooo*' regular_express.txt //前两个o一定存在，第三个o可没有，也可有多个。 <BR>1:"Open Source" is a good mechanism to develop programs. <BR>2:apple is my favorite food. <BR>3:Football game is not use feet only. <BR>9:Oh! the soup taste good! <BR>18:google is the best tools for search keyword. <BR>19:goooooogle yes! <br><br>搜索g开头和结尾，中间是至少一个o的字符串，即gog, goog....gooog...等 <BR>woody@xiaoc:~/tmp$ grep -n 'goo*g' regular_express.txt <BR>18:google is the best tools for search keyword. <BR>19:goooooogle yes! <br><br>搜索g开头和结尾的字符串在的行 <BR>woody@xiaoc:~/tmp$ grep -n 'g.*g' regular_express.txt // .*表示 0个或多个任意字符 <BR>1:"Open Source" is a good mechanism to develop programs. <BR>14:The gd software is a library for drafting programs. <BR>18:google is the best tools for search keyword. <BR>19:goooooogle yes! <BR>20:go! go! Let's go. <br><br><BR>限定连续重复字符的范围 { } <BR>. * 只能限制0个或多个， 如果要确切的限制字符重复数量，就用{范围} 。范围是数字用,隔开 2,5 表示2~5个, <BR>2表示2个，2, 表示2到更多个 <BR>注意，由于{ }在SHELL中有特殊意义，因此作为正则表达式用的时候要用\转义一下。 <br><br>搜索包含两个o的字符串的行。 <BR>woody@xiaoc:~/tmp$ grep -n 'o\{2\}' regular_express.txt <BR>1:"Open Source" is a good mechanism to develop programs. <BR>2:apple is my favorite food. <BR>3:Football game is not use feet only. <BR>9:Oh! the soup taste good! <BR>18:google is the best tools for search keyword. <BR>19:goooooogle yes! <br><br>搜索g后面跟2~5个o,后面再跟一个g的字符串的行。 <BR>woody@xiaoc:~/tmp$ grep -n 'go\{2,5\}g' regular_express.txt <BR>18:google is the best tools for search keyword. <br><br><BR>搜索包含g后面跟2个以上o,后面再跟g的行。。 <BR>woody@xiaoc:~/tmp$ grep -n 'go\{2,\}g' regular_express.txt <BR>18:google is the best tools for search keyword. <BR>19:goooooogle yes! <br><br><BR>注意，相让[]中的^ － 不表现特殊意义，可以放在[]里面内容的后面。 <BR>'[^a-z\.!^ -]' 表示没有小写字母，没有. 没有!, 没有空格，没有- 的 串，注意[]里面有个小空格。 <br><br>另外shell 里面的反向选择为[!range], 正则里面是 [^range] <br><br><BR>2扩展正则表达式 <br><br>扩展正则表达式是对基础正则表达式添加了几个特殊构成的。 <BR>它令某些操作更加方便。 <BR>比如我们要去除 空白行和行首为 #的行， 会这样用： <BR>woody@xiaoc:~/tmp$ grep -v '^$' regular_express.txt | grep -v '^#' <BR>"Open Source" is a good mechanism to develop programs. <BR>apple is my favorite food. <BR>Football game is not use feet only. <BR>this dress doesn't fit me. <BR>............ <br><br>然而使用支持扩展正则表达式的 egrep 与扩展特殊符号 | ，会方便许多。 <BR>注意grep只支持基础表达式， 而egrep 支持扩展的， 其实 egrep 是 grep -E 的别名而已。因此grep -E 支持扩展正则。 <BR>那么: <BR>woody@xiaoc:~/tmp$ egrep -v '^$|^#' regular_express.txt <BR>"Open Source" is a good mechanism to develop programs. <BR>apple is my favorite food. <BR>Football game is not use feet only. <BR>this dress doesn't fit me. <BR>.................... <BR>这里| 表示或的关系。 即满足 ^$ 或者 ^# 的字符串。 <br><br>这里列出几个扩展特殊符号： <BR>＋， 于 . * 作用类似，表示 一个或多个重复字符。 <BR>?， 于 . * 作用类似，表示0个或一个字符。 <BR>｜，表示或关系，比如 'gd|good|dog' 表示有gd,good或dog的串 <BR>（），将部分内容合成一个单元组。 比如 要搜索 glad 或 good 可以这样 'g(la|oo)d' <BR>()的好处是可以对小组使用 + ? * 等。 <BR>比如要搜索A和C开头结尾，中间有至少一个(xyz) 的串，可以这样 : 'A(xyz)+C'
+
+</div><!--endmain-->
+<div class="art_xg">
+<h4>您可能感兴趣的文章:</h4><ul><li><a href="/article/72112.htm" title="linux grep正则表达式与grep用法详解" target="_blank">linux grep正则表达式与grep用法详解</a></li><li><a href="/article/54961.htm" title="Shell正则表达式之grep、sed、awk实操笔记" target="_blank">Shell正则表达式之grep、sed、awk实操笔记</a></li><li><a href="/article/108898.htm" title="bash 中用于grep的正则表达式" target="_blank">bash 中用于grep的正则表达式</a></li></ul>
+</div>
+<div class="lbd clearfix">
+<span id="art_down" class="jbTestPos"></span>
+</div>
+<div id="shoucang"></div>
+<div class="tags mt10">
+<strong>Tags：</strong><a href="http://common.jb51.net/tag/grep/1.htm" target="_blank" title="搜索关于grep的文章">grep</a> <a href="http://common.jb51.net/tag/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/1.htm" target="_blank" title="搜索关于正则表达式的文章">正则表达式</a> 
+</div>
+<DIV class="relatedarticle clearfix mt5">
+<H2>相关文章</H2>
+<ul><li><span>2012-10-10</span><a href="/article/31552.htm" title="js正则表达式之RegExp对象属性lastIndex，lastMatch，lastParen，lastContext，rightContext属性讲解" target="_blank">js正则表达式之RegExp对象属性lastIndex，lastMatch，lastParen，</a></li><li><span>2007-03-03</span><a href="/article/8291.htm" title="只能是字母或数字或者是字母和数字的组合的正则previousSibling" target="_blank">只能是字母或数字或者是字母和数字的组合的正则previousSibling</a></li><li><span>2010-05-05</span><a href="/article/23700.htm" title="JavaScript 正则表达式验证函数代码" target="_blank">JavaScript 正则表达式验证函数代码</a></li><li><span>2013-09-09</span><a href="/article/41573.htm" title="乱象,印迹 正则学习问答" target="_blank">乱象,印迹 正则学习问答</a></li><li><span>2015-09-09</span><a href="/article/72473.htm" title="PHP正则表达式完全教程之基础篇" target="_blank">PHP正则表达式完全教程之基础篇</a></li><li><span>2011-10-10</span><a href="/article/28499.htm" title="正则表达式--QQ微信、优酷前端 邮箱正则表达式验证 Bug" target="_blank">正则表达式--QQ微信、优酷前端 邮箱正则表达式验证 Bug</a></li><li><span>2015-09-09</span><a href="/article/72239.htm" title="收集一些常用的正则表达式（匹配中文字符、匹配双字节字符、匹配HTML标记、匹配空行 and so on~~~）" target="_blank">收集一些常用的正则表达式（匹配中文字符、匹配双字节字符、匹配</a></li><li><span>2013-07-07</span><a href="/article/39706.htm" title="javascript正则表达式容易被忽略的小问题整理" target="_blank">javascript正则表达式容易被忽略的小问题整理</a></li><li><span>2009-01-01</span><a href="/article/17037.htm" title="关于内容的分离,正则抽出图片(一定要加精哦)" target="_blank">关于内容的分离,正则抽出图片(一定要加精哦)</a></li><li><span>2016-12-12</span><a href="/article/101121.htm" title="正则表达式小结篇" target="_blank">正则表达式小结篇</a></li></ul>
+</DIV>
+<div class="lbd clearfix mt5">
+<span id="art_down2" class="jbTestPos"></span>
+</div>
+<a href="#comments"></a>
+<div id="comments">
+<H2>最新评论</H2>
+<div class="pd5"><div id="SOHUCS" sid="art_31207"></div></div>
+</div>
+      </div><!--endborder-->
+      </div><!--end fl-->
+      
+<div class="w300 fr">
+<div class="r300 clearfix"><span id="side_up" class="jbTestPos"></span></div>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">大家感兴趣的内容</H4>
+<UL class="newsList newList-in">
+<li><EM class="no1">1</EM><a href="/article/16829.htm" title="Java 正则表达式详解" target="_blank">Java 正则表达式详解</a></li><li><EM class="no2">2</EM><a href="/article/19713.htm" title="正则表达式匹配任意字符（包括换行符）的写法" target="_blank">正则表达式匹配任意字符（包括换</a></li><li><EM class="no3">3</EM><a href="/article/21292.htm" title="javascript 手机号码正则表达式验证函数" target="_blank">javascript 手机号码正则表达式验</a></li><li><EM class="no4">4</EM><a href="/article/31182.htm" title="比较正宗的验证邮箱的正则表达式js代码详解" target="_blank">比较正宗的验证邮箱的正则表达式</a></li><li><EM class="no5">5</EM><a href="/article/28007.htm" title="js正则函数match、exec、test、search、replace、split使用介绍集合" target="_blank">js正则函数match、exec、test、s</a></li><li><EM class="no6">6</EM><a href="/article/31207.htm" title="grep用法详解 grep与正则表达式" target="_blank">grep用法详解 grep与正则表达式</a></li><li><EM class="no7">7</EM><a href="/article/31478.htm" title="正则中需要转义的特殊字符小结" target="_blank">正则中需要转义的特殊字符小结</a></li><li><EM class="no8">8</EM><a href="/article/43949.htm" title="JS利用正则配合replace替换指定字符" target="_blank">JS利用正则配合replace替换指定字</a></li><li><EM class="no9">9</EM><a href="/article/52491.htm" title="正则表达式匹配不包含某些字符串的技巧" target="_blank">正则表达式匹配不包含某些字符串</a></li><li><EM class="no10">10</EM><a href="/article/46458.htm" title="PHP preg_replace() 正则替换所有符合条件的字符串" target="_blank">PHP preg_replace() 正则替换所有</a></li>
+</UL>
+</DIV>
+</DIV>
+<div class="r300 clearfix mt10"><span id="idctu" class="jbTestPos"></span></div>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">最近更新的内容</H4>
+<UL class="newsListA">
+<ul><li><a href="/article/77687.htm" title="65条最常用正则表达式 你要的都在这里了" target="_blank">65条最常用正则表达式 你要的都在这里了</a></li><li><a href="/article/26225.htm" title="javascript中基于replace函数的正则表达式语法" target="_blank">javascript中基于replace函数的正则表达式</a></li><li><a href="/article/84786.htm" title="VS里的正则表达式的替换技巧" target="_blank">VS里的正则表达式的替换技巧</a></li><li><a href="/article/86985.htm" title="python 正则表达式学习小结" target="_blank">python 正则表达式学习小结</a></li><li><a href="/article/51073.htm" title="正则表达式不区分大小写以及解决思路的探索 ." target="_blank">正则表达式不区分大小写以及解决思路的探</a></li><li><a href="/article/20884.htm" title="移除HTML标签的正则表达式" target="_blank">移除HTML标签的正则表达式</a></li><li><a href="/article/24387.htm" title="正则表达式笔记三则" target="_blank">正则表达式笔记三则</a></li><li><a href="/article/15930.htm" title="Further Study of Rugular Expresions" target="_blank">Further Study of Rugular Expresions</a></li><li><a href="/article/10428.htm" title="无殇 javascript正则练习器" target="_blank">无殇 javascript正则练习器</a></li><li><a href="/article/7494.htm" title="用正则取出html页面中script段落里的内容" target="_blank">用正则取出html页面中script段落里的内容</a></li></ul>
+</UL>
+</DIV>
+</DIV>   
+<div class="r300 clearfix mt10"><span id="idctu1" class="jbTestPos"></span></div>
+<DIV class="tabTitleBar mt10 bgf borderTblue">
+<DIV class="borderTnone pb10 YaHei">
+<H4 class="blue">常用在线小工具</H4>
+<ul class="newsListA"><span id="bctools" class="jbTestPos"></span></ul>
+</DIV>
+</DIV>
+<div class="r300 clearfix mt10" id="idctu2"><span id="idctu2" class="jbTestPos"></span></div>
+<div class="mt10 rFixedBox">
+<span id="r_2" class="jbTestPos"></span>
+</div>
+      
+      
+      </div><!--end fr-->
+      </div>
+</div><!--end content-->
+<div id="footer">
+<div class="main clearfix">
+<p>
+<a href="http://www.jb51.net/about.htm" target="_blank">关于我们</a> - 
+<a href="http://www.jb51.net/support.htm" target="_blank">广告合作</a> - 
+<a href="http://www.jb51.net/linkus.htm" target="_blank">联系我们</a> -  
+<a href="http://www.jb51.net/sm.htm" target="_blank">免责声明</a> -  
+<a href="http://www.jb51.net/sitemap.htm" target="_blank">网站地图</a> - 
+<a href="tencent://message/?uin=461478385&Site=http://www.jb51.net" target="_blank">投诉建议</a> - 
+<a href="http://www.jb51.net/up.htm" target="_blank">在线投稿</a>
+</p>
+<p>&copy;CopyRight 2006-2017 JB51.Net Inc All Rights Reserved. 脚本之家 版权所有</p>
+</div>
+</div><!--end footer-->
+<link type="text/css" rel="stylesheet" href="/jslib/syntaxhighlighter/styles/shCore.css" />
+<link type="text/css" rel="Stylesheet" href="/jslib/syntaxhighlighter/styles/shThemeDefault.css" />
+<script type="text/javascript" src="/jslib/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="/jslib/syntaxhighlighter/scripts/shAutoloader.js"></script>
+<script type="text/javascript">
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+if (top.location != self.location)top.location=self.location;
+$(function(){
+	$('#content').find('img').each(function(){
+        var img = this;
+        if (img.width >= 650){
+            img.style.width = "650px";
+            img.style.height = "auto";
+            //$(img).removeAttr('height');
+            var aTag = document.createElement('a');
+            aTag.href = img.src;
+			aTag.target="_blank";
+            $(aTag).addClass('bPic')
+            .insertAfter(img).append(img)
+          }
+    });
+	$(window).scroll(function()
+    {	
+    	//rFixedBox跟随滚动
+    	var h = $(window).height();
+        var top = $(window).scrollTop();
+    	var rFixedBox = $('.rFixedBox').prev().offset();
+        var fixedTop = rFixedBox.top;
+		
+        if(top>=fixedTop+344)
+        {
+			var h1 = parseInt($('#content').children('.main').height());
+			if(parseInt(top) + 340 < h1){
+				$('.rFixedBox').css({'position':'fixed','top': 0});
+			}else{
+				$('.rFixedBox').css({'position':'absolute','top': h1-510});
+			}
+        }
+        else
+        {
+            $('.rFixedBox').css({'position':'static', 'top':0});   
+        }	
+       /* return true;*/
+    });
+/*$(document).ready(function() {
+  $("#content img").unveil();
+});	*/
+SyntaxHighlighter.autoloader(
+	'applescript			/jslib/syntaxhighlighter/scripts/shBrushAppleScript.js',
+	'actionscript3 as3		/jslib/syntaxhighlighter/scripts/shBrushAS3.js',
+	'bash shell				/jslib/syntaxhighlighter/scripts/shBrushBash.js',
+	'coldfusion cf			/jslib/syntaxhighlighter/scripts/shBrushColdFusion.js',
+	'cpp c					/jslib/syntaxhighlighter/scripts/shBrushCpp.js',
+	'obj-c objc				/jslib/syntaxhighlighter/scripts/shBrushObjC.js',
+	'c# c-sharp csharp		/jslib/syntaxhighlighter/scripts/shBrushCSharp.js',
+	'css					/jslib/syntaxhighlighter/scripts/shBrushCss.js',
+	'delphi pascal			/jslib/syntaxhighlighter/scripts/shBrushDelphi.js',
+	'diff patch pas			/jslib/syntaxhighlighter/scripts/shBrushDiff.js',
+	'erl erlang				/jslib/syntaxhighlighter/scripts/shBrushErlang.js',
+	'groovy					/jslib/syntaxhighlighter/scripts/shBrushGroovy.js',
+	'haxe hx				/jslib/syntaxhighlighter/scripts/shBrushHaxe.js',
+	'java					/jslib/syntaxhighlighter/scripts/shBrushJava.js',
+	'jfx javafx				/jslib/syntaxhighlighter/scripts/shBrushJavaFX.js',
+	'js jscript javascript	/jslib/syntaxhighlighter/scripts/shBrushJScript.js',
+	'perl pl				/jslib/syntaxhighlighter/scripts/shBrushPerl.js',
+	'php					/jslib/syntaxhighlighter/scripts/shBrushPhp.js',
+	'text plain				/jslib/syntaxhighlighter/scripts/shBrushPlain.js',
+	'py python				/jslib/syntaxhighlighter/scripts/shBrushPython.js',
+	'ruby rails ror rb		/jslib/syntaxhighlighter/scripts/shBrushRuby.js',
+	'scala					/jslib/syntaxhighlighter/scripts/shBrushScala.js',
+	'sql					/jslib/syntaxhighlighter/scripts/shBrushSql.js',
+	'vb vbnet				/jslib/syntaxhighlighter/scripts/shBrushVb.js',
+	'ps powershell			/jslib/syntaxhighlighter/scripts/shBrushPowerShell.js',
+	'xml xhtml xslt html	/jslib/syntaxhighlighter/scripts/shBrushXml.js'
+);
+SyntaxHighlighter.all();
+});
+var ourl="";
+</script>
+<script type="text/javascript" src='http://common.jb51.net/js/jbLoader.js'></script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<div id="tongji">
+<script type="text/javascript" src="http://common.jb51.net/inc/tongji.js"></script>
+<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cyrHH3dwi',
+conf: 'prod_1dc5dc80970106099d43fe242b7465fc'
+});
+</script>
+</div>
+<script type="text/javascript" src="http://www.jb51.net/pl.asp?id=31207"></script>
+</body>
+</html>
+<!-- published at 2017/5/10 20:35:18By dxycms qq:461478385  -->

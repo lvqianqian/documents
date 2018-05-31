@@ -1,0 +1,277 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<title>Debian 7.7入门安装与配置_Linux教程_Linux公社-Linux系统门户网站</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<link rel="icon" href="../../favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
+<meta name="description" content="选择Debian的版本对于新手至关重要，本人安装Debian的时候，Debian官方发行稳定版本是7.7。安装桌面端最好选择是选择DVD版的安装"/>
+<meta name="keywords" content="Debian安装,Debian配置,Debian 7.7入门安装与配置,Linux,Linux教程,Linux系统,Linux安装,Ubuntu,Fedora,RedHat,SUSE,CentOS,红旗Linux"/>
+<link rel="canonical" href="http://www.linuxidc.com/Linux/2015-05/117242.htm"/>
+<meta name="generator" content="Linux公社"/>
+<meta name="generator" content="Linux"/>
+<link rel="stylesheet" href="../../style/systems/style.css" type="text/css"/>
+<meta name="generator" content="专业的Linux网站"/>
+<script type="text/javascript" src="../../inc/jquery.js"></script>
+<script type="text/javascript" src="../../inc/iwms.js"></script>
+<script type="text/javascript">iwms.urlPrefix="../../";</script>
+
+<script type="text/javascript" src="../../inc/show.js"></script>
+</head>
+<body>
+<div class="topBar">
+	<div class="twidth">
+	
+	<div style="float:right">
+		<script type="text/javascript" src="../../inc/language.js"></script>
+	</div>
+	
+	<div id="topUser">你好，游客 <a href="#" onclick="iwms.logPop()">登录</a>
+	<a href="../../memberreg.aspx" rel="nofollow">注册</a>
+	<a href="../../search.aspx" rel="nofollow">搜索</a>
+	</div>
+	</div>
+</div>
+<div class="twidth">
+<div id="sitehead">
+<div class="l"></div>
+<div class="r"></div>
+<div class="m">
+	<table width="100%">
+	<tr align="center"><td width="160">
+	<a href="http://www.linuxidc.com/"><img style="filter: chroma(color=#FFFFFF);" src="../../pic/logo.jpg" alt="Linux公社" width="155" height="53" border="0" /></a>
+	</td><td>
+	<div align="center"><script type="text/javascript" src="/linuxfile/linux.js"></script></div>
+	</td>
+	</tr></table>
+</div>
+</div>
+<div id="navbar">
+<div class="l"></div>
+<div class="r"></div>
+<div class="m">
+	<a href="../../index.htm" class="first">首页</a><a href="../../it/">Linux新闻</a><a href="../../Linuxit/" class="thisclass">Linux教程</a><a href="../../MySql/">数据库技术</a><a href="../../RedLinux/">Linux编程</a><a href="../../Apache/">服务器应用</a><a href="../../Unix/">Linux安全</a><a href="../../download/">Linux下载</a><a href="../../Linuxrz/">Linux认证</a><a href="../../theme/">Linux主题</a><a href="../../Linuxwallpaper/">Linux壁纸</a><a href="../../linuxsoft/">Linux软件</a><a href="../../digi/">数码</a><a href="../../mobile/">手机</a><a href="../../diannao/">电脑</a>
+
+</div>
+</div>
+
+<div id="navsub">
+<div class="l"></div>
+<div class="r"></div>
+<div class="m">
+	<a href="../../index.htm">首页</a> → <a href="../../Linuxit/">Linux教程</a>
+</div>
+</div>
+<div class="linuxe1"><script type="text/javascript" src="/linuxfile/linuxe1.js"></script></div>
+<div class="linux1"><script type="text/javascript" src="/linuxfile/linux1.js"></script></div>
+<div class="linuxa"><script type="text/javascript" src="/linuxfile/linuxa.js"></script></div>
+<div class="linuxa1"><script type="text/javascript" src="/linuxfile/linuxa1.js"></script></div>
+<table id="middle" width="100%" cellspacing="0" cellpadding="0" style="table-layout:fixed">
+<tr valign="top"><td>
+
+	<div class="mframe mR">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<div class="moreR">
+			背景：<script type="text/javascript">WriteBg()</script>
+		</div>
+		<span class="tt">阅读新闻</span>
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm" id="bodyTd">
+		<div id="printBody" style="word-break:break-all;">
+			<div style="text-align:center"><h1 class="aTitle">Debian 7.7入门安装与配置</h1></div>
+			
+			<table width="97%" align="center">
+				<tr>
+				<td width="140">[日期：2015-05-09]</td>
+				<td align="center">来源：Linux社区&nbsp;
+				作者：Linux</td>
+				<td width="160" align="right">[字体：<a href="javascript:ContentSize(16)">大</a> <a href="javascript:ContentSize(0)">中</a> <a href="javascript:ContentSize(12)">小</a>]
+				</td></tr>
+			</table>
+<div id="li_all">
+<div id="li_1"><script type="text/javascript" src="/linuxfile/linux201.js"></script></div>
+<div id="li_2"><script type="text/javascript" src="/linuxfile/linux2.js"></script></div>
+</div>
+			<div id="content"><p>最近安装了多个发行版本的Linux，包括<a href="http://www.linuxidc.com/topicnews.aspx?tid=2" target="_blank" title="Ubuntu">Ubuntu</a>、<a href="http://www.linuxidc.com/topicnews.aspx?tid=5" target="_blank" title="Fedora">Fedora</a>、<a href="http://www.linuxidc.com/topicnews.aspx?tid=14" target="_blank" title="CentOS">CentOS</a>和Debian，发现只有Debian在界面和稳定性等综合特性上表现最优，自己也最喜欢，所以最后选择长久使用Debian作为自己的家用笔记本操作系统，也想借助Debian来深入的学习Linux，因此在这里记录一些日生使用Debian过程中遇到的问题及解决办法。</p>
+<p><strong>1.Debian安装</strong></p>
+<p>　　选择Debian的版本对于新手至关重要，本人安装Debian的时候，Debian官方发行稳定版本是7.7。安装桌面端最好选择是选择DVD版的安装包，CD版的过于简陋，安装后要手动安装很多组件，比较麻烦，而且并不是非常简单。所以选择了<a href="http://cdimage.debian.org/debian-cd/7.7.0/amd64/iso-dvd/debian-7.7.0-amd64-DVD-1.iso">debian-7.7.0-amd64-DVD-1.iso</a>版本，至于官网中给出的DVD-2和DVD-3都是Debian的软件安装报，只有DVD-1才是可以作为ios单独安装和使用的。</p>
+<p>　　尽量不要选择CD版的，之前按了一个CD版的，六百多兆，安装完后发现缺少好多东西，自己一个一个补全太麻烦了，所以最好制作DVD版的安装光盘或者启动U盘。Linux操作系统制作安装光盘或U盘时最简单的是PowerISO，在windowns中制作也是最简单的。</p>
+<p>至于安装过程大家可以在网上随便找，自己看着提示安装也比较容易。</p>
+<p><strong>2.无线网</strong></p>
+<p>　　Debian安装后是不能链接无线网的，最好准备一根网线，待安装完系统后好使用网络进行需要联网的操作。不能链接无线网是因为Debian并没安装网卡驱动，所以需要我们自己安装网卡驱动。</p>
+<p>　　首先上网搜以下当前电脑的网卡是什么版本的，按照版本搜索驱动安装。本人的笔记本网卡版本是Intel Wireless WiFi 5100AGN，所以在网上搜索这些关键字就可以找到相应Debian驱动安装方法，本人Debian驱动安装的方法就是按照这里的方法安装成功的（https://wiki.debian.org/iwlwifi）。按照里面说的方法就可以安装成功。</p>
+<p>本人就是按照如下方法成功安装无线网驱动的：</p>
+<p>　　在<tt>/etc/apt/sources.list</tt>文件中添加如下源（内容）</p>
+<pre>　　# Debian 7 "Wheezy"
+　　<span id="line-2" class="anchor">deb http://http.debian.net/debian/ wheezy main contrib non-free<br />　　然后在终端执行如下命令：（root用户）<br />　　# apt-get update<br />　　# apt-get install firmware-iwlwifi<br />　　# apt-get update<br />　　# apt-get install firmware-iwlwifi<br />　　# modprobe -r iwlwifi<br />　　# modprobe iwlwifi<br />　　查看是否安装成功，如果成功，输入如下命令后会出现关于wlan0的相关描述信息，此时表示安装无线网卡驱动成功。<br />　　# iwconfig<br /></span></pre>
+<p><strong>3.ibus输入发</strong></p>
+<p>　　安装中文输入法也是安装系统之后所要进行的主要任务，因为我们总不能离开中文吧。本人选择的是ibus-pinyin中文输入法</p>
+<pre>　　# apt-get install ibus ibus-clutter ibus-gtk ibus-gtk3 ibus-qt4<br />　　# im-switch -s ibus //该命令可以掠过，本人就没有执行成功，最后ibus也能用<br />　　# apt-get install ibus-pinyin<br />　　# ibus-setup //执行该命令后会弹出ibus设置窗口，可以设置后重启电脑就可以使用ibus-pinyin输入法</pre>
+<p><strong>4.使用apt-get出现的问题</strong></p>
+<p>　　在使用apt-get安装软件时，总是出现如下命令，提示插入光盘，</p>
+<p>　　　　Media change: please insert the disc labeled&nbsp; 'Debian GNU/Linux 7.7.0 _Wheezy_ - Official amd64 DVD</p>
+<p>　　这个问题主要原因是在我们的源列表中<tt>/etc/apt/sources.list</tt>光盘作为了第一个主选源，所以提示我们插入光盘，我们只要屏蔽了光盘源，就可以使用网络源安装软件了。</p>
+<p>　　原sources.list如下所示：</p>
+<p>　　deb cdrom:[Debian GNU/Linux 7.7.0 _Wheezy_ - Official amd64 DVD Binary-1 20141018-13:06]/ wheezy contrib main</p>
+<p>　　屏蔽方法就是在之前加入一个#</p>
+<p>　　# deb cdrom:[Debian GNU/Linux 7.7.0 _Wheezy_ - Official amd64 DVD Binary-1 20141018-13:06]/ wheezy contrib main</p>
+<p><span style="font-size: small;"><strong>本文永久更新链接地址</strong></span>：<a href="../../Linux/2015-05/117242.htm">http://www.linuxidc.com/Linux/2015-05/117242.htm</a></p><a href="http://www.linuxidc.com" target="_blank"><img src="/linuxfile/logo.gif" alt="linux" width="15" height="17" /></div>
+<div class="linux3"><script type="text/javascript" src="/linuxfile/linux3.js"></script></div>
+<div class="linux302"><script type="text/javascript" src="/linuxfile/linux302.js"></script></div>		
+			
+			
+		</div>
+<div class="linuxfx"><script type="text/javascript" src="/linuxfile/fx.js"></script></div>	
+<div class="linux8"><script type="text/javascript" src="/linuxfile/linux8.js"></script></div>
+<div class="linux801"><script type="text/javascript" src="/linuxfile/linux801.js"></script></div>
+		<div class="nearNews">
+			<div class="prevNews"><a href="../../Linux/2015-05/117237.htm">Linux常用系统性能监控命令</a></div>
+			<div class="nextNews"><a href="../../Linux/2015-05/117243.htm">Debian 7.0.0安装图解教程</a></div>
+		</div>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+<div class="linux809"><script type="text/javascript" src="/linuxfile/linux809.js"></script></div>
+	<div class="mframe mR">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<span class="tt">相关资讯</span> &nbsp; &nbsp; &nbsp;
+		<a href="../../search.aspx?where=nkey&amp;keyword=2154" target="_blank">debian安装</a>&nbsp; <a href="../../search.aspx?where=nkey&amp;keyword=11247" target="_blank">Debian配置</a>&nbsp; 
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm">
+		<table width='100%'><tr><td width='50%' valign='top'><ul class='nl'><li><a href="../../Linux/2016-04/130521.htm"  target="_blank" >VMware Player安装Debian系统</a>&nbsp; <span class="gray">(04月22日)</span></li>
+<li><a href="../../Linux/2015-05/117243.htm"  target="_blank" >Debian 7.0.0安装图解教程</a>&nbsp; <span class="gray">(05/09/2015 09:47:24)</span></li>
+<li><a href="../../Linux/2015-03/115113.htm"  target="_blank" >Debian 7.8 系统安装配置过程</a>&nbsp; <span class="gray">(03/18/2015 07:45:58)</span></li>
+</ul></td><td width='50%' valign='top'><ul class='nl'><li><a href="../../Linux/2015-10/123715.htm"  target="_blank"  title="Debian 8.2.0 (Jessie) 快速纯净安装教程">Debian 8.2.0 (Jessie) 快速纯净安</a>&nbsp; <span class="gray">(10/01/2015 16:45:19)</span></li>
+<li><a href="../../Linux/2015-04/115860.htm"  target="_blank"  title="Linux系统入门学习：Debian的下载、安装及图形化界面">Linux系统入门学习：Debian的下载</a>&nbsp; <span class="gray">(04/06/2015 07:31:54)</span></li>
+<li><a href="../../Linux/2015-01/111190.htm"  target="_blank" >Win7上从硬盘安装Debian</a>&nbsp; <span class="gray">(01/03/2015 12:18:28)</span></li>
+</ul></td></tr></table>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+<div class="linux808"><script type="text/javascript" src="/linuxfile/linux808.js"></script></div>
+	
+	<div class="mframe mR">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<span class="tt">本文评论</span>
+		 	　　<a href="../../remark.aspx?id=117242" target="_blank">查看全部评论</a> <span class="gray">(0)</span>
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm">
+		<table width="100%" style="margin:6px">		
+		<tr><td width="50%">
+			<form action="" name="fmRemarkSt" onsubmit="return remark.post(this);">
+			<input type="hidden" value="1" name="face"/>
+			表情： <img src="../../pic/b.gif" alt="表情" class="face1" style="cursor:pointer;vertical-align:middle" onclick="remark.dispFace(this)" onmouseout="remark.hideFace()"/>
+			姓名： <input type="text" name="username" value="" maxlength="15" style="width:60px" class="inputbg"/>
+			<input type="checkbox" id="rmAnonymitySt" onclick="remark.anony(this)"/><label for="rmAnonymitySt">匿名</label>
+			字数 <input type="text" id="bodyLen" size="3" readonly="readonly" style="border-width:0;background:transparent;vertical-align:middle" value="0"/>
+			<br/>
+			<textarea name="body" cols="40" rows="4" onkeydown="remark.dispLen(this)" onkeyup="remark.handle(event,this);remark.dispLen(this)" style="width:39em;height:100px;margin:3px 0;overflow-y:auto"></textarea>
+				<br/>
+		　　　<input type="checkbox" checked="checked" id="rmAgreeSt"/><label for="rmAgreeSt">同意评论声明</label>
+		　　　<button type="submit" style="width:50px">发表</button>
+			</form><br>
+			评论声明
+			<ul style="list-style-type:square;margin:5px 0 0 1em;padding:0">
+			<li>尊重网上道德，遵守中华人民共和国的各项有关法律法规</li>
+			<li>承担一切因您的行为而直接或间接导致的民事或刑事法律责任</li>
+			<li>本站管理人员有权保留或删除其管辖留言中的任意内容</li>
+			<li>本站有权在网站内转载或引用您的评论</li>
+			<li>参与本评论即表明您已经阅读并接受上述条款</li>
+			</ul>
+		</td>
+		<td width="50%"><div class="linux799"><script type="text/javascript" src="/linuxfile/linux799.js"></script></div></td></tr>
+		</table>
+		<script type="text/javascript" src="../../inc/remark.js"></script>
+		<script type="text/javascript">
+			remark.maxSize=500;
+			remark.minSize=2;
+			remark.sourceEle=$(document.fmRemarkSt).find("button").get(0);
+			iwms.vCode="D2BDA41E";
+			iwms.user.name.length==0 ? $i("rmAnonymitySt").click() : $i("rmAnonymitySt").form.username.value=iwms.user.name;
+		</script>
+		<div class="reCont" id="reContainer"></div>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+	
+</td><td width="300" valign="top">
+<div class="linux901"><script type="text/javascript" src="/linuxfile/linux901.js"></script></div>
+<div class="linux902"><script type="text/javascript" src="/linuxfile/linux902.js"></script></div>
+<div class="linux903"><script type="text/javascript" src="/linuxfile/linux903.js"></script></div>
+<div class="linux905"><script type="text/javascript" src="/linuxfile/linux905.js"></script></div>
+	
+	<div class="lframe">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<span class="tt">最新资讯</span>
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm">
+		<ul class="nl">
+<li><a href="../../Linux/2016-08/134461.htm" target="_blank">Nagios 监控 SNMP 温度计</a></li>
+<li><a href="../../Linux/2016-08/134460.htm" target="_blank">JavaScript函数定义与函数作用域详解</a></li>
+<li><a href="../../Linux/2016-08/134459.htm" target="_blank">Java培训：对象和类</a></li>
+<li><a href="../../Linux/2016-08/134458.htm" target="_blank">Java培训：基本数据类型</a></li>
+<li><a href="../../Linux/2016-08/134457.htm" target="_blank">Java培训：变量类���</a></li>
+<li><a href="../../Linux/2016-08/134456.htm" target="_blank">Java培训：增强for循环、switch</a></li>
+<li><a href="../../Linux/2016-08/134455.htm" target="_blank">Java培训：Number类、Character类</a></li>
+<li><a href="../../Linux/2016-08/134454.htm" target="_blank">Python 操作消息队列</a></li>
+<li><a href="../../Linux/2016-08/134453.htm" target="_blank">Python迭代器和生成器</a></li>
+<li><a href="../../Linux/2016-08/134452.htm" target="_blank">Spark源码分析之SparkContext概述</a></li>
+</ul>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+	<div class="u70"><script type="text/javascript" src="/linuxfile/u70.js"></script></div>
+	<div class="u80"><script type="text/javascript" src="/linuxfile/u80.js"></script></div>
+	<div class="u90"><script type="text/javascript" src="/linuxfile/u90.js"></script></div>
+	<div class="space"></div>
+	<div id="pin">
+	<script type="text/javascript" src="/linuxfile/pin.js"></script>
+	</div>
+</td></tr>
+</table>
+<div class="linux906"><script type="text/javascript" src="/linuxfile/linux906.js"></script></div>
+<div id="footer">
+<a href="http://www.linuxidc.com/aboutus.htm">Linux公社简介</a> - <a href="http://www.linuxidc.com/adsense.htm">广告服务</a> - <a href="http://www.linuxidc.com/sitemap.aspx">网站地图</a> - <a href="http://www.linuxidc.com/help.htm">帮助信息</a> - <a href="http://www.linuxidc.com/contactus.htm">联系我们</a><br />本站（LinuxIDC）所刊载文章不代表同意其说法或描述，仅为提供更多信息，也不构成任何建议。<br /><script type="text/javascript" src="/linuxfile/qq.js"></script><br />
+<script type="text/javascript" src="/linuxfile/foot.js"></script><br />Copyright &copy; 2006-2016　<a href="http://www.linuxidc.com/">Linux公社</a>　All rights reserved 沪ICP备15008072号-1号
+	<script type="text/javascript">iwms.aId=117242;$(function(){iwms.imgCont=$i('content');iwms.imgResize();InitContStyle();iwms.getVars();})</script>
+	
+</div>
+</div>
+<script type="text/javascript" src="/linuxren/linuxren1.js"></script>
+<script type="text/javascript" src="/linuxren/linuxren2.js"></script>
+<script type="text/javascript" src="/linuxren/linuxren3.js"></script>
+</body>
+</html>

@@ -1,0 +1,1027 @@
+-----------------------------------------------------------------
+!
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+ip vrf R47
+ rd 4:7
+ route-target export 4:7
+ route-target import 4:7
+!
+ip vrf R56
+ rd 5:6
+ route-target export 5:6
+ route-target import 5:6
+!
+mpls label range 100 199
+mpls label protocol ldp
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.0
+ ip router isis cisco
+!
+interface Ethernet0/0
+ ip address 12.12.12.1 255.255.255.0
+ ip router isis cisco
+ half-duplex
+ mpls ip
+!
+interface Ethernet0/1
+ no ip address
+ half-duplex
+!
+interface Ethernet0/1.40
+ encapsulation dot1Q 40
+ ip vrf forwarding R47
+ ip address 14.14.14.1 255.255.255.0
+!
+interface Ethernet0/1.50
+ encapsulation dot1Q 50
+ ip vrf forwarding R56
+ ip address 15.15.15.1 255.255.255.0
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Serial1/0
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+router eigrp 1
+ auto-summary
+ !
+ address-family ipv4 vrf R56
+  redistribute bgp 13 metric 10000 100 255 1 1500
+  network 15.15.15.0 0.0.0.255
+  no auto-summary
+  autonomous-system 1
+ exit-address-family
+!
+router isis cisco
+ net 49.0000.0000.0000.0001.00
+!
+router rip
+ !
+ address-family ipv4 vrf R47
+  redistribute bgp 13 metric 1
+  network 14.0.0.0
+  no auto-summary
+ exit-address-family
+!
+router bgp 13
+ no synchronization
+ bgp log-neighbor-changes
+ neighbor 3.3.3.3 remote-as 13
+ neighbor 3.3.3.3 update-source Loopback0
+ no auto-summary
+ !
+ address-family vpnv4
+  neighbor 3.3.3.3 activate
+  neighbor 3.3.3.3 send-community extended
+ exit-address-family
+ !
+ address-family ipv4 vrf R56
+  redistribute eigrp 1
+  no synchronization
+ exit-address-family
+ !
+ address-family ipv4 vrf R47
+  redistribute rip
+  no synchronization
+ exit-address-family
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+mpls ldp router-id Loopback0
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+-----------------------------------------------------------------
+!
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+mpls label range 200 299
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 2.2.2.2 255.255.255.0
+ ip router isis cisco
+!
+interface Ethernet0/0
+ ip address 12.12.12.2 255.255.255.0
+ ip router isis cisco
+ half-duplex
+ mpls ip
+!
+interface Ethernet0/1
+ ip address 23.23.23.2 255.255.255.0
+ ip router isis cisco
+ half-duplex
+ mpls ip
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Serial1/0
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+router isis cisco
+ net 49.0000.0000.0000.0002.00
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+mpls ldp router-id Loopback0
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+-----------------------------------------------------------------
+!
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R3
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+ip vrf R47
+ rd 4:7
+ route-target export 4:7
+ route-target import 4:7
+!
+ip vrf R56
+ rd 5:6
+ route-target export 5:6
+ route-target import 5:6
+!
+mpls label range 300 399
+mpls label protocol ldp
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 3.3.3.3 255.255.255.0
+ ip router isis cisco
+!
+interface Ethernet0/0
+ no ip address
+ half-duplex
+!
+interface Ethernet0/0.60
+ encapsulation dot1Q 60
+ ip vrf forwarding R56
+ ip address 36.36.36.3 255.255.255.0
+!
+interface Ethernet0/0.70
+ encapsulation dot1Q 70
+ ip vrf forwarding R47
+ ip address 37.37.37.3 255.255.255.0
+!
+interface Ethernet0/1
+ ip address 23.23.23.3 255.255.255.0
+ ip router isis cisco
+ half-duplex
+ mpls ip
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Serial1/0
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+router ospf 1 vrf R56
+ log-adjacency-changes
+ redistribute bgp 13 subnets
+ network 36.36.36.0 0.0.0.255 area 0
+!
+router isis cisco
+ net 49.0000.0000.0000.0000.0003.00
+!
+router bgp 13
+ no synchronization
+ bgp log-neighbor-changes
+ neighbor 1.1.1.1 remote-as 13
+ neighbor 1.1.1.1 update-source Loopback0
+ no auto-summary
+ !
+ address-family vpnv4
+  neighbor 1.1.1.1 activate
+  neighbor 1.1.1.1 send-community extended
+ exit-address-family
+ !
+ address-family ipv4 vrf R56
+  redistribute ospf 1 vrf R56
+  no synchronization
+ exit-address-family
+ !
+ address-family ipv4 vrf R47
+  redistribute static
+  no synchronization
+ exit-address-family
+!
+no ip http server
+no ip http secure-server
+ip route vrf R47 10.2.2.0 255.255.255.0 37.37.37.7
+ip route vrf R47 77.77.77.0 255.255.255.0 37.37.37.7
+!
+!
+!
+!
+!
+mpls ldp router-id Loopback0
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+-----------------------------------------------------------------
+!
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R4
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.1.1.4 255.255.255.0
+!
+interface Loopback1
+ ip address 44.44.44.44 255.255.255.0
+!
+interface Ethernet0/0
+ ip address 14.14.14.4 255.255.255.0
+ half-duplex
+!
+interface Ethernet0/1
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Serial1/0
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+router rip
+ version 2
+ network 10.0.0.0
+ network 14.0.0.0
+ network 44.0.0.0
+ no auto-summary
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+-----------------------------------------------------------------
+!
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R5
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.1.1.5 255.255.255.0
+!
+interface Loopback1
+ ip address 55.55.55.55 255.255.255.0
+!
+interface Ethernet0/0
+ ip address 15.15.15.5 255.255.255.0
+ half-duplex
+!
+interface Ethernet0/1
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Serial1/0
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+router eigrp 1
+ network 10.1.1.0 0.0.0.255
+ network 15.15.15.0 0.0.0.255
+ network 55.55.55.0 0.0.0.255
+ no auto-summary
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+-----------------------------------------------------------------
+!
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R6
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.2.2.6 255.255.255.0
+!
+interface Loopback1
+ ip address 66.66.66.66 255.255.255.0
+!
+interface Ethernet0/0
+ ip address 36.36.36.6 255.255.255.0
+ half-duplex
+!
+interface Ethernet0/1
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Serial1/0
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+router ospf 1
+ log-adjacency-changes
+ network 0.0.0.0 255.255.255.255 area 0
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+-----------------------------------------------------------------
+!
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R7
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.2.2.7 255.255.255.0
+!
+interface Loopback1
+ ip address 77.77.77.77 255.255.255.0
+!
+interface Ethernet0/0
+ ip address 37.37.37.7 255.255.255.0
+ half-duplex
+!
+interface Ethernet0/1
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Serial1/0
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 37.37.37.3
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+-----------------------------------------------------------------

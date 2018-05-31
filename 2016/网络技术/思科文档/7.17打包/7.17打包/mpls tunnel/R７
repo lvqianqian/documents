@@ -1,0 +1,126 @@
+﻿R7#?
+Exec commands:
+  access-enable    Create a temporary Access-List entry
+  access-profile   Apply user-profile to interface
+  access-template  Create a temporary Access-List entry
+  alps             ALPS exec commands
+  archive          manage archive files
+  audio-prompt     load ivr prompt
+  auto             Exec level Automation
+  bfe              For manual emergency modes setting
+  call             Voice call
+  ccm-manager      Call Manager Application exec commands
+  cd               Change current directory
+  clear            Reset functions
+  clock            Manage the system clock
+  cns              CNS agents
+  configure        Enter configuration mode
+  connect          Open a terminal connection
+  copy             Copy from one file to another
+  crypto           Encryption related commands.
+  ct-isdn          Run an ISDN component test command
+  debug            Debugging functions (see also 'undebug')
+  delete           Delete a file
+          
+R7#sh run
+Building configuration...
+
+Current configuration : 955 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R7
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+!
+!         
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 33.33.33.33 255.255.255.255
+!
+interface Serial0/0
+ ip address 37.1.1.7 255.255.255.0
+ serial restart-delay 0
+!
+interface Serial0/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial0/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial0/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+router ospf 1
+ router-id 7.7.7.7
+ log-adjacency-changes
+ network 33.33.33.33 0.0.0.0 area 0
+ network 37.1.1.0 0.0.0.255 area 0
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+!
+!
+end
+

@@ -1,0 +1,140 @@
+﻿R3#sh run
+Building configuration...
+
+Current configuration : 1857 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R3
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+ip vrf a
+ rd 1:1   
+ route-target export 20:20
+ route-target import 20:20
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!         
+!
+interface Loopback0
+ ip address 3.3.3.3 255.255.255.255
+!
+interface Serial0/0
+ ip vrf forwarding a
+ ip address 37.1.1.3 255.255.255.0
+ ip nat inside
+ ip virtual-reassembly
+ serial restart-delay 0
+!
+interface Serial0/1
+ ip address 11.1.1.1 255.255.255.0
+ ip nat outside
+ ip virtual-reassembly
+ serial restart-delay 0
+!
+interface Serial0/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial0/3
+ ip address 34.1.1.3 255.255.255.0
+ ip nat inside
+ ip virtual-reassembly
+ mpls ip
+ serial restart-delay 0
+!
+router ospf 2 vrf a
+ router-id 33.3.3.3
+ log-adjacency-changes
+ network 37.1.1.0 0.0.0.255 area 0
+ default-information originate
+!
+router ospf 1
+ router-id 3.3.3.3
+ log-adjacency-changes
+ network 3.3.3.3 0.0.0.0 area 0
+ network 34.1.1.0 0.0.0.255 area 0
+!
+router bgp 100
+ bgp router-id 3.3.3.3
+ no bgp default ipv4-unicast
+ bgp log-neighbor-changes
+ neighbor 4.4.4.4 remote-as 100
+ neighbor 4.4.4.4 update-source Loopback0
+ !
+ address-family vpnv4
+  neighbor 4.4.4.4 activate
+  neighbor 4.4.4.4 send-community extended
+ exit-address-family
+ !
+ address-family ipv4 vrf a
+  redistribute ospf 2 vrf a
+  no synchronization
+  network 0.0.0.0
+ exit-address-family
+!
+no ip http server
+no ip http secure-server
+ip route vrf a 0.0.0.0 0.0.0.0 Serial0/1
+!
+!
+ip nat inside source list 1 interface Serial0/1 vrf a overload
+!
+access-list 1 permit 11.11.11.11
+!
+!         
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+!
+!
+end
+

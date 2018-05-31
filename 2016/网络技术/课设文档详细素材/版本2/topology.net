@@ -1,0 +1,238 @@
+autostart = False
+version = 0.8.7
+[127.0.0.1:7200]
+    workingdir = working
+    udp = 10001
+    [[3640]]
+        image = D:\Other software\GNS\GNS\images\unzip-c3640-ik9o3s-mz.124-10.bin
+        idlepc = 0x605c8ad0
+        sparsemem = True
+        chassis = 3640
+    [[ROUTER R1]]
+        model = 3640
+        console = 2101
+        aux = 2501
+        cnfg = configs\R1.cfg
+        slot0 = NM-1FE-TX
+        f0/0 = SW1 f0/12
+        slot1 = NM-4T
+        s1/0 = R2 s1/0
+        slot2 = NM-1FE-TX
+        f2/0 = SW f0/0
+        slot3 = NM-1FE-TX
+        x = -110.0
+        y = -275.0
+        z = 1.0
+    [[ROUTER R2]]
+        model = 3640
+        console = 2102
+        aux = 2502
+        cnfg = configs\R2.cfg
+        slot0 = NM-1FE-TX
+        slot1 = NM-4T
+        s1/0 = R1 s1/0
+        x = 172.0
+        y = -267.0
+        z = 1.0
+    [[ROUTER SW]]
+        model = 3640
+        console = 2104
+        aux = 2504
+        cnfg = configs\SW.cfg
+        slot0 = NM-16ESW
+        f0/0 = R1 f2/0
+        f0/2 = FTP服务器 f0/0
+        f0/3 = WEB服务器 f0/0
+        symbol = ethernet_switch
+        x = -305.0
+        y = -269.0
+        z = 1.0
+    [[ROUTER SW1]]
+        model = 3640
+        console = 2103
+        aux = 2503
+        cnfg = configs\SW1.cfg
+        slot0 = NM-16ESW
+        f0/5 = PC1 f0/0
+        f0/11 = PC2 f0/0
+        f0/12 = R1 f0/0
+        symbol = multilayer_switch
+        x = -100.0
+        y = -105.0
+        z = 1.0
+        hx = 53.5
+        hy = 6.0
+[127.0.0.1:7201]
+    workingdir = working
+    udp = 10101
+    [[3640]]
+        image = D:\Other software\GNS\GNS\images\unzip-c3640-ik9o3s-mz.124-10.bin
+        idlepc = 0x605c8ad0
+        sparsemem = True
+        chassis = 3640
+    [[ROUTER PC2]]
+        model = 3640
+        console = 2108
+        aux = 2508
+        cnfg = configs\PC2.cfg
+        slot0 = NM-1FE-TX
+        f0/0 = SW1 f0/11
+        symbol = computer
+        x = 41.0
+        y = 17.0
+        z = 1.0
+        hx = 71.5
+        hy = 12.0
+    [[ROUTER PC1]]
+        model = 3640
+        console = 2107
+        aux = 2507
+        cnfg = configs\PC1.cfg
+        slot0 = NM-1FE-TX
+        f0/0 = SW1 f0/5
+        slot1 = NM-4T
+        symbol = computer
+        x = -242.0
+        y = 13.0
+        z = 1.0
+        hx = -42.5
+        hy = 15.0
+    [[ROUTER FTP服务器]]
+        model = 3640
+        console = 2111
+        aux = 2511
+        cnfg = configs\FTP服务器.cfg
+        slot0 = NM-1FE-TX
+        f0/0 = SW f0/2
+        symbol = server
+        x = -423.0
+        y = -327.0
+        z = 1.0
+    [[ROUTER WEB服务器]]
+        model = 3640
+        console = 2112
+        aux = 2512
+        cnfg = configs\WEB服务器.cfg
+        slot0 = NM-1FE-TX
+        f0/0 = SW f0/3
+        symbol = server
+        x = -414.0
+        y = -187.0
+        z = 1.0
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    [[NOTE 1]]
+        text = "202.194.161.100"
+        x = -208.0
+        y = -131.5
+    [[NOTE 2]]
+        text = "202.194.161.250"
+        x = -30.0
+        y = -70.5
+    [[NOTE 3]]
+        text = "vlan 12"
+        x = -76.0
+        y = -180.5
+    [[NOTE 4]]
+        text = "202.194.161.190"
+        x = -248.0
+        y = -69.5
+    [[NOTE 5]]
+        text = "202.194.161.66"
+        x = -203.0
+        y = -222.5
+    [[NOTE 6]]
+        text = "202.194.162.1/2"
+        x = 6.0
+        y = -294.5
+    [[NOTE 7]]
+        text = "202.194.161.1"
+        x = -214.0
+        y = -295.5
+    [[NOTE 8]]
+        text = "vlan 11"
+        x = 8.0
+        y = -42.5
+    [[NOTE 9]]
+        text = "vlan 5"
+        x = -197.0
+        y = -45.5
+    [[NOTE 10]]
+        text = "202.194.161.130\n255.255.255.192"
+        x = -277.0
+        y = 86.5
+    [[NOTE 11]]
+        text = "202.194.161.194\n255.255.255.192"
+        x = 17.0
+        y = 86.5
+    [[NOTE 12]]
+        text = "f0/5"
+        x = -16.9429071533
+        y = 62.3651660548
+        interface = SW1 f0/5
+    [[NOTE 13]]
+        text = "f0/11"
+        x = 24.653496706
+        y = 61.7824396965
+        interface = SW1 f0/11
+    [[NOTE 14]]
+        text = "f0/12"
+        x = 31.9169715635
+        y = -26.4957507473
+        interface = SW1 f0/12
+    [[NOTE 15]]
+        text = "f0/0"
+        x = 56.0934105445
+        y = 9.96723802413
+        interface = WEB服务器 f0/0
+    [[NOTE 16]]
+        text = "f0/0"
+        x = 53.7471513299
+        y = 18.2113370351
+        interface = FTP服务器 f0/0
+    [[NOTE 17]]
+        text = "f0/3"
+        x = 0.906589455467
+        y = 45.5327619759
+        interface = SW f0/3
+    [[NOTE 18]]
+        text = "f0/2"
+        x = -15.7471513299
+        y = -24.7113370351
+        interface = SW f0/2
+    [[NOTE 19]]
+        text = "f0/0"
+        x = 75.5
+        y = 16.0
+        interface = SW f0/0
+    [[NOTE 20]]
+        text = "f0/0"
+        x = 68.9429071533
+        y = -10.3651660548
+        interface = PC1 f0/0
+    [[NOTE 21]]
+        text = "f0/0"
+        x = -52.1918708825
+        y = -10.3530496206
+        interface = PC2 f0/0
+    [[NOTE 22]]
+        text = "s1/0"
+        x = -48.9032967216
+        y = 26.7797321359
+        interface = R2 s1/0
+    [[NOTE 23]]
+        text = "f2/0"
+        x = -39.0
+        y = 24.0
+        interface = R1 f2/0
+    [[NOTE 24]]
+        text = "s1/0"
+        x = 74.9032967216
+        y = 23.2202678641
+        interface = R1 s1/0
+    [[NOTE 25]]
+        text = "f0/0"
+        x = 44.5830284365
+        y = 51.9957507473
+        interface = R1 f0/0

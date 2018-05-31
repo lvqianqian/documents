@@ -1,0 +1,507 @@
+<!DOCTYPE html PUBliC "-//W3C//dtD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/dtD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link rel="stylesheet" href="http://statics.2cto.com/css/article.css" type="text/css" />
+
+<link href="http://statics.2cto.com/css/dialog.css" rel="stylesheet" type="text/css" />
+<title>cisco中的管道符号（include begin section） - 网络协议TCP - 红黑联盟</title>
+<meta http-equiv="mobile-agent" content="format=html5;url=http://m.2cto.com/net/201307/225017.html" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="description" content="cisco中的管道符号（include begin section）首先说一下路由器命令输出过滤的语法：任意show命令+管道符|+过滤器这里的过滤器包括以下三种：include和exclude:显示包含或者不包含特定正则表达式的行begin：从符..." />
+<script type="text/javascript" src="http://statics.2cto.com/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://statics.2cto.com/js/jquery.sgallery.js"></script>
+<script type="text/javascript" src="http://statics.2cto.com/js/search_common.js"></script>
+<script type="text/javascript" src="http://statics.2cto.com/js/json.js"></script>
+<script language="javascript" type="text/javascript" src="http://statics.2cto.com/js/dialog.js"></script>
+<script src="http://dup.baidustatic.com/js/ds.js"></script>
+<script src="http://statics.2cto.com/js/uaredirect.js" type="text/javascript"></script>
+<script type="text/javascript">uaredirect("http://m.2cto.com/net/201307/225017.html");</script>
+<script src="http://statics.2cto.com/js/gg.js"></script>
+
+</head>
+
+<body>
+
+<div class="line_top_box">
+	<dl class="top_box_left">
+		<dd class="left_logo"><a href="/"></a></dd>
+		<dd class="left_menu_link">
+																			<a class='Channel' href='http://www.2cto.com/news/'>资讯</a>
+																<a class='Channel' href='http://www.2cto.com/article/'>安全</a>
+																<a class='Channel' href='http://bbs.2cto.com'>论坛</a>
+																<a class='Channel' href='http://www.2cto.com/soft/'>下载</a>
+																<a class='Channel' href='http://book.2cto.com'>读书</a>
+																<a class='Channel' href='http://www.2cto.com/kf/'>程序开发</a>
+																<a class='Channel' href='http://www.2cto.com/database/'>数据库</a>
+																<a class='Channel' href='http://www.2cto.com/os/'>系统</a>
+																<a class='Channel' href='http://www.2cto.com/net/'>网络</a>
+																<a class='Channel' href='http://www.2cto.com/ebook/'>电子书</a>
+																<a class='Channel' href='http://www.2cto.com/weixin/'>微信学院</a>
+																<a class='Channel' href='http://zz.2cto.com/'>站长学院</a>
+																<a class='Channel' href='http://www.2cto.com/qq/'>QQ</a>
+																<a class='Channel' href='http://www.2cto.com/sj/'>手机软件</a>
+																<a class='Channel last' href='http://www.2cto.com/px/'>考试</a>
+														</dd>
+	</dl>
+</div>
+
+<div class="line_top_lmbox">
+	<dl class="lmpic"></dl>
+	<dl class="lmlinkbox"><dd>
+										<a class='Channel' href='http://www.2cto.com/net/Router/'>路由器</a>|
+							<a class='Channel' href='http://www.2cto.com/net/Switch/'>交换机</a>|
+							<a class='Channel' href='http://www.2cto.com/net/net/'>网络协议</a>|
+							<a class='Channel' href='http://www.2cto.com/net/lan/'>组网</a>|
+							<a class='Channel' href='http://www.2cto.com/net/yinan/'>疑难</a>|
+							<a class='Channel' href='http://www.2cto.com/net/qita/'>其他</a>|
+							<a class='Channel' href='http://www.2cto.com/net/cloud/'>云计算</a>|
+								</dd></dl>
+	<dl class="LoginBox"><dd><script type="text/javascript">document.write('<iframe src="http://www.2cto.com/index.php?m=member&c=index&a=mini&forward='+encodeURIComponent(location.href)+'&siteid=1" allowTransparency="true"  width="150" height="32" frameborder="0" scrolling="no"></iframe>')</script></dd></dl>
+</div>
+<div class="divline8"></div>
+<div class="ibox">
+
+<!-- 2cto_通栏 -->
+<script type="text/javascript">cto_A_D("2cto_1");</script>
+</div>
+
+
+<div class="divline8"></div>
+<div class="it165_box">
+	<div class="box_left">
+		
+		<dl class="box_p">
+			<dd class="pRight"><a href="/">首页</a><span> > </span><a href="/net/">网络</a> > <a href="/net/net/">网络协议</a> >  正文</dd>
+			</dl>
+		<dl class="box_t"><dd>cisco中的管道符号（include begin section）</dd></dl>
+																										<dl class="box_INFO">
+			<dd class="frinfo line_blue">2013-07-04 08:40:08  &nbsp;&nbsp;&nbsp;&nbsp;
+
+<a class="num" href="#SOHUCS" id="changyan_count_unit"></a><a href="#SOHUCS">&nbsp;个评论</a>
+<script type="text/javascript" src="http://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+
+&nbsp;&nbsp;  来源：TinyLetero的专栏&nbsp;&nbsp;  </dd>
+			<dd class="frsize line_blue">
+			<span id='favorite'>
+				<a href="javascript:;" onclick="add_favorite('cisco中的管道符号（include begin section）');" class="t6">收藏</a>
+			</span>&nbsp;&nbsp;
+				<a target="_blank" href="/index.php?m=member&c=content&a=publish&modid=1&siteid=1"><img src="http://statics.2cto.com/images/dl.jpg" />我要投稿</a>
+			</dd>
+			
+		</dl>
+<div class="cont_ibox">
+<!-- 2cto_左一 -->
+<script type="text/javascript">cto_A_D("2cto_9");</script>
+</div>
+		<dl class="box_body" id="fontzoom"><dd id="Article">
+		<div>cisco中的管道符号（include begin section）
+<div>&nbsp;
+<div>首先说一下<a href="http://www.2cto.com/net/router/" target="_blank" class="keylink">路由器</a>命令输出过滤的语法：任意show命令+管道符|+过滤器
+<div>这里的过滤器包括以下三种：
+<div>include和exclude:显示包含或者不包含特定正则表达式的行
+<div>begin：从符合特定正则表达式的行开始显示
+<div>section：仅显示特定符合正则表达式的section（所谓的section就是从一个非空格打头的行开始，直到下一个非空格打头的行之前结束，常用的是路由协议配置命令部分）
+<div>对于more命令的输出仅支持include,exclude和begin，其他的命令都不支持命令输出的过滤，这点和UNIX的针对任意命令都可以使用管道符是不同的，同时也不能像UNIX那样可以对过滤进行级联。
+<div>下面先以一个简单的例子来介绍一下输出的过滤。
+<div>show interface命令可以给我们很多信息的输出，比如：
+<div>R1#show interfaces
+<div>FastEthernet0/0 is up, line protocol is up
+<div>&nbsp; Hardware is DEC21140, address is ca00.0f08.0000 (bia ca00.0f08.0000)
+<div>&nbsp; Internet address is 137.1.1.1/27
+<div>&nbsp; MTU 1500 bytes, BW 100000 Kbit, DLY 100 usec,
+<div>&nbsp; &nbsp; &nbsp;reliability 255/255, txload 1/255, rxload 1/255
+<div>&nbsp; Encapsulation ARPA, loopback not set
+<div>&nbsp; Keepalive set (10 sec)
+<div>&nbsp; Half-duplex, 100Mb/s, 100BaseTX/FX
+<div>&nbsp; ARP type: ARPA, ARP Timeout 04:00:00
+<div>&nbsp; Last input never, output 00:00:09, output hang never
+<div>&nbsp; Last clearing of &quot;show interface&quot; counters never
+<div>&nbsp; Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+<div>&nbsp; Queueing strategy: fifo
+<div>&nbsp; Output queue :0/40 (size/max)
+<div>&nbsp; 5 minute input rate 0 bits/sec, 0 packets/sec
+<div>&nbsp; 5 minute output rate 0 bits/sec, 0 packets/sec
+<div>.....
+<div>其实我们可能仅仅关注某部分的信息，比如通常会关心所有的端口是不是工作在全双工的模式下，也就是Half-duplex, 100Mb/s, 100BaseTX/FX这部分的内容，那么我们加个过滤条件看一下：
+<div>R1#show interfaces | include duplex
+<div>&nbsp; Half-duplex, 100Mb/s, 100BaseTX/FX
+<div>&nbsp; Half-duplex, 100Mb/s, 100BaseTX/FX
+<div>这样简洁多了吧，可是不够完美，发现了半双工，但是不知道是哪个端口怎么办，我们在扩展下这个输出过滤：
+<div>R1#show interfaces | include duplex|Ethernet
+<div>FastEthernet0/0 is up, line protocol is up
+<div>&nbsp; Half-duplex, 100Mb/s, 100BaseTX/FX
+<div>FastEthernet3/0 is administratively down, line protocol is down
+<div>&nbsp; Half-duplex, 100Mb/s, 100BaseTX/FX
+<div>恩，这下比较完美了。这里出现了两个管道符|，后面这个|不是对前面结果的再过滤，而是正则里面or的功能。
+<div>每次输入这么多是不是不爽，那就定义一个别名来简化吧：
+<div>R1#conf t
+<div>Enter configuration commands, one per line. &nbsp;End with CNTL/Z.
+<div>R1(config)#alias exec duplex show interfaces | include duplex
+<div>R1(config)#end
+<div>R1#duplex
+<div>&nbsp; Half-duplex, 100Mb/s, 100BaseTX/FX
+<div>&nbsp; Half-duplex, 100Mb/s, 100BaseTX/FX
+<div>&nbsp;
+<div>然后再看一个section的例子，有时我们会只关注路由器上关于路由协议的配置，一般都会用下面的命令show run | begin router
+<div>这样显示的不但包含路由配置还会有以后更多的配置，这时候就可以使用section过滤(注意不是所有的<a href="http://www.2cto.com/kf/yidong/iphone/" target="_blank" class="keylink">IOS</a>版本都支持section)
+<div>router1#show run | section router
+<div>hostname router1
+<div>router ospf 100
+<div>log-adjacency-changes
+<div>network 0.0.0.0 255.255.255.255 area 0
+<div>唉，还是不够完美，把配置路由器名字的命令也显示出来了，只好再修改一下了：
+<div>router1#sh run | section ^router
+<div>router ospf 100
+<div>log-adjacency-changes
+<div>network 0.0.0.0 255.255.255.255 area 0
+<div>这下就比较完美了。^router 就是代表以router打头的行了，这样就把hostname router1给排出再外了。
+<div>&nbsp;
+<div>最后再来一个比较复杂点的输出过滤。在OSPF中show ip ospf neighbor不能够显示出邻居的area，只能通过show ip ospf neighbor detail命令，
+<div>Neoshi#show ip ospf neighbor detail
+<div>Neighbor 172.16.0.21, interface address 172.16.1.2
+<div>&nbsp; &nbsp; In the area 0 via interface Serial0/0/0.100
+<div>&nbsp; &nbsp; Neighbor priority is 0, State is FULL, 6 state changes
+<div>&nbsp; &nbsp; DR is 0.0.0.0 BDR is 0.0.0.0
+<div>&nbsp; &nbsp; Options is 0x52
+<div>&nbsp; &nbsp; LLS Options is 0x1 (LR)
+<div>&nbsp; &nbsp; Dead timer due in 00:00:37
+<div>&nbsp; &nbsp; Neighbor is up for 00:39:02
+<div>&nbsp; &nbsp; Index 1/1, retransmission queue length 0, number of retransmission 1
+<div>&nbsp; &nbsp; First 0x0(0)/0x0(0) Next 0x0(0)/0x0(0)
+<div>&nbsp; &nbsp; Last retransmission scan length is 1, maximum is 1
+<div>&nbsp; &nbsp; Last retransmission scan time is 0 msec, maximum is 0 msec
+<div>输出信息很多，而实际上最有用的就是前三行的输出。
+<div>Neoshi#show ip ospf neighbor detail | include (Neighbor.*(interface|priority))|area
+<div>Neighbor 172.16.0.21, interface address 172.16.1.2
+<div>&nbsp; &nbsp; In the area 0 via interface Serial0/0/0.100
+<div>&nbsp; &nbsp; Neighbor priority is 0, State is FULL, 6 state changes
+<div>Neighbor 172.16.0.12, interface address 10.0.0.6
+<div>&nbsp; &nbsp; In the area 0 via interface FastEthernet0/0
+<div>&nbsp; &nbsp; Neighbor priority is 1, State is FULL, 6 state changes
+<div>这个正则稍微复杂点，不过输出还是达到了预定目标。
+<div>&nbsp;
+<div>上面只是对命令输出过滤的一些总结，除了过滤器的选择外最重要的就是正则表达式的编写了，关于正则有专门的书我就不多说了。其实更进一步还可以对输出进行重新的排版，从而使输出变的更简洁，更有效，不过这就要用到TCL脚本。下面是一个学别人配置的别名为ipconfig的脚本输出示例，有兴趣的大家可以研究一下。
+<div>R1#ifconfig
+<div>Interface &nbsp; &nbsp; &nbsp; &nbsp; IP Address &nbsp; &nbsp; &nbsp;Mask &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;MTU &nbsp;State
+<div>=================================================================
+<div>FastEthernet0/0 &nbsp; 172.18.25.1 &nbsp; &nbsp; 255.255.255.0 &nbsp; 1500 up
+<div>FastEthernet0/1 &nbsp; no address &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; admin down
+<div>Serial0/0/0 &nbsp; &nbsp; &nbsp; no address &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; up
+<div>Serial0/0/0.101 &nbsp; 192.168.201.2 &nbsp; 255.255.255.252 1500 up
+<div>Serial0/1/0 &nbsp; &nbsp; &nbsp; no address &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; up/down
+<div>&nbsp;
+						</dd></dl>
+		<script type="text/javascript">
+		<!--
+		$(function(){
+		  $('#Article img').LoadImage(true, 630, 560,'http://statics.2cto.com/images/s_nopic.gif');
+			$('#Article img').on('click',function(){
+				window.open($(this).attr('src'));
+			});
+		})
+		
+		//-->
+		</script>
+	<div id="pages" class="box_body" id="fontzoom">	</div>
+<dl class="cont_ibox">
+		<dd><!-- 2cto_左二 -->
+		<script type="text/javascript">cto_A_D("2cto_5");</script>
+</dd>
+	</dl>
+	<dl class="box_Nsc">
+		<dd class="lcopy"><a class="ckcopy" onclick="copyToClipBoard()">点击复制链接 与好友分享!</a><a class="ckhome" href="/">回本站首页</a></dd>
+		<script> 
+			function copyToClipBoard(){ 
+				var clipBoardContent=document.title + '\r\n' + document.location; 
+				clipBoardContent+='\r\n'; 
+				window.clipboardData.setData("Text",clipBoardContent); 
+				alert("恭喜您！复制成功"); 
+			} 
+		</script>
+		<div class="Article-Tool">
+
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+                                
+	  </div>
+
+		
+		</dd>
+		 
+	</dl>
+	<div class="more_tags"><span>相关TAG标签</span>
+																		<a href="http://www.2cto.com/tag/guandao.html"  target="_blank"> 管道</a>
+								 		         															<a href="http://www.2cto.com/tag/fuhao.html"  target="_blank"> 符号</a>
+								 		             </div>
+	<dl class="box_NPre">
+		<dd class="TLineX"><strong>上一篇：</strong><a href="/net/201307/225014.html">静态NAT、动态NAT、PAT(端口多路复用)的配置</a></dd>
+		<dd></dd>
+		<dd><strong>下一篇：</strong><a href="/net/201307/225251.html">金蝶KIS客户端和服务器不在同一IP段互相访问</a></dd>
+	</dl>
+	
+	<dl class="linetb"></dl>
+
+	<dl class="about"><dd>相关文章</dd></dl>
+				<div class="more_tags" style="padding: 10px 20px 10px 20px;width: 95%;"><span style="background: url(http://statics.2cto.com/images/icons.png) 0 -240px no-repeat;">热门专题推荐</span>
+																														<a target="_blank" href="http://www.2cto.com/special/win7jh/"  target="_blank"> win7激活工具</a>
+													<a target="_blank" href="http://www.2cto.com/special/vmware/"  target="_blank"> vmware</a>
+													<a target="_blank" href="http://www.2cto.com/special/win10jh/"  target="_blank"> win10激活工具</a>
+													<a target="_blank" href="http://www.2cto.com/special/upanzhizuogongju/"  target="_blank"> u盘启动工具</a>
+													<a target="_blank" href="http://www.2cto.com/special/ucliulangqi/"  target="_blank"> uc浏览器</a>
+													<a target="_blank" href="http://www.2cto.com/special/shujuhuifu/"  target="_blank"> 数据恢复</a>
+													<a target="_blank" href="http://www.2cto.com/special/xiaomajihuogongju/"  target="_blank"> 小马激活工具</a>
+													<a target="_blank" href="http://www.2cto.com/special/word/"  target="_blank"> word</a>
+													<a target="_blank" href="http://www.2cto.com/special/excel/"  target="_blank"> excel</a>
+													<a target="_blank" href="http://www.2cto.com/special/office/"  target="_blank"> office激活</a>
+										 				 				 	
+    </div>
+	<dl class="linetb"></dl>
+	<dl class="cont_ibox h60">
+		<dd><!-- 2cto_左三 -->
+		<script type="text/javascript">cto_A_D("2cto_13");</script>
+		</dd>
+	</dl>
+
+	
+	<dl class="linetb"></dl>
+	<dl class="about"><dd>图文推荐</dd></dl>
+	<div class="picbox">
+						<dl class="wbox">
+			<dd class="npicbox"><a target="_blank" class="imgbox" href="/net/201707/657965.html"><img src='http://www.2cto.com/uploadfile/Collfiles/20170715/2017071509483358.png' /></a></dd>
+			<dd class="npictext"><a target="_blank" href="/net/201707/657965.html">CentOS6.3下配置iSCS</a></dd>
+		</dl>
+				<dl class="wbox">
+			<dd class="npicbox"><a target="_blank" class="imgbox" href="/net/201707/657766.html"><img src='http://www.2cto.com/uploadfile/Collfiles/20170715/201707150948233.png' /></a></dd>
+			<dd class="npictext"><a target="_blank" href="/net/201707/657766.html">HTTP、TCP、UDP，Soc</a></dd>
+		</dl>
+				<dl class="wbox">
+			<dd class="npicbox"><a target="_blank" class="imgbox" href="/net/201707/656403.html"><img src='http://www.2cto.com/uploadfile/Collfiles/20170710/20170710092727438.png' /></a></dd>
+			<dd class="npictext"><a target="_blank" href="/net/201707/656403.html">Java 9 HTTP2的支持</a></dd>
+		</dl>
+				<dl class="wbox">
+			<dd class="npicbox"><a target="_blank" class="imgbox" href="/net/201707/655651.html"><img src='http://www.2cto.com/uploadfile/2017/0711/20170711111146307.png' /></a></dd>
+			<dd class="npictext"><a target="_blank" href="/net/201707/655651.html">路由协议概述（2）</a></dd>
+		</dl>
+				        <div class="clear"></div>
+	</div>
+<dl class="cont_ibox">
+		<dd><!-- 2cto_左四 -->
+		<script type="text/javascript">cto_A_D("2cto_4");</script>
+</dd>
+	</dl>
+<!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS"></div>
+<script>
+  (function(){
+    var appid = 'cyrBEfE7C',
+    conf = 'prod_830794cf494da8b808afb2994cfe0fee';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+    window.SCS_NO_IFRAME = true;
+  })()
+</script> 
+
+	</div>
+	<div class="box_right">
+		<div class="side-ibox h250">
+            <!-- 2cto_右一 -->
+            <script type="text/javascript">cto_A_D("2cto_6");</script>
+        </div>
+		<div class="box_right_line"><div class="xline"></div></div>
+            <div class="box_right_box">
+                <dl class="bTitle">
+                    <dd onmousemove="m_tabs(1)" id="ArticlesW" class="tablinkschecked">文章</dd>
+                    <dd onmousemove="m_tabs(3)" id="BookW" class="tablinkscheck">推荐</dd>
+                </dl>
+            </div>
+            <div class="box_right_box">
+                <div class="paddingbox">
+                    <dl class="index" id="Articles">
+                        <dd class="picline"></dd>
+                                                                        <dd class="list">·&nbsp;<a target="_blank" href="/qq/201107/96877.html">QQ空间个性发光字互踩留言代码</a></dd>
+                                                <dd class="list">·&nbsp;<a target="_blank" href="/qq/201307/228969.html">太阳当空照、花儿对我笑</a></dd>
+                                                <dd class="list">·&nbsp;<a target="_blank" href="/qq/201307/228966.html">小笨蛋、听到没、你只能属于我</a></dd>
+                                                <dd class="list">·&nbsp;<a target="_blank" href="/qq/201307/228965.html">如果可以，我的未来一起给你</a></dd>
+                                                <dd class="list">·&nbsp;<a target="_blank" href="/qq/201307/228970.html">打劫！！！既劫财更劫色！！！</a></dd>
+                                                <dd class="list">·&nbsp;<a target="_blank" href="/qq/201307/228968.html">也许、我不懂爱-可是、我真的爱你</a></dd>
+                                                <dd class="list">·&nbsp;<a target="_blank" href="/qq/201307/228967.html">亲爱的、我只在乎你一个！</a></dd>
+                                                <dd class="list">·&nbsp;<a target="_blank" href="/qq/201307/228340.html">老师说过：世上没有后悔药，只有老鼠药</a></dd>
+                                                                    </dl>
+                    <dl class="index" id="Book" style="display:none">
+                        <dd class="picline"></dd>
+                                                                        <dd class="list">·&nbsp;<a target="_blank" href="/special/win7jh/">win7激活工具</a></dd>
+                                                <dd class="list">·&nbsp;<a target="_blank" href="/os/201607/522176.html">win10激活工具</a></dd>
+                                                <dd class="list">·&nbsp;<a target="_blank" href="/special/win7jihuogongju/">win7激活工具旗舰版</a></dd>
+                                                <dd class="list">·&nbsp;<a target="_blank" href="/os/201602/489186.html">office2010激活密钥</a></dd>
+                                                <dd class="list">·&nbsp;<a target="_blank" href="/os/201601/456235.html">windows7激活密钥</a></dd>
+                                                <dd class="list">·&nbsp;<a target="_blank" href="/os/201601/488006.html">office2010激活工具</a></dd>
+                                                <dd class="list">·&nbsp;<a target="_blank" href="/os/201601/456247.html">小马激活工具</a></dd>
+                                                <dd class="list">·&nbsp;<a target="_blank" href="/os/201607/524552.html">win10激活工具</a></dd>
+                                                                    </dl>
+                </div>
+            </div>
+			<script type="text/javascript">
+			<!--
+				function m_tab(index)
+				{
+					if (index == 1){
+						document.getElementById("indexW").className = "tablinkschecked";
+						document.getElementById("hotW").className = "tablinkscheck";
+						document.getElementById("index").style.display = "block";
+						document.getElementById("hot").style.display = "none";
+					}
+					else{
+						document.getElementById("hotW").className = "tablinkschecked";
+						document.getElementById("indexW").className = "tablinkscheck";
+						document.getElementById("index").style.display = "none";
+						document.getElementById("hot").style.display = "block";
+					}
+				}
+			//-->
+			</script>
+		<div class="rightlineT"><div class="rxline"></div></div>
+		<div class="side-ibox h250">
+		<!-- 2cto_右二 -->
+		<script type="text/javascript">cto_A_D("2cto_7");</script>
+		</div>
+
+		<div class="rightlineNo"></div>
+		<div class="box_right_box">
+			<dl class="bTitle hot">
+				<dd onmousemove="m_tabs(1)" id="ArticlesW" class="tablinkschecked">热门新闻</dd>
+			</dl>
+		</div>
+		<div class="box_right_box">
+			<div class="paddingbox">
+				<dl class="index" id="Articles">
+					<dd class="picline"></dd>
+															<dd class="list">·&nbsp;<a target="_blank" href="/net/201310/252965.html">OSI七层与TCP/IP五层网络架构详解</a></dd>
+										<dd class="list">·&nbsp;<a target="_blank" href="/net/201310/251896.html">TCP/IP协议三次握手与四次握手流程解析</a></dd>
+										<dd class="list">·&nbsp;<a target="_blank" href="/net/201307/232200.html">OSI七层模型基础知识及各层常见应用</a></dd>
+										<dd class="list">·&nbsp;<a target="_blank" href="/net/201307/230792.html">LACP学习笔记</a></dd>
+										<dd class="list">·&nbsp;<a target="_blank" href="/net/201211/166537.html">http、TCP/IP协议与socket之间的区别</a></dd>
+										<dd class="list">·&nbsp;<a target="_blank" href="/net/201208/149347.html">TCP协议详解（理论篇）</a></dd>
+										<dd class="list">·&nbsp;<a target="_blank" href="/net/201309/243585.html">深入浅出TCP之半关闭与CLOSE_WAIT</a></dd>
+										<dd class="list">·&nbsp;<a target="_blank" href="/net/201203/124685.html">OSPF协议的工作原理</a></dd>
+														</dl>
+			</div>
+		</div>
+        <div class="rightlineT"><div class="rxline"></div></div>
+		<div class="side-ibox h250">
+            <!-- 2cto_右三 -->
+            <script type="text/javascript">cto_A_D("2cto_14");</script>
+        </div>
+		<div class="box_right_line"><div class="xline"></div></div>
+		<script type="text/javascript">
+			<!--
+				function m_tabs(index)
+				{
+					if (index == 1){
+						document.getElementById("ArticlesW").className = "tablinkschecked";
+						document.getElementById("BookW").className = "tablinkscheck";
+						document.getElementById("Articles").style.display = "block";
+						document.getElementById("Book").style.display = "none";
+					}
+					else if (index == 2){
+						document.getElementById("ArticlesW").className = "tablinkscheck";
+						document.getElementById("BookW").className = "tablinkscheck";
+						document.getElementById("Articles").style.display = "none";
+						document.getElementById("Book").style.display = "none";
+					}
+					else{
+						document.getElementById("ArticlesW").className = "tablinkscheck";
+						document.getElementById("BookW").className = "tablinkschecked";
+						document.getElementById("Articles").style.display = "none";
+						document.getElementById("Book").style.display = "block";
+					}
+				}
+			//-->
+			</script>
+			<div class="box_right_box">
+                <div class="paddingbox">
+                    <dl class="index" id="Articles">
+                        <dd class="picline"></dd>
+                        <dd>
+    <!-- 代码1：放在页面需要展示的位置  -->
+    <!-- 如果您配置过sourceid，建议在div标签中配置sourceid、cid(分类id)，没有请忽略  -->
+    <div id="cyHotnews" role="cylabs" data-use="hotnews"></div>
+    <!-- 代码2：用来读取评论框配置，此代码需放置在代码1之后。 -->
+    <!-- 如果当前页面有评论框，代码2请勿放置在评论框代码之前。 -->
+    <!-- 如果页面同时使用多个实验室项目，以下代码只需要引入一次，只配置上面的div标签即可 -->
+    <script type="text/javascript" charset="utf-8" src="http://changyan.itc.cn/js/??lib/jquery.js,changyan.labs.js?appid=cyrBEfE7C"></script>					 
+    					</dd>
+                    </dl>
+                </div>
+			</div><!--box_right_box end-->
+			<div class="box_right_line"></div>
+		<div class="side-ibox h250">
+            <!-- 2cto_右四 -->
+            <script type="text/javascript">cto_A_D("2cto_8");</script>			
+		</div>
+		<div class="box_right_line"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+function showLogin(){
+	window.art.dialog({id:'Login',iframe:'/index.php?m=member&c=index&a=login&tupe=mini', title:'快捷登陆', width:'450', height:'310', lock:true}, function(){var d = window.art.dialog({id:'Login'}).data.iframe;var form = d.document.getElementById('dosubmit');form.click();return false;}, function(){window.art.dialog({id:'Login'}).close()});void(0);
+}
+function add_favorite(title) {
+		$.getJSON('http://www.2cto.com/api.php?op=add_favorite&title='+encodeURIComponent(title)+'&url='+encodeURIComponent(location.href)+'&'+Math.random()+'&callback=?', function(data){
+			if(data.status==1)	{
+				$("#favorite").html('收藏成功');
+			} else {
+				alert('请登陆');
+				window.location.href='http://home.2cto.com/?forward='+encodeURIComponent(location.href);
+			}
+		});
+	}
+//-->
+</script>
+<script language="JavaScript" src="http://www.2cto.com/api.php?op=count&id=225017&modelid=1"></script>
+
+
+<div class="ibox p8">
+<!-- 2cto_通栏2 -->
+<script type="text/javascript">cto_A_D("2cto_2");</script>
+</div>
+<div class="ibox p8">
+<!-- 2cto_通栏3 -->
+<a target="_blank" href="http://vip.2cto.com"><img src="/adv/980-80.gif"  width="980" height="80" class="style2" /></a>
+</div>
+<span style="display:none"><script type="text/javascript" src="http://statics.2cto.com/js/baidu_js_push.js"></script></span>
+<div class="foot">
+<p>
+<a href="/about">关于我们</a> |
+<a href="/about/contact.html">联系我们</a> |
+<a href="/about/ads.html">广告服务</a> |
+<a href="/about/touzi.html">投资合作</a> |
+<a href="/about/Copyright.html">版权申明</a> |
+<a href="/about/faq.html">在线帮助</a> |
+<a href="/about/map.html">网站地图</a> |
+<a href="/about/tg.html">作品发布</a> |
+<a target="_blank" href="http://vip.2cto.com/"><span class="c-red">Vip技术培训</span></a>
+<br />
+<span class="style4">版权所有: <a href="/" >红黑联盟</a>--致力于做实用的IT技术学习网站<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258398875'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "w.cnzz.com/c.php%3Fid%3D1258398875' type='text/javascript'%3E%3C/script%3E"));</script><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260439972'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "w.cnzz.com/c.php%3Fid%3D1260439972' type='text/javascript'%3E%3C/script%3E"));</script> 
+</span>
+<span style="display:none;"><script type="text/javascript" src="http://statics.2cto.com/js/tj.js"></script></span>
+<script type="text/javascript">usertongji("有一个清晨")</script>
+<!-- 2cto_图加 -->
+<script type="text/javascript">cto_A_D("2cto_10");</script>
+<!-- 2cto_视窗 -->
+<script type="text/javascript">cto_A_D("2cto_11");</script>
+<!-- 2cto_对联 -->
+<script type="text/javascript">cto_A_D("2cto_12");</script>
+</div></body>
+
+</html>

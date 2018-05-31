@@ -1,0 +1,1145 @@
+R1！！e0/1！！e0/0！！R7
+R1！！e0/2！！e0/0！！R8
+R8！！e0/1！！e0/0！！R9
+R1！！e0/0！！e0/2！！R2
+R2！！e0/0！！e0/1！！R3
+R2！！e0/1！！e0/1！！R4
+R3！！e0/0！！e0/0！！R5
+R4！！e0/0！！e0/0！！R6
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+ip vrf ICBC_REC
+ rd 1:1
+ route-target import 100:3
+ route-target import 100:4
+!
+ip vrf ICBC_SEND
+ rd 2:2
+ route-target export 100:100
+!
+mpls label range 100 199
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.0
+ ip router isis cisco
+!
+interface Ethernet0/0
+ ip address 12.12.12.1 255.255.255.0
+ ip router isis cisco
+ half-duplex
+ mpls ip
+!
+interface Ethernet0/0.30
+ encapsulation dot1Q 30
+!
+interface Ethernet0/1
+ no ip address
+ half-duplex
+!
+interface Ethernet0/1.10
+ encapsulation dot1Q 10
+ ip vrf forwarding ICBC_REC
+ ip address 10.10.10.1 255.255.255.0
+!
+interface Ethernet0/1.20
+ encapsulation dot1Q 20
+ ip vrf forwarding ICBC_SEND
+ ip address 20.20.20.1 255.255.255.0
+!
+interface Ethernet0/1.30
+ encapsulation dot1Q 30
+ ip address 30.30.30.1 255.255.255.0
+!
+interface Ethernet0/2
+ ip address 18.18.18.1 255.255.255.0
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+router isis cisco
+ net 49.0000.0000.0000.0001.00
+!
+router bgp 1
+ no synchronization
+ bgp log-neighbor-changes
+ network 30.30.30.0 mask 255.255.255.0
+ neighbor 2.2.2.2 remote-as 1
+ neighbor 2.2.2.2 update-source Loopback0
+ neighbor 18.18.18.8 remote-as 2
+ neighbor 18.18.18.8 route-map OUT out
+ neighbor 30.30.30.7 remote-as 567
+ no auto-summary
+ !
+ address-family vpnv4
+  neighbor 2.2.2.2 activate
+  neighbor 2.2.2.2 send-community extended
+ exit-address-family
+ !
+ address-family ipv4 vrf ICBC_SEND
+  neighbor 20.20.20.7 remote-as 567
+  neighbor 20.20.20.7 activate
+  neighbor 20.20.20.7 allowas-in 1
+  no synchronization
+ exit-address-family
+ !
+ address-family ipv4 vrf ICBC_REC
+  neighbor 10.10.10.7 remote-as 567
+  neighbor 10.10.10.7 activate
+  no synchronization
+ exit-address-family
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+ip prefix-list OUT seq 5 permit 30.30.30.0/24
+!
+route-map OUT permit 10
+ match ip address prefix-list OUT
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+mpls label range 200 299
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 2.2.2.2 255.255.255.0
+ ip router isis cisco
+!
+interface Ethernet0/0
+ ip address 23.23.23.2 255.255.255.0
+ ip router isis cisco
+ half-duplex
+ mpls ip
+!
+interface Ethernet0/1
+ ip address 24.24.24.2 255.255.255.0
+ ip router isis cisco
+ half-duplex
+ mpls ip
+!
+interface Ethernet0/2
+ ip address 12.12.12.2 255.255.255.0
+ ip router isis cisco
+ half-duplex
+ mpls ip
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+router isis cisco
+ net 49.0000.0000.0000.0002.00
+!
+router bgp 1
+ no synchronization
+ bgp log-neighbor-changes
+ neighbor 1.1.1.1 remote-as 1
+ neighbor 1.1.1.1 update-source Loopback0
+ neighbor 3.3.3.3 remote-as 1
+ neighbor 3.3.3.3 update-source Loopback0
+ neighbor 4.4.4.4 remote-as 1
+ neighbor 4.4.4.4 update-source Loopback0
+ no auto-summary
+ !
+ address-family vpnv4
+  neighbor 1.1.1.1 activate
+  neighbor 1.1.1.1 send-community extended
+  neighbor 1.1.1.1 route-reflector-client
+  neighbor 3.3.3.3 activate
+  neighbor 3.3.3.3 send-community extended
+  neighbor 3.3.3.3 route-reflector-client
+  neighbor 4.4.4.4 activate
+  neighbor 4.4.4.4 send-community extended
+  neighbor 4.4.4.4 route-reflector-client
+ exit-address-family
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R3
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+ip vrf ICBC
+ rd 1:1
+ route-target export 100:3
+ route-target import 100:100
+!
+mpls label range 300 399
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 3.3.3.3 255.255.255.0
+ ip router isis cisco
+!
+interface Ethernet0/0
+ ip vrf forwarding ICBC
+ ip address 35.35.35.3 255.255.255.0
+ half-duplex
+!
+interface Ethernet0/1
+ ip address 23.23.23.3 255.255.255.0
+ ip router isis cisco
+ half-duplex
+ mpls ip
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+router isis cisco
+ net 49.0000.0000.0000.0003.00
+!
+router bgp 1
+ no synchronization
+ bgp log-neighbor-changes
+ neighbor 2.2.2.2 remote-as 1
+ neighbor 2.2.2.2 update-source Loopback0
+ no auto-summary
+ !
+ address-family vpnv4
+  neighbor 2.2.2.2 activate
+  neighbor 2.2.2.2 send-community extended
+ exit-address-family
+ !
+ address-family ipv4 vrf ICBC
+  neighbor 35.35.35.5 remote-as 567
+  neighbor 35.35.35.5 activate
+  no synchronization
+ exit-address-family
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R4
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+ip vrf ICBC
+ rd 1:1
+ route-target export 100:4
+ route-target import 100:100
+!
+mpls label range 400 499
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 4.4.4.4 255.255.255.0
+ ip router isis cisco
+!
+interface Ethernet0/0
+ ip vrf forwarding ICBC
+ ip address 46.46.46.4 255.255.255.0
+ half-duplex
+!
+interface Ethernet0/1
+ ip address 24.24.24.4 255.255.255.0
+ ip router isis cisco
+ half-duplex
+ mpls ip
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+router isis cisco
+ net 49.0000.0000.0000.0004.00
+!
+router bgp 1
+ no synchronization
+ bgp log-neighbor-changes
+ neighbor 2.2.2.2 remote-as 1
+ neighbor 2.2.2.2 update-source Loopback0
+ no auto-summary
+ !
+ address-family vpnv4
+  neighbor 2.2.2.2 activate
+  neighbor 2.2.2.2 send-community extended
+ exit-address-family
+ !
+ address-family ipv4 vrf ICBC
+  neighbor 46.46.46.6 remote-as 567
+  neighbor 46.46.46.6 activate
+  no synchronization
+ exit-address-family
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R5
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.2.2.5 255.255.255.0
+!
+interface Ethernet0/0
+ ip address 35.35.35.5 255.255.255.0
+ half-duplex
+!
+interface Ethernet0/1
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+router bgp 567
+ no synchronization
+ bgp log-neighbor-changes
+ network 10.2.2.0 mask 255.255.255.0
+ neighbor 35.35.35.3 remote-as 1
+ neighbor 35.35.35.3 allowas-in 2
+ no auto-summary
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R6
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.3.3.6 255.255.255.0
+!
+interface Ethernet0/0
+ ip address 46.46.46.6 255.255.255.0
+ half-duplex
+!
+interface Ethernet0/1
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+router bgp 567
+ no synchronization
+ bgp log-neighbor-changes
+ network 10.3.3.0 mask 255.255.255.0
+ neighbor 46.46.46.4 remote-as 1
+ neighbor 46.46.46.4 allowas-in 2
+ no auto-summary
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R7
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.1.1.7 255.255.255.0
+ ip nat inside
+ ip virtual-reassembly
+!
+interface Ethernet0/0
+ no ip address
+ half-duplex
+!
+interface Ethernet0/0.10
+ encapsulation dot1Q 10
+ ip address 10.10.10.7 255.255.255.0
+ ip nat inside
+ ip virtual-reassembly
+!
+interface Ethernet0/0.20
+ encapsulation dot1Q 20
+ ip address 20.20.20.7 255.255.255.0
+ ip nat inside
+ ip virtual-reassembly
+!
+interface Ethernet0/0.30
+ encapsulation dot1Q 30
+ ip address 30.30.30.7 255.255.255.0
+ ip nat outside
+ ip virtual-reassembly
+!
+interface Ethernet0/1
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+router bgp 567
+ no synchronization
+ bgp log-neighbor-changes
+ network 10.1.1.0 mask 255.255.255.0
+ neighbor 10.10.10.1 remote-as 1
+ neighbor 10.10.10.1 allowas-in 1
+ neighbor 20.20.20.1 remote-as 1
+ neighbor 30.30.30.1 remote-as 1
+ no auto-summary
+!
+no ip http server
+no ip http secure-server
+!
+!
+ip nat inside source list 1 interface Ethernet0/0.30 overload
+!
+access-list 1 permit 10.0.0.0 0.255.255.255
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R8
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 8.8.8.8 255.255.255.0
+!
+interface Ethernet0/0
+ ip address 18.18.18.8 255.255.255.0
+ half-duplex
+!
+interface Ethernet0/1
+ ip address 89.89.89.8 255.255.255.0
+ half-duplex
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+router bgp 2
+ no synchronization
+ bgp log-neighbor-changes
+ neighbor 18.18.18.1 remote-as 1
+ neighbor 89.89.89.9 remote-as 2
+ neighbor 89.89.89.9 next-hop-self
+ no auto-summary
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R9
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+interface Loopback0
+ ip address 9.9.9.9 255.255.255.0
+!
+interface Ethernet0/0
+ ip address 89.89.89.9 255.255.255.0
+ half-duplex
+!
+interface Ethernet0/1
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ half-duplex
+!
+router bgp 2
+ no synchronization
+ bgp log-neighbor-changes
+ network 9.9.9.0 mask 255.255.255.0
+ neighbor 89.89.89.8 remote-as 2
+ no auto-summary
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW

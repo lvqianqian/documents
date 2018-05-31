@@ -1,0 +1,83 @@
+enable
+conf t
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+ip cef
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!         
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 202.194.161.66 255.255.255.192
+ speed 100
+ full-duplex
+ no shutdown
+!
+interface FastEthernet0/1
+ ip address 202.194.161.1 255.255.255.192
+ speed 100
+ duplex full
+ no shutdown
+!
+interface Serial1/0
+ ip address 202.194.162.1 255.255.255.252
+ serial restart-delay 0
+ clock rate 64000
+ no shutdown
+!
+interface Serial1/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+ip route 202.194.161.128 255.255.255.128 202.194.161.65
+ip route 0.0.0.0 0.0.0.0 202.194.162.2
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+!
+!
+end

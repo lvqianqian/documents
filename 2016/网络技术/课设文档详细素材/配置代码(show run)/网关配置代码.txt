@@ -1,0 +1,131 @@
+!
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+ip tcp synwait-time 5
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 202.194.161.66 255.255.255.192
+ ip ospf 1 area 0
+ duplex auto
+ speed 100
+!
+interface FastEthernet0/0.1
+!
+interface FastEthernet0/0.5
+ encapsulation dot1Q 5
+ ip address 202.194.161.130 255.255.255.192
+ ip ospf 1 area 0
+!
+interface FastEthernet0/0.11
+ encapsulation dot1Q 11
+ ip address 202.194.161.194 255.255.255.192
+ ip ospf 1 area 0
+!
+interface Serial1/0
+ ip address 202.194.162.1 255.255.255.252
+ ip ospf 1 area 0
+ serial restart-delay 0
+ clock rate 64000
+!
+interface Serial1/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface FastEthernet2/0
+ ip address 202.194.161.1 255.255.255.192
+ ip ospf 1 area 0
+ duplex auto
+ speed auto
+!
+interface FastEthernet3/0
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+router ospf 1
+ router-id 1.1.1.1
+ log-adjacency-changes
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end

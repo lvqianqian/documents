@@ -1,0 +1,42 @@
+enable
+conf t
+hostname PC1
+!
+!
+!
+!
+!
+!
+memory-size iomem 15
+ip subnet-zero
+no ip domain-lookup
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 202.194.161.130 255.255.255.192
+ speed 100
+ full-duplex
+ no shutdown
+!
+interface FastEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 202.194.161.129
+no ip http server
+!
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ transport input none
+line aux 0
+line vty 0 4
+ login
+!
+end       

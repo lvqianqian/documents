@@ -1,0 +1,147 @@
+﻿R2#sh run
+Building configuration...
+
+Current configuration : 1901 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+ip vrf a
+ rd 1:1   
+ route-target export 20:20
+ route-target import 20:20
+!
+ip vrf forwarding
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+!         
+!
+!
+!
+interface Loopback0
+ ip address 2.2.2.2 255.255.255.255
+!
+interface Tunnel0
+ ip address 101.1.1.2 255.255.255.0
+ tunnel source 26.1.1.2
+ tunnel destination 26.1.1.6
+ tunnel vrf a
+!
+interface Serial0/0
+ ip vrf forwarding a
+ ip address 26.1.1.2 255.255.255.0
+ serial restart-delay 0
+!
+interface Serial0/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial0/2
+ ip address 24.1.1.2 255.255.255.0
+ mpls ip
+ serial restart-delay 0
+!
+interface Serial0/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+router ospf 2 vrf a
+ router-id 2.2.2.22
+ log-adjacency-changes
+ redistribute bgp 100 subnets
+ network 26.1.1.0 0.0.0.255 area 0
+ default-information originate
+!
+router ospf 1
+ router-id 2.2.2.2
+ log-adjacency-changes
+ network 2.2.2.2 0.0.0.0 area 0
+ network 24.1.1.0 0.0.0.255 area 0
+!
+router bgp 100
+ bgp router-id 2.2.2.2
+ no bgp default ipv4-unicast
+ bgp log-neighbor-changes
+ neighbor 4.4.4.4 remote-as 100
+ neighbor 4.4.4.4 update-source Loopback0
+ !
+ address-family ipv4
+  neighbor 4.4.4.4 activate
+  no auto-summary
+  no synchronization
+  network 101.1.1.0 mask 255.255.255.0
+ exit-address-family
+ !
+ address-family vpnv4
+  neighbor 4.4.4.4 activate
+  neighbor 4.4.4.4 send-community extended
+ exit-address-family
+ !
+ address-family ipv4 vrf a
+  redistribute ospf 2 vrf a
+  no synchronization
+ exit-address-family
+!         
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+!
+!
+end
+

@@ -1,0 +1,167 @@
+autostart = False
+version = 0.8.6
+[127.0.0.1:7200]
+    workingdir = /tmp
+    udp = 10001
+    [[3640]]
+        image = /Users/jim001/Desktop/ios/unzip-c3640-ik9o3s-mz.124-10.bin
+        idlepc = 0x605c8904
+        sparsemem = True
+        ghostios = True
+        chassis = 3640
+    [[ETHSW SW1]]
+        1 = access 1 R1 e0/3
+        x = -635.5
+        y = -98.0
+        z = 1.0
+        hx = 4.6796875
+        hy = -21.0
+    [[ROUTER R1]]
+        model = 3640
+        console = 2101
+        aux = 2501
+        cnfg = configs/R1.cfg
+        slot0 = NM-4E
+        e0/0 = R2 e0/0
+        e0/1 = R3 e0/1
+        e0/3 = SW1 1
+        x = -438.0
+        y = -107.0
+        z = 1.0
+    [[ROUTER R2]]
+        model = 3640
+        console = 2102
+        aux = 2502
+        cnfg = configs/R2.cfg
+        slot0 = NM-4E
+        e0/0 = R1 e0/0
+        e0/1 = NIO_udp:30000:127.0.0.1:20000
+        e0/2 = NIO_udp:30008:127.0.0.1:20008
+        symbol = multilayer_switch
+        x = -246.0
+        y = -40.0
+        z = 1.0
+    [[ROUTER R3]]
+        model = 3640
+        console = 2103
+        aux = 2503
+        cnfg = configs/R3.cfg
+        slot0 = NM-4E
+        e0/1 = R1 e0/1
+        symbol = cloud
+        x = -262.0
+        y = -274.0
+        z = 1.0
+        hx = 672.6171875
+        hy = 163.0
+[GNS3-DATA]
+    configs = configs
+    [[NOTE 1]]
+        text = "202.194.162.0/30"
+        x = -328.0
+        y = -137.0
+    [[NOTE 2]]
+        text = ".2"
+        x = -234.0
+        y = -205.0
+    [[NOTE 3]]
+        text = "192.168.2.0/24"
+        x = -342.0
+        y = -84.0
+    [[NOTE 4]]
+        text = "192.168.4.0/24"
+        x = -188.0
+        y = 27.0
+    [[NOTE 5]]
+        text = ".254"
+        x = -290.0
+        y = 80.0
+    [[NOTE 6]]
+        text = "192.168.1.0/24"
+        x = -542.0
+        y = -107.0
+    [[NOTE 7]]
+        text = "192.168.3.0/24"
+        x = -310.0
+        y = 23.0
+    [[NOTE 8]]
+        text = ".5"
+        x = -572.0
+        y = 33.0
+    [[NOTE 9]]
+        text = ".254"
+        x = -142.0
+        y = 79.0
+    [[NOTE 10]]
+        text = ".4"
+        x = -576.0
+        y = -215.0
+    [[NOTE 11]]
+        text = "INTERNET"
+        x = -211.0
+        y = -246.0
+    [[NOTE 12]]
+        text = "部门1"
+        x = -412.0
+        y = 102.0
+    [[NOTE 13]]
+        text = "部门2"
+        x = -7.0
+        y = 88.0
+    [[NOTE 14]]
+        text = "FTP服务器"
+        x = -649.0
+        y = -268.0
+    [[NOTE 15]]
+        text = "WEB服务器"
+        x = -629.0
+        y = 94.0
+    [[NOTE 16]]
+        text = "企业出口路由器"
+        x = -453.0
+        y = -54.0
+    [[NOTE 17]]
+        text = ".1"
+        x = -371.0
+        y = -132.0
+    [[Cloud C5]]
+        symbol = server
+        x = -629.5
+        y = 6.5
+        hx = 338.1171875
+        hy = 390.0
+        z = 1.0
+        connections = SW1:3:nio_udp:30008:127.0.0.1:20008
+    [[Cloud C4]]
+        symbol = server
+        x = -629.5
+        y = -237.5
+        hx = 618.1171875
+        hy = 709.0
+        z = 1.0
+        connections = SW1:2:nio_udp:30000:127.0.0.1:20000
+    [[Cloud C2]]
+        symbol = Host
+        x = -102.5
+        y = 58.5
+        z = 1.0
+        connections = R2:e0/2:NIO_udp:30008:127.0.0.1:20008
+    [[Cloud C1]]
+        symbol = Host
+        x = -356.5
+        y = 67.5
+        z = 1.0
+        connections = R2:e0/1:NIO_udp:30000:127.0.0.1:20000
+    [[SHAPE 1]]
+        type = rectangle
+        x = -741.0
+        y = -353.0
+        width = 798.0
+        height = 491.0
+    [[SHAPE 2]]
+        type = ellipse
+        x = -321.0
+        y = -329.0
+        width = 275.0
+        height = 200.0
+        border_style = 2

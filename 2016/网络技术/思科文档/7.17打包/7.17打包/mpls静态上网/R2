@@ -1,0 +1,168 @@
+﻿R2#?
+Exec commands:
+  access-enable    Create a temporary Access-List entry
+  access-profile   Apply user-profile to interface
+  access-template  Create a temporary Access-List entry
+  alps             ALPS exec commands
+  archive          manage archive files
+  audio-prompt     load ivr prompt
+  auto             Exec level Automation
+  bfe              For manual emergency modes setting
+  call             Voice call
+  ccm-manager      Call Manager Application exec commands
+  cd               Change current directory
+  clear            Reset functions
+  clock            Manage the system clock
+  cns              CNS agents
+  configure        Enter configuration mode
+  connect          Open a terminal connection
+  copy             Copy from one file to another
+  crypto           Encryption related commands.
+  ct-isdn          Run an ISDN component test command
+  debug            Debugging functions (see also 'undebug')
+  delete           Delete a file
+          
+R2#sh run
+R2#sh running-config 
+Building configuration...
+
+Current configuration : 1858 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+ip vrf a
+ rd 1:1   
+ route-target export 20:20
+ route-target import 20:20
+!
+ip vrf forwarding
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+!         
+!
+!
+!
+interface Loopback0
+ ip address 2.2.2.2 255.255.255.255
+!
+interface Serial0/0
+ ip vrf forwarding a
+ ip address 26.1.1.2 255.255.255.0
+ serial restart-delay 0
+!
+interface Serial0/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial0/2
+ ip address 24.1.1.2 255.255.255.0
+ mpls ip
+ serial restart-delay 0
+!
+interface Serial0/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+router ospf 2 vrf a
+ router-id 2.2.2.22
+ log-adjacency-changes
+ redistribute bgp 100 subnets
+ network 26.1.1.0 0.0.0.255 area 0
+ default-information originate always
+!
+router ospf 1
+ router-id 2.2.2.2
+ log-adjacency-changes
+ network 2.2.2.2 0.0.0.0 area 0
+ network 24.1.1.0 0.0.0.255 area 0
+!
+router bgp 100
+ bgp router-id 2.2.2.2
+ no bgp default ipv4-unicast
+ bgp log-neighbor-changes
+ neighbor 4.4.4.4 remote-as 100
+ neighbor 4.4.4.4 update-source Loopback0
+ !        
+ address-family ipv4
+  redistribute static
+  neighbor 4.4.4.4 activate
+  no auto-summary
+  no synchronization
+ exit-address-family
+ !
+ address-family vpnv4
+  neighbor 4.4.4.4 activate
+  neighbor 4.4.4.4 send-community extended
+ exit-address-family
+ !
+ address-family ipv4 vrf a
+  redistribute ospf 2 vrf a
+  no synchronization
+ exit-address-family
+!
+no ip http server
+no ip http secure-server
+ip route 26.1.1.6 255.255.255.255 Serial0/0
+ip route vrf a 0.0.0.0 0.0.0.0 3.3.3.3 global
+!
+!         
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+!
+!         
+end
+

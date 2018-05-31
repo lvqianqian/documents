@@ -1,0 +1,1274 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>  
+            <link rel="canonical" href="http://blog.csdn.net/cdnight/article/details/48468653"/> 
+
+   
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"> 
+       
+    <title>贝塞尔曲线扫盲 - 一名普通码农的菜地
+        - CSDN博客</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="贝塞尔曲线扫盲相信很多同学都知道“贝塞尔曲线”这个词，我们在很多地方都能经常看到。但是，可能并不是每位同学都清楚地知道，到底什么是“贝塞尔曲线”，又是什么特点让它有这么高的知名度。贝塞尔曲线的数学基础是早在 1912 年就广为人知的伯恩斯坦多项式。但直到 1959 年，当时就职于雪铁龙的法国数学家&#160;Paul de Casteljau&#160;才开始对它进行图形化应用的尝试，并提出了" />
+
+    <meta name="keywords" content="" />
+
+   
+    <script src="http://static.blog.csdn.net/scripts/blog_static_head.min.js" type="text/javascript"></script>
+
+    
+        <!--new top-->
+       
+       
+        <!--new top-->
+    
+      <!-- ad begin -->
+         
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/skin-yellow/css/style.css?v=1.1" />
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/cdnight/rss/list" />
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/blue_black.css" />
+ 
+
+
+
+    <link href="http://c.csdnimg.cn/blog/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet" />
+     
+         <link rel="stylesheet" href="http://static.blog.csdn.net/css/csdn_blog_detail.min.css" />
+
+  
+
+
+    <!-- 请置于所有广告位代码之前 --> 
+            <script src="http://dup.baidustatic.com/js/ds.js"></script>
+
+</head>
+
+
+<body>
+     
+        <div class="tracking-ad" data-view="true" data-mod="ad_popu_72"  data-mtp="62" data-order="40" data-con="ad_content_2072" >
+                     <script id="popuLayer_js_q" src="http://ads.csdn.net/js/popuLayer.js" defer="defer"  type="text/javascript"></script>
+                <div id="layerd" style="position: fixed;bottom:0px;right:0px;line-height:0px;z-index:1000">
+    	                <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 --><div id="cpro_u2895327"></div></div>
+                <script>  document.getElementById("popuLayer_js_q").onload = function () { var styObjd = styObj = { width: "300px", "height": parseInt(250) + 28 }; window.CSDN.Layer.PopuLayer("#layerd", { storageName: "layerd", styleObj: styObjd, total: 50, expoire: 1000 * 60 }); }</script><!-- 投放代码 --><script type="text/javascript">                    /*服务器频道首页置顶Banner960*90，创建于2014-7-3*/    (window.cproArray = window.cproArray || []).push({ id: "u2895327" });  </script>  <script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+     
+        </div>
+
+    <!-- 广告位开始 -->
+        
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/cdnight">一名普通码农的菜地</a></h2>
+            <h3>混一口饭吃而已，无他。</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/cdnight?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/cdnight?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/cdnight/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "cdnight";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/cdnight";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+
+<a href="http://blog.csdn.net/epubit17/article/details/76811996">
+<font color=red><strong>赠书 | 异步2周年,技术图书免费选</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp
+
+
+<a href="http://blog.csdn.net/broadview2006/article/details/77312555">
+<font color=blue><strong>每周荐书：渗透测试、K8s、架构（评论送书）</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp
+
+
+<a href="http://gitee.com/enterprises?csdn-sq">
+<font color=red><strong>项目管理+代码托管+文档协作，开发更流畅</strong></font></a>
+
+</div>                        </div>
+
+                        
+
+
+
+  
+
+
+
+
+
+
+<script   type="text/javascript" src="http://static.blog.csdn.net/scripts/category.js"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=%e8%b4%9d%e5%a1%9e%e5%b0%94%e6%9b%b2%e7%ba%bf%e6%89%ab%e7%9b%b2&u=http://blog.csdn.net/cdnight/article/details/48468653"
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Repost"></span>
+
+    <h1>
+        <span class="link_title"><a href="/cdnight/article/details/48468653">
+        贝塞尔曲线扫盲        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_r">
+            <span class="link_postdate">2015-09-15 15:46</span>
+            <span class="link_view" title="阅读次数">8357人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(5)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle('%e8%b4%9d%e5%a1%9e%e5%b0%94%e6%9b%b2%e7%ba%bf%e6%89%ab%e7%9b%b2','48468653');return false;" title="收藏">收藏</a></span>
+             <span class="link_report"> <a href="#report" onclick="javascript:report(48468653,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script  type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="http://static.blog.csdn.net/images/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label  onclick="GetCategoryArticles('2128123','cdnight','top','48468653');">
+                        <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">前端<em>（240）</em></span>
+                      <img class="arrow-down" src="http://static.blog.csdn.net/images/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="http://static.blog.csdn.net/images/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a  href="http://blog.csdn.net/cdnight/article/category/2128123"  target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_2128123">                            
+                            </ul>
+                        </div>
+                    </label>                    
+                    <label  onclick="GetCategoryArticles('5816897','cdnight','top','48468653');">
+                        <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">贝塞尔曲线<em>（5）</em></span>
+                      <img class="arrow-down" src="http://static.blog.csdn.net/images/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="http://static.blog.csdn.net/images/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a  href="http://blog.csdn.net/cdnight/article/category/5816897"  target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_5816897">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+
+  
+
+  
+  
+     
+
+
+<div id="article_content" class="article_content tracking-ad" data-mod=popu_307  data-dsm = "post" >
+
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+<span style="color:rgb(51,51,51); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:30px; line-height:50px; background-color:rgb(239,239,239)">贝塞尔曲线扫盲</span><br>
+</p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+相信很多同学都知道“<a target="_blank" href="http://en.wikipedia.org/wiki/B%C3%A9zier_curve" style="color:rgb(25,173,216); text-decoration:none">贝塞尔曲线</a>”这个词，我们在很多地方都能经常看到。但是，可能并不是每位同学都清楚地知道，到底什么是“贝塞尔曲线”，又是什么特点让它有这么高的知名度。</p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+贝塞尔曲线的数学基础是早在 1912 年就广为人知的<a target="_blank" href="http://en.wikipedia.org/wiki/Bernstein_polynomial" style="color:rgb(25,173,216); text-decoration:none">伯恩斯坦多项式</a>。但直到 1959 年，当时就职于雪铁龙的法国数学家&nbsp;<a target="_blank" href="http://en.wikipedia.org/wiki/Paul_de_Casteljau" style="color:rgb(25,173,216); text-decoration:none">Paul
+ de Casteljau</a>&nbsp;才开始对它进行图形化应用的尝试，并提出了一种数&#20540;稳定的&nbsp;<a target="_blank" href="http://en.wikipedia.org/wiki/De_Casteljau's_algorithm" style="color:rgb(25,173,216); text-decoration:none">de Casteljau 算法</a>。然而贝塞尔曲线的得名，却是由于 1962 年另一位就职于雷诺的法国工程师&nbsp;<a target="_blank" href="http://en.wikipedia.org/wiki/Pierre_B%C3%A9zier" style="color:rgb(25,173,216); text-decoration:none">Pierre
+ Bézier</a>&nbsp;的广泛宣传。他使用这种只需要很少的控制点就能够生成复杂平滑曲线的方法，来辅助汽车车体的工业设计。</p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+正是因为控制简便却具有极强的描述能力，贝塞尔曲线在工业设计领域迅速得到了广泛的应用。不仅如此，在计算机图形学领域，尤其是矢量图形学，贝塞尔曲线也占有重要的地位。今天我们最常见的一些矢量绘图软件，如 Flash、Illustrator、CorelDraw 等，无一例外都提供了绘制贝塞尔曲线的功能。甚至像 Photoshop 这样的位图编辑软件，也把贝塞尔曲线作为仅有的矢量绘制工具（钢笔工具）包含其中。</p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+贝塞尔曲线在 web 开发领域同样占有一席之地。CSS3 新增了&nbsp;<a target="_blank" href="http://www.w3.org/TR/css3-transitions/#transition-timing-function-property" style="color:rgb(25,173,216); text-decoration:none">transition-timing-function</a>&nbsp;属性，它的取&#20540;就可以设置为一个三次贝塞尔曲线方程。在此之前，也有不少 JavaScript
+ 动画库使用贝塞尔曲线来实现美观&#36924;真的缓动效果。</p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+下面我们就通过例子来了解一下如何用 de Casteljau 算法绘制一条贝塞尔曲线。</p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+在平面内任选 3 个不共线的点，依次用线段连接。<img src="http://htmljs.b0.upaiyun.com/uploads/1386078245509-bezier-quadratic-start.png" alt="enter image description here" title="" style="height:auto; max-width:100%; vertical-align:middle; border:0px; display:block"></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+在第一条线段上任选一个点 D。计算该点到线段起点的距离 AD，与该线段总长 AB 的比例。<img src="http://htmljs.b0.upaiyun.com/uploads/1386078258661-bezier-quadratic-step1.png" alt="enter image description here" title="" style="height:auto; max-width:100%; vertical-align:middle; border:0px; display:block"></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+根据上一步得到的比例，从第二条线段上找出对应的点 E，使得&nbsp;<code class=" language-javascript" style="padding:0.1em; font-family:Consolas,Monaco,'Andale Mono',monospace; font-size:14px; color:rgb(221,17,68); white-space:pre; border:1px solid rgb(225,225,232); direction:ltr; word-spacing:normal; background:rgb(245,242,240)">AD<span class="token punctuation" style="color:rgb(153,153,153)">:</span>AB
+<span class="token operator" style="color:rgb(166,127,89)">=</span> BE<span class="token punctuation" style="color:rgb(153,153,153)">:</span>BC</code>。<img src="http://htmljs.b0.upaiyun.com/uploads/1386078272369-bezier-quadratic-step2.png" alt="enter image description here" title="" style="height:auto; max-width:100%; vertical-align:middle; border:0px; display:block"></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+连接这两点 DE。<img src="http://htmljs.b0.upaiyun.com/uploads/1386078284528-bezier-quadratic-step3.png" alt="enter image description here" title="" style="height:auto; max-width:100%; vertical-align:middle; border:0px; display:block"></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+从新的线段 DE 上再次找出相同比例的点 F，使得&nbsp;<code class=" language-javascript" style="padding:0.1em; font-family:Consolas,Monaco,'Andale Mono',monospace; font-size:14px; color:rgb(221,17,68); white-space:pre; border:1px solid rgb(225,225,232); direction:ltr; word-spacing:normal; background:rgb(245,242,240)">DF<span class="token punctuation" style="color:rgb(153,153,153)">:</span>DE
+<span class="token operator" style="color:rgb(166,127,89)">=</span> AD<span class="token punctuation" style="color:rgb(153,153,153)">:</span>AB
+<span class="token operator" style="color:rgb(166,127,89)">=</span> BE<span class="token punctuation" style="color:rgb(153,153,153)">:</span>BC</code>。<img src="http://htmljs.b0.upaiyun.com/uploads/1386078293828-bezier-quadratic-step4.png" alt="enter image description here" title="" style="height:auto; max-width:100%; vertical-align:middle; border:0px; display:block"></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+到这里，我们就确定了贝塞尔曲线上的一个点 F。接下来，请稍微回想一下中学所学的极限知识，让选取的点 D 在第一条线段上从起点 A 移动到终点 B，找出所有的贝塞尔曲线上的点 F。所有的点找出来之后，我们也得到了这条贝塞尔曲线。<img src="http://htmljs.b0.upaiyun.com/uploads/1386078307084-bezier-quadratic-end.png" alt="enter image description here" title="" style="height:auto; max-width:100%; vertical-align:middle; border:0px; display:block"></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+如果你实在想象不出这个过程，没关系，看动画！<img src="http://htmljs.b0.upaiyun.com/uploads/1415845715278-bezier-quadratic-animation.gif" alt="enter image description here" title="" style="height:auto; max-width:100%; vertical-align:middle; border:0px; display:block"></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+回过头来看这条贝塞尔曲线，为了确定曲线上的一个点，需要进行两轮取点的操作，因此我们称得到的贝塞尔曲线为二次曲线（这样记忆很直观，但曲线的次数其实是由前面提到的伯恩斯坦多项式决定的）。</p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+当控制点个数为 4 时，情况是怎样的？<img src="http://htmljs.b0.upaiyun.com/uploads/1386078421816-bezier-cubic-start.png" alt="enter image description here" title="" style="height:auto; max-width:100%; vertical-align:middle; border:0px; display:block"></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+步骤都是相同的，只不过我们每确定一个贝塞尔曲线上的点，要进行三轮取点操作。如图，<code class=" language-javascript" style="padding:0.1em; font-family:Consolas,Monaco,'Andale Mono',monospace; font-size:14px; color:rgb(221,17,68); white-space:pre; border:1px solid rgb(225,225,232); direction:ltr; word-spacing:normal; background:rgb(245,242,240)">AE<span class="token punctuation" style="color:rgb(153,153,153)">:</span>AB
+<span class="token operator" style="color:rgb(166,127,89)">=</span> BF<span class="token punctuation" style="color:rgb(153,153,153)">:</span>BC
+<span class="token operator" style="color:rgb(166,127,89)">=</span> CG<span class="token punctuation" style="color:rgb(153,153,153)">:</span>CD
+<span class="token operator" style="color:rgb(166,127,89)">=</span> EH<span class="token punctuation" style="color:rgb(153,153,153)">:</span>EF
+<span class="token operator" style="color:rgb(166,127,89)">=</span> FI<span class="token punctuation" style="color:rgb(153,153,153)">:</span>FG
+<span class="token operator" style="color:rgb(166,127,89)">=</span> HJ<span class="token punctuation" style="color:rgb(153,153,153)">:</span>HI</code>，其中点 J 就是最终得到的贝塞尔曲线上的一个点。<img src="http://htmljs.b0.upaiyun.com/uploads/1386078436764-bezier-cubic-points.png" alt="enter image description here" title="" style="height:auto; max-width:100%; vertical-align:middle; border:0px; display:block"></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+这样我们得到的是一条三次贝塞尔曲线。<img src="http://htmljs.b0.upaiyun.com/uploads/1386078443819-bezier-cubic-end.png" alt="enter image description here" title="" style="height:auto; max-width:100%; vertical-align:middle; border:0px; display:block"></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+看过了二次和三次曲线，更高次的贝塞尔曲线大家应该也知道要怎么画了吧。那么比二次曲线更简单的一次（线性）贝塞尔曲线存在吗？长什么样？根据前面的介绍，只要稍作思考，想必你也能猜出来了。哈！就是一条直线~<img src="http://htmljs.b0.upaiyun.com/uploads/1415845739049-bezier-linear-animation.gif" alt="enter image description here" title="" style="height:auto; max-width:100%; vertical-align:middle; border:0px; display:block"></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+能画曲线也能画直线，是不是很厉害？要绘制更复杂的曲线，控制点的增加也仅仅是线性的。这一特点使其不光在工业设计领域大展拳脚，就连数学基础不好的人也可以比较容易地掌握，比如大多数平面美术设计师们。<img src="http://htmljs.b0.upaiyun.com/uploads/1415845756871-complex-bezier-curve.gif" alt="enter image description here" title="" style="height:auto; max-width:100%; vertical-align:middle; border:0px; display:block"></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+上面介绍的内容并不足以展示贝塞尔曲线的真正威力。推广到三维空间的<a target="_blank" href="http://en.wikipedia.org/wiki/B%C3%A9zier_surface" style="color:rgb(25,173,216); text-decoration:none">贝塞尔曲面</a>，以及更进一步的<a target="_blank" href="http://en.wikipedia.org/wiki/Non-uniform_rational_B-spline" style="color:rgb(25,173,216); text-decoration:none">非均匀有理
+ B 样条（NURBS）</a>，早已成为当今计算机辅助设计（CAD）的行业标准，不论是我们平常用到的各种产品，还是在电影院看到的精彩大片，都少不了它们的功劳。<img src="http://htmljs.b0.upaiyun.com/uploads/1386078496790-bezier-surface.png" alt="enter image description here" title="" style="height:auto; max-width:100%; vertical-align:middle; border:0px; display:block"></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+<img src="http://htmljs.b0.upaiyun.com/uploads/1386078505773-industrial-design.png" alt="enter image description here" title="" style="height:auto; max-width:100%; vertical-align:middle; border:0px; display:block"></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+动态绘制贝塞尔曲线的<a target="_blank" href="http://myst729.github.io/bezier-curve" style="color:rgb(25,173,216); text-decoration:none">在线演示</a></p>
+<p style="margin-top:24px; margin-bottom:24px; line-height:30px; color:rgb(68,68,68); font-family:'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',微软雅黑,STHeiti,'WenQuanYi Micro Hei',SimSun,sans-serif; font-size:17px">
+– 完 –</p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   
+
+<!--172.16.140.13-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+
+
+ 
+
+
+        <div id="digg" ArticleId="48468653" >
+            <dl id="btnDigg" class="digg digg_disable"  onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>12</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable"  onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" >&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" >&nbsp;</a></div>
+    <script type="text/javascript">
+        function btndigga() {
+            $(".tracking-ad[data-mod='popu_222'] a").click();
+        }
+        function btnburya() {
+            $(".tracking-ad[data-mod='popu_223'] a").click();
+        }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='http://blog.csdn.net/cdnight/article/details/48468323';">上一篇</span><a href="http://blog.csdn.net/cdnight/article/details/48468323" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">深度掌握SVG路径path的贝塞尔曲线指令</a></li>
+                <li class="next_article"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian']);location.href='http://blog.csdn.net/cdnight/article/details/48468901';">下一篇</span><a href="http://blog.csdn.net/cdnight/article/details/48468901" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian'])">贝塞尔曲线的计算方式与js计算</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+            <div class="similar_article"   >
+                    <h4></h4>
+                    <div class="similar_c"style="margin:20px 0px 0px 0px">
+                        <div class="similar_c_t">
+                          &nbsp;&nbsp;相关文章推荐
+                        </div>
+                   
+                        <div class="similar_wrap tracking-ad" data-mod="popu_36"  style="max-height:250px">                       
+                            <ul class="similar_list fl">    
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/cdnight/article/details/48468915" title="Bezier曲线原理及实现代码（c++）" strategy="BlogCommendFromBaidu_0" target="_blank">Bezier曲线原理及实现代码（c++）</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/huiyiCourse/series_detail/52?utm_source=blog7" title="【直播】计算机视觉原理及实战—屈教授" strategy="undefined" target="_blank">【直播】计算机视觉原理及实战—屈教授</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/zy_dreamer/article/details/9054537" title="C++ 生成三次贝塞尔曲线" strategy="BlogCommendFromBaidu_1" target="_blank">C++ 生成三次贝塞尔曲线</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/combo/detail/29?utm_source=blog7" title="【套餐】Spark+Scala课程包--陈超" strategy="undefined" target="_blank">【套餐】Spark+Scala课程包--陈超</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/tianhai110/article/details/2203572" title="贝塞尔曲线 总结" strategy="BlogCommendFromBaidu_2" target="_blank">贝塞尔曲线 总结</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/combo/detail/177?utm_source=blog7" title="【套餐】Linux应用和网络编程实战套餐--朱有鹏" strategy="undefined" target="_blank">【套餐】Linux应用和网络编程实战套餐--朱有鹏</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/sangxiaonian/article/details/74452502" title="来来来，随老夫撸一个支付宝玩玩——自定义Behavior的正确打开方式" strategy="BlogCommendFromBaidu_3" target="_blank">来来来，随老夫撸一个支付宝玩玩——自定义Behavior的正确打开方式</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/huiyiCourse/series_detail/54?utm_source=blog7" title="【直播】机器学习&amp;数据挖掘7周实训--韦玮" strategy="undefined" target="_blank">【直播】机器学习&amp;数据挖掘7周实训--韦玮</a>
+                                   </li>
+                            </ul>
+                              <ul class="similar_list fr">      
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/gaoyongxing/article/details/5827855" title="贝塞尔曲线生成算法" strategy="BlogCommendFromBaidu_4" target="_blank">贝塞尔曲线生成算法</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/combo/detail/39?utm_source=blog7" title="【套餐】从0蜕变为自动化测试工程师--李晓鹏" strategy="undefined" target="_blank">【套餐】从0蜕变为自动化测试工程师--李晓鹏</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/sangxiaonian/article/details/51984013" title="史上最全的贝塞尔曲线(Bezier)全解(一):初识贝塞尔曲线" strategy="BlogCommendFromBaidu_5" target="_blank">史上最全的贝塞尔曲线(Bezier)全解(一):初识贝塞尔曲线</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/huiyiCourse/detail/495?utm_source=blog7" title="【直播】广义线性模型及其应用——李科" strategy="undefined" target="_blank">【直播】广义线性模型及其应用——李科</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/sangxiaonian/article/details/51984584" title="史上最全的贝塞尔曲线(Bezier)全解(二):Android中曲线的简单绘制" strategy="BlogCommendFromBaidu_6" target="_blank">史上最全的贝塞尔曲线(Bezier)全解(二):Android中曲线的简单绘制</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/sangxiaonian/article/details/51985405" title="史上最全的贝塞尔曲线(Bezier)全解(三):贝塞尔曲线实现满屏爱心" strategy="BlogCommendFromBaidu_7" target="_blank">史上最全的贝塞尔曲线(Bezier)全解(三):贝塞尔曲线实现满屏爱心</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/cdnight/article/details/48468323" title="深度掌握SVG路径path的贝塞尔曲线指令" strategy="BlogCommendFromBaidu_8" target="_blank">深度掌握SVG路径path的贝塞尔曲线指令</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/wanglang3081/article/details/8575671" title="贝塞尔曲线" strategy="BlogCommendFromBaidu_9" target="_blank">贝塞尔曲线</a>
+                                   </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>   
+      
+</div>
+
+     <div>
+           
+
+       
+                           
+            <!-- 广告位：PC端-博客内容页-banner1-960*90 --> 
+            <script> 
+                (function() { 
+                    var s = "_" + Math.random().toString(36).slice(2); 
+                    document.write('<div id="' + s + '"></div>'); 
+                    (window.slotbydup=window.slotbydup || []).push({ 
+                        id: '4228013', 
+                        container: s, 
+                        size: '0,0', 
+                        display: 'inlay-fix' 
+                    }); 
+                })(); 
+            </script>
+    </div>
+
+<div id="suggest"></div>
+         <script  language="javascript" type='text/javascript'>     
+             $(function(){
+                 $.get("/cdnight/svc/GetSuggestContent/48468653",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+    </div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form">
+    </div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '48468653';
+    var commentscount = 5;
+    var islock = false
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top"  style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="http://static.blog.csdn.net/images/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop"  style="display: none;" title="返回顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])" style="">         
+         <img src="http://static.blog.csdn.net/images/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+    var articletitle='贝塞尔曲线扫盲';
+
+</script>
+
+
+
+
+
+
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/cdnight" target="_blank">
+    <img src="http://avatar.csdn.net/7/7/9/1_cdnight.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/cdnight" class="user_name" target="_blank">cdnight</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter"  title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=cdnight','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a  target="_blank">
+                                                    <img src="http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="5" >
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>1535175次</span></li>
+    <li>积分：<span>15865</span> </li>    
+    <li >等级： <span style="position:relative;display:inline-block;z-index:1" >
+            <img src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog7.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：15865 </div>
+        </span>  </li>
+    <li>排名：<span>第659名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>263篇</span></li>
+    <li>转载：<span>433篇</span></li>
+    <li>译文：<span>5篇</span></li>
+    <li>评论：<span>225条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body" class="form_search">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search csdn-tracking-statistics" target="_blank"  data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="/cdnight/article/category/1377036" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">技术</a><span>(38)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2128123" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">前端</a><span>(241)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2128125" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">后端</a><span>(75)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2128127" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">设计架构</a><span>(21)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2128133" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">试验</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2128135" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">数据库</a><span>(59)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2128139" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">算法</a><span>(16)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2128143" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">web开发</a><span>(142)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2336199" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">精明消费</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2373955" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">搜索引擎</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2415291" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">基本整理</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2415293" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">生活百科</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2445451" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">nodejs</a><span>(10)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2505467" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">前端组件开发</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2551137" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">HLS及相关</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2649607" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Backbone学习系列</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2678477" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">综合组件开发</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/2723311" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">websocket</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/5578991" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">安卓开发</a><span>(24)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/5578993" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">python开发</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/5816897" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">贝塞尔曲线</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/5846141" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">ectouch</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/6048860" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Html5游戏开发</a><span>(20)</span>
+                </li>
+                 <li>
+                    <a href="/cdnight/article/category/6288790" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">webApp开发</a><span>(2)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="/cdnight/article/month/2017/08">2017年08月</a><span>(2)</span></li><li><a href="/cdnight/article/month/2017/07">2017年07月</a><span>(1)</span></li><li><a href="/cdnight/article/month/2017/06">2017年06月</a><span>(7)</span></li><li><a href="/cdnight/article/month/2017/05">2017年05月</a><span>(8)</span></li><li><a href="/cdnight/article/month/2017/03">2017年03月</a><span>(8)</span></li><li><a href="/cdnight/article/month/2016/12">2016年12月</a><span>(8)</span></li><li><a href="/cdnight/article/month/2016/11">2016年11月</a><span>(3)</span></li><li><a href="/cdnight/article/month/2016/10">2016年10月</a><span>(2)</span></li><li><a href="/cdnight/article/month/2016/09">2016年09月</a><span>(11)</span></li><li><a href="/cdnight/article/month/2016/08">2016年08月</a><span>(2)</span></li><li><a href="/cdnight/article/month/2016/07">2016年07月</a><span>(5)</span></li><li><a href="/cdnight/article/month/2016/06">2016年06月</a><span>(6)</span></li><li><a href="/cdnight/article/month/2016/05">2016年05月</a><span>(1)</span></li><li><a href="/cdnight/article/month/2016/04">2016年04月</a><span>(4)</span></li><li><a href="/cdnight/article/month/2016/03">2016年03月</a><span>(25)</span></li><li><a href="/cdnight/article/month/2016/02">2016年02月</a><span>(21)</span></li><li><a href="/cdnight/article/month/2016/01">2016年01月</a><span>(12)</span></li><li><a href="/cdnight/article/month/2015/12">2015年12月</a><span>(12)</span></li><li><a href="/cdnight/article/month/2015/11">2015年11月</a><span>(16)</span></li><li><a href="/cdnight/article/month/2015/10">2015年10月</a><span>(6)</span></li><li><a href="/cdnight/article/month/2015/09">2015年09月</a><span>(22)</span></li><li><a href="/cdnight/article/month/2015/08">2015年08月</a><span>(33)</span></li><li><a href="/cdnight/article/month/2015/07">2015年07月</a><span>(20)</span></li><li><a href="/cdnight/article/month/2015/06">2015年06月</a><span>(31)</span></li><li><a href="/cdnight/article/month/2015/05">2015年05月</a><span>(10)</span></li><li><a href="/cdnight/article/month/2015/04">2015年04月</a><span>(4)</span></li><li><a href="/cdnight/article/month/2015/03">2015年03月</a><span>(5)</span></li><li><a href="/cdnight/article/month/2015/02">2015年02月</a><span>(19)</span></li><li><a href="/cdnight/article/month/2015/01">2015年01月</a><span>(10)</span></li><li><a href="/cdnight/article/month/2014/12">2014年12月</a><span>(4)</span></li><li><a href="/cdnight/article/month/2014/11">2014年11月</a><span>(14)</span></li><li><a href="/cdnight/article/month/2014/10">2014年10月</a><span>(16)</span></li><li><a href="/cdnight/article/month/2014/09">2014年09月</a><span>(10)</span></li><li><a href="/cdnight/article/month/2014/08">2014年08月</a><span>(24)</span></li><li><a href="/cdnight/article/month/2014/07">2014年07月</a><span>(8)</span></li><li><a href="/cdnight/article/month/2014/06">2014年06月</a><span>(63)</span></li><li><a href="/cdnight/article/month/2014/05">2014年05月</a><span>(19)</span></li><li><a href="/cdnight/article/month/2014/04">2014年04月</a><span>(25)</span></li><li><a href="/cdnight/article/month/2014/03">2014年03月</a><span>(22)</span></li><li><a href="/cdnight/article/month/2014/02">2014年02月</a><span>(44)</span></li><li><a href="/cdnight/article/month/2014/01">2014年01月</a><span>(13)</span></li><li><a href="/cdnight/article/month/2013/12">2013年12月</a><span>(7)</span></li><li><a href="/cdnight/article/month/2013/09">2013年09月</a><span>(15)</span></li><li><a href="/cdnight/article/month/2013/08">2013年08月</a><span>(15)</span></li><li><a href="/cdnight/article/month/2013/07">2013年07月</a><span>(22)</span></li><li><a href="/cdnight/article/month/2013/06">2013年06月</a><span>(14)</span></li><li><a href="/cdnight/article/month/2013/05">2013年05月</a><span>(41)</span></li><li><a href="/cdnight/article/month/2013/04">2013年04月</a><span>(11)</span></li>
+</div>
+</ul>
+</div>
+<div id="hotarticls" class="panel tracking-ad" data-mod="popu_340">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="/cdnight/article/details/40341269" title="微信分享朋友圈分享代码自定义标题、说明、图标和分享链接">微信分享朋友圈分享代码自定义标题、说明、图标和分享链接</a><span>(67056)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/44963063" title="基于iscroll实现下拉和上拉刷新">基于iscroll实现下拉和上拉刷新</a><span>(61276)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/11650983" title="【算法】堆，最大堆（大顶堆）及最小堆（小顶堆）的实现">【算法】堆，最大堆（大顶堆）及最小堆（小顶堆）的实现</a><span>(50429)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/26459961" title="移动端js触摸事件">移动端js触摸事件</a><span>(37038)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/41351505" title="jQuery 自定义网页滚动条样式插件 mCustomScrollbar 的介绍和使用方法">jQuery 自定义网页滚动条样式插件 mCustomScrollbar 的介绍和使用方法</a><span>(30387)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/26741795" title="在触屏设备上面利用html5裁剪图片">在触屏设备上面利用html5裁剪图片</a><span>(23008)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/26351129" title="html5新api对文件的操作">html5新api对文件的操作</a><span>(21584)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/20281113" title="postgresql 修改字段类型">postgresql 修改字段类型</a><span>(20036)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/9042377" title="【wpf】利用wpf写的一个登录界面--美感为零的程序员伤不起">【wpf】利用wpf写的一个登录界面--美感为零的程序员伤不起</a><span>(18774)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/25394051" title="sku的一个设计">sku的一个设计</a><span>(17147)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel tracking-ad" data-mod="popu_341">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/cdnight/article/details/44963063" title="基于iscroll实现下拉和上拉刷新">基于iscroll实现下拉和上拉刷新</a><span>(17)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/37029919" title="一个利用html5的图片裁剪功能（已解决ios压扁缩放等bug）">一个利用html5的图片裁剪功能（已解决ios压扁缩放等bug）</a><span>(14)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/47831867" title="html5图片裁剪控件原型【含缩放，旋转，拖动功能】---2、核心代码">html5图片裁剪控件原型【含缩放，旋转，拖动功能】---2、核心代码</a><span>(11)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/46417951" title="分享一个前端等比压缩图片插件">分享一个前端等比压缩图片插件</a><span>(10)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/40341269" title="微信分享朋友圈分享代码自定义标题、说明、图标和分享链接">微信分享朋友圈分享代码自定义标题、说明、图标和分享链接</a><span>(8)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/26741795" title="在触屏设备上面利用html5裁剪图片">在触屏设备上面利用html5裁剪图片</a><span>(8)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/23824001" title="在线支付设计">在线支付设计</a><span>(6)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/11266969" title="【算法】B+树的研读及实现（2）---java版核心代码">【算法】B+树的研读及实现（2）---java版核心代码</a><span>(6)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/47444141" title="phaser入门教程">phaser入门教程</a><span>(6)</span>
+</li>
+<li>
+<a href="/cdnight/article/details/9492917" title="【前端】一个仿q+的前端js程序的开发感言及心得">【前端】一个仿q+的前端js程序的开发感言及心得</a><span>(5)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/77341027" target="_blank">* CSDN日报20170817——《如果不从事编程，我可以做什么？》</a></li>
+<li><a href="http://blog.csdn.net/carson_ho/article/details/77179764" 
+target="_blank">* Android自定义EditText：你需要一款简单实用的SuperEditText(一键删除&自定义样式)</a></li>
+<li><a href="http://blog.csdn.net/wangyangzhizhou/article/details/77196626"target="_blank">* 从JDK源码角度看Integer</a></li>
+<li><a href="http://blog.csdn.net/happycxz/article/details/75432928" 
+target="_blank">* 微信小程序——智能小秘“遥知之”源码分享（语义理解基于olami）</a></li>
+<li><a href="http://blog.csdn.net/pangpang123654/article/details/77336383" 
+target="_blank">* 多线程中断机制</a></li>
+<li><a href="http://blog.csdn.net/foruok/article/details/76566015" 
+target="_blank">* 做自由职业者是怎样的体验</a></li>
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="/cdnight/article/details/72735108#comments">mybatis+postgresql返回递增主键的正确姿势及勘误</a>
+    <p style="margin:0px;"><a href="/baidu_33435475" class="user_name">baidu_33435475</a>:
+出现相同的问题，感谢分享！
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cdnight/article/details/48468915#comments">Bezier曲线原理及实现代码（c++）</a>
+    <p style="margin:0px;"><a href="/verystory" class="user_name">verystory</a>:
+博主 你有实现过 经过控制点的 曲线拟合吗?
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cdnight/article/details/44963063#comments">基于iscroll实现下拉和上拉刷新</a>
+    <p style="margin:0px;"><a href="/qq_37693192" class="user_name">qq_37693192</a>:
+demo没有了?
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cdnight/article/details/48468653#comments">贝塞尔曲线扫盲</a>
+    <p style="margin:0px;"><a href="/liangxw1" class="user_name">liangxw1</a>:
+多谢分享，
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cdnight/article/details/41351505#comments">jQuery 自定义网页滚动条样式插件 mCustomScrollbar 的介绍和使用方法</a>
+    <p style="margin:0px;"><a href="/w13707470416" class="user_name">w13707470416</a>:
+jquery插件集:http://www.jqhtml.com/category/article/p...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cdnight/article/details/41351505#comments">贝塞尔曲线扫盲</a>
+    <p style="margin:0px;"><a href="/yangfan199397" class="user_name">yangfan199397</a>:
+牛逼，很强势
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cdnight/article/details/23824001#comments">在线支付设计</a>
+    <p style="margin:0px;"><a href="/cdnight" class="user_name">cdnight</a>:
+@u012149999:当你要对流水号要对账的时候就会发现是很有用的
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cdnight/article/details/53467214#comments">【被网上巨坑了】 win10+php5.6-ts-vc11-x64配置imagick的经历</a>
+    <p style="margin:0px;"><a href="/gzglqq" class="user_name">gzglqq</a>:
+现在很多都能用，但是一般apache会报错 phpinfo打印不出来了
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cdnight/article/details/53467214#comments">【被网上巨坑了】 win10+php5.6-ts-vc11-x64配置imagick的经历</a>
+    <p style="margin:0px;"><a href="/gzglqq" class="user_name">gzglqq</a>:
+现在很多都能用，但是一般apache会报错 phpinfo打印不出来了
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cdnight/article/details/17652973#comments">一种通过jdbc获取数据库结构的方法</a>
+    <p style="margin:0px;"><a href="/yy8616270" class="user_name">yy8616270</a>:
+大哥你的DataTableHelper工具类好不好玩，我对DataTableHelper.rs2da...
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+                 <!-- 广告位开始 --> 
+                <!-- 广告位结束 -->
+                   <div class="tracking-ad" data-view="true" data-mod="ad_popu_189" data-mtp="63" data-order="40" data-con="ad_content_1259" style="width: 250px; height: 500px;">
+                        <div id="nav_show_top_stop" style="width: 250px;height: 500px;z-index:1000"><div id="cpro_u2734133"></div><div id="cpro_u3031286"></div></div>
+                   </div>
+                    <script>
+
+                        setTimeout(function () {
+                            var naviga_offsetTop = 0; function naviga_stay_top() {
+                                var scrollTop = jQuery(document).scrollTop();
+                                if (scrollTop > naviga_offsetTop) {
+                                    jQuery("#nav_show_top_stop").css({ "position": "fixed" });
+                                    jQuery("#nav_show_top_stop").css({ "top": "0px" });
+                                } else { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop - scrollTop + "px" }); }
+                            }
+                            function onload_function() {
+                                naviga_offsetTop = jQuery("#nav_show_top_stop").position().top;
+                                jQuery(window).bind("scroll", naviga_stay_top); jQuery(window).bind("mousewheel", naviga_stay_top);
+                                jQuery(document).bind("scroll", naviga_stay_top); jQuery(document).bind("mousewheel", naviga_stay_top);
+                            } jQuery(document).ready(onload_function);
+                        }, 200);
+
+                    </script>
+                   <script type="text/javascript">
+                       /*PC端-博客内容页左侧Button-250*250，创建于2016-08-15*/
+                       (window.cproArray = window.cproArray || []).push({ id: "u2734133" });
+</script>
+<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"></script>
+<script type="text/javascript">
+    (window.cproArray = window.cproArray || []).push({ id: "u3031286" });
+</script>
+<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"></script>
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+      <!--new top-->
+    
+
+     
+
+   
+   
+     <!--new top-->
+   
+   
+
+    
+    
+    
+   
+
+   
+
+
+       <script type="text/javascript" src="http://static.blog.csdn.net/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+          <script type="text/javascript">
+              //$(function () {
+              //    setTimeout(function () {
+              //        var searchtitletags = articletitle + ',' + $("#tags").html();
+              //        searchService({
+              //            index: 'blog',
+              //            query: searchtitletags,
+              //            from: 5,
+              //            size: 5,
+              //            appendTo: '#res',
+              //            url: 'recommend',
+              //            his: 2,
+              //            client: "blog_cf_enhance",
+              //            tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+              //        });
+              //    }, 1000);
+              //});
+
+         </script>
+    
+    <script src="http://static.blog.csdn.net/scripts/csdn_blog_detail.min.js" type="text/javascript"></script>
+        
+    <script type="text/javascript" src="http://c.csdnimg.cn/blog/csdn_public_blog_detail.min.js?20170719001"></script>
+
+    <script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=1064954"></script>
+
+     
+    
+
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    
+    
+        
+     
+
+    
+          
+    <div class="pop_CA_cover"  style="display:none"></div>
+    <div class="pop pop_CA"  style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon"  id="fapancle"  onclick="$('.pop_CA').hide();$('.pop_CA_cover').hide();"></span>
+          </div>
+          <iframe src="" id="fa" frameborder="0" width="100%" height="360"  scrolling="no" ></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+
+</body>
+</html>   

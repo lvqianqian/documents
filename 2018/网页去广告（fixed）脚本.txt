@@ -1,0 +1,4 @@
+list=$('*');
+for(var i=0;i<list.length;i++){
+if(list.eq(i).css('position')=='fixed')list.eq(i).hide();
+}

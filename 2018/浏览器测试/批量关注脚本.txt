@@ -1,0 +1,4 @@
+打开到粉丝界面，输入以下console，点击下一页，重复上述步骤
+
+for(var i=1;i<=19;i++){
+document.querySelector("li.follow_item:nth-child("+i+") > dl:nth-child(1) > dd:nth-child(3) > span:nth-child(1) > a:nth-child(1)").click();}

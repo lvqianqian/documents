@@ -1,0 +1,5 @@
+新浪博客网页端-批量取消关注脚本-console控制台
+先转到关注界面，点击bulk management（批量管理），然后输入下列脚本后回车，点击UNfollow，最后翻到下一页重复上述步骤。
+
+for(var n=1;n<=28;n++)
+document.querySelector('#Pl_Official_RelationMyfollow__93 > div > div > div > div.member_box.has_choose > ul > li:nth-child('+n+') > div.member_wrap.clearfix').click();

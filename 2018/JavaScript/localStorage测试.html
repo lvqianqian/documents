@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type='text/javascript' src="jquery.js"></script>
+<title>无标题文档</title>
+</head>
+
+<body>
+<span>输入词条存储浏览器本地；点击词条可删除</span><br>
+<input type="text" >
+<button style="height:30px"></button>
+<div></div>
+<script>
+var key;
+var value;
+function init(){};
+$(document).ready(init=function() {
+	$('p').remove();
+    for(var i=0;i<localStorage.length;i++){
+		key=localStorage.key(i);
+		value=localStorage[key];
+		$('div').append('<p style=\"width:100px;background:#eee\" onClick=\"this.remove();localStorage.removeItem(\''
+		+key
+		+'\');console.log(localStorage);\">'
+		+value
+		+'</p>');
+		}
+});
+$('button').click(function(){
+	value=$('input').val();
+	key=value;
+	localStorage.setItem(key,value);
+	init();
+	console.log(localStorage);
+	});
+</script>
+</body>
+</html>

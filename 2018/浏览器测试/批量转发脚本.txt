@@ -1,0 +1,8 @@
+打开到微博“热门微博”界面，依次输入以下命令：
+for(var i=1;i<=20;i++){
+document.querySelector('#Pl_Core_NewMixFeed__3 > div > div.WB_feed.WB_feed_v3.WB_feed_v4 > div:nth-child('+i+') > div.WB_feed_handle > div > ul > li:nth-child(2) > a > span > span').click();
+}
+
+
+
+setInterval("document.querySelector('div.content > div.layer_forward > div > div:nth-child(2) > div > div.WB_feed_repeat.forward_rpt1 > div > div.WB_feed_publish.clearfix > div > div.p_opt.clearfix > div.btn.W_fr > a').click();",1500);

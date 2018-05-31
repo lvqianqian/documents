@@ -1,0 +1,879 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+            <link rel="canonical" href="http://blog.csdn.net/li0531/article/details/77882941"/> 
+
+    <script type="text/javascript">
+        var username = "li0531";var _blogger = username;var blog_address = "http://blog.csdn.net/li0531";var static_host = "http://static.blog.csdn.net";
+        var currentUserName = "github_38885296"; var fileName = '77882941';var commentscount = 0; var islock = false
+        window.quickReplyflag = true;
+        var totalFloor=0;
+                
+                 var isBole = false;
+                
+                
+                 var isDigg = false;
+                
+          
+             var isExpert=false;
+          
+    </script>
+
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="http://c.csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://static.csdn.net/public/common/toolbar/css/index.css">
+    <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://c.csdnimg.cn/public/static/css/avatar.css">
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+    <link rel="stylesheet" href="http://static.blog.csdn.net/Skin/skin3-template/css/style.css?v=2017.017">
+    <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/css2017/index.css?v50012">
+    <script type="text/javascript" src="http://static.blog.csdn.net/Skin/skin3-template/fonts/iconfont.js"></script>
+    <script src="//csdnimg.cn/rabbit/tracking-ad/main.js?v=12"></script>
+    <script type="text/javascript" src="http://c.csdnimg.cn/pubfooter/js/tracking_for_recommend.js?v=0911" charset="utf-8"></script>
+    <script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/tracking.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/cnick.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="http://static.blog.csdn.net/code/prettify.css" />
+    <script type="text/javascript" src="http://static.blog.csdn.net/code/prettify.js"></script>
+
+    <script type="text/javascript">
+        // Traffic Stats of the entire Web site By baidu
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        // Traffic Stats of the entire Web site By baidu end
+
+
+
+    </script>
+    <meta name="description" content="在开始看我画小狗之前，咱们先来看道很简单的题目：&#160;
+下面程序的输出是什么？
+Dog myDog = new Dog(&quot;旺财&quot;);
+changeName(myDog);
+System.out.println(myDog.getName());
+
+public void changeName(dog) {
+    dog.setName(&quot;小强&quot;);
+}1234567
+
+如果你的回答是“小强”" />
+    <meta name="keywords" content="" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+
+
+    <title>用画小狗的方法来解释Java中的值传递 - CSDN博客</title>
+</head>
+<body>
+<script id="toolbar-tpl-scriptId" prod="download" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/html2017.js?v50012" type="text/javascript" domain="http://blog.csdn.net"></script>
+<header class="clearfix">
+<nav class="clearfix" data-mod="popu_366">
+      <div class="container clearfix">
+          <h1><a href="http://www.csdn.net"><img src="http://static.blog.csdn.net/Skin/skin3-template/images/csdn_logo.gif" alt="csdn" title="csdn"></a></h1>
+          <div class="nav_com">
+              <ul>
+		<li class=""><a href="http://blog.csdn.net/">首页</a></li>
+		                 
+                  <li class=""><a href="http://blog.csdn.net/mobile/newarticle.html">移动开发</a></li>             
+                                  
+                  <li class=""><a href="http://blog.csdn.net/enterprise/newarticle.html">架构</a></li>             
+                                  
+                  <li class=""><a href="http://blog.csdn.net/cloud/newarticle.html">云计算/大数据</a></li>             
+                                  
+                  <li class=""><a href="http://blog.csdn.net/www/newarticle.html">互联网</a></li>             
+                 
+		 
+                  <li class=" second_bar"><a href="http://blog.csdn.net/system/newarticle.html">运维</a></li>              
+		
+                  <li class=" second_bar"><a href="http://blog.csdn.net/database/newarticle.html">数据库</a></li>              
+		
+                  <li class=" second_bar"><a href="http://blog.csdn.net/web/newarticle.html">前端</a></li>              
+		
+                  <li class=" second_bar"><a href="http://blog.csdn.net/code/newarticle.html">编程语言</a></li>              
+		
+                  <li class=" second_bar"><a href="http://blog.csdn.net/software/newarticle.html">研发管理</a></li>              
+		
+                  <li class=" second_bar"><a href="http://blog.csdn.net/other/newarticle.html">综合</a></li>              
+		
+              </ul>
+              <div class="all_nav">
+                  <span class="txt">全部</span><i class="icon iconfont icon-xiajiantou"></i>
+              </div>
+          </div>
+          <div class="search_bar">
+              <input type="text" class="inp_search" name="">
+              <button type="button" class="btn btn-nobg-noborder btn-lg34 ico_search"><i class="icon iconfont icon-sousuo"></i></button>
+          </div>
+      </div>
+  </nav>
+    
+</header>
+<div class="container clearfix">
+    <main>
+        <article>
+            <h1 class="csdn_top">用画小狗的方法来解释Java中的值传递</h1>
+            <div class="article_bar clearfix">
+                <div class="artical_tag">
+                    <span class="original">原创</span>
+                    <span class="time">2017年09月07日 16:12:11</span>
+                </div>
+                <ul class="right_bar">
+                    <li><button class="btn-noborder"><i class="icon iconfont icon-read"></i><span class="txt">49</span></button></li>
+                    <li><button class="btn-noborder but-comment-topicon"><i class="icon iconfont icon-pinglun"></i><span class="txt">0</span></button></li>
+                    <li><button class="btn-noborder btn-like"><i  class="icon iconfont icon-xihuan-"></i><span class="txt">1</span></button></li>
+                    <!--<li><button class="btn-noborder"><i class="icon iconfont icon-dashang-"></i><span class="txt">0</span></button></li>-->
+
+                    <li class="edit">
+                        <a class="btn-noborder" href="" >
+                            <i class="icon iconfont icon-bianji"></i><span class="txt">编辑</span>
+                        </a>
+                    </li>
+                    <li class="del">
+                        <a class="btn-noborder" onclick="javascript:deleteArticle(fileName);return false;">
+                            <i class="icon iconfont icon-shanchu"></i><span class="txt">删除</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="article_content" class="article_content tracking-ad" data-mod="popu_307" data-dsm="post">
+                
+<p><br>
+</p>
+<p><br>
+</p>
+<p>&nbsp;</p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+在开始看我画小狗之前，咱们先来看道很简单的题目：&nbsp;<br style="">
+下面程序的输出是什么？</p>
+<pre code_snippet_id="2568092" snippet_file_name="blog_20170907_1_1307368"  class="prettyprint" name="code" style="white-space: nowrap; word-wrap: break-word; box-sizing: border-box; position: relative; overflow-y: hidden; overflow-x: auto; margin-top: 0px; margin-bottom: 1.1em; font-family: &quot;Source Code Pro&quot;, monospace; padding: 5px 5px 5px 60px; font-size: 14px; line-height: 1.45; word-break: break-all; color: rgb(51, 51, 51); background-color: rgba(128, 128, 128, 0.0470588); border: 0px solid rgb(136, 136, 136); border-radius: 0px;"><code class="language-java hljs  has-numbering" style="display: block; padding: 0px; background: transparent; color: inherit; box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace;font-size:undefined; white-space: pre; border-radius: 0px; word-wrap: normal;">Dog myDog = <span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">new</span> Dog(<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;旺财&quot;</span>);
+changeName(myDog);
+System.out.println(myDog.getName());
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">public</span> <span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">void</span> <span class="hljs-title" style="box-sizing: border-box;">changeName</span>(dog) {
+    dog.setName(<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;小强&quot;</span>);
+}</code><ul class="pre-numbering" style="box-sizing: border-box; position: absolute; width: 50px; background-color: rgb(238, 238, 238); top: 0px; left: 0px; margin: 0px; padding: 6px 0px 40px; border-right: 1px solid rgb(221, 221, 221); list-style: none; text-align: right;"><li style="box-sizing: border-box; padding: 0px 5px;">1</li><li style="box-sizing: border-box; padding: 0px 5px;">2</li><li style="box-sizing: border-box; padding: 0px 5px;">3</li><li style="box-sizing: border-box; padding: 0px 5px;">4</li><li style="box-sizing: border-box; padding: 0px 5px;">5</li><li style="box-sizing: border-box; padding: 0px 5px;">6</li><li style="box-sizing: border-box; padding: 0px 5px;">7</li></ul></pre>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+如果你的回答是“小强”，好，恭喜你答对了。下面我们改一下代码：</p>
+<pre code_snippet_id="2568092" snippet_file_name="blog_20170907_2_8766875"  class="prettyprint" name="code" style="white-space: nowrap; word-wrap: break-word; box-sizing: border-box; position: relative; overflow-y: hidden; overflow-x: auto; margin-top: 0px; margin-bottom: 1.1em; font-family: &quot;Source Code Pro&quot;, monospace; padding: 5px 5px 5px 60px; font-size: 14px; line-height: 1.45; word-break: break-all; color: rgb(51, 51, 51); background-color: rgba(128, 128, 128, 0.0470588); border: 0px solid rgb(136, 136, 136); border-radius: 0px;"><code class="language-java hljs  has-numbering" style="display: block; padding: 0px; background: transparent; color: inherit; box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace;font-size:undefined; white-space: pre; border-radius: 0px; word-wrap: normal;">Dog myDog = <span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">new</span> Dog(<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;旺财&quot;</span>);
+changeName(myDog);
+System.out.println(myDog.getName());
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">public</span> <span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">void</span> <span class="hljs-title" style="box-sizing: border-box;">changeName</span>(dog) {
+   dog = <span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">new</span> Dog();
+   dog.setName(<span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;小强&quot;</span>);
+}</code><ul class="pre-numbering" style="box-sizing: border-box; position: absolute; width: 50px; background-color: rgb(238, 238, 238); top: 0px; left: 0px; margin: 0px; padding: 6px 0px 40px; border-right: 1px solid rgb(221, 221, 221); list-style: none; text-align: right;"><li style="box-sizing: border-box; padding: 0px 5px;">1</li><li style="box-sizing: border-box; padding: 0px 5px;">2</li><li style="box-sizing: border-box; padding: 0px 5px;">3</li><li style="box-sizing: border-box; padding: 0px 5px;">4</li><li style="box-sizing: border-box; padding: 0px 5px;">5</li><li style="box-sizing: border-box; padding: 0px 5px;">6</li><li style="box-sizing: border-box; padding: 0px 5px;">7</li><li style="box-sizing: border-box; padding: 0px 5px;">8</li></ul></pre>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+是的，我只是在changeName方法里面加了一句代码</p>
+<pre code_snippet_id="2568092" snippet_file_name="blog_20170907_3_9464986"  class="prettyprint" name="code" style="white-space: nowrap; word-wrap: break-word; box-sizing: border-box; position: relative; overflow-y: hidden; overflow-x: auto; margin-top: 0px; margin-bottom: 1.1em; font-family: &quot;Source Code Pro&quot;, monospace; padding: 5px 5px 5px 60px; font-size: 14px; line-height: 1.45; word-break: break-all; color: rgb(51, 51, 51); background-color: rgba(128, 128, 128, 0.0470588); border: 0px solid rgb(136, 136, 136); border-radius: 0px;"><code class="language-java hljs  has-numbering" style="display: block; padding: 0px; background: transparent; color: inherit; box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace;font-size:undefined; white-space: pre; border-radius: 0px; word-wrap: normal;">dog = <span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">new</span> Dog();</code><ul class="pre-numbering" style="box-sizing: border-box; position: absolute; width: 50px; background-color: rgb(238, 238, 238); top: 0px; left: 0px; margin: 0px; padding: 6px 0px 40px; border-right: 1px solid rgb(221, 221, 221); list-style: none; text-align: right;"><li style="box-sizing: border-box; padding: 0px 5px;">1</li></ul></pre>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+这一次的输出又是什么呢？</p>
+<ul style="color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+<li style="">A旺财</li><li style="">B小强</li></ul>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+答案是 A旺财，changeName方法并没有把myDog的名称改了。如果你答错了，没关系，我要开始画小狗了，画完你就明白了；如果你答对了，但不太明白其中的原因，那我画的小狗也肯定能帮到你。</p>
+<h1 id="mydog是什么" style="margin:0.8em 0px; padding:0px; font-weight:100; line-height:1.3em; font-size:2.6em; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;">
+<a target="_blank" name="t0" target="_blank" style="color:rgb(12,137,207)"></a>myDog是什么</h1>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+首先你要搞懂，代码里的变量myDog是什么？<span style="">myDog真的就是一只狗吗？不！不是！myDog只是一条遛狗用的狗绳！</span></p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+<img src="http://img.blog.csdn.net/20170905183351498?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHp5MzgzMjQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="" style="border:none; max-width:602px; max-height:100%; height:auto"></p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+换句话说说，<span style="">myDog并不是new出来的放在堆中的对象（object）！myDog只是一个指向这个对象实例的引用（reference）！</span>如果你对<a target="_blank" href="http://blog.csdn.net/hzy38324/article/details/76706044" target="_blank" style="text-decoration:none; color:rgb(12,137,207)">Java的运行时数据区域</a>足够了解，应该知道，这个引用是放在<a target="_blank" href="http://blog.csdn.net/hzy38324/article/details/76706044#t4" target="_blank" style="text-decoration:none; color:rgb(12,137,207)">虚拟机栈</a>上的。</p>
+<h1 id="参数传递" style="margin:0.8em 0px; padding:0px; font-weight:100; line-height:1.3em; font-size:2.6em; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;">
+<a target="_blank" name="t1" target="_blank" style="color:rgb(12,137,207)"></a>参数传递</h1>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+现在你知道了，myDog只是一条绳子，但这&#20284;乎并不能解释为什么changeName方法没有把myDog的名称改为“小强”，因为按照现有的理解，dog = new Dog()，就是把我的狗绳绑到另一只小狗身上，然后给这只小狗起名为“小强”，就像这样：</p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+<img src="http://img.blog.csdn.net/20170905184031951?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHp5MzgzMjQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="" style="border:none; max-width:602px; max-height:100%; height:auto"></p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+可事实是，myDog还是叫旺财，这是为什么？&nbsp;<br style="">
+问题就出在方法调用上，当我执行changeName(myDog)这一行代码时，myDog这条狗绳，被复制了一份，而传入到changeName方法里的那条狗绳（dog），就是复制出来的那一条，就像这样：</p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+<img src="http://img.blog.csdn.net/20170905184525389?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHp5MzgzMjQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="" style="border:none; max-width:602px; max-height:100%; height:auto"></p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+接着执行dog= new Dog()，这一行代码，就是把复制出来的那一条狗绳，从myDog解绑，重新绑到new出来的那只小狗上，也就是后来被起名为“小强”的小狗：</p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+<img src="http://img.blog.csdn.net/20170905184312008?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHp5MzgzMjQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="" style="border:none; max-width:602px; max-height:100%; height:auto"></p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+而myDog还是绑在旺财身上，这也就解释了，为什么执行完方法出来，myDog.getName()还是旺财。而在第一段代码里面，我们没有执行dog= new Dog()，也就没有改变dog所绑的小狗，dog还是绑在旺财身上，因此dog.setName(“小强”) 就把旺财的名字改成小强了。</p>
+<h1 id="string的例子" style="margin:0.8em 0px; padding:0px; font-weight:100; line-height:1.3em; font-size:2.6em; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;">
+<a target="_blank" name="t2" target="_blank" style="color:rgb(12,137,207)"></a>string的例子</h1>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+我们再来看一个例子：</p>
+<pre code_snippet_id="2568092" snippet_file_name="blog_20170907_4_4623201"  class="prettyprint" name="code" style="white-space: nowrap; word-wrap: break-word; box-sizing: border-box; position: relative; overflow-y: hidden; overflow-x: auto; margin-top: 0px; margin-bottom: 1.1em; font-family: &quot;Source Code Pro&quot;, monospace; padding: 5px 5px 5px 60px; font-size: 14px; line-height: 1.45; word-break: break-all; color: rgb(51, 51, 51); background-color: rgba(128, 128, 128, 0.0470588); border: 0px solid rgb(136, 136, 136); border-radius: 0px;"><code class="language-java hljs  has-numbering" style="display: block; padding: 0px; background: transparent; color: inherit; box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace;font-size:undefined; white-space: pre; border-radius: 0px; word-wrap: normal;">String str = <span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;aaa&quot;</span>;
+changeString(str);
+System.out.println(str);
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">public</span> <span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">void</span> <span class="hljs-title" style="box-sizing: border-box;">changeString</span>(String str) {
+    str = <span class="hljs-string" style="color: rgb(0, 136, 0); box-sizing: border-box;">&quot;bbb&quot;</span>;
+}</code><ul class="pre-numbering" style="box-sizing: border-box; position: absolute; width: 50px; background-color: rgb(238, 238, 238); top: 0px; left: 0px; margin: 0px; padding: 6px 0px 40px; border-right: 1px solid rgb(221, 221, 221); list-style: none; text-align: right;"><li style="box-sizing: border-box; padding: 0px 5px;">1</li><li style="box-sizing: border-box; padding: 0px 5px;">2</li><li style="box-sizing: border-box; padding: 0px 5px;">3</li><li style="box-sizing: border-box; padding: 0px 5px;">4</li><li style="box-sizing: border-box; padding: 0px 5px;">5</li><li style="box-sizing: border-box; padding: 0px 5px;">6</li><li style="box-sizing: border-box; padding: 0px 5px;">7</li></ul></pre>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+如果你弄懂了上面那个例子，那么这里应该不难理解，changeString方法里，只是将新复制出来的引用str，指向另外一个字符串常量对象“bbb”，方法体外面的str并不受影响，还是指向字符串常量“aaa”，因此最终打印的还是aaa.</p>
+<h1 id="int的例子" style="margin:0.8em 0px; padding:0px; font-weight:100; line-height:1.3em; font-size:2.6em; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;">
+<a target="_blank" name="t3" target="_blank" style="color:rgb(12,137,207)"></a>int的例子</h1>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+上面提到的都是对象，下面看一个基本数据类型的例子</p>
+<pre code_snippet_id="2568092" snippet_file_name="blog_20170907_5_5321312"  class="prettyprint" name="code" style="white-space: nowrap; word-wrap: break-word; box-sizing: border-box; position: relative; overflow-y: hidden; overflow-x: auto; margin-top: 0px; margin-bottom: 1.1em; font-family: &quot;Source Code Pro&quot;, monospace; padding: 5px 5px 5px 60px; font-size: 14px; line-height: 1.45; word-break: break-all; color: rgb(51, 51, 51); background-color: rgba(128, 128, 128, 0.0470588); border: 0px solid rgb(136, 136, 136); border-radius: 0px;"><code class="language-java hljs  has-numbering" style="display: block; padding: 0px; background: transparent; color: inherit; box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace;font-size:undefined; white-space: pre; border-radius: 0px; word-wrap: normal;"><span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">int</span> i = <span class="hljs-number" style="color: rgb(0, 102, 102); box-sizing: border-box;">1</span>;
+changeInt(i);
+System.out.println(i);
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">public</span> <span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">void</span> <span class="hljs-title" style="box-sizing: border-box;">changeInt</span>(<span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">int</span> i) {
+   i = <span class="hljs-number" style="color: rgb(0, 102, 102); box-sizing: border-box;">2</span>;
+}</code><ul class="pre-numbering" style="box-sizing: border-box; position: absolute; width: 50px; background-color: rgb(238, 238, 238); top: 0px; left: 0px; margin: 0px; padding: 6px 0px 40px; border-right: 1px solid rgb(221, 221, 221); list-style: none; text-align: right;"><li style="box-sizing: border-box; padding: 0px 5px;">1</li><li style="box-sizing: border-box; padding: 0px 5px;">2</li><li style="box-sizing: border-box; padding: 0px 5px;">3</li><li style="box-sizing: border-box; padding: 0px 5px;">4</li><li style="box-sizing: border-box; padding: 0px 5px;">5</li><li style="box-sizing: border-box; padding: 0px 5px;">6</li><li style="box-sizing: border-box; padding: 0px 5px;">7</li></ul></pre>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+对于基本数据类型，他们没有引用，但是不要忘了，调用函数时，复制的动作还是会做的，执行changeInt(i)时，会将 i 复制到一个新的int上，传给changeInt方法，因此不管changeInt内部对入参做了什么，外面的 i 都不会受影响。最后打印出来的还是1.</p>
+<h1 id="&#20540;传递和引用传递" style="margin:0.8em 0px; padding:0px; font-weight:100; line-height:1.3em; font-size:2.6em; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;">
+<a target="_blank" name="t4" target="_blank" style="color:rgb(12,137,207)"></a>&#20540;传递和引用传递</h1>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+上面提到的参数传递过程中的复制操作，说白了，就是 = 操作。把上面那个int例子，做一下方法内联，其实就是这样：</p>
+<pre code_snippet_id="2568092" snippet_file_name="blog_20170907_6_3511168"  class="prettyprint" name="code" style="white-space: nowrap; word-wrap: break-word; box-sizing: border-box; position: relative; overflow-y: hidden; overflow-x: auto; margin-top: 0px; margin-bottom: 1.1em; font-family: &quot;Source Code Pro&quot;, monospace; padding: 5px 5px 5px 60px; font-size: 14px; line-height: 1.45; word-break: break-all; color: rgb(51, 51, 51); background-color: rgba(128, 128, 128, 0.0470588); border: 0px solid rgb(136, 136, 136); border-radius: 0px;"><code class="language-java hljs  has-numbering" style="display: block; padding: 0px; background: transparent; color: inherit; box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace;font-size:undefined; white-space: pre; border-radius: 0px; word-wrap: normal;"><span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">int</span> i = <span class="hljs-number" style="color: rgb(0, 102, 102); box-sizing: border-box;">1</span>;
+
+<span class="hljs-comment" style="color: rgb(136, 0, 0); box-sizing: border-box;">// 方法内联，相当于执行changeInt方法</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">int</span> j = i; <span class="hljs-comment" style="color: rgb(136, 0, 0); box-sizing: border-box;">// 新建一个和i一样的变量</span>
+j = <span class="hljs-number" style="color: rgb(0, 102, 102); box-sizing: border-box;">2</span>; <span class="hljs-comment" style="color: rgb(136, 0, 0); box-sizing: border-box;">//修改j的值，i不变</span>
+
+System.out.println(i);</code><ul class="pre-numbering" style="box-sizing: border-box; position: absolute; width: 50px; background-color: rgb(238, 238, 238); top: 0px; left: 0px; margin: 0px; padding: 6px 0px 40px; border-right: 1px solid rgb(221, 221, 221); list-style: none; text-align: right;"><li style="box-sizing: border-box; padding: 0px 5px;">1</li><li style="box-sizing: border-box; padding: 0px 5px;">2</li><li style="box-sizing: border-box; padding: 0px 5px;">3</li><li style="box-sizing: border-box; padding: 0px 5px;">4</li><li style="box-sizing: border-box; padding: 0px 5px;">5</li><li style="box-sizing: border-box; padding: 0px 5px;">6</li><li style="box-sizing: border-box; padding: 0px 5px;">7</li></ul></pre>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+对于基本数据类型，= 操作将右边的变量（R_VALUE）完整的复制给左边的变量（L_VALUE），而对于对象，准确的说，应该是指向对象的引用（就像上面说的myDog），= 操作同样也是将右边的引用完整的复制给左边的引用，两者指向同一个对象实例。&nbsp;<br style="">
+这个&nbsp;<span style="">= 操作，是&#20540;传递和引用传递的根本差别</span>，这也导致了&#20540;传递和引用传递有以下直观上的差别：</p>
+<ul style="color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+<li style="">如果参数是&#20540;传递，那么调用者（方法体外部）和被调用者（方法体内部）用的是两个不同的变量，方法体里面对变量的改动不会影响方法体外面的变量。而之所以在Java可以在方法体内部改变方法体外部的对象，是因为方法体内部拿到了对象的引用，但是这个引用是和方法体外部的引用属于两个不同的引用的，方法体内部的引用指向别的对象，不会导致方法体外部的引用也指向别的对象。</li><li style="">如果参数是引用传递，那么调用者（方法体外部）和被调用者（方法体内部）用的是两个相同的变量，方法体里面对变量的改动会影响方法体外面的变量。</li></ul>
+<h1 id="java的变量都不是对象" style="margin:0.8em 0px; padding:0px; font-weight:100; line-height:1.3em; font-size:2.6em; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;">
+<a target="_blank" name="t5" target="_blank" style="color:rgb(12,137,207)"></a>Java的变量都不是对象</h1>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+通过上面的讲解，你也知道了一个很重要的点：<span style="">Java里面的变量，要么是基本数据类型，要么是指向对象实例的引用类型（狗绳），绝对不会是一个对象（狗）</span>。</p>
+<h1 id="狗绳和垃圾回收" style="margin:0.8em 0px; padding:0px; font-weight:100; line-height:1.3em; font-size:2.6em; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;">
+<a target="_blank" name="t6" target="_blank" style="color:rgb(12,137,207)"></a>狗绳和垃圾回收</h1>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+弄懂了myDog只是一条狗绳（引用），也有助于我们理解Java的垃圾回收机制，我在<a target="_blank" href="http://blog.csdn.net/hzy38324/article/details/77142103#t5" target="_blank" style="text-decoration:none; color:rgb(12,137,207)">另一篇文章</a>里提到过，一旦JVM发现一个对象跟GC Roots不可达时，这个对象就会被回收掉，看一下下面这段代码：</p>
+<pre code_snippet_id="2568092" snippet_file_name="blog_20170907_7_1177637"  class="prettyprint" name="code" style="white-space: nowrap; word-wrap: break-word; box-sizing: border-box; position: relative; overflow-y: hidden; overflow-x: auto; margin-top: 0px; margin-bottom: 1.1em; font-family: &quot;Source Code Pro&quot;, monospace; padding: 5px 5px 5px 60px; font-size: 14px; line-height: 1.45; word-break: break-all; color: rgb(51, 51, 51); background-color: rgba(128, 128, 128, 0.0470588); border: 0px solid rgb(136, 136, 136); border-radius: 0px;"><code class="language-java hljs  has-numbering" style="display: block; padding: 0px; background: transparent; color: inherit; box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace;font-size:undefined; white-space: pre; border-radius: 0px; word-wrap: normal;">Dog dog = <span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">new</span> Dog();
+dog = <span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">null</span>;</code><ul class="pre-numbering" style="box-sizing: border-box; position: absolute; width: 50px; background-color: rgb(238, 238, 238); top: 0px; left: 0px; margin: 0px; padding: 6px 0px 40px; border-right: 1px solid rgb(221, 221, 221); list-style: none; text-align: right;"><li style="box-sizing: border-box; padding: 0px 5px;">1</li><li style="box-sizing: border-box; padding: 0px 5px;">2</li></ul></pre>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+现在我们知道，dog=null就等于是把狗绳给咔嚓减掉了，这样狗就跑了，变成流浪狗了，就像Java中的对象被当做垃圾回收了一样：</p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+接着再来看一下交叉引用的例子：</p>
+<pre code_snippet_id="2568092" snippet_file_name="blog_20170907_8_7939033"  class="prettyprint" name="code" style="white-space: nowrap; word-wrap: break-word; box-sizing: border-box; position: relative; overflow-y: hidden; overflow-x: auto; margin-top: 0px; margin-bottom: 1.1em; font-family: &quot;Source Code Pro&quot;, monospace; padding: 5px 5px 5px 60px; font-size: 14px; line-height: 1.45; word-break: break-all; color: rgb(51, 51, 51); background-color: rgba(128, 128, 128, 0.0470588); border: 0px solid rgb(136, 136, 136); border-radius: 0px;"><code class="language-java hljs  has-numbering" style="display: block; padding: 0px; background: transparent; color: inherit; box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace;font-size:undefined; white-space: pre; border-radius: 0px; word-wrap: normal;">Dog dog1 = <span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">new</span> Dog();
+Dog dog2 = <span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">new</span> Dog();
+dog1.son = dog2;
+dog2.father = dog1;
+dog1 = <span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">null</span>;
+dog2 = <span class="hljs-keyword" style="color: rgb(0, 0, 136); box-sizing: border-box;">null</span>;</code><ul class="pre-numbering" style="box-sizing: border-box; position: absolute; width: 50px; background-color: rgb(238, 238, 238); top: 0px; left: 0px; margin: 0px; padding: 6px 0px 40px; border-right: 1px solid rgb(221, 221, 221); list-style: none; text-align: right;"><li style="box-sizing: border-box; padding: 0px 5px;">1</li><li style="box-sizing: border-box; padding: 0px 5px;">2</li><li style="box-sizing: border-box; padding: 0px 5px;">3</li><li style="box-sizing: border-box; padding: 0px 5px;">4</li><li style="box-sizing: border-box; padding: 0px 5px;">5</li><li style="box-sizing: border-box; padding: 0px 5px;">6</li></ul></pre>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+如果JVM采用的是<a target="_blank" href="http://blog.csdn.net/hzy38324/article/details/77142103#t4" target="_blank" style="text-decoration:none; color:rgb(12,137,207)">引用计数法</a>，那么狗2原先被dog2和dog1.son两个变量引用这，执行完dog2 = null之后，还被dog1.son引用，狗2是不会被回收的。&nbsp;<br style="">
+但是如果使用<a target="_blank" href="http://blog.csdn.net/hzy38324/article/details/77142103#t5" target="_blank" style="text-decoration:none; color:rgb(12,137,207)">可达性分析法</a>，我们就会发现，这两只狗和这个世界已经没有关联了，尽管他们俩还是父子关系，JVM对于这种互相引用，但是和GC ROOTS已经没有关联的对象，照样会进行回收。</p>
+<h1 id="引用传递的替代方法" style="margin:0.8em 0px; padding:0px; font-weight:100; line-height:1.3em; font-size:2.6em; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;">
+<a target="_blank" name="t7" target="_blank" style="color:rgb(12,137,207)"></a>引用传递的替代方法</h1>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+引用传递有两个好处：</p>
+<ul style="color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+<li style="">引用传递可以<span style="">避免调用方法时进行拷贝</span>，尤其是当方法的入参是个大对象时，拷贝会耗费大量的时间和空间，当然，这一点Java已经巧妙地解决了，因为对于对象，拷贝的只是它的引用而已；</li><li style="">引用传递可以<span style="">对外面的对象进行修改</span>，这也是很多语言支持引用传递的原因。</li></ul>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+那么，在Java，要怎么实现“对外面的对象进行修改”类&#20284;的功能呢？&nbsp;<br style="">
+答案是使用<span style="">返回&#20540;</span>，类&#20284;这样：</p>
+<pre code_snippet_id="2568092" snippet_file_name="blog_20170907_9_5921147"  class="prettyprint" name="code" style="white-space: nowrap; word-wrap: break-word; box-sizing: border-box; position: relative; overflow-y: hidden; overflow-x: auto; margin-top: 0px; margin-bottom: 1.1em; font-family: &quot;Source Code Pro&quot;, monospace; padding: 5px 5px 5px 60px; font-size: 14px; line-height: 1.45; word-break: break-all; color: rgb(51, 51, 51); background-color: rgba(128, 128, 128, 0.0470588); border: 0px solid rgb(136, 136, 136); border-radius: 0px;"><code class="language-java hljs  has-numbering" style="display: block; padding: 0px; background: transparent; color: inherit; box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace;font-size:undefined; white-space: pre; border-radius: 0px; word-wrap: normal;">a = doSomeThing(a);</code><ul class="pre-numbering" style="box-sizing: border-box; position: absolute; width: 50px; background-color: rgb(238, 238, 238); top: 0px; left: 0px; margin: 0px; padding: 6px 0px 40px; border-right: 1px solid rgb(221, 221, 221); list-style: none; text-align: right;"><li style="box-sizing: border-box; padding: 0px 5px;">1</li></ul></pre>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+当然，如果你只是对一个对象进行修改，然后返回这个对象的新的版本，那么可以考虑把这个方法挪到这个对象里面去，就像这样：</p>
+<pre code_snippet_id="2568092" snippet_file_name="blog_20170907_10_7699053"  class="prettyprint" name="code" style="white-space: nowrap; word-wrap: break-word; box-sizing: border-box; position: relative; overflow-y: hidden; overflow-x: auto; margin-top: 0px; margin-bottom: 1.1em; font-family: &quot;Source Code Pro&quot;, monospace; padding: 5px 5px 5px 60px; font-size: 14px; line-height: 1.45; word-break: break-all; color: rgb(51, 51, 51); background-color: rgba(128, 128, 128, 0.0470588); border: 0px solid rgb(136, 136, 136); border-radius: 0px;"><code class="language-java hljs  has-numbering" style="display: block; padding: 0px; background: transparent; color: inherit; box-sizing: border-box; font-family: &quot;Source Code Pro&quot;, monospace;font-size:undefined; white-space: pre; border-radius: 0px; word-wrap: normal;">a = a.doSomeThing();</code><ul class="pre-numbering" style="box-sizing: border-box; position: absolute; width: 50px; background-color: rgb(238, 238, 238); top: 0px; left: 0px; margin: 0px; padding: 6px 0px 40px; border-right: 1px solid rgb(221, 221, 221); list-style: none; text-align: right;"><li style="box-sizing: border-box; padding: 0px 5px;">1</li></ul></pre>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+还有，如果你是需要返回多个&#20540;，不使用引用传递，要如何实现？&nbsp;<br style="">
+答案是<span style="">返回一个对象</span>，比如你想修改一个地方的经度和纬度，那么与其传入log和lat两个变量，不如把他们封装到Point对象里面去。</p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+以上，希望对你有所帮助。</p>
+<p style="margin-top:0px; margin-bottom:1.1em; padding-top:0px; padding-bottom:0px; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+http://blog.csdn.net/hzy38324/article/details/77854412<br>
+</p>
+<h1 id="参考内容" style="margin:0.8em 0px; padding:0px; font-weight:100; line-height:1.3em; font-size:2.6em; color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;">
+<a target="_blank" name="t8" target="_blank" style="color:rgb(12,137,207)"></a>参考内容</h1>
+<ul style="color:rgb(63,63,63); font-family:&quot;microsoft yahei&quot;; font-size:15px">
+<li style=""><a target="_blank" href="http://www.yoda.arachsys.com/java/passing.html" target="_blank" style="text-decoration:none; color:rgb(12,137,207)">Parameter passing in Java - by reference or by value?</a></li><li style=""><a target="_blank" href="https://stackoverflow.com/questions/373419/whats-the-difference-between-passing-by-reference-vs-passing-by-value" target="_blank" style="text-decoration:none; color:rgb(12,137,207)">What’s the difference between passing
+ by reference vs. passing by value?</a></li><li style=""><a target="_blank" href="https://stackoverflow.com/questions/40480/is-java-pass-by-reference-or-pass-by-value" target="_blank" style="text-decoration:none; color:rgb(12,137,207)">Is Java “pass-by-reference” or “pass-by-value”?</a></li><li style=""><a target="_blank" href="https://www.zhihu.com/question/31203609" target="_blank" style="text-decoration:none; color:rgb(12,137,207)">java到底是&#20540;传递还是引用传递？</a></li></ul>
+<link rel="stylesheet" href="http://static.blog.csdn.net/public/res-min/markdown_views.css?v=1.0" />
+            </div>
+        </article>
+        <div class="readall_box tracking-ad" data-mod="popu_376">
+            <a class="btn btn-large btn-gray-fred read_more_btn" target="_self">阅读全文</a>
+        </div>
+        <div class="article_copyright">
+            版权声明：本文为博主原创文章，未经博主允许不得转载。
+            <span class="r_ico"><i class="icon iconfont icon-jubao"></i><span class="txt" id="reportBtn">举报</span></span>
+        </div>
+        <!--  <div class="reward_box">
+            <div class="tit">
+              <button class="btn_reward"><i class="icon iconfont icon-dashang-"></i></button>
+            </div>
+            <dl class="clearfix">
+              <dt><a href="#" target="_blank">近期打赏</a></dt>
+              <dd><a href="#" target="_blank"><img src="http://avatar.csdn.net/9/3/2/2_nzf_001.jpg" alt="聂兆芳" title="聂兆芳"></a></dd>
+              <dd><a href="#" target="_blank"><img src="http://avatar.csdn.net/9/3/2/2_nzf_001.jpg" alt="聂兆芳" title="聂兆芳"></a></dd>
+              <dd><a href="#" target="_blank"><img src="http://avatar.csdn.net/9/3/2/2_nzf_001.jpg" alt="聂兆芳" title="聂兆芳"></a></dd>
+              <dd><a href="#" target="_blank"><img src="http://avatar.csdn.net/9/3/2/2_nzf_001.jpg" alt="聂兆芳" title="聂兆芳"></a></dd>
+              <dd><a href="#" target="_blank"><img src="http://avatar.csdn.net/9/3/2/2_nzf_001.jpg" alt="聂兆芳" title="聂兆芳"></a></dd>
+            </dl>
+          </div>-->
+        <ul class="article_tags clearfix tracking-ad" data-mod="popu_377">
+            <li class="tit">标签：</li>
+            
+        </ul>
+        <ul class="article_collect clearfix tracking-ad"  data-mod="popu_378">
+            <li class="tit">本文已收录于以下专栏：</li>
+            
+        </ul>
+        <div class="comment_box clearfix">
+            <div id="comment_form">
+                <div id="commentsbmitarear">
+                    <h6><span>0</span>条评论</h6>
+                    <dl class="clearfix" id="commentbox">
+                        <dt>
+                            <a href="http://my.csdn.net/github_38885296"><img src="http://avatar.csdn.net/5/5/E/1_github_38885296.jpg" ></a>
+                        </dt>
+                        <dd>
+                            <a href="http://my.csdn.net/github_38885296" target="_blank">github_38885296</a>
+                        </dd>
+                        <dd class="txt_tip"><span id="tip_comment" class="tip"></span></dd>
+                    </dl>
+                    <div class="comment_area clearfix">
+                        <form action="/li0531/comment/submit?id=77882941" method="post" onsubmit="return subform(this);" id="commentform">
+                            <textarea class="comment_content" name="comment_content" id="comment_content"></textarea>
+                            <div class="bot_bar clearfix">
+                                <div id="ubbtools" class="add_code">
+                                    <a href="#insertcode" code="code" target="_self"><i class="icon iconfont icon-daima"></i></a>
+                                </div>
+
+                                <input type="hidden" id="comment_replyId" name="comment_replyId">
+                                <input type="hidden" id="comment_userId" name="comment_userId" value="">
+                                <input type="hidden" id="commentId" name="commentId" value="">
+                                <input type="submit" class="btn btn-redborder" value="发表评论">
+                                <div style="display: none;" class="tracking-ad" data-mod="popu_384"><a href="#" target="_blank" class="comment_area_btn">发表评论</a></div>
+
+                                <div id="lang_list" code="code">
+                                    <a href="#html" style="width:95px;" class="long_name" target="_self">HTML/XML</a>
+                                    <a href="#objc" style="width:95px;" class="long_name" target="_self">objective-c</a>
+                                    <a href="#delphi" style="width:58px;" class="zhong_name" target="_self">Delphi</a>
+                                    <a href="#ruby" class="zhong_name" target="_self">Ruby</a>
+                                    <a href="#php" target="_self">PHP</a>
+                                    <a href="#csharp" class="duan_name" target="_self">C#</a>
+                                    <a style=" border-right: none;" href="#cpp" class="duan_name" target="_self">C++</a>
+                                    <a style=" border-bottom:none;width:95px;" href="#javascript" class="long_name" target="_self">JavaScript</a>
+                                    <a style=" border-bottom:none;width:95px;" href="#vb" class="long_name" target="_self">Visual Basic</a>
+                                    <a style=" border-bottom:none;" href="#python" class="zhong_name" target="_self">Python</a>
+                                    <a style=" border-bottom:none;" href="#java" class="zhong_name" target="_self">Java</a>
+                                    <a style="border-bottom:none;" href="#css" class="duan_name" target="_self">CSS</a>
+                                    <a style="border-bottom:none;" href="#sql" class="duan_name" target="_self">SQL</a>
+                                    <a style="border:none; " href="#plain" class="duan_name" target="_self">其它</a>
+                                    <span class="arrb"></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comment_li_outbox">
+            <div id="comment_list"></div>
+        </div>
+
+        <div class="more_comment">
+            <div id="comment_bar" class="trackgin-ad" data-mod="popu_385"></div>
+        </div>
+
+        <h3 class="recommend_tit">相关文章推荐</h3>
+        <div class="recommend_list clearfix">
+            
+            <dl class="clearfix tracking-ad" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <dd>
+                    <h2><a href="/hzy38324/article/details/77854412"  target="_blank" strategy="BlogCommendFromCsdn_2">用画小狗的方法来解释Java中的值传递</a></h2>
+                    <div class="summary">
+                        用生动有趣而又具有深度的方式讲解Java中的值传递。
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><a href="http://blog.csdn.net/hzy38324" target="_blank" strategy="BlogCommendFromCsdn_2"><img src="http://avatar.csdn.net/B/7/D/2_hzy38324.jpg" alt="hzy38324" title="hzy38324"></a></li>
+                        <li class="user_name"><a href="http://blog.csdn.net/hzy38324">hzy38324</a></li>
+                        <li class="time">6天前 19:23</li>
+                        <li class="visited_num"><i class="icon iconfont icon-read"></i><span>4704</span></li>
+                    </ul>
+                </dd>
+            </dl>
+            
+            <dl class="clearfix tracking-ad" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <dd>
+                    <h2><a href="/jiden/article/details/740230"  target="_blank" strategy="BlogCommendFromCsdn_4">小狗的饲养，帮助新人</a></h2>
+                    <div class="summary">
+                        小狗的饲养，帮助新人 2月龄犬的喂养　　　　　　　　 　　（1）食物：对于刚接回家的幼犬，要了解原主人给犬仔的食物的种类、份量和饲喂的时间，尽可能同前主人保持一样，待一周后再慢慢改换其饮食习惯。否则既...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><a href="http://blog.csdn.net/jiden" target="_blank" strategy="BlogCommendFromCsdn_4"><img src="http://avatar.csdn.net/F/7/5/2_jiden.jpg" alt="jiden" title="jiden"></a></li>
+                        <li class="user_name"><a href="http://blog.csdn.net/jiden">jiden</a></li>
+                        <li class="time">2006-05-15 23:16</li>
+                        <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1318</span></li>
+                    </ul>
+                </dd>
+            </dl>
+            
+            <dl class="clearfix tracking-ad" data-mod="popu_393">
+                <dt><a href="http://edu.csdn.net/huiyiCourse/detail/504?utm_source=blog10" target="_blank"><img class="maxwidth" src="http://img.blog.csdn.net/20170906160910487" alt="" title=""></a></dt>
+                <dd>
+                    <div class="summary">
+                        <h2>Linux老难题解决了！</h2>  <div class="summary">Linux工程师很多，甚至有很多有多年工作经验，但是对一些关键概念的理解非常模糊，比如不理解CPU、内存资源等的真正分布，具体的工作机制，这使得他们对很多问题的分析都摸不到方向。比如进程的调度延时是多少？linux能否硬实时？多核下多线程如何执行？</div> 
+                    </div>
+                </dd>
+            </dl>
+            
+            <dl class="clearfix tracking-ad" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                <dd>
+                    <h2><a href="/xiaome4242/article/details/1732223"  target="_blank" strategy="BlogCommendFromCsdn_7">小狗与蝴蝶 是什么</a></h2>
+                    <div class="summary">
+                        Welcome to my blog!小狗与蝴蝶	  	    		  		    软件大小：223 KB软件语言：简体中文软件类别：国产软件 / 共享版 / 手机桌面应用平台：Symbian s60...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><a href="http://blog.csdn.net/xiaome4242" target="_blank" strategy="BlogCommendFromCsdn_7"><img src="http://avatar.csdn.net/C/F/6/2_xiaome4242.jpg" alt="xiaome4242" title="xiaome4242"></a></li>
+                        <li class="user_name"><a href="http://blog.csdn.net/xiaome4242">xiaome4242</a></li>
+                        <li class="time">2007-08-08 20:15</li>
+                        <li class="visited_num"><i class="icon iconfont icon-read"></i><span>104</span></li>
+                    </ul>
+                </dd>
+            </dl>
+            
+
+            
+
+            
+        </div>
+    </main>
+    <aside>
+        <div class="right_box user_info">
+            <dl class="inf_bar clearfix">
+                <dt class="tracking-ad" data-mod="popu_381">
+                    <a href="http://blog.csdn.net/li0531" target="_blank">
+                        <img src="http://avatar.csdn.net/1/B/F/1_li0531.jpg" class="avatar_pic">
+                    </a>
+                    <span class="medals" title="">
+                <svg class="icon" aria-hidden="true">
+                    
+                </svg>
+              </span>
+                </dt>
+                <dd>
+                    <h3 class="tracking-ad"  data-mod="popu_380"><a href="http://blog.csdn.net/li0531" target="_blank" id="uid">li0531</a></h3>
+                    <span  class="tracking-ad" data-mod="popu_379"><a class="btn btn-redborder-small "  id="span_add_follow" target="_self">＋关注</a></span>
+                </dd>
+            </dl>
+            <div class="inf_number_box clearfix">
+                <dl>
+                    <dt>原创</dt>
+                    <dd>104</dd>
+                </dl>
+                <dl>
+                    <dt>粉丝</dt>
+                    <dd>57</dd>
+                </dl>
+                <dl>
+                    <dt>喜欢</dt>
+                    <dd>0</dd>
+                </dl>
+								 <dl>
+              <dt>码云</dt>
+              <dd>&nbsp;</dd>
+            </dl>
+
+            </div>
+	    <div class="writings">
+              <div class="public_signal clearfix">
+                <h3>他的最新文章</h3>
+                <a href="http://blog.csdn.net/li0531" target="_blank" class="more"><span>更多文章</span></a>
+              </div>
+                <ul class="inf_list clearfix tracking-ad" data-mod="popu_382">
+                    
+                    <li class="clearfix">
+                      
+                        <a href="/li0531/article/details/77882941" target="_blank">用画小狗的方法来解释Java中的值传递</a>
+                    </li>
+                    
+                    <li class="clearfix">
+                      
+                        <a href="/li0531/article/details/77882802" target="_blank">十大云存储平台技巧</a>
+                    </li>
+                    
+                    <li class="clearfix">
+                      
+                        <a href="/li0531/article/details/77882710" target="_blank">35 个 Java 代码性能优化总结</a>
+                    </li>
+                    
+                    <li class="clearfix">
+                      
+                        <a href="/li0531/article/details/77600929" target="_blank">秒杀系统的一点思考</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="extension_other tracking-ad" data-mod="popu_389">
+						<!--u3032528-->
+           <script type="text/javascript" src="http://mpb1.iteye.com/bwocoltlyzdec.js"></script>
+        </div>
+
+	
+	<div class="new_column right_box" >
+          <h3 class="tit"><span><em>最热专栏</em></span></h3>
+         <ul class="tracking-ad" data-mod="popu_434">
+		
+			<li><a href="http://blog.csdn.net/column/details/16138.html" target="_blank">史上最简单的 MySQL 教程</a></li>  
+		
+			<li><a href="http://blog.csdn.net/column/details/13761.html" target="_blank">区块链开发技术分享</a></li>  
+		
+			<li><a href="http://blog.csdn.net/column/details/14531.html" target="_blank">死磕Java</a></li>  
+		
+			<li><a href="http://blog.csdn.net/column/details/16036.html" target="_blank">ARKit开发</a></li>  
+		
+			<li><a href="http://blog.csdn.net/column/details/15938.html" target="_blank">从高考到程序员</a></li>  
+		          
+          </ul>
+        </div>
+     
+
+        
+        <div class="fixRight">
+            <div class="right_box padb0 tracking-ad" data-mod="popu_391">
+                <h3 class="tit"><span><em>在线课程</em></span></h3>
+                <ul class="edu_li clearfix">
+                  
+                  <li>
+                    <div>
+                      <a href="http://edu.csdn.net/huiyiCourse/series_detail/61?utm_source=blog7" target="_blank">
+                        <img src="http://img.bss.csdn.net/201709121033037597.png" alt="30天系统掌握机器学习" title="30天系统掌握机器学习">
+                      </a>
+                    </div>
+                    <div>
+                      <p><a href="http://edu.csdn.net/huiyiCourse/series_detail/61?utm_source=blog7" target="_blank">30天系统掌握机器学习</a></p>
+                      <p>讲师：</p>
+                    </div>
+                  </li>
+                  
+                  <li>
+                    <div>
+                      <a href="http://edu.csdn.net/huiyiCourse/series_detail/66?utm_source=blog7" target="_blank">
+                        <img src="http://img.bss.csdn.net/201709121017292628.png" alt="SDCC 2017之大数据技术实战线上峰会" title="SDCC 2017之大数据技术实战线上峰会">
+                      </a>
+                    </div>
+                    <div>
+                      <p><a href="http://edu.csdn.net/huiyiCourse/series_detail/66?utm_source=blog7" target="_blank">SDCC 2017之大数据技术实战线上峰会</a></p>
+                      <p>讲师：</p>
+                    </div>
+                  </li>
+                  
+                </ul>
+            </div>
+            <div class="extension_other tracking-ad baidu_box" data-mod="popu_395">
+								<!--u3032529-->
+                <script type="text/javascript" src="http://mpb1.iteye.com/cxpdpmumfaedgm.js"></script>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<div class="left_fixed">
+    <ul class="left_menu">
+        <li id="blog_artical_directory">
+            <button class="left-fixed-btn left_menu_btn tracking-ad" data-mod="popu_372" target="_self">
+                <span class="iconbox border_black"><i class="icon iconfont icon-mulu"></i></span>
+                <span class="txt">目录</span>
+            </button>
+        </li>
+        <li class="menu_con">
+            <div class="list_father">
+                <div class="arr_box">
+                    <button class="btn-noborder arr-btn scroll-down  left_scroll_down"><i class="icon iconfont icon-xiajiantou"></i></button>
+                    <button class="btn-noborder arr-btn scroll-up left_scroll_top"><i class="icon iconfont icon-shangjiantou"></i></button>
+                </div>
+                <div class="arr"></div>
+                <div id="csdnBlogDir"></div>
+            </div>
+        </li>
+        <li>
+            <button class="left-fixed-btn btn-like tracking-ad" data-mod="popu_373" target="_self">
+                <span class="iconbox border_red"><i class="icon iconfont icon-xihuan-"></i></span>
+                <span class="txt">喜欢</span>
+                <span class="untxt">取消喜欢</span>
+            </button>
+        </li>
+        <li>
+            <button class="left-fixed-btn tracking-ad" data-mod="popu_374"  id="com-quick-collect" target="_self">
+                <span class="iconbox border_purple"><i class="icon iconfont icon-shoucang"></i></span>
+                <a class="txt" title="收藏">收藏</a>
+            </button>
+        </li>
+        <li id="share_box">
+            <button class="left-fixed-btn  tracking-ad"  data-mod="popu_375" target="_self">
+                <span class="iconbox border_orange"><i class="icon iconfont icon-fenxiang"></i></span>
+                <span class="txt">分享</span>
+            </button>
+            <div class="bdsharebuttonbox tracking-ad" data-mod="popu_172">
+                <div class="outside">
+                    <span class="iconbox border_red2"><i class="icon iconfont icon-xinlang"></i></span>
+                    <span class="text">微博</span>
+                    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"> </a>
+                </div>
+                <div class="outside">
+                    <span class="iconbox border_green"><i class="icon iconfont icon-weixin"></i></span>
+                    <span class="text">微信</span>
+                    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"> </a>
+                </div>
+                <div class="outside">
+                    <span class="iconbox border_blue"><i class="icon iconfont icon-QQ"></i></span>
+                    <span class="text">QQ</span>
+                    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"> </a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div id="pop_win"></div>
+<div id="popup_mask"></div>
+<div class="pop_CA_cover" ></div>
+<div class="pop pop_CA" >
+    <div class="CA_header">
+        收藏助手
+        <span class="cancel_icon"  id="fapancle" ></span>
+    </div>
+    <iframe src="" id="collectIframe" frameborder="0" width="100%" height="360"  scrolling="no" ></iframe>
+</div>
+<!--举报-->
+<div id="report_dialog" style="top: 250px; left: 343.5px;"><div id="panel_report">
+    <div class="panel_head">不良信息举报</div>
+    <form method="post" id="frmReport" class="panel_body">
+        <table border="0" cellpadding="0" cellspacing="4" class="pop_table">
+            <tbody><tr><td colspan="2">您举报文章：<a href="http://blog.csdn.net/raintungli/article/details/76583070" target="_blank">深度学习：神经网络中的前向传播和反向传播算法推导</a></td></tr>
+            <tr>
+                <th style="width:60px;">举报原因：</th>
+                <td id="panel_reporttype">
+                    <label><input type="radio" class="report_type" id="report_sex" name="report_type" value="1">色情</label>
+                    <label><input type="radio" class="report_type" id="report_Politics" name="report_type" value="2">政治</label>
+                    <label><input type="radio" class="report_type" id="report_copy" name="report_type" value="3">抄袭</label>
+                    <label><input type="radio" class="report_type" id="report_ad" name="report_type" value="4">广告</label>
+                    <label><input type="radio" class="report_type" id="report_want" name="report_type" value="5">招聘</label>
+                    <label><input type="radio" class="report_type" id="report_call" name="report_type" value="6">骂人</label>
+                    <br>
+                    <label><input type="radio" class="report_type" id="report_other" name="report_type" value="7">其他</label>
+                    <input type="text" name="report_other_content" id="report_other_content" maxlength="30" style="display: none;">
+                </td>
+            </tr>
+            <tr id="panel_originalurl" style="display: none;">
+                <th>原文地址：</th>
+                <td>
+                    <input id="originalurl" value="http://" name="originalurl" type="text" style="width: 90%;">
+                </td>
+            </tr>
+            <tr>
+                <th id="sp_reason">原因补充：</th>
+                <td>
+                    <textarea id="report_description" style="width: 300px;" rows="3" name="report_description"></textarea>
+                    <p id="sp_n" style="color:#999;margin:0px;padding:0px;">(最多只允许输入30个字)</p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="btnSubmitReport" name="submit" type="image" align="middle" class="btn_1" src="http://static.blog.csdn.net/images/btn_submit.jpg">
+                    <span style="padding-left:20px;"></span>
+                    <img id="btnCloseReportDialog" src="http://static.blog.csdn.net/images/btn_cancel.jpg" align="middle">
+                    <div id="error" style="color: Red">
+                    </div>
+                </td>
+            </tr>
+            </tbody></table>
+    </form>
+</div>
+    <script language="javascript" type="text/javascript">
+        var isComment=0;
+        //显示隐藏地址
+        $(function () {
+            if(isComment){
+                $("#report_description").attr("disabled",true);
+                $("#sp_n").hide();
+                $("#sp_reason").html("评论内容：");
+            }
+            $(".report_type").click(function () {
+                $("#panel_originalurl,#report_other_content").hide();
+                switch ($(this).val()) {
+                    case '3':
+                        $("#panel_originalurl").show();
+                        $("#originalurl").focus();
+                        break;
+                    case '7':
+                        if(isComment){
+                            $("#report_other_content").show().focus();
+                        }
+                        break;
+                }
+
+            });
+
+            $("#frmReport").submit(function () {
+                if (!currentUserName) {
+
+                    if (confirm("您的操作必须登录，是否登录？")) {
+                        location.href = "http://passport.csdn.net/account/login?from=" + encodeURIComponent(location.href);
+                        return false;
+                    }
+                    return false;
+                }
+
+                var reportType = $("input[name=report_type]:checked").val();
+                if(!reportType){
+                    alert("请选择举报原因！");
+                    return false;
+                }
+                var otherInfo = "";
+                switch (reportType) {
+                    case '3':
+                        otherInfo = $("#originalurl").val();
+                        if (otherInfo == ""||otherInfo=="http://") {
+                            alert("举报抄袭必须提供原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        } else if(!checkeURL(otherInfo)) {
+                            alert("请输入正确的原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        }
+                        break;
+                    case '7':
+                        otherInfo = $("#report_other_content").val();
+                        if (isComment && !otherInfo) {
+                            alert("请填写举报的具体原因！");
+                            $("#report_other_content").focus();
+                            return false;
+                        }
+                        if(!isComment){
+                            if(!$("#report_description").val()){
+                                alert("请填写举报的具体原因！");
+                                $("#report_description").focus();
+                                return false;
+                            }
+                        }
+                        break;
+                }
+                if(!isComment){
+                    if($("#report_description").val().length>30){
+                        alert("举报原因最多只允许输入30个字！");
+                        return false;
+                    }
+                }
+
+                var data = {
+                    articleId: 76583070,
+                    commentId: 0,
+                    reportType: reportType,
+                    originalurl: $("#originalurl").val(),
+                    report_other_content: $("#report_other_content").val(),
+                    report_description: $("#report_description").val(),
+                    currentUserName: currentUserName,
+                    updatetime: "2017/8/8 16:54:12",
+                    blogUser: "raintungli"
+                };
+                if(!isComment){//如果是举报文章
+                    data.report_other_content = data.report_description;
+                    data.report_description = "1. 神经网络这是一个常见的神经网络的图：这是一个常见的三层神经网络的基本构成，Layer L1是输入层，Layer L2是隐含层";
+                }
+
+                $.post(blog_address + "/common/report?id=76583070&t=2", data, function (data) {
+                    if (data.result == 1){
+                        SetError("感谢您的举报，我们会尽快审核！");
+                    }else{
+                        if (data.content) alert(data.content);
+                    }
+
+                });
+                return false;
+            });
+
+            $("#btnCloseReportDialog").click(function () {
+                CloseDiv();
+            });
+
+        });
+
+        //提示后关闭方法
+        function SetError(error) {
+            $("#btnCloseReportDialog").trigger("click");
+            alert(error);
+            CloseDiv();
+        }
+
+        //关闭方法
+        function CloseDiv() {
+
+            $.removeMask();
+            $("#report_dialog").hide().html("");
+            return false;
+        }
+
+        //验证url
+        function checkeURL(url){
+            return /^http(s)?:\/\/([\w-]+\.)+[\w-]+/i.test(url);
+        }
+    </script>
+</div>
+
+<script src="http://c.csdnimg.cn/public/common/libs/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+
+<script type="text/javascript" src="http://static.blog.csdn.net/Skin/skin3-template/js/blog_ver.js?v=2"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/Skin/skin3-template/js/skin2017.js?v=2017.017"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/cnick.js"></script>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<script type="text/javascript" >
+    if($(".article_collect li").length==1){$(".article_collect").hide();}
+    if($(".article_tags li").length==1){$(".article_tags").hide();}
+    $(".edit a").attr("href","http://write.blog.csdn.net/postedit/"+fileName);
+    $.each($(".edu_li a"),function(){$(this).attr("href",$(this).attr("href").replace("blog7","blog9"))});
+    new CNick('#uid').showNickname();
+</script>
+</body>
+
+
+<script  type="text/javascript">
+    var fromjs=$("#fromjs");
+    if(fromjs.length>0)
+    {                  
+        $("#fromjs .markdown_views pre").addClass("prettyprint");       
+        prettyPrint();
+
+        $('pre.prettyprint code').each(function () {
+            var lines = $(this).text().split('\n').length;
+            var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+            $(this).addClass('has-numbering').parent().append($numbering);
+            for (i = 1; i <= lines; i++) {
+                $numbering.append($('<li/>').text(i));
+            };
+            $numbering.fadeIn(1700);
+        });
+
+        $('.pre-numbering li').css("color","#999");             
+    }
+
+    $(function(){
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },500);         
+       
+
+    });
+
+    setTimeout(function () {
+        $(".toc a[target='_blank']").attr("target", "");
+    }, 500);
+
+</script>
+</html>
+

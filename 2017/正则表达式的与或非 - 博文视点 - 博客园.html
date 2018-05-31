@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="http://bv.csdn.net/resource/bvblog.js?_=1500432246861"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>正则表达式的与或非 - 博文视点 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./正则表达式的与或非 - 博文视点 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./正则表达式的与或非 - 博文视点 - 博客园_files/bundle-summerGarden.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./正则表达式的与或非 - 博文视点 - 博客园_files/bundle-summerGarden-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/bvbook/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/bvbook/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/bvbook/wlwmanifest.xml">
+<script async="" src="./正则表达式的与或非 - 博文视点 - 博客园_files/analytics.js"></script><script src="./正则表达式的与或非 - 博文视点 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'bvbook', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./正则表达式的与或非 - 博文视点 - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/bvbook/"><img id="blogLogo" src="./正则表达式的与或非 - 博文视点 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/bvbook/">博文视点官方博客</a></h1>
+<h2>技术凝聚实力 专业创新出版 与向上的心合作 共同成长！</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/bvbook/">首页</a></li>
+	<li><a href="http://news.cnblogs.com/">新闻</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E5%8D%9A%E6%96%87%E8%A7%86%E7%82%B9">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/bvbook/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/bvbook/rss"><img src="./正则表达式的与或非 - 博文视点 - 博客园_files/xml.gif" alt="订阅"></a></li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔- 536&nbsp;
+文章- 1&nbsp;
+评论- 299&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html">正则表达式的与或非</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><span class="Apple-style-span" style="word-spacing: 0px; font: medium Simsun; text-transform: none; color: rgb(0,0,0); text-indent: 0px; white-space: normal; letter-spacing: normal; border-collapse: separate; orphans: 2; widows: 2; webkit-border-horizontal-spacing: 0px; webkit-border-vertical-spacing: 0px; webkit-text-decorations-in-effect: none; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px"><span class="Apple-style-span" style="font-size: 14px; line-height: 21px; font-family: verdana, sans-serif; text-align: left"> 
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">今天我的同事<a style="color: rgb(0,107,173); text-decoration: none" href="http://blog.zhaojie.me/"><span style="color: rgb(144,157,115); line-height: 21px">老赵</span></a><span class="Apple-converted-space">&nbsp;</span><a style="color: rgb(0,107,173); text-decoration: none" href="http://twitter.com/#!/jeffz_cn"><span style="color: rgb(144,157,115); line-height: 21px">@jeffz_cn</span></a><span class="Apple-converted-space">&nbsp;</span>问我，有没有办法用正则表达式匹配“不包含某个字符串”的文本，正好，我在写作的《正则表达式傻瓜书》中也提到了这类问题，就把这一节放出来，给大家参考，也希望大家多提建议（尤其是配图方面）。</p>
+<h1 style="padding-right: 0px; background-position: 0% 0%; padding-left: 1.5em; font-size: 15px;background-image: url(http://blog.csdn.net/bvbook/archive/2010/11/03/authorship.gif); padding-bottom: 0.5em; margin: 0px; padding-top: 0px; background-repeat: no-repeat; font-family: &#39;Microsoft yahei&#39;, verdana, sans-serif; webkit-background-clip: initial; webkit-background-origin: initial">正则表达式的与或非</h1>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">我们都知道，写正则表达式有点像搭积木，复杂的功能总可以拆分开来，由不同的元素（也就是子表达式）对应，再用合适的关系将它们组合起来，就可以完成。在这一节，我们讲解常见的与或非关系的表达。</p>
+<h2 style="padding-right: 0px; padding-left: 0px; padding-bottom: 0px; margin: 0px; padding-top: 0px">与</h2>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">“与”是最简单的关系，它表示若干个元素必须同时相继出现，比如匹配单词cat，其实就是要求字符c、字符a和字符t必须同时连续出现。</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">正则表达式表达“与”关系非常简单，直接连续写出相继出现的元素就可以，我们可以想象，再各个元素之间，存在看不见的连接操作符·，比如上面匹配单词cat的正则表达式，就是『cat』，我们可以将它想象为『c·a·t』。</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">“与”关系也不限于字符之间，任何子表达式都可以用它来连接，如果我们把上面单词中的a替换为字符组『[au]』，表达式就变为『c[au]t』，你可以想象为『c·[au]·t』。</p>
+<h2 style="padding-right: 0px; padding-left: 0px; padding-bottom: 0px; margin: 0px; padding-top: 0px">或</h2>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">“或”是正则表达式灵活性的重要体现，我们可以规定某个位置的文本的“多种可能”，比如要匹配cat或是cut，在正则表达式看来，就是“字符c，然后是a或u，然后是t”。</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">如果“或”的多种可能都是单个字符（一般要求ASCII字符，中文字符等多字节字符的情况，可以参考本书专门论述的章节，此处仅以ASCII字符为例），就可以用字符组来表达“或”的关系，比如上面的cat或者cut的情况，正则表达式写做『c[au]t』，其原理如下：</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px"><a style="color: rgb(0,107,173); text-decoration: none" href="http://www.luanxiang.org/blog/wp-content/uploads/2010/10/cc.jpg"><iframe id="iframe_0.3624580916498683" src="./正则表达式的与或非 - 博文视点 - 博客园_files/saved_resource.html" style="border: none; width: 345px; height: 131px;" frameborder="0" scrolling="no"></iframe></a></p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">更复杂的情况是“或”的多种可能，并非都是单个字符，有些可能是多个字符。比如，我们可以看一个更复杂的例子，不仅要匹配cut，还要匹配c开头、t结尾的单词chart、conduct和court。也就是说，在开头的c，结尾的t之间“可能”出现的是：u<strong>或</strong>har<strong>或</strong>onduc<strong>或</strong>our。</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">遇到这种情况，就不应使用字符组，而应当使用多选分支『(…|…)』，将各个“可能选项”列在多选分支中。于是，正则表达式变为『c(u|har|onduc|our)t』，其原理如下：</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px"><a style="color: rgb(0,107,173); text-decoration: none" href="http://www.luanxiang.org/blog/wp-content/uploads/2010/10/al.jpg"><iframe id="iframe_0.05083560802432041" src="./正则表达式的与或非 - 博文视点 - 博客园_files/saved_resource(1).html" style="border: none; width: 500px; height: 181px;" frameborder="0" scrolling="no"></iframe></a></p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">关于多选分支，还有两点要补充：</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">多选分支也可用于“每个选择都是单个字符”的情况，比如『c[au]t』写成『c(a|u)t』是没错的，但字符组的效率要远高于多选分支，所以，在这种情况下，推荐使用字符组『c[au]t』；</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">默认的多选分支『(…|…)』使用的括号是会捕获文本的，也就是说，括号内的表达式真正匹配成功的文本会记录下来，匹配完成之后可以提取出来，具体到上面的例子，就是我们有办法在匹配完成后“提取”出u或har或onduc或our。但许多时候，我们需要的只是整个表达式的匹配，而不关心“匹配时到底选择的哪种可能情况”，在这种情况下，我们稍加修改，使用“不捕获文本的括号”，可以提高效率。不捕获文本的写法也很简单，只是在开扩号之后加上字符『?:』，也就是『(<strong>?:</strong>…|…)』，具体到上面的例子，就应该写成『c(<strong>?:</strong>u|har|onduc|our)t』。这样做虽然繁琐点，但效率有保障，阅读起来也不困难，我推荐养成这种习惯，只要用到了括号，就想想是否真的要捕获括号内表达式匹配的文本，如果不需要，就是用不捕获文本的括号。</p>
+<h2 style="padding-right: 0px; padding-left: 0px; padding-bottom: 0px; margin: 0px; padding-top: 0px">非</h2>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">“非”看起来简单，其实是最复杂的，以下分几种情况讨论。</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">首先讨论针对字符的“非”：不容许出现某个或某几个字符。这是最简单的情况，直接用排除型字符组就可以对付，仍然用上面的例子，如果要匹配的单词是c开头、t结尾，中间有一个字符，但不能是u（也就是说，整个单词不能是cut），直接用『c[^u]t』就可以了，若中间的字符不能是a或u（也就是说，整个单词不能是cat或cut），则表达式改为『c[^au]t』。</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px"><a style="color: rgb(0,107,173); text-decoration: none" href="http://www.luanxiang.org/blog/wp-content/uploads/2010/10/ncc11.jpg"><iframe id="iframe_0.8274693621765268" src="./正则表达式的与或非 - 博文视点 - 博客园_files/saved_resource(2).html" style="border: none; width: 397px; height: 175px;" frameborder="0" scrolling="no"></iframe></a></p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">如果你认真读过关于排除型字符组的章节，肯定会知道，这个表达式能匹配的只是cot之类的单词，因为中间的排除型字符组『[^cu]』必须匹配一个字符。可是，如果我们还想要匹配chart、conduct和court，怎么办？最简单的想法是去掉排除型字符组的长度限制，改成『c[^au]+t』——不幸的是，这样行不通，因为这个表达式的意思是：c和t之间，是由多于一个“除a或u之外的字符“构成的，而chart、conduct和court，都包含a或u。</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px"><a style="color: rgb(0,107,173); text-decoration: none" href="http://www.luanxiang.org/blog/wp-content/uploads/2010/10/ncc2.jpg"><iframe id="iframe_0.507957486652675" src="./正则表达式的与或非 - 博文视点 - 博客园_files/saved_resource(3).html" style="border: none; width: 545px; height: 140px;" frameborder="0" scrolling="no"></iframe></a></p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">我们回头仔细看看这个“非”的逻辑，我们发现，其实我们要否定的是“单个出现的a或u”，而不仅仅是“出现的a或u”，所以才出现这样的问题，要解决这个问题，就应当把意思准确表达出来，变成“在结尾的t之前，不容许只出现一个a或u”。想到这一步，我们就可以用否定顺序环视『(?!…)』来解决了，它表示“在这个位置向右，不容许出现子表达式能够匹配的文本，我们把子表达式规定为『[au]t\b』（最后的『\b』很重要，它出现在t之后，保证t是单词的结尾子母）。</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">有了这点限制，匹配a和t之间文本的表达式就随意很多了，我们可以用匹配单词字符的简记法『\w』表示，于是整个表达式就变成了『c(?![au]t\b)\w+t』。请注意，这里出现的并不是排除型字符组『[^au]』，而是普通的字符组『[au]』，因为否定顺序环视『(?!…)』本身已经表示了“否定”的功能。</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">如果我们再进一步，“整个匹配文本中都不能出现字符串cat”，要怎么办呢？许多人的思路就是借鉴处理“或”关系的思路：既然字符组对应单个字符的情况，多选分支对应多个字符的情况，那么在否定时也是这样。可惜，正则表达式并没有提供与多选分支对应的“否定”结构，那么，应该怎么办呢？</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">解决的办法还是得依靠否定顺序环视——“整个匹配文本中都不能出现字符串cat”，换句话说，就是“在文本中的任意位置，向右，都不能出现该字符串”。因此，我们用两个锚点『^』和『$』，分别匹配整个字符串的开头和结尾位置，再用否定顺序环视『(?!cat)』表达“不能出现字符串cat”。</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px">即便知道了原理，也不见得能写对正则表达式，比如『^(?!cat).+$』就是不正确的，因为它只限定了在文本的开头（也就是『^』）右边不能出现cat，而我们真正要做的是，在文本的每一个位置右边，都不能出现cat，所以应该改成『^((?!cat).)+$』；但这还说不上完美，根据前面提到的关于括号捕获的知识，因为此处并不需要括号捕获的文本，所以最好使用非捕获型括号『(?:…)』，最终我们得到的表达式就是『^(?:(?!cat).)+$』。</p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px"><a style="color: rgb(0,107,173); text-decoration: none" href="http://www.luanxiang.org/blog/wp-content/uploads/2010/10/negative.jpg"><iframe id="iframe_0.9716723806880749" src="./正则表达式的与或非 - 博文视点 - 博客园_files/saved_resource(4).html" style="border: none; width: 362px; height: 509px;" frameborder="0" scrolling="no"></iframe></a></p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px"><span style="font-size: small; line-height: 19px">扩展阅读：</span></p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px"><span style="font-size: small; line-height: 19px">1.Bop的豆瓣主页：</span><a style="color: rgb(0,107,173); text-decoration: none" href="http://book.douban.com/subject/3004255/"><span style="font-size: small; line-height: 19px">http://book.douban.com/subject/3004255/</span></a></p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px"><span style="font-size: small; line-height: 19px">2.互动网购买链接：</span><a style="color: rgb(0,107,173); text-decoration: none" href="http://www.china-pub.com/38070"><span style="font-size: small; line-height: 19px">http://www.china-pub.com/38070</span></a></p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px"><span style="font-size: small; line-height: 19px">3.“《编程之美》，IT人求职面试必读”链接：<br></span><a style="color: rgb(0,107,173); text-decoration: none" href="http://www.google.com.hk/search?complete=1&amp;hl=zh-CN&amp;newwindow=1&amp;q"><span style="font-size: small; line-height: 19px">http://www.google.com.hk/search?complete=1&amp;hl=zh-CN&amp;newwindow=1&amp;q</span></a><span style="font-size: small; line-height: 19px">=编程之美+-+微软技术面试心得+邹欣&amp;meta=&amp;aq=f&amp;oq=</span></p>
+<p style="padding-right: 0px; padding-left: 0px; font-size: 14px; padding-bottom: 0px; margin: 1em 0px 0.5em; text-indent: 2em; line-height: 22px; padding-top: 0px"><span style="font-size: small; line-height: 19px"></span></p>
+<div class="post-info"></div>
+<div class="post-footer"><span style="font-size: small">4.&nbsp;</span><a style="color: rgb(0,107,173); text-decoration: none" href="http://book.douban.com/subject/2154713/"><span style="color: black; text-decoration: none"><span style="font-size: small"><span style="font-size: small">余晟文章，附《精通正则表达式》豆瓣链接：<span class="font5" style="color: rgb(0,0,153)"><span style="text-decoration: underline">http://book.douban.com/subject/2154713/</span></span></span></span></span></a></div></span></span></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/bvbook/category/268140.html" target="_blank">程序员成长之路</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867772.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867772.html" title="发布于2010-11-03 10:00">《微软应用架构指南》前言</a><br><a href="http://www.cnblogs.com/bvbook/archive/2010/11/04/1868680.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/bvbook/archive/2010/11/04/1868680.html" title="发布于2010-11-04 08:33">架构师的行为准则（四)</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2010-11-03 10:03</span> <a href="http://www.cnblogs.com/bvbook/">博文视点</a> 阅读(<span id="post_view_count">50738</span>) 评论(<span id="post_comment_count">5</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=1867775" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html#" onclick="AddToWz(1867775);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=40788,cb_entryId=1867775,cb_blogApp=currentBlogApp,cb_blogUserGuid='a848420b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2010/11/3 10:03:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<div class="feedback_area_title">发表评论</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html#2317619" class="layer">#1楼</a><a name="2317619" id="comment_anchor_2317619"></a> <span class="comment_date">2012-02-27 10:57</span> | <a id="a_comment_author_2317619" href="http://www.cnblogs.com/foolin/" target="_blank">刘付灵(Foolin)</a> <a href="http://msg.cnblogs.com/send/%E5%88%98%E4%BB%98%E7%81%B5%28Foolin%29" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2317619" class="blog_comment_body">学习了，非常不错。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2317619,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2317619,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2317619_avatar" style="display:none;">http://pic.cnblogs.com/face/u77499.png?id=03165802</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html#2738657" class="layer">#2楼</a><a name="2738657" id="comment_anchor_2738657"></a> <span class="comment_date">2013-07-30 09:50</span> | <a id="a_comment_author_2738657" href="http://home.cnblogs.com/u/552803/" target="_blank">lyx8912</a> <a href="http://msg.cnblogs.com/send/lyx8912" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2738657" class="blog_comment_body">听君一席话，胜读十年书。纠结了很久的问题终于能解决，十分感谢分享</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2738657,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2738657,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html#3091937" class="layer">#3楼</a><a name="3091937" id="comment_anchor_3091937"></a> <span class="comment_date">2014-12-23 10:24</span> | <a id="a_comment_author_3091937" href="http://www.cnblogs.com/minglu/" target="_blank">@Ming</a> <a href="http://msg.cnblogs.com/send/%40Ming" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3091937" class="blog_comment_body">shabi</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3091937,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3091937,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html#3249474" class="layer">#4楼</a><a name="3249474" id="comment_anchor_3249474"></a> <span class="comment_date">2015-08-18 09:32</span> | <a id="a_comment_author_3249474" href="http://www.cnblogs.com/WhiteDragon/" target="_blank">白龙_YI</a> <a href="http://msg.cnblogs.com/send/%E7%99%BD%E9%BE%99_YI" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3249474" class="blog_comment_body">很详细，给了我很大帮助（特别是对非操作的讲述）！！！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3249474,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3249474,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3249474_avatar" style="display:none;">http://pic.cnblogs.com/face/785800/20150715151755.png</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html#3294015" class="layer">#5楼</a><a name="3294015" id="comment_anchor_3294015"></a><span id="comment-maxId" style="display:none;">3294015</span><span id="comment-maxDate" style="display:none;">2015/10/28 17:43:49</span> <span class="comment_date">2015-10-28 17:43</span> | <a id="a_comment_author_3294015" href="http://home.cnblogs.com/u/829047/" target="_blank">躺着也减肥</a> <a href="http://msg.cnblogs.com/send/%E8%BA%BA%E7%9D%80%E4%B9%9F%E5%87%8F%E8%82%A5" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3294015" class="blog_comment_body">太TM牛B了。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3294015,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3294015,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://cloud.tencent.com/developer/labs?fromSource=gwzcw.241259.241259.241259" target="_blank">【免费】从零开始学编程，开发者专属实验平台免费实践！</a><br><a href="https://console.upyun.com/register/?invite=H124C2iMZ?utm_source=cnblogs&amp;utm_medium=referral" target="_blank">【推荐】现在注册又拍云，首月可享 200G CDN流量，还可免费申请 SSL 证书</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://cn.udacity.com/course/deep-learning-nanodegree-foundation--nd101/?utm_source=cnblog&amp;utm_medium=referral&amp;utm_campaign=DAND04" target="_blank"><img width="300" height="250" src="./正则表达式的与或非 - 博文视点 - 博客园_files/24442-20170717105755644-1136081397.jpg" alt="优达学城深度学习"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/574114/" target="_blank">罗振宇回应上市传闻：还没时间表 还是初创公司</a><br> ·  <a href="http://news.cnblogs.com/n/574104/" target="_blank">效率爆棚！PowerPoint新版加入修改历史功能</a><br> ·  <a href="http://news.cnblogs.com/n/574120/" target="_blank">雷蛇CEO陈民亮：一位商人的游戏人生</a><br> ·  <a href="http://news.cnblogs.com/n/574119/" target="_blank">小米公布：7月26日发布小米5X新机和MIUI9</a><br> ·  <a href="http://news.cnblogs.com/n/574117/" target="_blank">康奈尔大学说对抗样本出门会失效，被OpenAI怼回来了！</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice?source=bky&amp;hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img width="468" height="60" src="./正则表达式的与或非 - 博文视点 - 博客园_files/24442-20170629165247758-2056260207.png" alt="极光推广_0701"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/569992/" target="_blank">程序员的工作、学习与绩效</a><br> ·  <a href="http://kb.cnblogs.com/page/569056/" target="_blank">软件开发为什么很难</a><br> ·  <a href="http://kb.cnblogs.com/page/565901/" target="_blank">唱吧DevOps的落地，微服务CI/CD的范本技术解读</a><br> ·  <a href="http://kb.cnblogs.com/page/566523/" target="_blank">程序员，如何从平庸走向理想？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><p><span style="font-size: 10pt; font-family: Arial"><span style="color: #0000ff"><span style="color: #0000ff">博文视点期待与国内IT社区及广大IT从业人员展开深入合作，诚邀作者、译者、热心读者服务社区、提升自我，共同进步。<br>
+读者信箱：</span></span><a href="mailto:reader@broadview.com.cn"><span style="color: #0000ff"><span style="color: #0000ff">reader@broadview.com.cn</span></span></a><br>
+<span style="color: #0000ff"><span style="color: #0000ff">投稿信箱：</span></span><a href="mailto:BVtougao@gmail.com"><span style="color: #0000ff"><span style="color: #0000ff">BVtougao@gmail.com</span></span></a><span style="color: #0000ff"><span style="color: #0000ff"> </span></span></span></p>
+<center><div style="display: none" id="__document_write_ajax_div-1"></div>
+<img src="http://bv.csdn.net/resource/BVbanner.gif"></center>
+<a href="http://bv.csdn.net/Default.aspx" target="_blank"><center><b>参加读者调查，免费获取新书</b></center></a>
+<a href="http://booksubject.cnblogs.com/DesignPatterns/" target="_blank"><center><b>博文视点，年底重磅原创</b></center></a>
+<a href="http://www.china-pub.com/STATIC07/0811/jsj_web_081112.asp" target="_blank"><center><b>Web2.0好书推荐</b></center></a>
+<center><div style="display: none" id="__document_write_ajax_div-2"></div></center><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/bvbook/">博文视点</a><br>园龄：<a href="http://home.cnblogs.com/u/bvbook/" title="入园时间：2008-07-24">8年11个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/bvbook/followers/">116</a><br>关注：<a href="http://home.cnblogs.com/u/bvbook/followees/">3</a><div id="p_b_follow"></div><div style="display: none" id="__document_write_ajax_div-3"></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(305)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/bvbook/category/146807.html">01.新书快讯(75)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/bvbook/category/187454.html">02.样章试读(57)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/bvbook/category/146804.html">03.热点书评（HOT）(92)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/bvbook/category/176486.html">04.编辑手记(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/bvbook/category/146806.html">05.图书勘误(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/bvbook/category/232590.html">06.资源下载(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/bvbook/category/232591.html">07.诚征译者(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/bvbook/category/161370.html">08.新手必读(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/bvbook/category/172534.html">09.团队生活(25)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/bvbook/category/176488.html">10.LAMP精品书廊</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/bvbook/category/232592.html">11.RIA精品书廊</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/bvbook/category/232593.html">12.O’Reilly图书(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/bvbook/category/232594.html">13.原创精品大系(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/bvbook/category/232595.html">14.测试实践丛书</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/bvbook/category/232596.html">15.数据库系列(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/bvbook/category/232597.html">16.单本精品(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/bvbook/category/269368.html">成长顾问(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/bvbook/category/268140.html">程序员成长之路(9)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(536)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/bvbook/archive/2011/07.html">2011年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/bvbook/archive/2011/02.html">2011年2月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/bvbook/archive/2011/01.html">2011年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/bvbook/archive/2010/12.html">2010年12月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/bvbook/archive/2010/11.html">2010年11月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/bvbook/archive/2010/10.html">2010年10月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/bvbook/archive/2010/09.html">2010年9月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/bvbook/archive/2010/08.html">2010年8月 (25)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/bvbook/archive/2010/07.html">2010年7月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/bvbook/archive/2010/06.html">2010年6月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/bvbook/archive/2010/05.html">2010年5月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/bvbook/archive/2010/04.html">2010年4月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/bvbook/archive/2010/03.html">2010年3月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/bvbook/archive/2010/02.html">2010年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/bvbook/archive/2010/01.html">2010年1月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/bvbook/archive/2009/12.html">2009年12月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/bvbook/archive/2009/11.html">2009年11月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/bvbook/archive/2009/10.html">2009年10月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/bvbook/archive/2009/09.html">2009年9月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/bvbook/archive/2009/08.html">2009年8月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/bvbook/archive/2009/07.html">2009年7月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/bvbook/archive/2009/06.html">2009年6月 (23)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/bvbook/archive/2009/05.html">2009年5月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/bvbook/archive/2009/04.html">2009年4月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/bvbook/archive/2009/03.html">2009年3月 (24)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/bvbook/archive/2009/02.html">2009年2月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/bvbook/archive/2009/01.html">2009年1月 (17)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/bvbook/archive/2008/12.html">2008年12月 (36)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/bvbook/archive/2008/11.html">2008年11月 (29)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/bvbook/archive/2008/10.html">2008年10月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/bvbook/archive/2008/09.html">2008年9月 (19)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/bvbook/archive/2008/08.html">2008年8月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/bvbook/archive/2008/07.html">2008年7月 (30)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catList">
+<h3 class="catListTitle">博文@互联网</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://cnblogs.com/bvbook" rel="nofollow">博文@cnblogs</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://blog.csdn.net/bvbook" rel="nofollow">博文@CSDN</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="http://www.douban.com/people/broadview/" rel="nofollow">博文@Douban</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_3" href="http://bvbook.javaeye.com/" rel="nofollow">博文@JavaEye</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_4" href="http://t.sina.com.cn/1655286487" rel="nofollow">博文@新浪微博</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_5" href="http://bvbook-design.blogbus.com/" rel="nofollow">设计博客@BvDesign</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catList">
+<h3 class="catListTitle">博文视点合作伙伴</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_3_Link_0" href="http://blog.csdn.net/programmer_editor/" rel="nofollow">01.《程序员》杂志</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_1" href="http://book.csdn.net/" rel="nofollow">02.CSDN读书频道</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_2" href="http://book.51cto.com/" rel="nofollow">03.51CTO读书频道</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_3" href="http://linux.ctocio.com.cn/" rel="nofollow">04.IT专家网Linux频道</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_4" href="http://www.javaeye.com/" rel="nofollow">05.JavaEye技术网站</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_5" href="http://www.infoq.com/cn/" rel="nofollow">06.InfoQ中文站</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_6" href="http://www.china-pub.com/" rel="nofollow">07.互动出版网</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_7" href="http://www.amazon.cn/channel/book" rel="nofollow">08.卓越亚马逊</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_8" href="http://www.cnforyou.com/query/main.asp" rel="nofollow">09.新风雨书城</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_9" href="http://www.huachu.com.cn/" rel="nofollow">10.华储网</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_10" href="http://book.dangdang.com/" rel="nofollow">11.当当网</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_11" href="http://www.douban.com/" rel="nofollow">12.豆瓣网</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_12" href="http://www.cnblogs.com/" rel="nofollow">13.博客园</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catList">
+<h3 class="catListTitle">博文视点图书网站</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_4_Link_0" href="http://restfulwebservices.cn/" rel="nofollow">《RESTful Web Services中文版》官方网站</a> </li>
+
+<li><a id="CatList_LinkList_4_Link_1" href="http://www.dotneteye.cn/silverlight/" rel="nofollow">《Silverlight 2完美征程》官方网站</a> </li>
+
+<li><a id="CatList_LinkList_4_Link_2" href="http://www.iachina.org/" rel="nofollow">《Web信息架构》信息架构兴趣小组</a> </li>
+
+<li><a id="CatList_LinkList_4_Link_3" href="http://student.csdn.net/space.php?uid=116484" rel="nofollow">《编程之美》学生大本营</a> </li>
+
+<li><a id="CatList_LinkList_4_Link_4" href="http://www.cc2e.com.cn/" rel="nofollow">《代码大全》官方网站</a> </li>
+
+<li><a id="CatList_LinkList_4_Link_5" href="http://advdbg.org/books/swdbg/" rel="nofollow">《软件调试》官方网站</a> </li>
+
+<li><a id="CatList_LinkList_4_Link_6" href="http://yishan.cc/" rel="nofollow">《移山之道》读者社区</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catList">
+<h3 class="catListTitle">博文原创，精英荟萃</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_5_Link_0" href="http://www.jianzhaoyang.com/" rel="nofollow">MySQL专家-简朝阳 </a> </li>
+
+<li><a id="CatList_LinkList_5_Link_1" href="http://www.eygle.com/" rel="nofollow">OracleDBA手记-盖国强 </a> </li>
+
+<li><a id="CatList_LinkList_5_Link_2" href="http://blog.csdn.net/BlueDavy/" rel="nofollow">OSGi先锋-林昊</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_3" href="http://blog.csdn.net/balabalamerobert" rel="nofollow">Python源码剖析-陈儒</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_4" href="http://www.cnblogs.com/Terrylee/" rel="nofollow">Silverlight 2完美征程-李会军</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_5" href="http://blog.csdn.net/eparg" rel="nofollow">Windbg专家-熊力</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_6" href="http://blog.csdn.net/panaimin/" rel="nofollow">Windows系统技术研究-潘爱民 </a> </li>
+
+<li><a id="CatList_LinkList_5_Link_7" href="http://www.lixiaolai.com/" rel="nofollow">把时间当作朋友-李笑来 </a> </li>
+
+<li><a id="CatList_LinkList_5_Link_8" href="http://yishan.cc/blogs/xin/default.aspx" rel="nofollow">编程之美/移山之道-邹欣</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_9" href="http://badturnip.spaces.live.com/" rel="nofollow">程序员的自我修养-俞甲子 </a> </li>
+
+<li><a id="CatList_LinkList_5_Link_10" href="http://www.gaoang.com/" rel="nofollow">开源网格GIS实验田-高昂</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_11" href="http://blog.zoomquiet.org/pyblosxom/" rel="nofollow">可爱的Python-周琦</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_12" href="http://blog.zhenghui.org/" rel="nofollow">冒号课堂-郑晖</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_13" href="http://advdbg.org/books/swdbg/" rel="nofollow">软件调试-张银奎</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_14" href="http://www.ou-he.com/pub-app/index.htm" rel="nofollow">一线架构师实践指南-温昱</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_15" href="http://blog.csdn.net/david_lv" rel="nofollow">走出软件作坊-阿朱</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_16" href="http://jjhou.csdn.net/" rel="nofollow">左手程序右手诗-侯捷 </a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	148868
+	</li><li class="liRank">
+		排名 -	1555
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2008/08/07/1262971.html#3597529">1. Re:老韩横评：一本书，两个人</a></li>
+        <li class="recent_comment_body">挺装的  不接地气</li>
+        <li class="recent_comment_author">--寒江雪雁</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2011/07/19/2110304.html#3471223">2. Re:IT行业博客网站创新与创新（一）ITeye、CSDN、cnblog、ITpub博客网站的比较</a></li>
+        <li class="recent_comment_body">是的，支持，cnblog风格比较简单， <a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html" target="_blank"></a></li>
+        <li class="recent_comment_author">--撒得一地</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2008/07/29/1255553.html#3327340">3. Re:《编程之美》读书笔记（七）：数独游戏解析</a></li>
+        <li class="recent_comment_body">for(i=1,i&lt;10,i++) { m1=[(i-1）/3]*3; m2=m1+1; m3=m1+2; n1={i-[(i-1)/3]*3-1}*3; n2=n1+1; n3=n1+2; } 在分......</li>
+        <li class="recent_comment_author">--剑指三一</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html#3294015">4. Re:正则表达式的与或非</a></li>
+        <li class="recent_comment_body">太TM牛B了。</li>
+        <li class="recent_comment_author">--躺着也减肥</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html#3249474">5. Re:正则表达式的与或非</a></li>
+        <li class="recent_comment_body">很详细，给了我很大帮助（特别是对非操作的讲述）！！！</li>
+        <li class="recent_comment_author">--白龙_YI</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2011/02/16/1955724.html#3110711">6. Re:我为何爱读代码？你为何也应当爱？</a></li>
+        <li class="recent_comment_body">就是看到这篇文章跟过来的 非常赞！</li>
+        <li class="recent_comment_author">--xbjdyz</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html#3091937">7. Re:正则表达式的与或非</a></li>
+        <li class="recent_comment_body">shabi</li>
+        <li class="recent_comment_author">--@Ming</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2010/08/03/1790997.html#2921892">8. Re:《我是一只IT小小鸟》作者庄表伟--我的书架</a></li>
+        <li class="recent_comment_body">天啊，这么多书，怎么有精力看呢？</li>
+        <li class="recent_comment_author">--Nestler</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2008/07/29/1255553.html#2837237">9. Re:《编程之美》读书笔记（七）：数独游戏解析  </a></li>
+        <li class="recent_comment_body">我想学习一下界面源码，谢谢<br>邮箱是1678389783@qq.com</li>
+        <li class="recent_comment_author">--sjtuhyd</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2008/07/28/1254262.html#2760317">10. Re:《编程之美》读书笔记（五）：饮料供应问题</a></li>
+        <li class="recent_comment_body">Opt（V’，i）=max{ k * Hi+Opt（V’-Vi * k，i+1）}递推关系中，能解释下为什么后面是i+1而不是i-1么</li>
+        <li class="recent_comment_author">--维_维</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html#2738657">11. Re:正则表达式的与或非</a></li>
+        <li class="recent_comment_body">听君一席话，胜读十年书。纠结了很久的问题终于能解决，十分感谢分享</li>
+        <li class="recent_comment_author">--lyx8912</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2011/02/18/1957494.html#2662782">12. Re:王泛森：治学经验谈 ── 一些心得，一些反省</a></li>
+        <li class="recent_comment_body">有木有可以转换简体的功能</li>
+        <li class="recent_comment_author">--last_chance</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2009/02/18/1393257.html#2479844">13. Re:读《插件式GIS应用框架的设计与实现——基于C#和ArcGIS Engine 9.2》</a></li>
+        <li class="recent_comment_body">楼主，你有这本书的电子档么，发我一份看看。<br>《插件式GIS应用框架的设计与实现——基于C#和ArcGIS Engine 9.2》<br>alphaxj@163.com</li>
+        <li class="recent_comment_author">--谢军</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2008/07/30/1256268.html#2479316">14. Re:《编程之美》读书笔记（八）：“发帖水王”扩展问题</a></li>
+        <li class="recent_comment_body">经过验证，楼主的方法是错误的</li>
+        <li class="recent_comment_author">--高石坎</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2011/07/19/2110304.html#2478961">15. Re:IT行业博客网站创新与创新（一）ITeye、CSDN、cnblog、ITpub博客网站的比较</a></li>
+        <li class="recent_comment_body">支持博客园</li>
+        <li class="recent_comment_author">--桦仔</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2009/04/28/1445277.html#2465070">16. Re:JavaScript大牛：Douglas Crockford</a></li>
+        <li class="recent_comment_body">这书 没用卖了  ╮(╯▽╰)╭</li>
+        <li class="recent_comment_author">--fhefh</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2010/05/18/1738242.html#2454277">17. Re:《编程之美：分层遍历二叉树》的另外两个实现</a></li>
+        <li class="recent_comment_body">楼主 我表示非常崇拜啊！呵呵</li>
+        <li class="recent_comment_author">--~风影*IT~</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2011/02/16/1955735.html#2429471">18. Re:磨刀与砍柴</a></li>
+        <li class="recent_comment_body">挺有哲理的</li>
+        <li class="recent_comment_author">--郡勒</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2011/07/19/2110304.html#2426831">19. Re:IT行业博客网站创新与创新（一）ITeye、CSDN、cnblog、ITpub博客网站的比较</a></li>
+        <li class="recent_comment_body">csdn的风格比cnblog简洁，我喜欢。写博客嘛，搞得华丽花哨不喜欢。</li>
+        <li class="recent_comment_author">--jjtx</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/bvbook/archive/2009/01/13/1374830.html#2409739">20. Re:线上讲座——全国海关中心架构师王翔畅谈设计模式</a></li>
+        <li class="recent_comment_body">2009年吗? 唉!!!</li>
+        <li class="recent_comment_author">--zyngdbwh</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/bvbook/archive/2010/11/03/1867775.html">1. 正则表达式的与或非(50738)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2008/12/24/1360942.html">2. 常见的三种Web服务架构(15184)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2008/07/24/1250507.html">3. 《编程之美》读书笔记（一）：中国象棋将帅问题(7050)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2009/08/13/1545250.html">4. 豆瓣动力核心——Quixote(5862)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2008/07/29/1255553.html">5. 《编程之美》读书笔记（七）：数独游戏解析(5805)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2011/07/19/2110304.html">6. IT行业博客网站创新与创新（一）ITeye、CSDN、cnblog、ITpub博客网站的比较(4737)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2009/05/19/1460358.html">7. 我认识的简朝阳(4360)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2009/12/02/1615206.html">8. Java Web服务之“从WSDL文档中生成客户端支持代码”(4303)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2009/06/15/1503877.html">9. MySQL DBA成长宝典(4109)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2008/11/13/1332605.html">10. 【出版直播】博客园征途系列，《设计模式——基于C#的工程化实现与扩展》电子书、示例代码发布，互动网预订开始(3837)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2009/08/20/1550533.html">11. Python中文处理，完成功能的实用化(3626)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2008/07/25/1251090.html">12. 《编程之美》读书笔记（三）： 一摞烙饼的排序问题(3482)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2011/02/16/1955744.html">13. 堆积式南丁格尔玫瑰图模板（ Nightingale Rose Diagram）(3370)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2008/09/09/1287651.html">14. 胡睿：感谢清华大学计算机系的朱仲涛老师(3300)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2010/11/10/1873303.html">15. 《Excel图表之道》礼物下载(3266)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2010/05/14/1735534.html">16. Do the right thing and do the thing right(3043)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2008/11/11/1331407.html">17. 【出版直播】博客园征途系列，《设计模式——基于C#的工程化实现及扩展》书签制作完成(2942)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2008/07/28/1254266.html">18. 《编程之美》读书笔记（六）：连连看游戏设计(2912)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2008/07/28/1254803.html">19. 《Python源码剖析》很值很强大！(2870)</a></li><li><a href="http://www.cnblogs.com/bvbook/archive/2008/11/10/1330452.html">20. 【现场直播】博客园征途系列，《设计模式——基于C#的工程化实现及扩展》封面火热出炉(2677)</a></li></ul></div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 博文视点
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

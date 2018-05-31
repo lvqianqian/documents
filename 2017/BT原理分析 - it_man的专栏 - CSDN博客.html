@@ -1,0 +1,1279 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>          
+            <link rel="canonical" href="http://blog.csdn.net/it_man/article/details/6602771"/> 
+
+   
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"> 
+       
+    <title>BT原理分析 - it_man的专栏
+        - CSDN博客</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="BitTorrent协议。BT全名为BitTorrent,是一个p2p软件,你在下载download的同时，也在为其他用户提供上传upload，因为大家是“互相帮助”，所以不会随着用户数的增加而降低下载速度。 下面是一般用ftp，http等分享流程：下面是用BitTorrent分" />
+
+    <meta name="keywords" content="bt,服务器,web服务" />
+
+   
+    <script src="http://static.blog.csdn.net/scripts/blog_static_head.min.js" type="text/javascript"></script>
+
+    
+        <!--new top-->
+       
+       
+        <!--new top-->
+    
+      <!-- ad begin -->
+         
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/default/css/style.css?v=1.1" />
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/it_man/rss/list" />
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+ 
+
+
+
+    <link href="http://c.csdnimg.cn/blog/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet" />
+     
+         <link rel="stylesheet" href="http://static.blog.csdn.net/css/csdn_blog_detail.min.css" />
+
+  
+
+
+    <!-- 请置于所有广告位代码之前 --> 
+            <script src="http://dup.baidustatic.com/js/ds.js"></script>
+
+</head>
+
+
+<body>  
+     
+        <div class="tracking-ad" data-view="true" data-mod="ad_popu_72"  data-mtp="62" data-order="40" data-con="ad_content_2072" >
+                     <script id="popuLayer_js_q" src="http://ads.csdn.net/js/popuLayer.js" defer="defer"  type="text/javascript"></script>
+                <div id="layerd" style="position: fixed;bottom:0px;right:0px;line-height:0px;z-index:1000">
+    	                <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 -->
+                    <div id="cpro_u2895327">
+                        <!-- 投放代码 -->
+                        <script src="http://dup.baidustatic.com/js/ds.js"></script>
+                       <!-- 广告位：PC端-博客详情页右侧弹窗-300*250 -->
+                            <script>
+                                (function () {
+                                    var s = "_" + Math.random().toString(36).slice(2);
+                                    document.write('<div id="' + s + '"></div>');
+                                    (window.slotbydup = window.slotbydup || []).push({
+                                        id: '4740870',
+                                        container: s,
+                                        size: '300,250',
+                                        display: 'inlay-fix'
+                                    });
+                                })();
+                            </script>
+                    </div></div>
+                <script>  document.getElementById("popuLayer_js_q").onload = function () {
+      var styObjd = styObj = { width: "300px", "height": parseInt(250) + 28 };
+      window.CSDN.Layer.PopuLayer("#layerd", { storageName: "layerd", styleObj: styObjd, total: 50, expoire: 1000 * 60 });
+  }</script>
+            
+     
+        </div>
+
+    <!-- 广告位开始 -->
+        
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/it_man">it_man的专栏</a></h2>
+            <h3>释放你的能量</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/it_man?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/it_man?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/it_man/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "it_man";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/it_man";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "github_38885296";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+
+<a href="http://blog.csdn.net/epubit17/article/details/78038722">
+<font color=red><strong>异步赠书：9月重磅新书升级，本本经典</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp
+
+<a href="http://edu.csdn.net/huiyiCourse/series_detail/66">
+<font color=blue><strong>SDCC 2017之区块链技术实战线上峰会</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp
+
+<a href="http://blog.csdn.net/turingbooks/article/details/78017356">
+<font color=blue><strong>程序员9月书讯</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp
+
+
+<a href="http://blog.csdn.net/broadview2006/article/details/77878868">
+<font color=red><strong>每周荐书：Java Web、Python极客编程（评论送书）</strong></font></a>
+
+
+
+</div>                        </div>
+
+                        
+
+
+
+  
+
+
+
+
+
+
+<script   type="text/javascript" src="http://static.blog.csdn.net/scripts/category.js"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=BT%e5%8e%9f%e7%90%86%e5%88%86%e6%9e%90&u=http://blog.csdn.net/it_man/article/details/6602771"
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+    <h1>
+        <span class="link_title"><a href="/it_man/article/details/6602771">
+        BT原理分析        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href='http://www.csdn.net/tag/bt' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">bt</a><a href='http://www.csdn.net/tag/%e6%9c%8d%e5%8a%a1%e5%99%a8' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">服务器</a><a href='http://www.csdn.net/tag/web%e6%9c%8d%e5%8a%a1' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">web服务</a><a href='http://www.csdn.net/tag/p2p' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">p2p</a><a href='http://www.csdn.net/tag/%e6%95%b0%e6%8d%ae%e5%ba%93' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">数据库</a><a href='http://www.csdn.net/tag/download' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">download</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2011-07-13 13:32</span>
+            <span class="link_view" title="阅读次数">13828人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(2)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle('BT%e5%8e%9f%e7%90%86%e5%88%86%e6%9e%90','6602771');return false;" title="收藏">收藏</a></span>
+             <span class="link_report"> <a href="#report" onclick="javascript:report(6602771,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script  type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="http://static.blog.csdn.net/images/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label  onclick="GetCategoryArticles('204147','it_man','top','6602771');">
+                        <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">JAVA<em>（144）</em></span>
+                      <img class="arrow-down" src="http://static.blog.csdn.net/images/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="http://static.blog.csdn.net/images/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a  href="http://blog.csdn.net/it_man/article/category/204147"  target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_204147">                            
+                            </ul>
+                        </div>
+                    </label>                    
+                    <label  onclick="GetCategoryArticles('360048','it_man','top','6602771');">
+                        <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">IT其他技术<em>（13）</em></span>
+                      <img class="arrow-down" src="http://static.blog.csdn.net/images/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="http://static.blog.csdn.net/images/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a  href="http://blog.csdn.net/it_man/article/category/360048"  target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_360048">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+        <div   class="bog_copyright">         
+            <p  class="copyright_p" >版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+
+<div id="article_content" class="article_content tracking-ad" data-mod=popu_307  data-dsm = "post" >
+<p>BitTorrent协议。</p><p>BT全名为BitTorrent,是一个p2p软件,你在下载download的同时，也在为其他用户提供上传upload，因为大家是“互相帮助”，所以不会随着用户数的增加而降低下载速度。 </p><p style="text-indent: 2em;">下面是一般用ftp，http等分享流程：</p><p style="text-indent: 2em;"><center><img src="http://hi.csdn.net/attachment/201107/13/0_131053515922zm.gif" alt="" /></center></p><p></p><p></p><p style="text-indent: 2em;">下面是用BitTorrent分享的流程：</p><p style="text-indent: 2em;"><center><img src="http://hi.csdn.net/attachment/201107/13/0_1310535183564P.gif" alt="" /></center></p><p></p><p></p><p style="text-indent: 2em;">其实跟ED也十分相似，<strong>ED跟BT不同的地方</strong>有: </p><p style="text-indent: 2em;">ED--要连上一个固定server BT--没有固定server,只要分享者制作出该分享档案的.torrent档公布出来便可 </p><p style="text-indent: 2em;">ED--分享的人越多速度越快? BT--种子seed越多速度越快 </p><p style="text-indent: 2em;">ED--世界性的分享 BT--团体性的分享(可做到速度保证) </p><p style="text-indent: 2em;">ED--知道在分享者的user name &amp;速度 BT--没显示使用者/分享者名字 </p><p style="text-indent: 2em;">比起其它的P2P软件，BT有个独特的地方，它存在一个中间的WEB服务器，就是我们在发布的时所填写的announce。 该服务器提供了发布的统一管理，不像其它P2P软件那样到处去找哪些非常不稳定的个人服务器，相对起来让人安心的多。 </p><p style="text-indent: 2em;">该WEB服务器更大的作用是内网用户可以做 Send（下面会说明原理），这是其它软件无法做到的，但不好的地方是announce当机的时候就无法下载了。要知道P2P下载关键是要人气要高，announce停一下就搞到人气全没有了。 </p><p style="text-indent: 2em;"><strong>.torrent 的作用 </strong></p><p style="text-indent: 2em;">大家都知道我们要用BT下载 ，就要先下载一个.torrent文件，这个文件到底有甚么呢： </p><p style="text-indent: 2em;">首先是 announce 纪录了发布服务器的位置，让BT知道是那个WEB服务器发布的，然后是一些文件信息，文件名，目录名，长度等等，最后是片段长度，和片段的 Sha1 校验码，（BT为了事现续传和文件校验，就把文件分成若干个片段），大家可以用写字板打看torrent文件看看，就是知道个大概，后面的乱码是片段 Sha1 校验码。</p><p style="text-indent: 2em;">&nbsp;</p><p style="text-indent: 2em;">开始-续传的实现 sha校验 </p><p style="text-indent: 2em;">BT 打开一个 torrent文件后，先要你选择文件保存那里。然后判断文件不存在的话就建立新文件，存在的话就用 Sha1 校验码去校验文件---错误的就是还没下载的，这样就可以实现续传了，但128位校验，想不慢都不行 </p><p style="text-indent: 2em;"><strong>得到 peer </strong></p><p style="text-indent: 2em;">现在知道要下载甚么了，到那里下载呢?这就要寻找有谁提供上传了，这里BT是通过WEB服务器来实现的，首先BT会通过分析 torrent 来得到下面一串网址 </p><p style="text-indent: 2em;">http://btfans.3322.org:6969/announce?info_hash=%CDg%D4%19%AD%96%9D%93%03%DB%E4%FFXA%C6%5D%043%17O&amp;peer_id=%00%00%00%00%00%00%00%00%00%00%00%00%A3E%E0%9BeB%90d&amp;port=6882&amp;uploadED=0&amp;downloadED=0&amp;left=19171922&amp;event=startED</p><p style="text-indent: 2em;">http://BTfans.3322.org:6969/announce 是发布服务器的地址 </p><p style="text-indent: 2em;">info_hash 是torrent文件中的 info 部分的Sha校验码，WEB通过它在发布列表找到对应的纪录</p><p style="text-indent: 2em;">peer_id 是自身的标识，它是12个0和当前时间+全球的唯一标识码（GUID）的Sha校验的前八位，共20位 </p><p style="text-indent: 2em;">port 你提供上传的 port </p><p style="text-indent: 2em;">IP 你的ip地址，没有的话服务器会自己找到 </p><p style="text-indent: 2em;">uploadED downloadED 你上传和下载了多少，服务器可以用它来做流量分析 </p><p style="text-indent: 2em;">left 你还要下载多少个字节 </p><p style="text-indent: 2em;">event 状态，告诉服务器你是准备开始下载，还是停止，还是下载完成了 </p><p style="text-indent: 2em;">以上这个操作默认 5 分钟做一次，或由服务器设定 </p><p style="text-indent: 2em;"><strong>服务器会做甚么 </strong></p><p style="text-indent: 2em;">服务器中有个一个 track 程序来管理这些请求，得到这一串代码后就会用 info_hash 来查找列表，找到你就可以下载，找不到就对不起啦。接着它会反连（NatCheck）你的 IP 和 Port这样就可以知道你是内网用户还是共网用户（如果你是内网用户，它是连不通的，因为它会连到你的服务器上，你的服务器当然没有这个端口啦），然后服务器返回现在正在下载这个文件的所有公网用户的IP和port，就像是：d8:intervali1800e5eersld2:ip14:xxx.xxx.xx.xxx7eerid20:00180531904b7e3abdd74orti6881eeee </p><p style="text-indent: 2em;">interval 1800 是告诉 BT 隔多少秒来查询一次这里是 30 分钟 （有点过分了），最后如果你是公网用户它会把你提交的 IP 和 Port 放到info_hash 对应的列表中，这样其它人就可以找到你 </p><p style="text-indent: 2em;"><strong>下载 </strong></p><p style="text-indent: 2em;">得到这些 peer IP后，BT就可以找到对应的IP下载了，BT会到所有的peer去寻找自己要下载的东西，不是一定要到seed下载。BT每找到一个peer就和建立一个Socket来下载，所以下载的人越多，速度就越快。 </p><p style="text-indent: 2em;"><strong>内网用户可以做Send的原理 </strong></p><p style="text-indent: 2em;">上面说到服务器只会返回公网的ip的，那内网用户怎么可以做Send呢，这是因为BT是一个主动连接的软件（即使你已经下载完了，也不也会主动连接他人）下面是一个仿真流程： </p><p style="text-indent: 2em;">1 内网用户开始做 seed， </p><p style="text-indent: 2em;">2 服务器收到请求，由于是第一个所以也没有peer返回 </p><p style="text-indent: 2em;">3 公网用户提交请求，由于seed是内网用户所以也没有peer返回，等待下载，但服务器会把它的IP放到列表中 </p><p style="text-indent: 2em;">4 内网经过 interval 时间间隔后，再向服务器放出请求，得到上面得公网IP </p><p style="text-indent: 2em;">5 得到公网IP后，内网马上进行连接 </p><p style="text-indent: 2em;">6 公网用户建立连接，数据开始传输 （注意现在是公网用户做服务器，内网用户做客户端，是不是有点怪） </p><p style="text-indent: 2em;">7 其它内网用户去上面公网用户下载数据 </p><p style="text-indent: 2em;">所以，内网用户做 seed 一定要有公网用户得参与，否则其它内网用户无法下载。如果全部是内网用户，那个所有连接都不会成立，当然这是比较极端的情况。 </p><p style="text-indent: 2em;">以上可见，内网用户不能和内网用户连接，其它用户无法从服务器查到你，所以无法主动连接你，你只能每隔30分钟从服务器找到公网用户一个个进行连接。 </p><p style="text-indent: 2em;">由于中国很多用户的是内网用户（我从服务器上查回来的peer还没试过超过10个的），所以内网用户用BT的确要比公网用户要慢很多</p><p style="text-indent: 2em;">&nbsp;</p><p>&nbsp;</p><div><strong>迅雷的下载原理：</strong></div><div><strong> </strong></div><div><strong>迅雷下载原理分析</strong></div><div>迅雷的工作原理据称为”多资源超线程技术基于网格原理，能够将网络上存在的服务器和计算机资源进行有效的整合”。实际上还是传统的下载技术，只不过这种下载技术综合应用HTTP、FTP传输协议将文件的文件进行分块、分片下载；而且还可以将文件等分，然后去不同地址下载；并且在这些传统下载的过程中穿插P2P技术，也就是一种新的盗链技术。总体来说，迅雷的下载呈现以下特点：</div><div>1、多点下载。收集网上的所有下载地址以便多点下载。其他软件如网际快车不会收集在下载地址里包含了用户名和密码的下载地址，但迅雷一样收集，然后供其他人使用。这就就是“盗链”，即盗用别人的链接。</div><div>2、使用类似BT的P2P下载技术。迅雷启动后，会在系统背后启动两个线程Thunder。exe和Issue。exe，在线程里可以看得到。这两个线程，就是要像BT那样，共享本地硬盘上的文件，让其它迅雷用户下载。</div><div>3、收集用户提供的资源。例如:当有一个用户在一个电影网站上，得到一个下载地址(A)，然后用迅雷下载，这个下载地址就会被发到迅雷的服务器上；另一个地方又有一个用户在另一个网站上下载同一部电影，迅雷的服务器又得到另一个下载地址(B)。迅雷服务器就会把相同文件的下载地址(A，B)集合在一起，形成一个资源，而那两个用迅雷下载这两个电影的用户也算上，就会有四个下载点。当又有用户在别的地方准备下载相同的电影的时候，迅雷就会在数据库里比较，找出相同的资源(其它下载点也就是原先收集到的)，提供给那个准备下载的用户下载，这个用户就会同时有多个下载点来下载而达到速度的飞升。</div><div>例:当有一个用户在一个电影网站上，得到一个下载地址(A)，然后用迅雷下载，这个下载地址就会收集到迅雷的服务器上。</div><div>在地球的另一个地方又有一个用户在另一个网站上下载同一部电影，而得到另一个下载地址(B)，就又会给迅雷服务器收集。然后迅雷服务器就会把相同文件的下载地址(A，B)集合在一起，形成一个资源。那两个用迅雷下载这两个电影的用户也算上。就会有四个下载点了。而又有用户在别的地方准备下载相同的电影的时候，迅雷就会在数据库里比较，找出相同的资源(其它下载点，也就是上面收集到的)，提供给那个准备下载的用户下载，那这个用户就会同时有多个下载点来下载，而达到速度的提升。而这个用户当然也不可能只是享受高速的下载，他同时也会上传了他下载的那部份数据(BT原理)。 </div><div>所以，当一个用户用迅雷下载时，就会连上迅雷服务器，查找资源，如果是热门的文件，迅雷就能返回大量的下载点，供这个用户下载。从而达到下载速度的提升。</div><div> </div><div><strong>BT下载原理 </strong></div><div>BT是目前最热门的下载方式之一，它的全称为“BitTorrent”简称“BT”，中文全称“比特流”，但很多朋友将它戏称为“变态下载”，这又是什么原因呢? </div><div>就HTTP、FTP、PUB等下载方式而言，一般都是首先将文件放到服务器上，然后再由服务器传送到每位用户的机器上，它的工作原理如图1所示。因此如果同一时刻下载的用户数量太多，势必影响到所有用户的下载速度，如果某些用户使用了多线程下载，那对带宽的影响就更严重了，因此几乎所有的下载服务器都有用户数量和最高下载速度等方面的限制。</div><div>很明显，由于上述的原因，即使你使用的是宽带网，通常也很难达到运营商许诺的最高下载速度，这里面固然有网络的原因，但与服务器的限制也不无关系。正因如此，BT下载方式出现之后，很快就成为了下载迷们的最爱。</div><div>BT服务器是通过一种传销的方式来实现文件共享的，它的工作原理如图2所示。举个例子来说吧，例如BT服务器将一个文件分成了N个部分，有甲、乙、丙、丁四位用户同时下载，那么BT并不会完全从服务器下载这个文件的所有部分，而是根据实际情况有选择地从其他用户的机器中下载已下载完成的部分。例如甲已经下载了第1部分，乙已经下载了第2部分，那么丙就会从甲的机器中下载第1部分，从乙的机器中下载第2部分，当然甲、乙、丁三位用户也在同时从丙的机器中下载相应的部分，这就大大减轻了BT服务器的负荷，也同时加快了丙的下载速度，也就是说每台参加下载的计算机既从其他用户的计算机上下载文件，同时自身也向其他用户提供下载，因此参与下载的用户数量越多，下载速度也越高。</div><p>&nbsp;</p>   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   
+
+<!--172.16.140.12-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+
+
+ 
+
+
+        <div id="digg" ArticleId="6602771" >
+            <dl id="btnDigg" class="digg digg_enable"  onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>6</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_enable"  onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" >&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" >&nbsp;</a></div>
+    <script type="text/javascript">
+        function btndigga() {
+            $(".tracking-ad[data-mod='popu_222'] a").click();
+        }
+        function btnburya() {
+            $(".tracking-ad[data-mod='popu_223'] a").click();
+        }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='http://blog.csdn.net/it_man/article/details/6602697';">上一篇</span><a href="http://blog.csdn.net/it_man/article/details/6602697" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">用 Java 实现断点续传 (HTTP)</a></li>
+                <li class="next_article"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian']);location.href='http://blog.csdn.net/it_man/article/details/6614634';">下一篇</span><a href="http://blog.csdn.net/it_man/article/details/6614634" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian'])">模板方法模式Template method（类行为型）</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+            <div class="similar_article"   >
+                    <h4></h4>
+                    <div class="similar_c"style="margin:20px 0px 0px 0px">
+                        <div class="similar_c_t">
+                          &nbsp;&nbsp;相关文章推荐
+                        </div>
+                   
+                        <div class="similar_wrap tracking-ad" data-mod="popu_36"  style="max-height:250px">                       
+                            <ul class="similar_list fl">    
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/cownew/article/details/2947690" title="BT下载原理分析" strategy="BlogCommendFromBaidu_0" target="_blank">BT下载原理分析</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/huiyiCourse/series_detail/64?utm_source=blog7" title="大数据技术实战线上峰会--董西成" strategy="undefined" target="_blank">大数据技术实战线上峰会--董西成</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/cownew/article/details/2789800" title="有人为我写诗了，谢谢啊" strategy="BlogCommendFromBaidu_1" target="_blank">有人为我写诗了，谢谢啊</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/huiyiCourse/series_detail/61?utm_source=blog7" title="30天系统掌握机器学习--唐宇迪" strategy="undefined" target="_blank">30天系统掌握机器学习--唐宇迪</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/cownew/article/details/2917163" title="三鹿公司网站被黑" strategy="BlogCommendFromBaidu_2" target="_blank">三鹿公司网站被黑</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/combo/detail/382?utm_source=blog7" title="ORACLE数据库学习资料集锦" strategy="undefined" target="_blank">ORACLE数据库学习资料集锦</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/wudiazu/article/details/75242267" title="BT原理分析" strategy="BlogCommendFromCsdn_3" target="_blank">BT原理分析</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/3010?utm_source=blog7" title="PHP从零开始实战篇" strategy="undefined" target="_blank">PHP从零开始实战篇</a>
+                                   </li>
+                            </ul>
+                              <ul class="similar_list fr">      
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/it_man/article/details/6602771" title="BT原理分析" strategy="BlogCommendFromCsdn_4" target="_blank">BT原理分析</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/3149?utm_source=blog7" title="玩转微信小程序第一篇" strategy="undefined" target="_blank">玩转微信小程序第一篇</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://download.csdn.net/download/June19860709/1316084" title="BT下载 技术论文，英文版，原理，分析，协议" strategy="BlogCommendFromCsdn_5" target="_blank">BT下载 技术论文，英文版，原理，分析，协议</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/4565?utm_source=blog7" title="深度学习案例分享—人脸检测" strategy="undefined" target="_blank">深度学习案例分享—人脸检测</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/avbfwert/article/details/34444329" title="利用DHT网络原理制作bt采集蜘蛛" strategy="BlogCommendFromCsdn_6" target="_blank">利用DHT网络原理制作bt采集蜘蛛</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/u014774781/article/details/48572379" title="BT、电骡、迅雷等P2P下载原理" strategy="BlogCommendFromCsdn_7" target="_blank">BT、电骡、迅雷等P2P下载原理</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/abnmgft/article/details/34834021" title="利用DHT网络原理制作bt采集蜘蛛，开源版" strategy="BlogCommendFromCsdn_8" target="_blank">利用DHT网络原理制作bt采集蜘蛛，开源版</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/abzhaozuowenab21/article/details/10615691" title="BT、电骡、迅雷等P2P下载原理" strategy="BlogCommendFromCsdn_9" target="_blank">BT、电骡、迅雷等P2P下载原理</a>
+                                   </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>   
+      
+</div>
+
+    <div>
+      
+        <!--u2843949广告位-->
+        <script type="text/javascript" src="http://mpb1.iteye.com/rmboieuiupt.js"></script>
+     </div>
+
+<div id="suggest"></div>
+         <script  language="javascript" type='text/javascript'>     
+             $(function(){
+                 $.get("/it_man/svc/GetSuggestContent/6602771",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+    </div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form">
+    </div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '6602771';
+    var commentscount = 2;
+    var islock = false
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top"  style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="http://static.blog.csdn.net/images/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop"  style="display: none;" title="返回顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])" style="">         
+         <img src="http://static.blog.csdn.net/images/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+    var articletitle='BT原理分析';
+
+</script>
+
+
+
+
+
+
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/it_man" target="_blank">
+    <img src="http://avatar.csdn.net/D/6/C/1_it_man.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/it_man" class="user_name" target="_blank">it_man</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter"  title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=it_man','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>  
+</div>
+<div id="blog_medal">
+                       <div class="ico_expert"  onclick="javascript:location='http://blog.csdn.net/experts/rule.html'" title="CSDN认证专家" style="cursor:pointer;width:60px;height:60px;background:url('http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/bokezhuanjiamiddle.png') no-repeat" ></div>
+                <div id="bms_box">
+                                            <a  target="_blank">
+                                                    <img src="http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="1" >
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>2304469次</span></li>
+    <li>积分：<span>20962</span> </li>    
+    <li >等级： <span style="position:relative;display:inline-block;z-index:1" >
+            <img src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog7.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：20962 </div>
+        </span>  </li>
+    <li>排名：<span>第374名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>287篇</span></li>
+    <li>转载：<span>205篇</span></li>
+    <li>译文：<span>3篇</span></li>
+    <li>评论：<span>447条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body" class="form_search">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search csdn-tracking-statistics" target="_blank"  data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="/it_man/article/category/204147" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">JAVA</a><span>(145)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/585109" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">架构和设计模式</a><span>(61)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/238445" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">开源技术(如Struts/spring/Hibernate等)</a><span>(71)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/906068" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">云计算/物联网</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/520456" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">搜索引擎与数据挖掘</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/879880" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">集群&amp;负载均衡</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/230440" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">数据库/NoSql</a><span>(44)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/1328859" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">API&amp;开放平台</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/231799" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Linux/Uinx等操作系统</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/877577" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">工作流&amp;业务规则&amp;策略&amp;推理</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/636115" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">经典文章</a><span>(22)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/604032" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">开源应用系统</a><span>(12)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/1644319" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">大数据分析</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/951060" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">系统优化</a><span>(11)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/231855" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Web开发技术相关</a><span>(49)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/568761" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">WebService</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/877366" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">javaScript</a><span>(19)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/243263" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">软件工程管理</a><span>(25)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/248968" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">中间件&amp;WOA&amp;SAP&amp;SOA</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/208417" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">ＸＭＬ</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/1054528" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">安全</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/243343" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">非技术文章</a><span>(18)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/885785" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">所见即所得</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/360048" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">IT其他技术</a><span>(14)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/1320250" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">管理知识</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/1620627" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">电子商务</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/2171169" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">商业智能</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/1466563" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">移动开发</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/243262" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">SCM+测试</a><span>(14)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/679471" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">SSO</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/252927" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">日语</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/2820901" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">异常</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="/it_man/article/category/6038296" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">算法</a><span>(1)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="/it_man/article/month/2017/05">2017年05月</a><span>(1)</span></li><li><a href="/it_man/article/month/2015/12">2015年12月</a><span>(7)</span></li><li><a href="/it_man/article/month/2015/09">2015年09月</a><span>(1)</span></li><li><a href="/it_man/article/month/2015/08">2015年08月</a><span>(1)</span></li><li><a href="/it_man/article/month/2015/02">2015年02月</a><span>(2)</span></li><li><a href="/it_man/article/month/2015/01">2015年01月</a><span>(11)</span></li><li><a href="/it_man/article/month/2014/12">2014年12月</a><span>(5)</span></li><li><a href="/it_man/article/month/2014/11">2014年11月</a><span>(3)</span></li><li><a href="/it_man/article/month/2014/09">2014年09月</a><span>(6)</span></li><li><a href="/it_man/article/month/2014/08">2014年08月</a><span>(10)</span></li><li><a href="/it_man/article/month/2014/07">2014年07月</a><span>(7)</span></li><li><a href="/it_man/article/month/2014/06">2014年06月</a><span>(1)</span></li><li><a href="/it_man/article/month/2014/05">2014年05月</a><span>(8)</span></li><li><a href="/it_man/article/month/2014/04">2014年04月</a><span>(7)</span></li><li><a href="/it_man/article/month/2014/03">2014年03月</a><span>(4)</span></li><li><a href="/it_man/article/month/2014/02">2014年02月</a><span>(2)</span></li><li><a href="/it_man/article/month/2013/12">2013年12月</a><span>(2)</span></li><li><a href="/it_man/article/month/2013/11">2013年11月</a><span>(6)</span></li><li><a href="/it_man/article/month/2013/10">2013年10月</a><span>(3)</span></li><li><a href="/it_man/article/month/2013/09">2013年09月</a><span>(10)</span></li><li><a href="/it_man/article/month/2013/08">2013年08月</a><span>(7)</span></li><li><a href="/it_man/article/month/2013/07">2013年07月</a><span>(4)</span></li><li><a href="/it_man/article/month/2013/06">2013年06月</a><span>(5)</span></li><li><a href="/it_man/article/month/2013/05">2013年05月</a><span>(6)</span></li><li><a href="/it_man/article/month/2013/04">2013年04月</a><span>(4)</span></li><li><a href="/it_man/article/month/2013/03">2013年03月</a><span>(6)</span></li><li><a href="/it_man/article/month/2013/02">2013年02月</a><span>(6)</span></li><li><a href="/it_man/article/month/2013/01">2013年01月</a><span>(8)</span></li><li><a href="/it_man/article/month/2012/12">2012年12月</a><span>(8)</span></li><li><a href="/it_man/article/month/2012/11">2012年11月</a><span>(10)</span></li><li><a href="/it_man/article/month/2012/10">2012年10月</a><span>(4)</span></li><li><a href="/it_man/article/month/2012/08">2012年08月</a><span>(2)</span></li><li><a href="/it_man/article/month/2012/07">2012年07月</a><span>(11)</span></li><li><a href="/it_man/article/month/2012/06">2012年06月</a><span>(2)</span></li><li><a href="/it_man/article/month/2012/05">2012年05月</a><span>(21)</span></li><li><a href="/it_man/article/month/2012/04">2012年04月</a><span>(2)</span></li><li><a href="/it_man/article/month/2012/03">2012年03月</a><span>(8)</span></li><li><a href="/it_man/article/month/2012/02">2012年02月</a><span>(9)</span></li><li><a href="/it_man/article/month/2012/01">2012年01月</a><span>(9)</span></li><li><a href="/it_man/article/month/2011/12">2011年12月</a><span>(13)</span></li><li><a href="/it_man/article/month/2011/11">2011年11月</a><span>(6)</span></li><li><a href="/it_man/article/month/2011/10">2011年10月</a><span>(3)</span></li><li><a href="/it_man/article/month/2011/09">2011年09月</a><span>(4)</span></li><li><a href="/it_man/article/month/2011/08">2011年08月</a><span>(9)</span></li><li><a href="/it_man/article/month/2011/07">2011年07月</a><span>(6)</span></li><li><a href="/it_man/article/month/2011/05">2011年05月</a><span>(5)</span></li><li><a href="/it_man/article/month/2011/03">2011年03月</a><span>(2)</span></li><li><a href="/it_man/article/month/2011/02">2011年02月</a><span>(7)</span></li><li><a href="/it_man/article/month/2011/01">2011年01月</a><span>(1)</span></li><li><a href="/it_man/article/month/2010/11">2010年11月</a><span>(1)</span></li><li><a href="/it_man/article/month/2010/10">2010年10月</a><span>(1)</span></li><li><a href="/it_man/article/month/2010/08">2010年08月</a><span>(4)</span></li><li><a href="/it_man/article/month/2010/07">2010年07月</a><span>(1)</span></li><li><a href="/it_man/article/month/2010/04">2010年04月</a><span>(1)</span></li><li><a href="/it_man/article/month/2010/03">2010年03月</a><span>(1)</span></li><li><a href="/it_man/article/month/2009/12">2009年12月</a><span>(11)</span></li><li><a href="/it_man/article/month/2009/10">2009年10月</a><span>(5)</span></li><li><a href="/it_man/article/month/2009/08">2009年08月</a><span>(12)</span></li><li><a href="/it_man/article/month/2009/07">2009年07月</a><span>(6)</span></li><li><a href="/it_man/article/month/2009/03">2009年03月</a><span>(3)</span></li><li><a href="/it_man/article/month/2009/02">2009年02月</a><span>(1)</span></li><li><a href="/it_man/article/month/2009/01">2009年01月</a><span>(7)</span></li><li><a href="/it_man/article/month/2008/12">2008年12月</a><span>(4)</span></li><li><a href="/it_man/article/month/2008/11">2008年11月</a><span>(1)</span></li><li><a href="/it_man/article/month/2008/08">2008年08月</a><span>(1)</span></li><li><a href="/it_man/article/month/2008/05">2008年05月</a><span>(2)</span></li><li><a href="/it_man/article/month/2008/04">2008年04月</a><span>(2)</span></li><li><a href="/it_man/article/month/2008/02">2008年02月</a><span>(7)</span></li><li><a href="/it_man/article/month/2008/01">2008年01月</a><span>(7)</span></li><li><a href="/it_man/article/month/2007/12">2007年12月</a><span>(4)</span></li><li><a href="/it_man/article/month/2007/11">2007年11月</a><span>(2)</span></li><li><a href="/it_man/article/month/2007/09">2007年09月</a><span>(1)</span></li><li><a href="/it_man/article/month/2007/08">2007年08月</a><span>(3)</span></li><li><a href="/it_man/article/month/2007/03">2007年03月</a><span>(1)</span></li><li><a href="/it_man/article/month/2007/01">2007年01月</a><span>(2)</span></li><li><a href="/it_man/article/month/2006/12">2006年12月</a><span>(20)</span></li><li><a href="/it_man/article/month/2006/11">2006年11月</a><span>(32)</span></li><li><a href="/it_man/article/month/2006/10">2006年10月</a><span>(19)</span></li><li><a href="/it_man/article/month/2006/09">2006年09月</a><span>(13)</span></li><li><a href="/it_man/article/month/2006/08">2006年08月</a><span>(11)</span></li><li><a href="/it_man/article/month/2006/07">2006年07月</a><span>(5)</span></li><li><a href="/it_man/article/month/2006/06">2006年06月</a><span>(11)</span></li><li><a href="/it_man/article/month/2006/05">2006年05月</a><span>(8)</span></li>
+</div>
+</ul>
+</div>
+<div id="hotarticls" class="panel tracking-ad" data-mod="popu_340">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="/it_man/article/details/4402245" title="spring ioc原理（看完后大家可以自己写一个spring）">spring ioc原理（看完后大家可以自己写一个spring）</a><span>(263294)</span>
+</li>
+<li>
+<a href="/it_man/article/details/5074371" title="Spring事务配置的五种方式和spring里面事务的传播属性和事务隔离级别">Spring事务配置的五种方式和spring里面事务的传播属性和事务隔离级别</a><span>(82754)</span>
+</li>
+<li>
+<a href="/it_man/article/details/14899905" title="Hadoop家族学习路线图">Hadoop家族学习路线图</a><span>(63062)</span>
+</li>
+<li>
+<a href="/it_man/article/details/1387991" title="Serializable java序列化">Serializable java序列化</a><span>(59993)</span>
+</li>
+<li>
+<a href="/it_man/article/details/1346626" title="在Eclipse中使用Maven 2.x指南">在Eclipse中使用Maven 2.x指南</a><span>(40233)</span>
+</li>
+<li>
+<a href="/it_man/article/details/43800957" title="jquery插件--ajaxfileupload.js上传文件原理分析">jquery插件--ajaxfileupload.js上传文件原理分析</a><span>(34433)</span>
+</li>
+<li>
+<a href="/it_man/article/details/7782623" title="seajs使用教程指南">seajs使用教程指南</a><span>(34249)</span>
+</li>
+<li>
+<a href="/it_man/article/details/8440737" title="spring发布和接收定制的事件(spring事件传播)">spring发布和接收定制的事件(spring事件传播)</a><span>(32506)</span>
+</li>
+<li>
+<a href="/it_man/article/details/7193727" title="(精)JAVA线程池原理以及几种线程池类型介绍">(精)JAVA线程池原理以及几种线程池类型介绍</a><span>(29937)</span>
+</li>
+<li>
+<a href="/it_man/article/details/7556903" title="(精)高手不得不会的东西--HttpServletRequestWrapper、HttpServletResponseWrapper,HttpSessionWrapper用法">(精)高手不得不会的东西--HttpServletRequestWrapper、HttpServletResponseWrapper,HttpSessionWrapper用法</a><span>(29418)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel tracking-ad" data-mod="popu_341">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/it_man/article/details/4402245" title="spring ioc原理（看完后大家可以自己写一个spring）">spring ioc原理（看完后大家可以自己写一个spring）</a><span>(119)</span>
+</li>
+<li>
+<a href="/it_man/article/details/5010093" title="Spring Quartz动态配置时间">Spring Quartz动态配置时间</a><span>(25)</span>
+</li>
+<li>
+<a href="/it_man/article/details/5074371" title="Spring事务配置的五种方式和spring里面事务的传播属性和事务隔离级别">Spring事务配置的五种方式和spring里面事务的传播属性和事务隔离级别</a><span>(15)</span>
+</li>
+<li>
+<a href="/it_man/article/details/5787567" title="Java 单例模式探讨">Java 单例模式探讨</a><span>(15)</span>
+</li>
+<li>
+<a href="/it_man/article/details/1453056" title="JAVA访问控制符（写给初学者的）">JAVA访问控制符（写给初学者的）</a><span>(11)</span>
+</li>
+<li>
+<a href="/it_man/article/details/21593187" title="用消息队列和消息应用状态表来消除分布式事务">用消息队列和消息应用状态表来消除分布式事务</a><span>(10)</span>
+</li>
+<li>
+<a href="/it_man/article/details/1387991" title="Serializable java序列化">Serializable java序列化</a><span>(10)</span>
+</li>
+<li>
+<a href="/it_man/article/details/14899905" title="Hadoop家族学习路线图">Hadoop家族学习路线图</a><span>(10)</span>
+</li>
+<li>
+<a href="/it_man/article/details/7795270" title="理解RESTful架构">理解RESTful架构</a><span>(9)</span>
+</li>
+<li>
+<a href="/it_man/article/details/7193727" title="(精)JAVA线程池原理以及几种线程池类型介绍">(精)JAVA线程池原理以及几种线程池类型介绍</a><span>(9)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/77651442" target="_blank">* CSDN日报20170828——《4个方法快速打造你的阅读清单》</a></li>
+<li><a href="http://blog.csdn.net/lowprofile_coding/article/details/77852131" 
+target="_blank">* Android检查更新下载安装</a></li>
+<li><a href="http://blog.csdn.net/yhaolpz/article/details/77366154"target="_blank">* 动手打造史上最简单的 Recycleview 侧滑菜单</a></li>
+<li><a href="http://blog.csdn.net/sweettool/article/details/77018506" 
+target="_blank">* TCP网络通讯如何解决分包粘包问题</a></li>
+<li><a href="http://edu.csdn.net/huiyiCourse/series_detail/66" 
+target="_blank">* SDCC 2017之区块链技术实战线上峰会</a></li>
+<li><a href="http://blog.csdn.net/pangpang123654/article/details/78012706" 
+target="_blank">* 快速集成一个视频直播功能
+</a></li>
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="/it_man/article/details/4402245#comments">spring ioc原理（看完后大家可以自己写一个spring）</a>
+    <p style="margin:0px;"><a href="/yfm081616" class="user_name">yfm081616</a>:
+字里行间流露出博主的光辉与灿烂
+    </p>
+    </li>
+    <li>
+   
+         <a href="/it_man/article/details/5010093#comments">Spring Quartz动态配置时间</a>
+    <p style="margin:0px;"><a href="/qq_35393693" class="user_name">qq_35393693</a>:
+给我一份源码，可以不？2449237239@qq.com，非常感谢啦！
+    </p>
+    </li>
+    <li>
+   
+         <a href="/it_man/article/details/5010093#comments">spring ioc原理（看完后大家可以自己写一个spring）</a>
+    <p style="margin:0px;"><a href="/u012734723" class="user_name">u012734723</a>:
+建议楼主别放弃Java，但是要放弃自己
+    </p>
+    </li>
+    <li>
+   
+         <a href="/it_man/article/details/12795581#comments">常见规则引擎技术</a>
+    <p style="margin:0px;"><a href="/DEMONU" class="user_name">DEMONU</a>:
+写的不错
+    </p>
+    </li>
+    <li>
+   
+         <a href="/it_man/article/details/12795581#comments">spring ioc原理（看完后大家可以自己写一个spring）</a>
+    <p style="margin:0px;"><a href="/u013043341" class="user_name">u013043341</a>:
+学习了，谢谢分享~~
+    </p>
+    </li>
+    <li>
+   
+         <a href="/it_man/article/details/14899905#comments">Hadoop家族学习路线图</a>
+    <p style="margin:0px;"><a href="/hui2310" class="user_name">hui2310</a>:
+去看看赵强老师的公开课吧 ，讲的很精细的，有一节专门讲Hadoop学习路线的公开课，听完之后就知道怎...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/it_man/article/details/14899905#comments">spring ioc原理（看完后大家可以自己写一个spring）</a>
+    <p style="margin:0px;"><a href="/mengdonghui123456" class="user_name">mengdonghui123456</a>:
+第二次看了；有了新的感受！
+    </p>
+    </li>
+    <li>
+   
+         <a href="/it_man/article/details/14899905#comments">Hadoop家族学习路线图</a>
+    <p style="margin:0px;"><a href="/hui2310" class="user_name">hui2310</a>:
+关于Hadoop的学习路线，推荐看一下赵强老师讲的一节视频，讲的很清晰的，比看文字清晰多了。http...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/it_man/article/details/14899905#comments">spring ioc原理（看完后大家可以自己写一个spring）</a>
+    <p style="margin:0px;"><a href="/lbdai3190" class="user_name">lbdai3190</a>:
+感谢，通俗易懂
+    </p>
+    </li>
+    <li>
+   
+         <a href="/it_man/article/details/14899905#comments">spring ioc原理（看完后大家可以自己写一个spring）</a>
+    <p style="margin:0px;"><a href="/u010868933" class="user_name">u010868933</a>:
+@qq_34709162:我就是个实习的菜鸡，给作者说句公道话，这样写的的博客，看不懂真的放弃jav...
+    </p>
+    </li>
+</ul>
+</div>
+
+
+<div id="custom_column_967878" class="panel">
+<ul class="panel_head"><span>便民服务</span></ul>
+<ul class="panel_body">
+<ul><li><a href="http://train.tielu.org/" target=_blank>火车时刻表查询 </a></li><li><a href="http://tq.tom.com/" target=_blank>天气预报 </a></li><li><a href="http://www.excite.co.jp/world/chinese/" target=_blank>在线翻译(中日英)</a></li><li><a href="http://www.ip138.com/" target=_blank>IP地址、手机号码、身份证查询 </a></li><li><a href="http://www.wzzchao.com/mysite/wannli.htm" target=_blank>万年历查询 </a></li><li><a href="http://www.ctrip.com/supermarket/hotel/hotelSearch.asp" target=_blank>中日英在线翻译 </a> (<a href="http://translation.infoseek.co.jp/" target=_blank>RSS</a>)</li><li><a href="http://www.ctrip.com/supermarket/hotel/hotelSearch.asp" target=_blank>酒店信息查询</a></li><li><a href="http://jipiao.oklx.com/index.aspx" target=_blank>航班时刻查询系统 </a></li></ul>
+</ul>
+</div>
+
+<div id="custom_column_967879" class="panel">
+<ul class="panel_head"><span>管理知识网站</span></ul>
+<ul class="panel_body">
+
+<ul>
+<li><a href="http://www.icxo.com/" target="_blank">世界经理人网站 </a></li><li><a href="http://www.mbalib.com/" target="_blank">MBA智库 </a></li></ul>
+
+</ul>
+</div>
+
+<div id="custom_column_967880" class="panel">
+<ul class="panel_head"><span>免费资源</span></ul>
+<ul class="panel_body">
+<ul><li><a href="http://passport.mofile.com/cn/register/step1.do?referuser=lhj2004" target=_blank>1G网络硬盘(还有大量免费视频)</a></li></ul>
+</ul>
+</div>
+
+<div id="custom_column_967881" class="panel">
+<ul class="panel_head"><span>娱乐频道</span></ul>
+<ul class="panel_body">
+<ul><li><a href="http://www1.tianyaclub.com/index.asp" target=_blank>天涯社区BBS </a></li><li><a href="http://bbs.055.cc/index.php?fromuid=29065" target=_blank>拂晓雅阁(超人气BBS)</a></li></ul>
+</ul>
+</div>
+
+<div id="custom_column_967908" class="panel">
+<ul class="panel_head"><span>资源中心</span></ul>
+<ul class="panel_body">
+
+<ul>
+<li><a href="http://www.chinaitlab.com/" target="_blank">中国it实验室</a></li><li><a href="http://www-128.ibm.com/developerworks/cn/" target="_blank">IBM中国</a></li><li><a href="http://www.cn-education.com/english/hangye/" target="_blank">中国教育学习网</a></li><li><a href="http://www.hjenglish.com/" target="_blank">沪江网( 最牛的语言学习网)</a></li><li><a href="http://bbs.okajax.com/" target="_blank">AJax技术论坛</a></li><li><a href="http://www.edulife.com.cn/" target="_blank">教育人生网</a></li><li><a href="http://www.itcast.cn" target="_blank">传智播客</a></li><li><a href="http://www.itcast.net" target="_blank">乐知学堂</a></li><li><a href="http://www.yesky.com/" target="_blank">天极网</a></li><li><a href="http://www.oschina.net" target="_blank">开源中国社区</a> (<a href="http://www.oschina.net/project/rss" target="_blank">RSS</a>)</li><li><a href="http://www.open-open.com/" target="_blank">java开发大全</a></li><li><a href="http://www.iteye.com/" target="_blank">iteye社区</a></li><li><a href="http://www.ibeifeng.com/" target="_blank">北风网</a></li></ul>
+
+</ul>
+</div>    </div>
+    <div class="clear">
+    </div>
+
+                   <div class="tracking-ad" data-view="true"  data-mtp="63" data-order="40" data-con="ad_content_1260" style="width: 200px; height: 400px;">
+                         <div id="nav_show_top_stop" style="width: 200px;height: 500px;z-index:1000">
+                             <div id="cpro_u2734128">
+                                  <!-- 投放代码 -->                           
+                              <!-- 请置于所有广告位代码之前 -->
+                                <script src="http://dup.baidustatic.com/js/ds.js"></script>
+                                 <!-- 广告位：PC端-博客详情页-左侧button1-200*200 -->
+                                    <script>
+                                        (function () {
+                                            var s = "_" + Math.random().toString(36).slice(2);
+                                            document.write('<div id="' + s + '"></div>');
+                                            (window.slotbydup = window.slotbydup || []).push({
+                                                id: '4740881',
+                                                container: s,
+                                                size: '200,200',
+                                                display: 'inlay-fix'
+                                            });
+                                        })();
+                                    </script>
+                             </div>
+                             <div id="cpro_u3031287">
+                                  <!-- 投放代码 -->
+                                <!-- 请置于所有广告位代码之前 -->
+                                    <script src="http://dup.baidustatic.com/js/ds.js"></script>
+
+                                 <!-- 广告位：PC端-博客详情页-左侧button2-200*200 -->
+                                <script>
+                                    (function () {
+                                        var s = "_" + Math.random().toString(36).slice(2);
+                                        document.write('<div id="' + s + '"></div>');
+                                        (window.slotbydup = window.slotbydup || []).push({
+                                            id: '4740894',
+                                            container: s,
+                                            size: '200,200',
+                                            display: 'inlay-fix'
+                                        });
+                                    })();
+                                </script>
+
+                             </div>
+
+                         </div>
+                   </div>
+                <script type="text/javascript">
+                    setTimeout(function () {
+                        var naviga_offsetTop = 0;
+                        function naviga_stay_top() { var scrollTop = jQuery(document).scrollTop(); if (scrollTop > naviga_offsetTop) { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": "0px" }); } else { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop - scrollTop + "px" }); } }
+                        function onload_function() { naviga_offsetTop = jQuery("#nav_show_top_stop").position().top; jQuery(window).bind("scroll", naviga_stay_top); jQuery(window).bind("mousewheel", naviga_stay_top); jQuery(document).bind("scroll", naviga_stay_top); jQuery(document).bind("mousewheel", naviga_stay_top); } jQuery(document).ready(onload_function);
+
+                    }, 200);
+                </script>                    
+
+           </div>   
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+     
+
+
+       <script type="text/javascript" src="http://static.blog.csdn.net/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>   
+    
+    <script src="http://static.blog.csdn.net/scripts/csdn_blog_detail.min.js" type="text/javascript"></script>
+        
+    <script type="text/javascript" src="http://c.csdnimg.cn/blog/csdn_public_blog_detail.min.js?20170719001"></script>
+
+    <script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=120242"></script>
+
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+          
+    <div class="pop_CA_cover"  style="display:none"></div>
+    <div class="pop pop_CA"  style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon"  id="fapancle"  onclick="$('.pop_CA').hide();$('.pop_CA_cover').hide();"></span>
+          </div>
+          <iframe src="" id="fa" frameborder="0" width="100%" height="360"  scrolling="no" ></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+
+</body>
+</html>   
